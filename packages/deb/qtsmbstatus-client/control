@@ -1,0 +1,15 @@
+Source: qtsmbstatus-client
+Section: net
+Priority: optional
+Maintainer: Daniel Rocher <daniel.rocher@adella.org>
+Build-Depends: debhelper (>= 5), libqt3-headers, libqt3-mt-dev, qt3-dev-tools, libssl-dev
+Standards-Version: 3.7.2
+
+Package: qtsmbstatus-client
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt3-mt, openssl
+Description: QtSmbstatus is a GUI (graphical user interface) for smbstatus.
+ .
+ QtSmbstatus was designed as a client/server system secured with SSL. A login and password is required to log on to server (PAM). Qtsmbstatusd ought to be installed on host where SAMBA executes.
+ .
+ Homepage: http://qtsmbstatus.free.fr/
