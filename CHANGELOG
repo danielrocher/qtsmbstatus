@@ -1,0 +1,78 @@
+Changelog for QtSmbstatus:
+
+207-06-18 - Version 2.0.0:
+	- Porting to Qt 4
+	- Add tray icon
+	- view SMB/CIFS activities (optional)
+
+2007-05-13 - Version 1.2.1:
+	- Bug correction from filenames when samba > 3.0.20
+2007-02-21 - Version 1.2.0:
+	- Append Machine Item
+	- Save and restore Window size
+	- Possibilitie to search item (machine, user, share or locked file)
+
+2007-01-31 - Version 1.0.1:
+	- View user "nobody" (public access)
+
+2006-02-13 - Version 1.0.0:
+	- Append a configuration dialogbox for client
+	- Append a TCP time out
+	- Correction bug in smbstatus module (minor)
+	- Optimization
+
+2005-10-14 - Version 0.9.11:
+	- Append 'properties' in popupmenu (server, user or service)
+	- Correction bug in client smbstatus module (minor)
+	- rewrited classes of client : server, user and service
+
+2005-08-21 - Version 0.9.10:
+	- Append in server's configuration file : permit_disconnect_user and permit_send_msg
+	- Create qtsmbstatus client for windows
+	- Optimization
+	
+2005-05-03 - Version 0.9.9:
+	- Change qtsmbstatus client commands lines : -r' becomes '-i' (interval between every request to smbstatus)
+	- Change option in client config file (.qtsmbstatus.conf) : 'interval' replace 'tempo'
+        - Client : include address IP history in a comboBox (qtsmbstatus create file '$home/.qtsmbstatus.history')
+
+2005-03-10 - Version 0.9.8:
+	- Correction problem with unicode encoding (UTF-8)
+	- Correction problem of compilation on SuSE (thread is not a default option)
+	- Optimization
+
+2005-02-25 - Version 0.9.7:
+	- Correction bug (qtsmbstatusd) when a user quit qtsmbstatus (client) without awaiting the end of authentification (PAM).
+	
+2005-01-09 - Version 0.9.6:
+	- Modifications for RPM creation (Mandrake)
+	- Start service when system power on 
+	
+2004-11-08 - Version 0.9.5:
+	- Dependency qt >= version 3.1
+	- Create client's configuration file
+	- Manage errors when smbclient is not installed (popup windows)
+	- Manage errors when smbstatus send message on std err
+	- Append option 'autoconnect' (client)
+
+2004-10-13 - Version 0.9.4:
+	- Append script 'qtsmbstatus' in /etc/init.d/ (start, stop and status)
+	- Correction bug when Samba is not installed
+
+2004-10-08 - Version 0.9.3:
+	- QtSmbstatus was designed as a client/server system secured with SSL
+	- PAM Authentification
+	- Daemonize the server
+
+2004-09-06 - Version 0.9.2:
+	- possibilitie to disconnect user
+	
+2004-09-04 - Version 0.9.1:
+	- Append menus and statusbar
+	- Append context menu
+	- Possibility to append arguments in command line
+	- Send out  messages (popupwindows) to one or many users
+	- Use tools for internationalization (QLinguist)
+
+2004-08-24 - Version 0.9.0beta
+

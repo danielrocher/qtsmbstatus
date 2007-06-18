@@ -1,0 +1,44 @@
+QtSmbstatus :
+=============
+
+QtSmbstatus (client) require qt4>=4.2 and openssl
+QtSmbstatusd (server) require qt4>=4.2, openssl and pam
+you must install it before.
+
+You need Qt (from Trolltech) at least version 4.2 to be able to compile
+QtSmbstatus. Most Linux distributions normally already package the latest
+version of Qt. However, you need the development package as well 
+(sometimes named as qt-devel or qt4-devel, it varies depends on the distributions).
+
+Required to compile qtsmbstatus-client: qt4-dev>=4.2 and ssl-dev
+Required to compile qtsmbstatus-server: qt4-dev>=4.2 , ssl-dev and pam-dev
+
+The simplest way to compile this package is:
+
+  1. `cd' to the directory containing the package's source code and type
+     'qmake' to create Makefile
+  
+  2. Type `make' to compile the package.
+
+  3. Type `make install' (root) to install the programs and any data files and
+     documentation.
+  
+  4. You can remove the program binaries and object files from the
+     source code directory by typing `make clean'.
+     
+  5. You can uninstall programs by typing 'make uninstall' (as root).
+
+     
+Qt description :
+================
+ 
+Qt by Trolltech is the standard framework for developing high-performance cross-platform applications. Qt provides single-source portability across Microsoft Windows, Mac OS X, Linux, all major commercial Unix variants, and embedded Linux. On embedded Linux, the Qt API is available as Qtopia Core.
+Qt provides application developers with all the functionality needed to build complex, high-performance GUI and console applications. Qt is fully object-oriented, easily extensible, and allows true component programming. Read the Whitepaper for a comprehensive technical overview.
+Since its commercial introduction in early 1996, Qt has formed the basis of many thousands of successful applications worldwide, including Google Earth, Adobe Photoshop Elements, and Skype. Qt is also the basis of the popular KDE Linux desktop environment, a standard component of all major Linux distributions. See our Customer Success Stories for some examples of commercial Qt development.
+Qt is supported on the following platforms:
+	- Microsoft Windows -- 98, NT 4.0, ME, 2000, and XP
+	- Unix/X11 -- Linux, Sun Solaris, HP-UX, HP Tru64 UNIX, IBM AIX, SGI IRIX and many others
+	- Mac OS X -- Mac OS X 10.3+
+	- Embedded Linux -- Linux platforms with framebuffer support
+
+See Trolltech's web site for the complete list of supported platform and compilers.

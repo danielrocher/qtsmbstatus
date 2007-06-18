@@ -1,0 +1,132 @@
+-*------------------------------------------------------------------------+-
+
+       SAMBA - Visualisation des ressources: Application Qtsmbstatus
+
+       http://qtsmbstatus.free.fr/
+       Daniel Rocher - ADELLA <daniel.rocher@adella.org>
+
+-*------------------------------------------------------------------------+-
+
+Ce programme est distribue selon les termes de la General Public License version 2 
+
+
+QtSmbstatus permet de visualiser en temps reel, les ressources utilisees sur un serveur samba. Il s'agit d'une GUI (interface utilisateur) pour smbstatus.
+
+Cette application a un fonctionnement client/serveur. Les connexions sont securisees via une couche SSL et une authentification est requise pour se connecter au serveur.
+
+1/ Compilation a partir des sources
+2/ Options en ligne de commande
+3/ Demarrage et arret du serveur
+4/ Fonctionnement du client sous X11 (Unix/Linux)
+5/ Fonctionnement du client sous Windows
+6/ Configuration du client
+
+-------------------------------------------------------------
+1/ Compilation a partir des sources:
+-------------------------------------------------------------
+         Pour installer le serveur:
+         **************************
+                  Verifier les dependances: pam-dev, ssl-dev et qt4-dev>=4.2
+                  cd server
+                  qmake
+                  make
+                  puis en tant tant que root:
+                  make install
+
+
+         Pour installer le client:
+         *************************
+                  verifier les dependances: ssl-dev et qt4-dev>=4.2
+                  cd client
+                  qmake
+                  make
+                  puis en tant tant que root:
+                  make install
+
+-------------------------------------------------------------
+2/ Options en ligne de commande:
+-------------------------------------------------------------
+         Des options peuvent etre passees au serveur ainsi qu'au client, pour les connaitres:
+
+                  qtsmbstatusd --help (pour le serveur)
+                  qtsmbstatus --help (pour le client)
+
+
+-------------------------------------------------------------
+3/ Demarrage et arret du serveur:
+-------------------------------------------------------------
+         Demarrage du serveur:
+                  /etc/init.d/qtsmbstatusd start
+              ou 
+                  service qtsmbstatusd start
+         
+                  Port par defaut: 4443
+
+         Arret du serveur:
+                  /etc/init.d/qtsmbstatusd stop
+              ou
+                  service qtsmbstatusd stop
+
+         Les fichiers de configuration du serveur se trouvent sur:
+                  /etc/qtsmbstatusd/
+
+         contenu:
+                  privkey.pem
+                  qtsmbstatusd.conf
+                  qtsmbstatusd.users
+                  server.pem
+
+         privkey.pem : cle prive (attention aux droits: 640 ! )
+                  pour creer la votre: openssl genrsa -des3 -out privkey.pem 2048
+
+         server.pem : certificat autosigne avec la cle privkey.pem
+                  pour creer le votre:
+                  openssl req -new -x509 -key privkey.pem -out server.pem -days 10000
+
+         Les options sont enregistrees dans: qtsmbstatusd.conf
+                port :                   Port TCP ecoute par le serveur 
+                private_key :            Cle prive
+                certificat :             Certificat ssl
+                ssl_password :           mot de passe pour le certificat
+                permit_disconnect_user : autorise un client a deconnecter un utilisateur
+                                         Vous pouvez autoriser un client a deconnecter un utilisateur.
+                                         Utilisez son Username ou 'all' pour autoriser tous les clients.
+                permit_send_msg :        Autorise un client a envoyer un message
+                                         Vous pouvez autoriser un utilisateur a envoyer un message.
+                                         Utilisez son Username ou 'all' pour autoriser tous les clients.
+
+
+
+         Les utilisateurs autorises a se connecter sont dans: qtsmbstatusd.users
+         (root par defaut)
+
+-------------------------------------------------------------
+4/ Fonctionnement du client sous X11 (Unix/Linux) :
+-------------------------------------------------------------
+         Executez sous X11: qtsmbstatus
+         Rentrez l'adresse IP du serveur, connectez et authentifiez-vous
+ 
+         Clic droit sur un utilisateur pour lui envoyer un message ou le deconnecter
+         (smbclient est necessaire pour les popupwindows)
+
+-------------------------------------------------------------
+5/ Fonctionnement du client sous Windows :
+-------------------------------------------------------------
+         Installez qtsmbstatus-client.X.X.X.exe
+         Executez qtsmbstatus.exe
+ 
+         Rentrez l'adresse IP du serveur, connectez et authentifiez-vous
+ 
+         Clic droit sur un utilisateur pour lui envoyer un message ou le deconnecter
+         (smbclient est necessaire pour les popupwindows)
+
+------------------------------------------------------------- 
+6/ Configuration du client :
+------------------------------------------------------------- 
+         Le fichier de configuration du client se trouve dans le repertoire personnel : .qtsmbstatus.conf
+                port :                Port de destination
+                interval :            Intervalle, en secondes, entre chaques requetes envoyees a smbstatus
+                host_address :        adresse du serveur par defaut
+                username :            Username par defaut
+                autoconnect :         Autoconnexion lors du demarrage de qtsmbstatus client
+

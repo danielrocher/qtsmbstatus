@@ -1,0 +1,498 @@
+<ui version="4.0" >
+ <class>form_smbstatus</class>
+ <widget class="QMainWindow" name="form_smbstatus" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>608</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>qtsmbstatus</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="client.qrc" >:/icons/samba.png</iconset>
+  </property>
+  <widget class="QWidget" name="widget" >
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="0" column="3" >
+     <widget class="QPushButton" name="pushButton_connect" >
+      <property name="minimumSize" >
+       <size>
+        <width>24</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="maximumSize" >
+       <size>
+        <width>24</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="toolTip" >
+       <string>Connect/Disconnect</string>
+      </property>
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QLabel" name="textLabel1" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>5</hsizetype>
+        <vsizetype>5</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text" >
+       <string>Host:</string>
+      </property>
+      <property name="alignment" >
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" >
+     <spacer>
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType" >
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" >
+       <size>
+        <width>50</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="2" >
+     <widget class="QComboBox" name="comboBox_hostaddr" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>7</hsizetype>
+        <vsizetype>0</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>100</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="editable" >
+       <bool>true</bool>
+      </property>
+      <property name="maxCount" >
+       <number>20</number>
+      </property>
+      <property name="insertPolicy" >
+       <enum>QComboBox::NoInsert</enum>
+      </property>
+      <property name="autoCompletion" >
+       <bool>true</bool>
+      </property>
+      <property name="duplicatesEnabled" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="4" >
+     <widget class="Q3ListView" name="listView" >
+      <property name="frameShadow" >
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="resizeMode" >
+       <enum>Q3ListView::AllColumns</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="MenuBar" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>330</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="helpMenu" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="helpAboutAction" />
+    <addaction name="helpAbout_QtAction" />
+   </widget>
+   <widget class="QMenu" name="Search" >
+    <property name="title" >
+     <string>&amp;Search</string>
+    </property>
+    <addaction name="searchAll" />
+    <addaction name="separator" />
+    <addaction name="searchMachineAction" />
+    <addaction name="searchUserAction" />
+    <addaction name="searchShare_openAction" />
+    <addaction name="searchFile_openAction" />
+    <addaction name="separator" />
+    <addaction name="searchNextAction" />
+   </widget>
+   <widget class="QMenu" name="Configure" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_Connect" />
+    <addaction name="separator" />
+    <addaction name="action_View_log" />
+    <addaction name="configureConfigure_clientAction" />
+    <addaction name="separator" />
+    <addaction name="action_Quit" />
+   </widget>
+   <addaction name="Configure" />
+   <addaction name="Search" />
+   <addaction name="helpMenu" />
+  </widget>
+  <action name="helpAboutAction" >
+   <property name="icon" >
+    <iconset resource="client.qrc" >:/icons/samba.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;About QtSmbstatus</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;About QtSmbstatus</string>
+   </property>
+   <property name="toolTip" >
+    <string>&amp;About QtSmbstatus</string>
+   </property>
+   <property name="statusTip" >
+    <string>bout QtSmbstatus</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+  </action>
+  <action name="helpAbout_QtAction" >
+   <property name="text" >
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="iconText" >
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="toolTip" >
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="statusTip" >
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="configureConfigure_clientAction" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="client.qrc" >:/icons/configure.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Configure client</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;Configure client</string>
+   </property>
+   <property name="statusTip" >
+    <string>Configure QtSmbstatus client</string>
+   </property>
+  </action>
+  <action name="searchMachineAction" >
+   <property name="text" >
+    <string>&amp;Machine</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;Machine</string>
+   </property>
+   <property name="statusTip" >
+    <string>Search machine</string>
+   </property>
+  </action>
+  <action name="searchUserAction" >
+   <property name="text" >
+    <string>&amp;User</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;User</string>
+   </property>
+   <property name="statusTip" >
+    <string>Search user</string>
+   </property>
+  </action>
+  <action name="searchShare_openAction" >
+   <property name="text" >
+    <string>Share &amp;open</string>
+   </property>
+   <property name="iconText" >
+    <string>Share &amp;open</string>
+   </property>
+   <property name="statusTip" >
+    <string>Search share open</string>
+   </property>
+  </action>
+  <action name="searchFile_openAction" >
+   <property name="text" >
+    <string>&amp;Locked file</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;Locked file</string>
+   </property>
+   <property name="statusTip" >
+    <string>Search file open</string>
+   </property>
+  </action>
+  <action name="searchNextAction" >
+   <property name="text" >
+    <string>&amp;Next</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;Next</string>
+   </property>
+   <property name="statusTip" >
+    <string>Next</string>
+   </property>
+   <property name="shortcut" >
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="searchAll" >
+   <property name="text" >
+    <string>&amp;Find text</string>
+   </property>
+   <property name="iconText" >
+    <string>&amp;Find text</string>
+   </property>
+   <property name="statusTip" >
+    <string>Find text</string>
+   </property>
+   <property name="shortcut" >
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="action_Quit" >
+   <property name="icon" >
+    <iconset resource="client.qrc" >:/icons/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+   <property name="statusTip" >
+    <string>Quit QtSmbstatus</string>
+   </property>
+  </action>
+  <action name="action_View_log" >
+   <property name="text" >
+    <string>&amp;View CIFS/SMB activities</string>
+   </property>
+  </action>
+  <action name="action_Connect" >
+   <property name="icon" >
+    <iconset resource="client.qrc" >:/icons/connect_no.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Co&amp;nnect</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <customwidgets>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="client.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>helpAboutAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>helpAbout()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpAbout_QtAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>helpAboutQt()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_connect</sender>
+   <signal>clicked()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>Slot_connect()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>317</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>configureConfigure_clientAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>ConfigureSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchFile_openAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>FileSearchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchMachineAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>MachineSearchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchShare_openAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>ShareSearchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchUserAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>UserSearchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchNextAction</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>NextSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchAll</sender>
+   <signal>activated()</signal>
+   <receiver>form_smbstatus</receiver>
+   <slot>AllSearchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

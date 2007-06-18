@@ -1,0 +1,271 @@
+<ui version="4.0" >
+ <class>configure</class>
+ <widget class="QDialog" name="configure" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>278</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Configure</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="5" column="2" colspan="4" >
+    <widget class="QCheckBox" name="checkIcon" >
+     <property name="toolTip" >
+      <string/>
+     </property>
+     <property name="text" >
+      <string>Iconize QtSmbstatus on system tray</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2" colspan="4" >
+    <widget class="QCheckBox" name="checkLogActivity" >
+     <property name="toolTip" >
+      <string/>
+     </property>
+     <property name="text" >
+      <string>Log SMB/CIFS activities</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2" colspan="4" >
+    <widget class="QCheckBox" name="checkNotification" >
+     <property name="toolTip" >
+      <string>View activity on "balloon messages"</string>
+     </property>
+     <property name="text" >
+      <string>Status notification messages</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" colspan="4" >
+    <widget class="QCheckBox" name="checkAutoconnect" >
+     <property name="toolTip" >
+      <string>Autoconnect when qtsmbstatus start</string>
+     </property>
+     <property name="text" >
+      <string>Autoconnect</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2" colspan="4" >
+    <widget class="QCheckBox" name="checkViewHiddenShares" >
+     <property name="toolTip" >
+      <string>View hidden shares (share$)</string>
+     </property>
+     <property name="text" >
+      <string>View hidden shares</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>81</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="4" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>81</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="3" colspan="3" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>221</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="2" >
+    <widget class="QSpinBox" name="spinInterval" >
+     <property name="toolTip" >
+      <string>Interval, in seconds, between every request to smbstatus (interval > 2)</string>
+     </property>
+     <property name="maximum" >
+      <number>300</number>
+     </property>
+     <property name="minimum" >
+      <number>3</number>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1" colspan="4" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>261</width>
+       <height>27</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="8" column="0" >
+    <widget class="QPushButton" name="okButton" >
+     <property name="text" >
+      <string>OK</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="5" >
+    <widget class="QPushButton" name="cancelButton" >
+     <property name="text" >
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2" >
+    <widget class="QLabel" name="textLabel1_2" >
+     <property name="text" >
+      <string>&lt;p align="right">Interval:&lt;/p></string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" colspan="2" >
+    <widget class="QLineEdit" name="EditHost" >
+     <property name="toolTip" >
+      <string>Host Address</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2" >
+    <widget class="QLabel" name="textLabel1_3_2" >
+     <property name="text" >
+      <string>&lt;p align="right">Default Username:&lt;/p></string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2" >
+    <widget class="QLabel" name="textLabel1_3" >
+     <property name="text" >
+      <string>&lt;p align="right">Default host address:&lt;/p></string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2" colspan="2" >
+    <widget class="QLineEdit" name="EditUsername" >
+     <property name="toolTip" >
+      <string>Username (default :  username = root)</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <tabstops>
+  <tabstop>spinInterval</tabstop>
+  <tabstop>EditHost</tabstop>
+  <tabstop>EditUsername</tabstop>
+  <tabstop>checkAutoconnect</tabstop>
+  <tabstop>checkViewHiddenShares</tabstop>
+  <tabstop>checkIcon</tabstop>
+  <tabstop>checkNotification</tabstop>
+  <tabstop>checkLogActivity</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>configure</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>configure</receiver>
+   <slot>SlotOk()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>configure</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
