@@ -42,6 +42,9 @@ public slots:
 private slots:
 	void on_checkShare_stateChanged ( int);
 	void on_checkFile_stateChanged ( int);
+private: //methods
+	void restoreLogFile();
+	void saveLogFile();
 };
 
 #endif

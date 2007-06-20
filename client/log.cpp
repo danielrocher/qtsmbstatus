@@ -42,6 +42,7 @@ LogForm::LogForm(QWidget *parent) : QDialog(parent)
 	tableWidget->setColumnWidth ( 1, 100 );
 	tableWidget->setColumnWidth ( 2, 100 );
 	tableWidget->setColumnWidth ( 3, 450 );
+	tableWidget->verticalHeader ()->setVisible(false); // hide vertical header
 	setHeader();
 }
 
@@ -62,7 +63,25 @@ void LogForm::setHeader()
 	tableWidget->setHorizontalHeaderLabels ( labels );
 }
 
+/**
+	Restore log file
+	\sa saveLogFile
+*/
+void LogForm::restoreLogFile()
+{
+	debugQt("LogForm::restoreLogFile()");
+	//! @TODO
+}
 
+/**
+	save log file
+	\sa restoreLogFile
+*/
+void LogForm::saveLogFile()
+{
+	debugQt("LogForm::saveLogFile()");
+	//! @TODO
+}
 
 /**
 	Clear tableView

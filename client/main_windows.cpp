@@ -41,7 +41,7 @@
 	//@todo le programme ne quitte pas à cause de la fenetre de log
 	//@todo trier par date les logs
 	//@todo refiltrer les logs apres append
-	@todo cacher le header vertical dans log
+	//@todo cacher le header vertical dans log
 	@todo pouvoir enregistrer les logs dans un fichier
 	@todo faire une recherche sur Q3 (grep)
 	//@todo mettre l'icone d'application dans mainwindow
