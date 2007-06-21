@@ -115,7 +115,7 @@ void ClientSSL ::ResolveName(QHostInfo host_info)
 void ClientSSL ::connectToHost()
 {
 	debugQt("ClientSSL::connectToHost()");
-	emit info( tr("Trying to connect to") + " " + host );
+	emit info( tr("Connection in progress on") + " " + host );
 	// connect to server
 	socketdevice = new Q3SocketDevice( Q3SocketDevice::Stream );
 
@@ -124,7 +124,7 @@ void ClientSSL ::connectToHost()
 	{
 		//  if the address was successfully parsed
 		debugQt("Unvalid address");
-		emit info( tr("Host not found") );
+		emit info( tr("Host not found !") );
 		emit UnreachableHost();
 		deleteLater();
 		return;

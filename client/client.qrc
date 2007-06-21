@@ -11,5 +11,7 @@
         <file>icons/samba.png</file>
         <file>icons/exit.png</file>
         <file>icons/configure.png</file>
+        <file>icons/clear.png</file>
+        <file>icons/filesaveas.png</file>
     </qresource>
     </RCC>

@@ -27,8 +27,8 @@
 	\class configure_windows
 	\brief Configure Qtsmbstatus-client
 	\param parent pointer to the parent object
-	\date 2007-06-15
-	\version 1.0
+	\date 2007-06-21
+	\version 1.4
 	\author Daniel Rocher
 */
 configure_windows::configure_windows(QWidget *parent)
@@ -48,8 +48,10 @@ configure_windows::configure_windows(QWidget *parent)
 	checkIcon->setChecked(iconize);
 	checkNotification->setChecked(show_messages);
 	checkLogActivity->setChecked(log_activity);
+	limitLogBox->setValue (limitLog);
 	// first time
 	on_checkIcon_toggled(iconize);
+	on_checkLogActivity_toggled(log_activity);
 }
 
 
@@ -64,6 +66,11 @@ void configure_windows::on_checkIcon_toggled(bool checked )
 	checkNotification->setEnabled(checked);
 }
 
+void configure_windows::on_checkLogActivity_toggled(bool checked)
+{
+	debugQt("configure_windows::on_checkLogActivity_toggled()");
+	limitLogBox->setEnabled(checked);
+}
 
 /**
 	Save configuration
@@ -79,6 +86,7 @@ void configure_windows::SlotOk()
 	iconize=checkIcon->isChecked();
 	show_messages=checkNotification->isChecked();
 	log_activity=checkLogActivity->isChecked();
+	limitLog=limitLogBox->value ();
 	// save configuration
 	writeConfigFile();
 	emit (configuration_changed());

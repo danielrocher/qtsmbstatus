@@ -480,7 +480,7 @@ void ClientSocket::slotSendMessageAllUsers() {
 	machine* Item;
 	bool ok;
 	QString message = QInputDialog::getText(
-            "QtSmbstatus", tr("Message to be sent")+":", QLineEdit::Normal,
+            "QtSmbstatus", tr("Message to send")+":", QLineEdit::Normal,
             QString::null, &ok, 0 );
 
 	if ( !ok || message.isEmpty() ) return;
@@ -504,7 +504,7 @@ void ClientSocket::slotSendMessage() {
 	machine* Item=dynamic_cast<machine *>(currentPopupMenuItem);
 	if (!Item) return;
 	QString message = QInputDialog::getText(
-            "QtSmbstatus", tr("Message to be sent to")+ " " + Item->machine_name + ":" , QLineEdit::Normal,
+		"QtSmbstatus", tr("Message to send to %1:").arg(Item->machine_name), QLineEdit::Normal,
             QString::null, &ok, 0 );
 	if ( ok && !message.isEmpty() )
 	{
@@ -530,7 +530,7 @@ void ClientSocket::slotDisconnectUser() {
 	username=Item->username;
 
 	if ( !QMessageBox::information(0,"QtSmbstatus",
-		tr("Are you sure you want to disconnect user") + " " + username + " ?",
+	      tr("Do you really want to disconnect user %1 ?").arg(username),
 		tr("&Yes"), tr("&No"),QString::null, 1, 1 ) )
 	{
 		//if true

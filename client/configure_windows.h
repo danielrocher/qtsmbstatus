@@ -41,6 +41,7 @@ extern bool view_hidden_shares; // View hidden shares (share$)
 extern bool iconize; // Iconize QtSmbstatus on system tray
 extern bool show_messages; // show status notification messages
 extern bool log_activity; // log SMB/CIFS activities
+extern int limitLog; // limit log (number of days)
 
 class configure_windows : public QDialog, public Ui::configure
 {
@@ -53,6 +54,7 @@ signals:
 private slots: // Private slots
 	virtual void SlotOk();
 	virtual void on_checkIcon_toggled(bool);
+	virtual void on_checkLogActivity_toggled(bool checked);
 };
 
 #endif

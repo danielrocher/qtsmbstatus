@@ -44,6 +44,8 @@ bool iconize=true;
 bool show_messages=true;
 //! log SMB/CIFS activities
 bool log_activity=false;
+//! limit log (number of days)
+int limitLog=1;
 
 /**
 	Save configuration file (create if not exist)
@@ -53,7 +55,7 @@ void writeConfigFile()
 {
 	debugQt("WriteConfigFile()");
 	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
-	if ( !f1.open( QIODevice::WriteOnly ) )
+	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
 	{
 		qDebug("Impossible to create configuration file");
 		return;
@@ -88,9 +90,14 @@ void writeConfigFile()
 	"#Log SMB/CIFS activities\n" <<
 	"# default :  log_activity = false\n" <<
 	"log_activity = " << BoolToStr(log_activity) << "\n\n" <<
+	"#Limit log SMB/CIFS (number of days)\n" <<
+	"# default :  limit_log = 1\n" <<
+	"limit_log = " << QString::number(limitLog) << "\n\n" <<
 	"# end file configuration\n";
 	f1.close();
 }
+
+
 /**
 	Read configuration file.
 	\sa writeConfigFile
@@ -104,10 +111,11 @@ void readConfigFile()
 	bool ok;
 	int port_conf;
 	int interval_conf;
+	int limit_log_conf;
 	QString username_login_conf;
 
 	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
-	if ( !f1.open( QIODevice::ReadOnly ) )
+	if ( !f1.open( QIODevice::ReadOnly | QIODevice::Text ) )
 	{
 		qDebug("Create configuration file, Use default settings.");
 		writeConfigFile(); // create configuration file, use default value
@@ -142,6 +150,11 @@ void readConfigFile()
 			if (attr=="system_tray")  iconize=StrToBool(variable);
 			if (attr=="notification_messages")  show_messages=StrToBool(variable);
 			if (attr=="log_activity")  log_activity=StrToBool(variable);
+			if (attr=="limit_log")
+			{
+				limit_log_conf=(variable).toInt(&ok);
+				if (ok==true) limitLog=limit_log_conf;
+			}
 		}
 	}
 	f1.close();
@@ -152,7 +165,7 @@ int main(int argc, char *argv[])
 	bool ok;
 	QString usage="\n    Usage:  qtsmbstatus -i <seconds> -m -p <port> -v --help\n\n"
 		"    --help :       Show this help\n"
-		"    -i <seconds> : Interval between every request to smbstatus (interval > 2) - default value = " + QString::number(interval) + "\n"
+		"    -i <seconds> : Interval between smbstatus requests in seconds, (interval > 2) - default value = " + QString::number(interval) + "\n"
 		"    -v :           Show qtsmbstatus version\n"
 		"    -p <port> :    TCP port - default = " + QString::number(port_server) + "\n"
 		"    -m :           Show debug messages\n\n"

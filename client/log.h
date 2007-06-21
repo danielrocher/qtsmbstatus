@@ -27,6 +27,7 @@
 
 extern void debugQt(const QString & message);
 extern bool Log_activity; // Log SMB/CIFS activities
+extern int limitLog; // limit log (number of days)
 
 class LogForm: public QDialog, public Ui::logform
 {
@@ -38,13 +39,12 @@ public:
 public slots:
 	void append(const type_message &);
 	void on_clearButton_clicked();
+	void eraseOldLog();
 	void on_filterEdit_textChanged(const QString &);
 private slots:
 	void on_checkShare_stateChanged ( int);
 	void on_checkFile_stateChanged ( int);
-private: //methods
-	void restoreLogFile();
-	void saveLogFile();
+	void on_SaveLogButton_clicked();
 };
 
 #endif

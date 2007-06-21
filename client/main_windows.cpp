@@ -38,14 +38,15 @@
 	//@todo revoir la parti recherche car Qt4 offre + d'outils
 	//@todo manque date dans log
 	//@todo cacher fenetre log si l'utilisateur ne veut pas de log
-	//@todo le programme ne quitte pas Ã  cause de la fenetre de log
+	//@todo le programme ne quitte pas a  cause de la fenetre de log
 	//@todo trier par date les logs
 	//@todo refiltrer les logs apres append
 	//@todo cacher le header vertical dans log
-	@todo pouvoir enregistrer les logs dans un fichier
+	//@todo pouvoir enregistrer les logs dans un fichier
 	@todo faire une recherche sur Q3 (grep)
 	//@todo mettre l'icone d'application dans mainwindow
 	@todo add "don't show this message again" when an error occured
+	// bug when delete item and filter is on (logForm)
 */
 
 
@@ -317,7 +318,7 @@ void main_windows::open_dialog_for_login()
 		QTimer *timer = new QTimer(clientsocket);
 		connect(timer, SIGNAL(timeout()), this, SLOT(InfoSMB()));
 		firstTime=true;
-		timer->start(6000);
+		timer->start(10000);
 		// clear form log
 		logform->on_clearButton_clicked();
 		clientsocket->connectionToServer(username_login, passwd_login);
@@ -390,7 +391,7 @@ void main_windows::configuration_changed()
 void main_windows::SignalErrorAuth()
 {
 	debugQt("main_windows::SignalErrorAuth()");
-	QMessageBox::warning ( this, "QtSmbstatus",tr("Login or password not valid!"));
+	QMessageBox::warning ( this, "QtSmbstatus",tr("Invalid login or password !"));
 	Slot_connect();
 }
 
@@ -729,6 +730,8 @@ void main_windows::InfoSMB()
 		if (occurence>nb_occurences) message+="\n  ..."; // hide others datas
 		// refresh filter
 		if (occurence>0) logform->on_filterEdit_textChanged(logform->filterEdit->text());
+		// erase old log
+		logform->eraseOldLog();
 		// just see 1 "balloon" (3 last occurences) if show_messages=true
 		if (!message.isEmpty() && show_messages && !firstTime) trayicon->showMessage ( "CIFS/SMB activities", message, QSystemTrayIcon::Information ) ;
 	}

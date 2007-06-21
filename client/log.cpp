@@ -59,28 +59,87 @@ void LogForm::setHeader()
 {
 	debugQt("LogForm::setHeader()");
 	QStringList labels;
-	labels << tr("Date") << tr("Machine") << tr("User") << "Service";
+	labels << tr("Date") << tr("Machine") << tr("User") << tr("Service");
 	tableWidget->setHorizontalHeaderLabels ( labels );
 }
 
-/**
-	Restore log file
-	\sa saveLogFile
-*/
-void LogForm::restoreLogFile()
-{
-	debugQt("LogForm::restoreLogFile()");
-	//! @TODO
-}
 
 /**
-	save log file
-	\sa restoreLogFile
+	Save log file.
+	CSV format
 */
-void LogForm::saveLogFile()
+void LogForm::on_SaveLogButton_clicked()
 {
-	debugQt("LogForm::saveLogFile()");
-	//! @TODO
+	debugQt("LogForm::on_SaveLogButton_clicked()");
+	QTableWidgetItem * item;
+	QString date;
+	QString machine;
+	QString user;
+	QString type_of_service;
+	QString service;
+	QFileDialog fileDialog;
+	fileDialog.setDefaultSuffix ( "csv" );
+	QString fileName = fileDialog.getSaveFileName(this, tr("Open File"), QDir::homeDirPath (),"*.csv");
+
+	if (fileName.isEmpty())
+		return;
+
+	if (!fileName.contains(".csv", Qt::CaseInsensitive)) fileName+=".csv";
+
+	QFile f1(fileName);
+	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
+	{
+		qDebug("Impossible to create file !");
+		QMessageBox::warning ( this, "Error" , "Impossible to create file !");
+		return;
+	}
+
+	QTextStream t( &f1 );
+	t << "Date;Machine;User;Type;Service\n"; // header of CSV
+	for (int i=0; i<tableWidget->rowCount (); ++i)
+	{
+		item =tableWidget->item ( i, 0 );
+		if (item) date=item->text (); else continue;
+		item =tableWidget->item ( i, 1 );
+		if (item) machine=item->text ();  else continue;
+		item =tableWidget->item ( i, 2 );
+		if (item) user=item->text ();  else continue;
+		item =tableWidget->item ( i, 3 );
+		if (item->type ()==2000) // if a share
+		{
+			type_of_service="Share";
+		}
+		if (item->type ()==2001) // if a file
+		{
+			type_of_service="File";
+		}
+		if (item) service=item->text (); else continue;
+		t << date << ";" << machine << ";" << user << ";" << type_of_service << ";" << service << "\n";
+	}
+	f1.close();
+}
+
+
+/**
+	erase old log
+	\sa limitLog
+*/
+void LogForm::eraseOldLog()
+{
+	debugQt("LogForm::eraseOldLog()");
+	QDateTime dateItem;
+	QTableWidgetItem * item;
+	for (int i=0; i<tableWidget->rowCount (); ++i)
+	{
+		item =tableWidget->item ( i, 0 );
+		if (item) dateItem=QDateTime::fromString (item->text (),Qt::ISODate); else continue;
+		if  (!dateItem.isValid()) continue;
+		if (dateItem<QDateTime::currentDateTime().addDays(-limitLog))
+		{
+			tableWidget->removeRow ( tableWidget->row ( item )  );
+			i--;
+		}
+	}
 }
 
 /**
@@ -88,6 +147,7 @@ void LogForm::saveLogFile()
 */
 void LogForm::on_clearButton_clicked()
 {
+	debugQt("LogForm::on_clearButton_clicked()");
 	tableWidget->clear();
 	setHeader();
 	tableWidget->setRowCount (0);
@@ -113,7 +173,7 @@ void LogForm::append(const type_message & Tmessage)
 	QDateTime datetime=QDateTime::fromString ( Tmessage.date );
 	if (datetime.isValid ())
 		datetimeStr=datetime.toString(Qt::ISODate);
-	else 
+	else
 		datetimeStr=Tmessage.date;
 	QTableWidgetItem *newItem = new QTableWidgetItem(datetimeStr);
 	tableWidget->setItem ( rowcount, 0, newItem );
@@ -127,8 +187,8 @@ void LogForm::append(const type_message & Tmessage)
 	tableWidget->setItem ( rowcount, 2, newItem );
 
 	// service
-	if (Tmessage.type_message==0)  newItem = new QTableWidgetItem(icon_share, Tmessage.opened,2000);
-	if (Tmessage.type_message==1)  newItem = new QTableWidgetItem(icon_file, Tmessage.opened,2001);
+	if (Tmessage.type_message==0)  newItem = new QTableWidgetItem(icon_share, Tmessage.opened,2000); // a share
+	if (Tmessage.type_message==1)  newItem = new QTableWidgetItem(icon_file, Tmessage.opened,2001); // a file
 	if ((Tmessage.type_message==0) || (Tmessage.type_message==1)) tableWidget->setItem ( rowcount, 3, newItem );
 
 	tableWidget->setSortingEnabled ( true);
@@ -155,11 +215,11 @@ void LogForm::on_filterEdit_textChanged(const QString & filter)
 			if (item)
 			{
 				if (item->text().contains(filter,Qt::CaseInsensitive)) hide=false;
-				if (item->type ()==2000)
+				if (item->type ()==2000) // if a share
 				{
 					if (checkShare->checkState ()==Qt::Unchecked ) hide=true;
 				}
-				if (item->type ()==2001)
+				if (item->type ()==2001) // if a file
 				{
 					if (checkFile->checkState ()==Qt::Unchecked ) hide=true;
 				}
