@@ -96,6 +96,7 @@ private: // Private attributes
 	QStringList ListSmbstatus;
 	smbstatus * InstanceSmbstatus;
 	QTimer* timer;
+	QErrorMessage * msgError;
 	Q3ListViewItem* currentPopupMenuItem;
 	/**
 		Protocol between server and client.

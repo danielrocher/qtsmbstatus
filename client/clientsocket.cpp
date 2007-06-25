@@ -61,12 +61,15 @@ ClientSocket :: ClientSocket(Q3ListView * mylistView,QObject *parent)  : QObject
 	// reset timer if we receive data from server
 	echo=0; // if echo > 2, disconnect
 	echo_timer = new QTimer (this);
+
+	msgError=new QErrorMessage();
 	connect( echo_timer, SIGNAL(timeout()), this, SLOT(slot_echo_timer()) );
 }
 
 ClientSocket::~ClientSocket()
 {
 	debugQt("Object ClientSocket : "+QString::number(--compteur_objet));
+	msgError->deleteLater();
 }
 
 /**
@@ -249,7 +252,8 @@ void ClientSocket::core(const Q3CString & rcv_txt)
 							break;
 					case error_obj: // Server wants to open a dialogbox to visualize an error
 							debugQt("["+QString::number(reponse)+"] error_obj");
-							QMessageBox::warning ( 0, "QtSmbstatus",stx.returnArg(1));
+							// QMessageBox::warning ( 0, "QtSmbstatus",stx.returnArg(1));
+							msgError->showMessage ( stx.returnArg(1) ) ;
 							break;
 					case server_info: // informations from server
 							debugQt("["+QString::number(reponse)+"] server_info");
