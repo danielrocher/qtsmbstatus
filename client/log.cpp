@@ -44,6 +44,8 @@ LogForm::LogForm(QWidget *parent) : QDialog(parent)
 	tableWidget->setColumnWidth ( 3, 450 );
 	tableWidget->verticalHeader ()->setVisible(false); // hide vertical header
 	setHeader();
+	QHeaderView * header= tableWidget->horizontalHeader ();
+	connect (header,SIGNAL(sectionClicked ( int )),this,SLOT(sectionHeaderClicked ( int )));
 }
 
 
@@ -196,11 +198,11 @@ void LogForm::append(const type_message & Tmessage)
 
 /**
 	User apply filter
-	\param filter filter to apply
 */
-void LogForm::on_filterEdit_textChanged(const QString & filter)
+void LogForm::on_filterEdit_textChanged()
 {
 	debugQt("LogForm::on_filterEdit_textChanged()");
+	QString filter=filterEdit->text();
 	bool hide=false;
 	QTableWidgetItem * item;
 	// not to sort temporarily before filtering
@@ -237,7 +239,7 @@ void LogForm::on_filterEdit_textChanged(const QString & filter)
 void LogForm::on_checkShare_stateChanged ( int )
 {
 	debugQt("LogForm::on_checkShare_stateChanged ()");
-	on_filterEdit_textChanged(filterEdit->text());
+	on_filterEdit_textChanged();
 }
 
 /**
@@ -246,7 +248,18 @@ void LogForm::on_checkShare_stateChanged ( int )
 void LogForm::on_checkFile_stateChanged ( int )
 {
 	debugQt("LogForm::on_checkFile_stateChanged ()");
-	on_filterEdit_textChanged(filterEdit->text());
+	on_filterEdit_textChanged();
 }
 
 
+
+/**
+	Sort changed, refresh filter
+*/
+void LogForm::sectionHeaderClicked ( int )
+{
+	debugQt("LogForm::sectionHeaderClicked()");
+	// wait, else doesn't work. It's a bad solution but ...
+	//! @todo FIXME 
+	QTimer::singleShot(20, this, SLOT(on_filterEdit_textChanged()));
+}

@@ -40,11 +40,12 @@ public slots:
 	void append(const type_message &);
 	void on_clearButton_clicked();
 	void eraseOldLog();
-	void on_filterEdit_textChanged(const QString &);
+	void on_filterEdit_textChanged();
 private slots:
 	void on_checkShare_stateChanged ( int);
 	void on_checkFile_stateChanged ( int);
 	void on_SaveLogButton_clicked();
+	void sectionHeaderClicked ( int );
 };
 
 #endif

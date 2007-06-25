@@ -38,15 +38,15 @@
 	//@todo revoir la parti recherche car Qt4 offre + d'outils
 	//@todo manque date dans log
 	//@todo cacher fenetre log si l'utilisateur ne veut pas de log
-	//@todo le programme ne quitte pas a  cause de la fenetre de log
+	//@todo le programme ne quitte pas aï¿½ cause de la fenetre de log
 	//@todo trier par date les logs
 	//@todo refiltrer les logs apres append
 	//@todo cacher le header vertical dans log
 	//@todo pouvoir enregistrer les logs dans un fichier
-	@todo faire une recherche sur Q3 (grep)
+	//@todo faire une recherche sur Q3 (grep)
 	//@todo mettre l'icone d'application dans mainwindow
 	@todo add "don't show this message again" when an error occured
-	// bug when delete item and filter is on (logForm)
+	// @todo bug when delete item and filter is on (logForm)
 */
 
 
@@ -718,6 +718,8 @@ void main_windows::InfoSMB()
 			if (occurence>1 && occurence<=nb_occurences) message+="\n"; // LineFeed
 			user=item->listMessages.first().user;
 			opened=item->listMessages.first().opened;
+			// limit size of text
+			if (opened.size()>60) opened=opened.left(7)+"..."+opened.right(50);
 			machine=item->listMessages.first().machine;
 			type_message=item->listMessages.first().type_message;
 			//view 3 occurences max
@@ -729,7 +731,7 @@ void main_windows::InfoSMB()
 		}
 		if (occurence>nb_occurences) message+="\n  ..."; // hide others datas
 		// refresh filter
-		if (occurence>0) logform->on_filterEdit_textChanged(logform->filterEdit->text());
+		if (occurence>0) logform->on_filterEdit_textChanged();
 		// erase old log
 		logform->eraseOldLog();
 		// just see 1 "balloon" (3 last occurences) if show_messages=true
