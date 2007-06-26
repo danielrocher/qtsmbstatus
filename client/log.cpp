@@ -261,5 +261,5 @@ void LogForm::sectionHeaderClicked ( int )
 	debugQt("LogForm::sectionHeaderClicked()");
 	// wait, else doesn't work. It's a bad solution but ...
 	//! @todo FIXME 
-	QTimer::singleShot(20, this, SLOT(on_filterEdit_textChanged()));
+	QTimer::singleShot(5, this, SLOT(on_filterEdit_textChanged()));
 }

@@ -85,14 +85,14 @@
          <string/>
         </property>
         <property name="text" >
-         <string>Iconize QtSmbstatus on system tray</string>
+         <string>Iconize QtSmbstatus in system tray</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1" colspan="3" >
        <widget class="QCheckBox" name="checkNotification" >
         <property name="toolTip" >
-         <string>View activity on "balloon messages"</string>
+         <string>Show activities in "balloon messages"</string>
         </property>
         <property name="text" >
          <string>Status notification messages</string>

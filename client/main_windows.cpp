@@ -45,7 +45,7 @@
 	//@todo pouvoir enregistrer les logs dans un fichier
 	//@todo faire une recherche sur Q3 (grep)
 	//@todo mettre l'icone d'application dans mainwindow
-	@todo add "don't show this message again" when an error occured
+	//@todo add "don't show this message again" when an error occured
 	// @todo bug when delete item and filter is on (logForm)
 */
 
@@ -66,7 +66,7 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	connect_action= menu->addAction ( QIcon (":/icons/connect_no.png"),tr("Connect") );
 	connect(connect_action,SIGNAL( triggered ()),this , SLOT(Slot_connect()));
 	menu->addSeparator ();
-	viewlog_action=menu->addAction ( tr("View CIFS/SMB activities") );
+	viewlog_action=menu->addAction ( tr("Show CIFS/SMB activities") );
 	connect(viewlog_action,SIGNAL( triggered ()),this , SLOT(on_action_View_log_triggered()));
 	configure_action= menu->addAction ( QIcon (":/icons/configure.png"),tr("Configure") );
 	connect(configure_action,SIGNAL( triggered ()),this , SLOT(ConfigureSlot()));
@@ -82,7 +82,7 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	restoreWindowSize();
 	this->setCaption ( "QtSmbstatus client "+version_qtsmbstatus); //titre de la fentre
 	// create statusBar
-	statusBar()->showMessage (tr("Unknown samba version")); //status bar
+	statusBar()->showMessage (tr("Impossible to know samba version")); //status bar
 
 	// read the address history
 	readHistoryFile();
@@ -400,8 +400,9 @@ void main_windows::SignalErrorAuth()
 */
 void main_windows::helpAbout()
 {
-	QMessageBox::about( this, "QtSmbstatus",web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>Developer : "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><br><hr><br>"+
-		"Polish Translation : Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br><br><hr>"+
+	QMessageBox::about( this, "QtSmbstatus",web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br><b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><br><hr><br>"+
+		"<b>Thanks to:</b><br/>Polish Translation : Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br>"+
+		"Second reading : Eric Bresson<br><hr>"+
 		tr("This program is licensed to you under the terms of the GNU General Public License version 2"));
 }
 
@@ -735,7 +736,7 @@ void main_windows::InfoSMB()
 		// erase old log
 		logform->eraseOldLog();
 		// just see 1 "balloon" (3 last occurences) if show_messages=true
-		if (!message.isEmpty() && show_messages && !firstTime) trayicon->showMessage ( "CIFS/SMB activities", message, QSystemTrayIcon::Information ) ;
+		if (!message.isEmpty() && show_messages && !firstTime) trayicon->showMessage ( tr("CIFS/SMB activities"), message, QSystemTrayIcon::Information ) ;
 	}
 	firstTime=false;
 }

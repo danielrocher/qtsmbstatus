@@ -569,5 +569,9 @@
         <source>Invalid login or password !</source>
         <translation>Mauvais login ou mauvais mot de passe !</translation>
     </message>
+    <message>
+        <source>CIFS/SMB activities</source>
+        <translation>Activités CIFS/SMB</translation>
+    </message>
 </context>
 </TS>

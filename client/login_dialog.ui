@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle" >
-   <string>Log on to qtsmbstatus server</string>
+   <string>Connect to qtsmbstatus server</string>
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >

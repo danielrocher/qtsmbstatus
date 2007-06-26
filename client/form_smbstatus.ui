@@ -139,12 +139,16 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="helpMenu" >
+   <widget class="QMenu" name="Configure" >
     <property name="title" >
-     <string>&amp;Help</string>
+     <string>&amp;File</string>
     </property>
-    <addaction name="helpAboutAction" />
-    <addaction name="helpAbout_QtAction" />
+    <addaction name="action_Connect" />
+    <addaction name="separator" />
+    <addaction name="action_View_log" />
+    <addaction name="configureConfigure_clientAction" />
+    <addaction name="separator" />
+    <addaction name="action_Quit" />
    </widget>
    <widget class="QMenu" name="Search" >
     <property name="title" >
@@ -159,16 +163,12 @@
     <addaction name="separator" />
     <addaction name="searchNextAction" />
    </widget>
-   <widget class="QMenu" name="Configure" >
+   <widget class="QMenu" name="helpMenu" >
     <property name="title" >
-     <string>&amp;File</string>
+     <string>&amp;Help</string>
     </property>
-    <addaction name="action_Connect" />
-    <addaction name="separator" />
-    <addaction name="action_View_log" />
-    <addaction name="configureConfigure_clientAction" />
-    <addaction name="separator" />
-    <addaction name="action_Quit" />
+    <addaction name="helpAboutAction" />
+    <addaction name="helpAbout_QtAction" />
    </widget>
    <addaction name="Configure" />
    <addaction name="Search" />
@@ -188,7 +188,7 @@
     <string>&amp;About QtSmbstatus</string>
    </property>
    <property name="statusTip" >
-    <string>bout QtSmbstatus</string>
+    <string>About QtSmbstatus</string>
    </property>
    <property name="shortcut" >
     <string/>
@@ -310,7 +310,7 @@
   </action>
   <action name="action_View_log" >
    <property name="text" >
-    <string>&amp;View CIFS/SMB activities</string>
+    <string>&amp;Show CIFS/SMB activities</string>
    </property>
   </action>
   <action name="action_Connect" >

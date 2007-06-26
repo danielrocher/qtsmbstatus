@@ -83,12 +83,12 @@ Possibilities include:
                   /etc/qtsmbstatusd/
 
         in this directory:
-                -rw-r----- �1 root root 1751 oct �5 22:22 privkey.pem
-                -rw-r----- �1 root root �583 oct �5 22:22 qtsmbstatusd.conf
-                -rw-r----- �1 root root � �5 oct �5 22:22 qtsmbstatusd.users
-                -rw-r----- �1 root root 1619 oct �5 22:22 server.pem
+                  privkey.pem
+                  qtsmbstatusd.conf
+                  qtsmbstatusd.users
+                  server.pem
 
-        privkey.pem : private key (warning�! Change file access permissions  : 640 ! )
+        privkey.pem : private key (warning! Change file access permissions  : 640 ! )
         To make your own: openssl genrsa -des3 -out privkey.pem 2048
         
         server.pem : selfsigned certificat with key
@@ -142,4 +142,4 @@ Possibilities include:
                 interval :            Interval, in seconds, between every request to smbstatus
                 host_address :        default host address
                 username :            default Username
-                autoconnect :         Autoconnect when qtsmbstatus client start
+                autoconnect :         Autoconnect on qtsmbstatus startup

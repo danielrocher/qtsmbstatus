@@ -46,7 +46,7 @@ Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString 
 
 	proc = new Q3Process( this );
 	proc->addArgument( "sh");   // run a shell
-	debugQt ("Send message at "+machine+ " - " + my_message);
+	debugQt ("Send message to "+machine+ " - " + my_message);
 
 	connect( proc, SIGNAL(processExited()),
 	this, SLOT(end_process()) );

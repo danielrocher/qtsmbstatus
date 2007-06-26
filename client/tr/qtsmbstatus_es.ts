@@ -438,5 +438,9 @@
         <source>Invalid login or password !</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>CIFS/SMB activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

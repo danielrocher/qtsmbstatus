@@ -115,7 +115,7 @@ void ClientSSL ::ResolveName(QHostInfo host_info)
 void ClientSSL ::connectToHost()
 {
 	debugQt("ClientSSL::connectToHost()");
-	emit info( tr("Connection in progress on") + " " + host );
+	emit info( tr("Connection in progress on %1").arg(host));
 	// connect to server
 	socketdevice = new Q3SocketDevice( Q3SocketDevice::Stream );
 
@@ -140,7 +140,7 @@ void ClientSSL ::connectToHost()
 		// Connection not established (TCP)
 		debugQt("Connection not established");
 		Socket_print_error(socketdevice->error());
-		emit info( tr("Host not found") );
+		emit info( tr("Host not found !") );
 		emit UnreachableHost();
 		deleteLater();
 	}
