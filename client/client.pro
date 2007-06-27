@@ -1,7 +1,3 @@
-# Fichier g���par le module QMake de KDevelop.
-# -------------------------------------------------- 
-# Sous dossier relatif au dossier principal du projet: ./client
-# Cible: une application??:  ./bin/qtsmbstatus
 
 # Translation
 TRANSDIR   = /usr/local/share/qtsmbstatus
@@ -38,7 +34,8 @@ SOURCES += main.cpp \
            linecore.cpp \
            ../common/core_syntax.cpp \
            ../common/common.cpp \
-           log.cpp
+           log.cpp \
+           mysortfilterproxymodel.cpp
 
 HEADERS += main_windows.h \
            server.h \
@@ -52,7 +49,8 @@ HEADERS += main_windows.h \
            login_windows.h \
            ../common/core_syntax.h \
            configure_windows.h \
-           log.h
+           log.h \
+           mysortfilterproxymodel.h
 
 RESOURCES = client.qrc
 

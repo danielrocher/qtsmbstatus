@@ -1,7 +1,3 @@
-# Fichier gnr par le module QMake de KDevelop. 
-# -------------------------------------------------- 
-# Sous dossier relatif au dossier principal du projet: ./server
-# Cible: une application??:  ./bin/qtsmbstatusd
 
 DATADIR= /etc/qtsmbstatusd
 DATAFILES = ./etc/privkey.pem \

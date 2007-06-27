@@ -60,7 +60,7 @@
 main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
-	trayicon =new QSystemTrayIcon(QIcon (":/icons/samba.png"),this);
+	trayicon =new QSystemTrayIcon(QIcon (":/icons/trayicon.png"),this);
 	trayicon->setToolTip ( tr("QtSmbstatus Client") );
 	QMenu * menu=new QMenu( this );
 	connect_action= menu->addAction ( QIcon (":/icons/connect_no.png"),tr("Connect") );

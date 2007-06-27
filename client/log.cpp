@@ -20,14 +20,20 @@
 
 
 #include <QtGui>
+#include <QStandardItemModel>
+#include <QSortFilterProxyModel>
 
 #include "log.h"
+#include "mysortfilterproxymodel.h"
+
+#define name_of_share "Share"
+#define name_of_file  "File"
 
 /**
 	\class LogForm
 	\brief Form to view CIFS/SMB activities
-	\date 2007-06-15
-	\version 1.0
+	\date 2007-06-27
+	\version 1.1
 	\param parent pointer to the parent object
 	\author Daniel Rocher
 */
@@ -35,17 +41,27 @@ LogForm::LogForm(QWidget *parent) : QDialog(parent)
 {
 	debugQt("LogForm::LogForm()");
 	setupUi(this);
+
+	model = new QStandardItemModel(0, 5,tableView);
+
+	// sort and filter model
+	proxyModel = new MySortFilterProxyModel(name_of_share,name_of_file,tableView);
+	proxyModel->setSourceModel(model);
+
+	// populate model
+	tableView->setModel ( proxyModel);
+
+	// sort enable
+	tableView->setSortingEnabled(true);
+
+	// proxy model is dynamically sorted and filtered whenever the contents of the source model change.
+	proxyModel->setDynamicSortFilter ( true);
+
 	//not editable
-        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-	tableWidget->setColumnCount ( 4);
-	tableWidget->setColumnWidth ( 0, 200 );
-	tableWidget->setColumnWidth ( 1, 100 );
-	tableWidget->setColumnWidth ( 2, 100 );
-	tableWidget->setColumnWidth ( 3, 450 );
-	tableWidget->verticalHeader ()->setVisible(false); // hide vertical header
+        tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	tableView->verticalHeader ()->setVisible(false); // hide vertical header
 	setHeader();
-	QHeaderView * header= tableWidget->horizontalHeader ();
-	connect (header,SIGNAL(sectionClicked ( int )),this,SLOT(sectionHeaderClicked ( int )));
 }
 
 
@@ -61,8 +77,14 @@ void LogForm::setHeader()
 {
 	debugQt("LogForm::setHeader()");
 	QStringList labels;
-	labels << tr("Date") << tr("Machine") << tr("User") << tr("Service");
-	tableWidget->setHorizontalHeaderLabels ( labels );
+	labels << tr("Date") << tr("Machine") << tr("User") << tr("Service") << tr("Type");
+	model->setHorizontalHeaderLabels ( labels );
+	tableView->setColumnWidth ( 0, 200 );
+	tableView->setColumnWidth ( 1, 100 );
+	tableView->setColumnWidth ( 2, 100 );
+	tableView->setColumnWidth ( 3, 450 );
+	tableView->setColumnWidth ( 4, 0);
+	tableView->setColumnHidden ( 4, true );
 }
 
 
@@ -73,7 +95,7 @@ void LogForm::setHeader()
 void LogForm::on_SaveLogButton_clicked()
 {
 	debugQt("LogForm::on_SaveLogButton_clicked()");
-	QTableWidgetItem * item;
+	QStandardItem * item;
 	QString date;
 	QString machine;
 	QString user;
@@ -98,24 +120,18 @@ void LogForm::on_SaveLogButton_clicked()
 
 	QTextStream t( &f1 );
 	t << "Date;Machine;User;Type;Service\n"; // header of CSV
-	for (int i=0; i<tableWidget->rowCount (); ++i)
+	for (int i=0; i<model->rowCount (); ++i)
 	{
-		item =tableWidget->item ( i, 0 );
+		item =model->item ( i, 0 );
 		if (item) date=item->text (); else continue;
-		item =tableWidget->item ( i, 1 );
+		item =model->item ( i, 1 );
 		if (item) machine=item->text ();  else continue;
-		item =tableWidget->item ( i, 2 );
+		item =model->item ( i, 2 );
 		if (item) user=item->text ();  else continue;
-		item =tableWidget->item ( i, 3 );
-		if (item->type ()==2000) // if a share
-		{
-			type_of_service="Share";
-		}
-		if (item->type ()==2001) // if a file
-		{
-			type_of_service="File";
-		}
+		item =model->item ( i, 3 );
 		if (item) service=item->text (); else continue;
+		item =model->item ( i, 4 );
+		if (item) type_of_service=item->text ();  else continue;
 		t << date << ";" << machine << ";" << user << ";" << type_of_service << ";" << service << "\n";
 	}
 	f1.close();
@@ -130,15 +146,15 @@ void LogForm::eraseOldLog()
 {
 	debugQt("LogForm::eraseOldLog()");
 	QDateTime dateItem;
-	QTableWidgetItem * item;
-	for (int i=0; i<tableWidget->rowCount (); ++i)
+	QStandardItem * item;
+	for (int i=0; i<model->rowCount (); ++i)
 	{
-		item =tableWidget->item ( i, 0 );
-		if (item) dateItem=QDateTime::fromString (item->text (),Qt::ISODate); else continue;
+		item =model->item ( i, 0 );
+		if (item) dateItem=QDateTime::fromString (item->text (),"yyyy-MM-dd hh:mm:ss"); else continue;
 		if  (!dateItem.isValid()) continue;
 		if (dateItem<QDateTime::currentDateTime().addDays(-limitLog))
 		{
-			tableWidget->removeRow ( tableWidget->row ( item )  );
+			model->removeRow ( i );
 			i--;
 		}
 	}
@@ -150,9 +166,8 @@ void LogForm::eraseOldLog()
 void LogForm::on_clearButton_clicked()
 {
 	debugQt("LogForm::on_clearButton_clicked()");
-	tableWidget->clear();
+	model->clear();
 	setHeader();
-	tableWidget->setRowCount (0);
 }
 
 
@@ -166,34 +181,27 @@ void LogForm::append(const type_message & Tmessage)
 	QIcon icon_file(":/icons/document.png");
 	QIcon icon_share(":/icons/folder_open.png");
 	QString datetimeStr;
-	// not to sort temporarily before insert
-	tableWidget->setSortingEnabled ( false);
-	int rowcount=tableWidget->rowCount ();
-	tableWidget->insertRow (rowcount);
+	QList<QStandardItem *> listItem;
 
 	// change date format
 	QDateTime datetime=QDateTime::fromString ( Tmessage.date );
 	if (datetime.isValid ())
-		datetimeStr=datetime.toString(Qt::ISODate);
+		datetimeStr=datetime.toString("yyyy-MM-dd hh:mm:ss");
 	else
 		datetimeStr=Tmessage.date;
-	QTableWidgetItem *newItem = new QTableWidgetItem(datetimeStr);
-	tableWidget->setItem ( rowcount, 0, newItem );
+	listItem << new QStandardItem(datetimeStr);
 
 	// machine
-	newItem = new QTableWidgetItem(Tmessage.machine);
-	tableWidget->setItem ( rowcount, 1, newItem );
+	listItem << new QStandardItem(Tmessage.machine);
 
 	// user
-	newItem = new QTableWidgetItem(Tmessage.user);
-	tableWidget->setItem ( rowcount, 2, newItem );
+	listItem << new QStandardItem(Tmessage.user);
 
 	// service
-	if (Tmessage.type_message==0)  newItem = new QTableWidgetItem(icon_share, Tmessage.opened,2000); // a share
-	if (Tmessage.type_message==1)  newItem = new QTableWidgetItem(icon_file, Tmessage.opened,2001); // a file
-	if ((Tmessage.type_message==0) || (Tmessage.type_message==1)) tableWidget->setItem ( rowcount, 3, newItem );
+	if (Tmessage.type_message==0)  listItem << new QStandardItem(icon_share, Tmessage.opened) << new QStandardItem(name_of_share); // a share
+	if (Tmessage.type_message==1)  listItem << new QStandardItem(icon_file, Tmessage.opened) << new QStandardItem(name_of_file); // a file
 
-	tableWidget->setSortingEnabled ( true);
+	model->appendRow (listItem);
 }
 
 /**
@@ -203,63 +211,26 @@ void LogForm::on_filterEdit_textChanged()
 {
 	debugQt("LogForm::on_filterEdit_textChanged()");
 	QString filter=filterEdit->text();
-	bool hide=false;
-	QTableWidgetItem * item;
-	// not to sort temporarily before filtering
-	tableWidget->setSortingEnabled ( false);
-	int rowcount=tableWidget->rowCount ();
-	for (int i=0; i<rowcount; ++i)
-	{
-		hide=true;
-		for (int j=0 ; j<4 ; ++j)
-		{
-			item=tableWidget->item( i, j );
-			if (item)
-			{
-				if (item->text().contains(filter,Qt::CaseInsensitive)) hide=false;
-				if (item->type ()==2000) // if a share
-				{
-					if (checkShare->checkState ()==Qt::Unchecked ) hide=true;
-				}
-				if (item->type ()==2001) // if a file
-				{
-					if (checkFile->checkState ()==Qt::Unchecked ) hide=true;
-				}
-			}
-		}
-		tableWidget->setRowHidden ( i, hide );
-	}
-
-	tableWidget->setSortingEnabled ( true);
+	proxyModel->setFilterCaseSensitivity ( Qt::CaseInsensitive );
+	proxyModel->setFilterFixedString (filter);
 }
 
 /**
 	view/hide Shares
 */
-void LogForm::on_checkShare_stateChanged ( int )
+void LogForm::on_checkShare_stateChanged ( int state)
 {
 	debugQt("LogForm::on_checkShare_stateChanged ()");
-	on_filterEdit_textChanged();
+	proxyModel->setFilterShare(state);
 }
 
 /**
 	view/hide Files
 */
-void LogForm::on_checkFile_stateChanged ( int )
+void LogForm::on_checkFile_stateChanged ( int state)
 {
 	debugQt("LogForm::on_checkFile_stateChanged ()");
-	on_filterEdit_textChanged();
+	proxyModel->setFilterFile(state);
 }
 
 
-
-/**
-	Sort changed, refresh filter
-*/
-void LogForm::sectionHeaderClicked ( int )
-{
-	debugQt("LogForm::sectionHeaderClicked()");
-	// wait, else doesn't work. It's a bad solution but ...
-	//! @todo FIXME 
-	QTimer::singleShot(5, this, SLOT(on_filterEdit_textChanged()));
-}

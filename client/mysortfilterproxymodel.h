@@ -18,38 +18,27 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef MYSORTFILTERPROXYMODEL_H
+#define MYSORTFILTERPROXYMODEL_H
 
-#include "ui_log.h"
-#include "server.h"
+#include <QSortFilterProxyModel>
 
-class QStandardItemModel;
-class MySortFilterProxyModel;
 
-extern void debugQt(const QString & message);
-extern bool Log_activity; // Log SMB/CIFS activities
-extern int limitLog; // limit log (number of days)
-
-class LogForm: public QDialog, public Ui::logform
+class MySortFilterProxyModel : public QSortFilterProxyModel
 {
-Q_OBJECT
 public:
-	LogForm(QWidget *parent = 0);
-	virtual ~LogForm();
-	void setHeader();
-public slots:
-	void append(const type_message &);
-	void on_clearButton_clicked();
-	void eraseOldLog();
-	void on_filterEdit_textChanged();
-private slots:
-	void on_checkShare_stateChanged ( int state);
-	void on_checkFile_stateChanged ( int state);
-	void on_SaveLogButton_clicked();
-private: // attributes
-	QStandardItemModel * model;
-	MySortFilterProxyModel *proxyModel;
+	MySortFilterProxyModel(QString share_label,QString file_label,QObject *parent);
+	virtual ~MySortFilterProxyModel();
+	bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+	void setFilterFile(bool );
+	void setFilterShare(bool );
+private:
+	QString fileLabel;
+	QString shareLabel;
+	bool MShare;
+	bool MFile;
 };
 
+
 #endif
+

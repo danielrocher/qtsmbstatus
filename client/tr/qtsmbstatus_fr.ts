@@ -134,6 +134,10 @@
         <source>Open File</source>
         <translation>Fichier ouvert</translation>
     </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
 </context>
 <context>
     <name>configure</name>

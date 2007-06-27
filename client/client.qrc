@@ -13,5 +13,6 @@
         <file>icons/configure.png</file>
         <file>icons/clear.png</file>
         <file>icons/filesaveas.png</file>
+        <file>icons/trayicon.png</file>
     </qresource>
     </RCC>
