@@ -1,25 +1,14 @@
 
-# Translation
-TRANSDIR   = /usr/local/share/qtsmbstatus
-TRANSFILES = ./tr/qtsmbstatus_fr.qm
-trans.path = $$TRANSDIR 
-trans.files = $$TRANSFILES 
-
-# Documentation
-DOCDIR   = /usr/share/doc/qtsmbstatus
-DOCFILES = ../README \
-           ../README-FR \
-           ../INSTALL \
-           ../COPYING
-doc.path = $$DOCDIR
-doc.files = $$DOCFILES
-
 TEMPLATE = app
 
 CONFIG += release \
           warn_on
-TARGET = ./bin/qtsmbstatus
+
+TARGET =    qtsmbstatus
+DESTDIR +=  bin
+
 LIBS += -lssl
+
 SOURCES += main.cpp \
            main_windows.cpp \
            server.cpp \
@@ -66,11 +55,31 @@ FORMS +=  form_smbstatus.ui \
           login_dialog.ui \
           log.ui
 
+# install
+!win32 {
+# Translation
+TRANSDIR   = /usr/local/share/qtsmbstatus
+TRANSFILES = ./tr/*.qm
+trans.path = $$TRANSDIR 
+trans.files = $$TRANSFILES 
+
+# Documentation
+DOCDIR   = /usr/share/doc/qtsmbstatus
+DOCFILES = ../README \
+           ../README-FR \
+           ../INSTALL \
+           ../COPYING
+doc.path = $$DOCDIR
+doc.files = $$DOCFILES
+
 target.path = /usr/bin 
+
 INSTALLS += trans \
             target \
             doc
 
-#The following line was inserted by qt3to4
-QT += network  qt3support 
+}
+
+
+QT += network  qt3support
 

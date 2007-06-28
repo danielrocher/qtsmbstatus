@@ -26,37 +26,12 @@
 
 
 /**
-	//@todo N'affiche pas d'erreurs lorsque l'utilisateur ne donne pas de mot de passe
-	//@todo erreur lors de l'arrêt (instance en mémoire)
-	//@todo prendre en compte changement interval lorsque l'on est connecté
-	//@todo pouvoir utiliser nom de domaine plutot que adresse IP
-	//@todo ne repropose plus la boite de dialogue lorsque l'authentification a échoué
-	@todo plantage suite boite de dialogue
-	//@todo log
-	//@todo popup message
-	//@todo ajouter nom traducteurs
-	//@todo revoir la parti recherche car Qt4 offre + d'outils
-	//@todo manque date dans log
-	//@todo cacher fenetre log si l'utilisateur ne veut pas de log
-	//@todo le programme ne quitte pas a� cause de la fenetre de log
-	//@todo trier par date les logs
-	//@todo refiltrer les logs apres append
-	//@todo cacher le header vertical dans log
-	//@todo pouvoir enregistrer les logs dans un fichier
-	//@todo faire une recherche sur Q3 (grep)
-	//@todo mettre l'icone d'application dans mainwindow
-	//@todo add "don't show this message again" when an error occured
-	// @todo bug when delete item and filter is on (logForm)
-*/
-
-
- /**
 	\class main_windows
 	\brief Main Window
 	\date 2007-06-17
 	\version 1.0
 	\author Daniel Rocher
- */
+*/
 main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
@@ -80,7 +55,7 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	trayicon->setContextMenu ( menu );
 	connect(trayicon,SIGNAL(activated ( QSystemTrayIcon::ActivationReason ) ),this,SLOT(trayicon_activated(QSystemTrayIcon::ActivationReason)));
 	restoreWindowSize();
-	this->setCaption ( "QtSmbstatus client "+version_qtsmbstatus); //titre de la fentre
+	this->setCaption ( "QtSmbstatus client "+version_qtsmbstatus); // forms title
 	// create statusBar
 	statusBar()->showMessage (tr("Impossible to know samba version")); //status bar
 
@@ -118,8 +93,6 @@ void main_windows::beforeQuit()
 	debugQt("main_windows::beforeQuit()");
 	trayicon->setVisible(false);
 	this->close();
-	logform->close();
-	logform->deleteLater();
 }
 
 
@@ -218,6 +191,8 @@ void main_windows::closeEvent(QCloseEvent *e)
 		// write address history
 		writeHistoryFile();
 		saveWindowSize();
+		logform->close();
+		logform->deleteLater();
 		if (connected) clientsocket->Disconnect(); //if connected, disconnect
 		e->accept();
 	}
@@ -400,9 +375,13 @@ void main_windows::SignalErrorAuth()
 */
 void main_windows::helpAbout()
 {
-	QMessageBox::about( this, "QtSmbstatus",web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br><b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><br><hr><br>"+
-		"<b>Thanks to:</b><br/>Polish Translation : Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br>"+
-		"Second reading : Eric Bresson<br><hr>"+
+	QMessageBox::about( this, "QtSmbstatus","<b>QtSmbstatus : </b>"+web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>"
+		"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
+		"<b>"+tr("Thanks to:")+"</b><br/>"
+		"Polish translation : Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br>"
+		"Spanish translation : Mauro<br/><br/>"
+		"RPM packages for FC3 : CG (cyberkoa)<br/>"
+		"Second reading : Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a><br><hr>"+
 		tr("This program is licensed to you under the terms of the GNU General Public License version 2"));
 }
 

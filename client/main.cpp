@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
 		"    -m :           Show debug messages\n\n"
 		"exemple:           qtsmbstatus -i 50\n\n";
 
-	#ifndef Q_WS_WIN
+	#ifdef Q_WS_WIN
 	// for windows only - get install directory (register when qtsmbstatus has been installed)
 	QSettings settings(QSettings::SystemScope,"qtsmbstatus", "settings");
 	if (settings.contains ( "path") )
@@ -258,17 +258,25 @@ int main(int argc, char *argv[])
 	}
 
 	QApplication a( argc, argv );
+
 	//  < translate >
-	QTranslator translator( 0 );
+
+	QTranslator qtTranslator;
+	qtTranslator.load("qt_" + QLocale::system().name());
+	a.installTranslator(&qtTranslator);
+
+
 	QString translate_file;
 	// only windows
-	#ifndef Q_WS_WIN
-	translate_file= QDir::currentPath () + QString(  "/tr/qtsmbstatus_") + QTextCodec::locale();
+	#ifdef Q_WS_WIN
+	translate_file= QDir::currentPath () + QString(  "/tr/qtsmbstatus_");
 	#else
-	translate_file=QString("/usr/local/share/qtsmbstatus/qtsmbstatus_") + QTextCodec::locale();
+	translate_file=QString("/usr/local/share/qtsmbstatus/qtsmbstatus_");
 	#endif
-	translator.load(translate_file , "." );
-	a.installTranslator( &translator );
+
+	QTranslator myappTranslator;
+	myappTranslator.load(translate_file+ QLocale::system().name());
+	a.installTranslator( &myappTranslator );
 	//  < /translate >
 
 	main_windows fenetre_principale;

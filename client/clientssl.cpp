@@ -192,7 +192,14 @@ void ClientSSL :: socketReadyRead()
 	Q3CString rcv_txt;
 	rcv_txt.resize(16384);
 	ret = SSL_read(ssl, rcv_txt.data(), rcv_txt.size());
+
+	// for windows only
+	#ifdef Q_WS_WIN
+	if (ret ==0 )
+	#else
+	// other
 	if (ret <=0 )
+	#endif
 	{
 		// an error occurred
 		SSL_print_error(SSL_get_error(ssl, ret));

@@ -4,15 +4,19 @@ DATAFILES = ./etc/privkey.pem \
             ./etc/qtsmbstatusd.conf \
             ./etc/server.pem \
             ./etc/qtsmbstatusd.users
+
 PAMDIR = /etc/pam.d
 PAMFILE = ./pam.d/qtsmbstatusd
+
 INITDIR= /etc/init.d
 INITFILE = ./etc/qtsmbstatusd
+
 DOCDIR = /usr/share/doc/qtsmbstatusd
 DOCFILES = ../README \
            ../README-FR \
            ../INSTALL \
            ../COPYING
+
 SOURCES += server.cpp \
            clientsocket.cpp \
            main.cpp \
@@ -24,6 +28,7 @@ SOURCES += server.cpp \
            ../common/common.cpp \
            ../common/core_syntax.cpp \
            pamthread.cpp 
+
 HEADERS += server.h \
            clientsocket.h \
            disconnect_manager.h \
@@ -32,14 +37,20 @@ HEADERS += server.h \
            smbmanager.h \
            pam.h \
            ../common/core_syntax.h \
-           pamthread.h 
+           pamthread.h
+
 TEMPLATE = app 
+
 CONFIG += release \
           warn_on \
-          thread 
-TARGET = ./bin/qtsmbstatusd 
+          thread
+
+TARGET = qtsmbstatusd
+DESTDIR +=  bin
+
 LIBS += -lpam \
-        -lssl 
+        -lssl
+
 data.path = $$DATADIR 
 data.files += $$DATAFILES 
 pam.path = $$PAMDIR 
@@ -53,6 +64,6 @@ INSTALLS += data \
             pam \
             init \
             doc \
-            target 
-#The following line was inserted by qt3to4
-QT +=  qt3support 
+            target
+
+QT +=  network qt3support
