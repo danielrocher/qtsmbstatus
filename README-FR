@@ -1,6 +1,6 @@
 -*------------------------------------------------------------------------+-
 
-       SAMBA - Visualisation des ressources: Application Qtsmbstatus
+       QtSmbstatus
 
        http://qtsmbstatus.free.fr/
        Daniel Rocher - ADELLA <daniel.rocher@adella.org>
@@ -12,14 +12,13 @@ Ce programme est distribue selon les termes de la General Public License version
 
 QtSmbstatus permet de visualiser en temps reel, les ressources utilisees sur un serveur samba. Il s'agit d'une GUI (interface utilisateur) pour smbstatus.
 
-Cette application a un fonctionnement client/serveur. Les connexions sont securisees via une couche SSL et une authentification est requise pour se connecter au serveur.
+Cette application a un fonctionnement client/serveur. Les connexions sont securisees via une couche SSL et une authentification est requise pour se connecter au serveur. QtSmbstatus serveur doit-etre installé avec le serveur Samba.
 
 1/ Compilation a partir des sources
 2/ Options en ligne de commande
 3/ Demarrage et arret du serveur
 4/ Fonctionnement du client sous X11 (Unix/Linux)
 5/ Fonctionnement du client sous Windows
-6/ Configuration du client
 
 -------------------------------------------------------------
 1/ Compilation a partir des sources:
@@ -119,14 +118,4 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
  
          Clic droit sur un utilisateur pour lui envoyer un message ou le deconnecter
          (smbclient est necessaire pour les popupwindows)
-
-------------------------------------------------------------- 
-6/ Configuration du client :
-------------------------------------------------------------- 
-         Le fichier de configuration du client se trouve dans le repertoire personnel : .qtsmbstatus.conf
-                port :                Port de destination
-                interval :            Intervalle, en secondes, entre chaques requetes envoyees a smbstatus
-                host_address :        adresse du serveur par defaut
-                username :            Username par defaut
-                autoconnect :         Autoconnexion lors du demarrage de qtsmbstatus client
 

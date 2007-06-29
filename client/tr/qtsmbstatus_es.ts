@@ -454,107 +454,107 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="410"/>
+        <location filename="../main_windows.cpp" line="385"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Este programa esta licenciado a usted bajo los terminos de la Licencia General Publica GNU version 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="450"/>
+        <location filename="../main_windows.cpp" line="425"/>
         <source>Find text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="461"/>
+        <location filename="../main_windows.cpp" line="436"/>
         <source>Search machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="471"/>
+        <location filename="../main_windows.cpp" line="446"/>
         <source>Search user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="480"/>
+        <location filename="../main_windows.cpp" line="455"/>
         <source>Search share</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="489"/>
+        <location filename="../main_windows.cpp" line="464"/>
         <source>Search locked file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="645"/>
+        <location filename="../main_windows.cpp" line="620"/>
         <source>Text not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="64"/>
+        <location filename="../main_windows.cpp" line="39"/>
         <source>QtSmbstatus Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="363"/>
+        <location filename="../main_windows.cpp" line="338"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="71"/>
+        <location filename="../main_windows.cpp" line="46"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="153"/>
+        <location filename="../main_windows.cpp" line="128"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="76"/>
+        <location filename="../main_windows.cpp" line="51"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="151"/>
+        <location filename="../main_windows.cpp" line="126"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="343"/>
+        <location filename="../main_windows.cpp" line="318"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="731"/>
+        <location filename="../main_windows.cpp" line="706"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="732"/>
+        <location filename="../main_windows.cpp" line="707"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="69"/>
+        <location filename="../main_windows.cpp" line="44"/>
         <source>Show CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="85"/>
+        <location filename="../main_windows.cpp" line="60"/>
         <source>Impossible to know samba version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="394"/>
+        <location filename="../main_windows.cpp" line="369"/>
         <source>Invalid login or password !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="743"/>
+        <location filename="../main_windows.cpp" line="718"/>
         <source>CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="405"/>
+        <location filename="../main_windows.cpp" line="380"/>
         <source>Thanks to:</source>
         <translation type="unfinished"></translation>
     </message>

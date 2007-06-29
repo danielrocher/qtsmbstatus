@@ -1,0 +1,140 @@
+-*------------------------------------------------------------------------+-
+
+       QtSmbstatus
+
+       http://qtsmbstatus.free.fr/
+       Daniel Rocher - ADELLA <daniel.rocher@adella.org>
+
+-*------------------------------------------------------------------------+-
+
+Este programa esta licenciado a usted bajo los terminos de la Licencia General Publica GNU version 2
+
+Qtsmbstatus es una interface grafica de smbstatus (GUI).
+Esto provee la posibilidad de administrar maquinas remotas.
+Qtsmbstatus a sido diseádo como un sistema cliente/servidor seguro con SSL.
+Un login y contraseá es requerido para entrar en el server (PAM).
+La aplicacion del servidor debe ser instalado en la maquina donde se ejecuta el servicio SAMBA.
+
+
+Incluye las siguientes posibilidades:
+- ver conexiones
+- desconectar usuarios
+- enviar mensajes (popupwindows) a uno o mas usuarios
+
+1/ Compilacion desde las fuentes siguientes
+2/ Opcion de linea de comandos
+3/ Iniciar y parar el servicio
+4/ Cliente para x11 (unix/linux)
+5/ Cliente para windows
+6/ Configurar cliente
+
+-------------------------------------------------------------
+1/ Compilacion desde las fuentes siguientes:
+-------------------------------------------------------------
+
+        Para instalar el servicio:
+        **************************
+
+        chequear las dependencias : pam-dev, ssl-dev et qt4-dev>=4.2
+
+                  cd server
+                  qmake
+                  make
+
+        y como root:
+                  make install
+
+
+        Para instalar el cliente:
+        *************************
+
+        chequear las dependencias : ssl-dev et qt4-dev>=4.2
+
+                  cd client
+                  qmake
+                  make
+
+        y como root:
+                  make install
+
+-------------------------------------------------------------
+2/ Opcion de linea de comandos:
+-------------------------------------------------------------
+
+        Esto es posible para algunas opciones tanto para el servidor o bien como cliente;
+	Conociendolos:
+
+        qtsmbstatusd --help (for server)
+        qtsmbstatus --help (for client)
+
+
+-------------------------------------------------------------
+3/ Iniciar y parar el servicio:
+-------------------------------------------------------------
+
+        Iniciar el servicio:
+                  /etc/init.d/qtsmbstatusd start
+              o 
+                  service qtsmbstatusd start
+                  Default port: 4443
+
+        Parar el servicio:
+                  /etc/init.d/qtsmbstatusd stop
+              o
+                  service qtsmbstatusd stop
+
+        La configuracion de los archivos del servidor son encontrados en:
+                  /etc/qtsmbstatusd/
+
+        en este directorio:
+                  privkey.pem
+                  qtsmbstatusd.conf
+                  qtsmbstatusd.users
+                  server.pem
+
+        privkey.pem : private key (atencion ! cambiar el permiso de acceso al archivo : 640 ! )
+        Hacertelo tuyo: openssl genrsa -des3 -out privkey.pem 2048
+
+        server.pem :  certificado autofirmado con clave
+        Hacertelo tuyo:
+        openssl req -new -x509 -key privkey.pem -out server.pem -days 10000
+
+         Las opciones son guardadas en: qtsmbstatusd.conf
+                port :                   Puerto en donde escuchara el servicio 
+                private_key :            llave privada       
+                certificat :             certificado ssl
+                ssl_password :           clave para certificados ssl
+                permit_disconnect_user : clientes permitidos para desconectar un usuario
+                                         Puedes autorizar a un cliente para desconectar a un usuario.
+                                         Use un nombre de usuario o 'all' para todos los clientes.
+                permit_send_msg :        clientes permitidos para enviar un mensage
+                                         Puedes autorizar a un cliente para enviar un mensage.
+                                         Use un nombre de usuario o 'all' para todos los clientes.
+
+
+         Los usuarios autorizados (PAM) son registrados dentro de: qtsmbstatusd.users
+         (por omision como root)
+
+------------------------------------------------------------- 
+4/ Cliente para x11 (unix/linux) :
+-------------------------------------------------------------
+
+        Ejecutar bajo x11: qtsmbstatus
+        Poner la direccion de ip del servidor, conectar y logear (usuario y contraseá)
+ 
+        Click con el boton derecho sobre un usuario para enviarle un mensaje o desconectarlo.
+        (popupwindows requiere smbclient)
+
+
+------------------------------------------------------------- 
+5/ Cliente para windows :
+-------------------------------------------------------------
+
+        Instalar qtsmbstatus-client.X.X.X.exe
+        ejecutar qtsmbstatus.exe
+
+        Poner la direccion de ip del servidor, conectar y logear (usuario y contraseá)
+ 
+        Click con el boton derecho sobre un usuario para enviarle un mensaje o desconectarlo.
+        (popupwindows requiere smbclient)
+

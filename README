@@ -1,16 +1,16 @@
 -*------------------------------------------------------------------------+-
-       
+
        QtSmbstatus
 
        http://qtsmbstatus.free.fr/
        Daniel Rocher - ADELLA <daniel.rocher@adella.org>
 
 -*------------------------------------------------------------------------+-
-       
+
 This program is licensed to you under the terms of the GNU General Public License version 2
 
 QtSmbstatus is a smbstatus graphical interface (GUI).
-It is meant to provide the possibility of administering remote machines. QtSmbstatus was designed as a client/server system secured with SSL. A login and password is required to log on to server. The server's application ought to be installed on host where SAMBA executes.
+It is meant to provide the possibility of administering remote machines. QtSmbstatus was designed as a client/server system secured with SSL. A login and password is required to log on to server. The server's application ought to be installed with samba-server.
 
 
 Possibilities include:
@@ -23,7 +23,6 @@ Possibilities include:
 3/ Start and stop server
 4/ Client for X11 (Unix/Linux)
 5/ Client for Windows
-6/ Configure client
 
 -------------------------------------------------------------
 1/ Compilation from the following sources:
@@ -58,7 +57,7 @@ Possibilities include:
 2/ Command line options:
 -------------------------------------------------------------
 
-        It is possible for some options to go to server as well as to client; to know them:
+        qtsmbstatus (client and server) can accept some arguments from the command line, to know them:
 
         qtsmbstatusd --help (for server)
         qtsmbstatus --help (for client)
@@ -132,14 +131,4 @@ Possibilities include:
         Right clic on user to send him a message or to disconnect him.
         (popupwindows require smbclient)
 
-         
-------------------------------------------------------------- 
-6/ Configure client :
-------------------------------------------------------------- 
 
-        The client's configuration file is located into the home directory : .qtsmbstatus.conf
-                port :                Port destination
-                interval :            Interval, in seconds, between every request to smbstatus
-                host_address :        default host address
-                username :            default Username
-                autoconnect :         Autoconnect on qtsmbstatus startup
