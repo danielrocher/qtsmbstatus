@@ -134,11 +134,8 @@ void LineCore::Analysis(const QString & OneLine)
 		if ((*itI).Begin!=0)
 		{
 			resu=line.find(QRegExp("[\\s][\\S]"),-back+(*itI).Begin+CumulDelta);
-			if (resu!=(-1+(*itI).Begin))
-			{
-				(*itI).New_Begin=resu+1;
-				CumulDelta=(*itI).New_Begin-(*itI).Begin;
-			}
+			(*itI).New_Begin=resu+1;
+			CumulDelta=(*itI).New_Begin-(*itI).Begin;
 		}
 		// if last field
 		if ((*itI).End==-1)
@@ -148,21 +145,18 @@ void LineCore::Analysis(const QString & OneLine)
 		else
 		{
 			resu=line.find(QRegExp("[\\s][\\S]"),-back+(*itI).End+CumulDelta);
-			if (resu!=(*itI).End+CumulDelta)
-			{
-				(*itI).New_End=resu;
-				CumulDelta=(*itI).New_End-(*itI).End;
-			}
+			(*itI).New_End=resu;
+			CumulDelta=(*itI).New_End-(*itI).End;
 		}
 		(*itI).Value=(line.mid((*itI).New_Begin,(*itI).New_End-(*itI).New_Begin)).stripWhiteSpace();
 
-		/* debugQt( "  Begin:"+QString::number((*itI).Begin)+
+		 /*debugQt( "  Begin:"+QString::number((*itI).Begin)+
 			"  End:"+QString::number((*itI).End)+
 			"  New_Begin:"+QString::number((*itI).New_Begin)+
 			"  New_End:"+QString::number((*itI).New_End)+
 			"  CumulDelta:"+QString::number(CumulDelta)+
 			"  Ident:"+(*itI).Ident+
-			"  Value:"+(*itI).Value); **/
+			"  Value:"+(*itI).Value); */
 	}
 }
 
