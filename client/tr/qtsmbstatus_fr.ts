@@ -56,12 +56,12 @@
         <translation>Déconnecter l&apos;utilisateur</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="538"/>
+        <location filename="../clientsocket.cpp" line="544"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="538"/>
+        <location filename="../clientsocket.cpp" line="544"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
@@ -71,12 +71,12 @@
         <translation>Message à envoyer</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="511"/>
+        <location filename="../clientsocket.cpp" line="514"/>
         <source>Message to send to %1:</source>
         <translation>Message à envoyer à %1:</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="537"/>
+        <location filename="../clientsocket.cpp" line="543"/>
         <source>Do you really want to disconnect user %1 ?</source>
         <translation>Voulez-vous vraiment déconnecter l&apos;utilisateur %1 ?</translation>
     </message>
@@ -235,17 +235,17 @@
         <translation>qtsmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="168"/>
+        <location filename="../form_smbstatus.ui" line="174"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="188"/>
+        <location filename="../form_smbstatus.ui" line="194"/>
         <source>&amp;About QtSmbstatus</source>
         <translation>&amp;A propos de QtSmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="205"/>
+        <location filename="../form_smbstatus.ui" line="211"/>
         <source>About &amp;Qt</source>
         <translation>A propos de &amp;Qt</translation>
     </message>
@@ -255,127 +255,127 @@
         <translation>Connexion/Déconnexion</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="59"/>
+        <location filename="../form_smbstatus.ui" line="65"/>
         <source>Host:</source>
         <translation>Hôte:</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="222"/>
+        <location filename="../form_smbstatus.ui" line="228"/>
         <source>&amp;Configure client</source>
         <translation>&amp;Configure client</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="155"/>
+        <location filename="../form_smbstatus.ui" line="161"/>
         <source>&amp;Search</source>
         <translation>&amp;Rechercher</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="233"/>
+        <location filename="../form_smbstatus.ui" line="239"/>
         <source>&amp;Machine</source>
         <translation>&amp;Machine</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="244"/>
+        <location filename="../form_smbstatus.ui" line="250"/>
         <source>&amp;User</source>
         <translation>&amp;Utilisateur</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="255"/>
+        <location filename="../form_smbstatus.ui" line="261"/>
         <source>Share &amp;open</source>
         <translation>Partage &amp;ouvert</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="266"/>
+        <location filename="../form_smbstatus.ui" line="272"/>
         <source>&amp;Locked file</source>
         <translation>&amp;Fichier ouvert</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="277"/>
+        <location filename="../form_smbstatus.ui" line="283"/>
         <source>&amp;Next</source>
         <translation>&amp;Suivant</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="283"/>
+        <location filename="../form_smbstatus.ui" line="289"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="291"/>
+        <location filename="../form_smbstatus.ui" line="297"/>
         <source>&amp;Find text</source>
         <translation>&amp;Rechercher un texte</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="297"/>
+        <location filename="../form_smbstatus.ui" line="303"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="144"/>
+        <location filename="../form_smbstatus.ui" line="150"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="208"/>
+        <location filename="../form_smbstatus.ui" line="214"/>
         <source>About Qt</source>
         <translation>A propos de Qt</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="225"/>
+        <location filename="../form_smbstatus.ui" line="231"/>
         <source>Configure QtSmbstatus client</source>
         <translation>Configure QtSmbstatus client</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="236"/>
+        <location filename="../form_smbstatus.ui" line="242"/>
         <source>Search machine</source>
         <translation>Rechercher une machine</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="247"/>
+        <location filename="../form_smbstatus.ui" line="253"/>
         <source>Search user</source>
         <translation>Rechercher un utilisateur</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="258"/>
+        <location filename="../form_smbstatus.ui" line="264"/>
         <source>Search share open</source>
         <translation>Rechercher un partage ouvert</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="269"/>
+        <location filename="../form_smbstatus.ui" line="275"/>
         <source>Search file open</source>
         <translation>Rechercher un fichier ouvert</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="280"/>
+        <location filename="../form_smbstatus.ui" line="286"/>
         <source>Next</source>
         <translation>Suivant</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="294"/>
+        <location filename="../form_smbstatus.ui" line="300"/>
         <source>Find text</source>
         <translation>Rechercher un texte</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="305"/>
+        <location filename="../form_smbstatus.ui" line="311"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="308"/>
+        <location filename="../form_smbstatus.ui" line="314"/>
         <source>Quit QtSmbstatus</source>
         <translation>Quitter QtSmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="321"/>
+        <location filename="../form_smbstatus.ui" line="327"/>
         <source>Co&amp;nnect</source>
         <translation>Co&amp;nnexion</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="313"/>
+        <location filename="../form_smbstatus.ui" line="319"/>
         <source>&amp;Show CIFS/SMB activities</source>
         <translation>&amp;Visualiser les activités CIFS/SMB</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="191"/>
+        <location filename="../form_smbstatus.ui" line="197"/>
         <source>About QtSmbstatus</source>
         <translation>A propos de QtSmbstatus</translation>
     </message>
@@ -388,17 +388,17 @@
         <translation>Visualiser les activités</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="115"/>
+        <location filename="../log.ui" line="124"/>
         <source>View/hide shares</source>
         <translation>Voir/cacher les partages</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="147"/>
+        <location filename="../log.ui" line="156"/>
         <source>View/hide files</source>
         <translation>Voir/cacher les fichiers</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="187"/>
+        <location filename="../log.ui" line="196"/>
         <source>Filter:</source>
         <translation>Filtre:</translation>
     </message>
@@ -408,12 +408,12 @@
         <translation>Effacer</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="98"/>
+        <location filename="../log.ui" line="104"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="67"/>
+        <location filename="../log.ui" line="70"/>
         <source>Save log</source>
         <translation>Enregistrer le journal</translation>
     </message>

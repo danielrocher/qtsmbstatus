@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="pl">
 <context>
     <name>ClientSSL</name>
     <message>
@@ -20,12 +20,12 @@
     <message>
         <location filename="../clientssl.cpp" line="143"/>
         <source>Host not found !</source>
-        <translation type="unfinished">Hosta nie znaleziono !</translation>
+        <translation>Hosta nie znaleziono !</translation>
     </message>
     <message>
         <location filename="../clientssl.cpp" line="118"/>
         <source>Connection in progress on %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Łaczę... %1</translation>
     </message>
 </context>
 <context>
@@ -56,29 +56,29 @@
         <translation>Rozłącz użytkownika</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="538"/>
+        <location filename="../clientsocket.cpp" line="544"/>
         <source>&amp;Yes</source>
         <translation>&amp;Tak</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="538"/>
+        <location filename="../clientsocket.cpp" line="544"/>
         <source>&amp;No</source>
         <translation>&amp;Nie</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="487"/>
         <source>Message to send</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiadomość do wysłania</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="511"/>
+        <location filename="../clientsocket.cpp" line="514"/>
         <source>Message to send to %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz wiadomość do %1:</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="537"/>
+        <location filename="../clientsocket.cpp" line="543"/>
         <source>Do you really want to disconnect user %1 ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Na pewno rozłączyć %1 ?</translation>
     </message>
 </context>
 <context>
@@ -86,32 +86,32 @@
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Komputer</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Użytkownik</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasób</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="106"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
@@ -164,67 +164,67 @@
     <message>
         <location filename="../configure.ui" line="108"/>
         <source>Log SMB/CIFS activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Loguj zdarzenia SMB/CIFS</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="98"/>
         <source>Status notification messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Informuj o otwieranych zasobach</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="25"/>
         <source>Notifications and log</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiadomienia i archiwum</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="43"/>
         <source>Limit log:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limituj log do ostatnich:</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="72"/>
         <source>days</source>
-        <translation type="unfinished"></translation>
+        <translation>dni</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="88"/>
         <source>Iconize QtSmbstatus in system tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizuj na tackę systemową</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="147"/>
         <source>Smbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Smbstatus</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="191"/>
         <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstęp między kolejnymi połączeniami w sek. (większy niż 2)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="204"/>
         <source>Show hidden shares (share$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj ukryte zasoby (share)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="207"/>
         <source>Show hidden shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj ukryte zasoby</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="217"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Połączenie</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="248"/>
         <source>Autoconnect on qtsmbstatus startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Łącz automatycznie przy starcie programu</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="95"/>
         <source>Show activities in &quot;balloon messages&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj informacje o zdarzeniach w &quot;balonikach&quot;</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
         <translation>qtsmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="59"/>
+        <location filename="../form_smbstatus.ui" line="65"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
@@ -245,139 +245,139 @@
         <translation>Połącz/Rozłącz</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="155"/>
+        <location filename="../form_smbstatus.ui" line="161"/>
         <source>&amp;Search</source>
         <translation>&amp;Znajdź</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="168"/>
+        <location filename="../form_smbstatus.ui" line="174"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="188"/>
+        <location filename="../form_smbstatus.ui" line="194"/>
         <source>&amp;About QtSmbstatus</source>
         <translation>&amp;O QtSmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="205"/>
+        <location filename="../form_smbstatus.ui" line="211"/>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="222"/>
+        <location filename="../form_smbstatus.ui" line="228"/>
         <source>&amp;Configure client</source>
         <translation>&amp;Konfiguracja klienta</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="233"/>
+        <location filename="../form_smbstatus.ui" line="239"/>
         <source>&amp;Machine</source>
         <translation>&amp;Komputer</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="244"/>
+        <location filename="../form_smbstatus.ui" line="250"/>
         <source>&amp;User</source>
         <translation>&amp;Użytkownika</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="255"/>
+        <location filename="../form_smbstatus.ui" line="261"/>
         <source>Share &amp;open</source>
         <translation>&amp;Otwarty zasób</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="266"/>
+        <location filename="../form_smbstatus.ui" line="272"/>
         <source>&amp;Locked file</source>
         <translation>&amp;Zablokowany plik</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="277"/>
+        <location filename="../form_smbstatus.ui" line="283"/>
         <source>&amp;Next</source>
         <translation>&amp;Znajdź następne</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="283"/>
+        <location filename="../form_smbstatus.ui" line="289"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="291"/>
+        <location filename="../form_smbstatus.ui" line="297"/>
         <source>&amp;Find text</source>
         <translation>Znajdź &amp;tekst</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="297"/>
+        <location filename="../form_smbstatus.ui" line="303"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="144"/>
+        <location filename="../form_smbstatus.ui" line="150"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Plik</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="208"/>
+        <location filename="../form_smbstatus.ui" line="214"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="225"/>
+        <location filename="../form_smbstatus.ui" line="231"/>
         <source>Configure QtSmbstatus client</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja QtSmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="236"/>
+        <location filename="../form_smbstatus.ui" line="242"/>
         <source>Search machine</source>
-        <translation type="unfinished">Znajdź komputer</translation>
+        <translation>Znajdź komputer</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="247"/>
+        <location filename="../form_smbstatus.ui" line="253"/>
         <source>Search user</source>
-        <translation type="unfinished">Znajdź użytkownika</translation>
+        <translation>Znajdź użytkownika</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="258"/>
+        <location filename="../form_smbstatus.ui" line="264"/>
         <source>Search share open</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź otwarty zasób</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="269"/>
+        <location filename="../form_smbstatus.ui" line="275"/>
         <source>Search file open</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź otwarty plik</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="280"/>
+        <location filename="../form_smbstatus.ui" line="286"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Dalej</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="294"/>
+        <location filename="../form_smbstatus.ui" line="300"/>
         <source>Find text</source>
-        <translation type="unfinished">Znajdź tekst</translation>
+        <translation>Znajdź tekst</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="305"/>
+        <location filename="../form_smbstatus.ui" line="311"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zakończ</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="308"/>
+        <location filename="../form_smbstatus.ui" line="314"/>
         <source>Quit QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ QtSmbstatus</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="321"/>
+        <location filename="../form_smbstatus.ui" line="327"/>
         <source>Co&amp;nnect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Połącz</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="313"/>
+        <location filename="../form_smbstatus.ui" line="319"/>
         <source>&amp;Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;okaż dziennik zdarzeń CIFS/SMB</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="191"/>
+        <location filename="../form_smbstatus.ui" line="197"/>
         <source>About QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>O QtSmbstatus</translation>
     </message>
 </context>
 <context>
@@ -385,37 +385,37 @@
     <message>
         <location filename="../log.ui" line="13"/>
         <source>View Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Dziennik zdarzeń</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="115"/>
+        <location filename="../log.ui" line="124"/>
         <source>View/hide shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż/ukryj zasoby</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="147"/>
+        <location filename="../log.ui" line="156"/>
         <source>View/hide files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż/ukryj pliki</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="187"/>
+        <location filename="../log.ui" line="196"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr:</translation>
     </message>
     <message>
         <location filename="../log.ui" line="41"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="98"/>
+        <location filename="../log.ui" line="104"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
-        <location filename="../log.ui" line="67"/>
+        <location filename="../log.ui" line="70"/>
         <source>Save log</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@
     <message>
         <location filename="../login_dialog.ui" line="19"/>
         <source>Connect to qtsmbstatus server</source>
-        <translation type="unfinished"></translation>
+        <translation>Połącz z serwerem</translation>
     </message>
 </context>
 <context>
@@ -491,72 +491,72 @@
     <message>
         <location filename="../main_windows.cpp" line="39"/>
         <source>QtSmbstatus Client</source>
-        <translation type="unfinished"></translation>
+        <translation>QtSmbstatus</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="338"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Połącz</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="46"/>
         <source>Configure</source>
-        <translation type="unfinished">Konfiguracja</translation>
+        <translation>Konfiguracja</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="128"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizuj</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="51"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="126"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="318"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozłącz</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="706"/>
         <source>User %1 has opened share %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Użytkownik %1 otworzył %2 (%3)</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="707"/>
         <source>User %1 has opened file %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Użytkownik %1 otworzył %2 (%3)</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="44"/>
         <source>Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż dziennik zdarzeń CIFS/SMB</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="60"/>
         <source>Impossible to know samba version</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można ustalić wersji Samby</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="369"/>
         <source>Invalid login or password !</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowa nazwa użytkownika lub hasło !</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="718"/>
         <source>CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdarzenia CIFS/SMB</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="380"/>
         <source>Thanks to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podziękowania:</translation>
     </message>
 </context>
 </TS>
