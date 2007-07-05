@@ -21,8 +21,8 @@
  /**
 	\class user
 	\brief Class of user items
-	\date 2007-06-16
-	\version 1.0
+	\date 2007-07-05
+	\version 1.1
 	\author Daniel Rocher
 	\sa server machine service
 
@@ -36,6 +36,7 @@ int user::compteur_objet=0;
 user::user(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group) : Q3ListViewItem(parent)
 {
 	debugQt("Object user : "+QString::number(++compteur_objet));
+	Q3ListViewItemList.append(this);
 	mark=true;
 	username=Username;
 	pid=PID;
@@ -46,6 +47,7 @@ user::user(Q3ListViewItem * parent,const QString & PID,const QString & Username,
 
 user::~user(){
 	debugQt("Object user : "+QString::number(--compteur_objet));
+	Q3ListViewItemList.removeAll (this);
 }
 
 /**

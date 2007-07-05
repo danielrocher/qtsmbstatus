@@ -28,7 +28,8 @@
 
 
 extern void debugQt(const QString & message);
-  
+extern QList<Q3ListViewItem *> Q3ListViewItemList;
+
 class machine : public Q3ListViewItem  {
 public: 
 	machine(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group, const QString & MachineName, const QString & MachineIP);

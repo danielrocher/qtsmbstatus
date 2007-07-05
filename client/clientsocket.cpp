@@ -21,8 +21,8 @@
 /**
 	\class ClientSocket
 	\brief This class dialogs with server
-	\date 2007-06-14
-	\version 1.0
+	\date 2007-07-05
+	\version 1.1
 	\author Daniel Rocher
 	\sa ClientSocket::command
 */
@@ -39,6 +39,9 @@ int ClientSocket::compteur_objet=0;
 
 //! Time between 2 echo request
 int ClientSocket::TimoutTimerEcho=30000;
+
+// know instancies
+QList<Q3ListViewItem *> Q3ListViewItemList;
 
 /**
 	\param mylistView pointer to listview
@@ -439,6 +442,8 @@ void ClientSocket::slotPopupMenu( Q3ListViewItem* Item, const QPoint & point, in
 */
 void ClientSocket::InfoServer()
 {
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 	QString message=item_server->ViewInfoServer();
 	QMessageBox::information(0, "QtSmbstatus",message,QMessageBox::Ok,QMessageBox::NoButton,QMessageBox::NoButton);
 }
@@ -450,6 +455,8 @@ void ClientSocket::InfoServer()
 */
 void ClientSocket::InfoUser()
 {
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 	QString message=item_server->ViewInfoUser(currentPopupMenuItem);
 	QMessageBox::information(0, "QtSmbstatus",message,QMessageBox::Ok,QMessageBox::NoButton,QMessageBox::NoButton);
 }
@@ -461,6 +468,8 @@ void ClientSocket::InfoUser()
 */
 void ClientSocket::InfoService()
 {
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 	QString message=item_server->ViewInfoService(currentPopupMenuItem);
 	QMessageBox::information(0, "QtSmbstatus",message,QMessageBox::Ok,QMessageBox::NoButton,QMessageBox::NoButton);
 }
@@ -472,6 +481,8 @@ void ClientSocket::InfoService()
 */
 void ClientSocket::InfoMachine()
 {
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 	QString message=item_server->ViewInfoMachine(currentPopupMenuItem);
 	QMessageBox::information(0, "QtSmbstatus",message,QMessageBox::Ok,QMessageBox::NoButton,QMessageBox::NoButton);
 }
@@ -505,8 +516,12 @@ void ClientSocket::slotSendMessageAllUsers() {
 */
 void ClientSocket::slotSendMessage() {
 	bool ok;
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
+
 	machine* Item=dynamic_cast<machine *>(currentPopupMenuItem);
 	if (!Item) return;
+
 	QString message = QInputDialog::getText(
 		"QtSmbstatus", tr("Message to send to %1:").arg(Item->machine_name), QLineEdit::Normal,
             QString::null, &ok, 0 );
@@ -514,6 +529,10 @@ void ClientSocket::slotSendMessage() {
 	{
 		// user entered something and pressed OK
 		if (!ssl_connected) return;
+
+		// if object is dead
+		if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
+
 		sendToServer(send_msg,Item->machine_name+";"+message);
 	}
 }
@@ -523,8 +542,12 @@ void ClientSocket::slotSendMessage() {
 	\sa slotPopupMenu
 */
 void ClientSocket::slotDisconnectUser() {
+	
 	QString username;
 	QString pid;
+	// if object is dead
+	if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
+
 	user* Item=dynamic_cast<user *>(currentPopupMenuItem);
 	if (!Item) return;
 	// get PID
@@ -537,7 +560,9 @@ void ClientSocket::slotDisconnectUser() {
 	      tr("Do you really want to disconnect user %1 ?").arg(username),
 		tr("&Yes"), tr("&No"),QString::null, 1, 1 ) )
 	{
-		//if true
+		// if object is dead
+		if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
+
 		if (!ssl_connected) return;
 		sendToServer(kill_user,pid+";"+username);
 	}

@@ -28,6 +28,7 @@
 
 
 extern void debugQt(const QString & message);
+extern QList<Q3ListViewItem *> Q3ListViewItemList;
 
 class user : public Q3ListViewItem  {
 public:

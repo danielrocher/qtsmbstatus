@@ -22,8 +22,8 @@
 /**
 	\class service
 	\brief Class of service items (share or locked file)
-	\date 2007-06-16
-	\version 1.0
+	\date 2007-07-05
+	\version 1.1
 	\author Daniel Rocher
 	\sa machine user server
 
@@ -39,6 +39,7 @@ int service::compteur_objet=0;
 */
 service::service(Q3ListViewItem * parent,const QString & PID,const QString & Share,const QString & DateOpen ) : Q3ListViewItem(parent) {
 	debugQt("Object service : "+QString::number(++compteur_objet));
+	Q3ListViewItemList.append(this);
 	mark=true;
 	pid=PID;
 	share=Share;
@@ -54,6 +55,7 @@ service::service(Q3ListViewItem * parent,const QString & PID,const QString & Sha
 */
 service::service(Q3ListViewItem * parent,const QString & PID,const QString & FileName,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen): Q3ListViewItem(parent) {
 	debugQt("Object service : "+QString::number(++compteur_objet));
+	Q3ListViewItemList.append(this);
 	mark=true;
 	pid=PID;
 	filename=FileName;
@@ -69,5 +71,6 @@ service::service(Q3ListViewItem * parent,const QString & PID,const QString & Fil
 
 service::~service(){
 	debugQt("instance service : "+QString::number(--compteur_objet));
+	Q3ListViewItemList.removeAll (this);
 }
 

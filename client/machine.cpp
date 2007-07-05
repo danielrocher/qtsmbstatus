@@ -21,8 +21,8 @@
  /**
 	\class machine
 	\brief Class of machine items
-	\date 2007-06-16
-	\version 1.0
+	\date 2007-07-04
+	\version 1.1
 	\author Daniel Rocher
 	\sa server user service
 
@@ -33,9 +33,11 @@
 
 int machine::compteur_objet=0;
 
+
 machine::machine(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group,const QString & MachineName, const QString & MachineIP) : Q3ListViewItem(parent)
 {
 	debugQt("Object machine : "+QString::number(++compteur_objet));
+	Q3ListViewItemList.append(this);
 	mark=true;
 	machine_name=MachineName;
 	machine_ip=MachineIP;
@@ -47,6 +49,7 @@ machine::machine(Q3ListViewItem * parent,const QString & PID,const QString & Use
 
 machine::~machine(){
 	debugQt("Object machine : "+QString::number(--compteur_objet));
+	Q3ListViewItemList.removeAll (this);
 }
 
 /**

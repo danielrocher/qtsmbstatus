@@ -23,8 +23,8 @@
  /**
 	\class server
 	\brief Class of server items
-	\date 2007-06-16
-	\version 1.0
+	\date 2007-07-05
+	\version 1.1
 	\author Daniel Rocher
 	\sa machine user service
 
@@ -40,6 +40,7 @@ int server::compteur_objet=0;
 server::server(Q3ListView * parent) : Q3ListViewItem(parent)
 {
 	debugQt("Object server : "+QString::number(++compteur_objet));
+	Q3ListViewItemList.append(this);
 	SambaVersion="";
 	this->setPixmap( 0, QPixmap(":/icons/server.png") ); //icon
 	this->setOpen( TRUE ); // Sets item to be open
@@ -47,6 +48,7 @@ server::server(Q3ListView * parent) : Q3ListViewItem(parent)
 server::~server()
 {
 	debugQt("Object server : "+QString::number(--compteur_objet));
+	Q3ListViewItemList.removeAll (this);
 }
 
 /**
