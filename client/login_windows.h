@@ -24,7 +24,7 @@
 
 #include "ui_login_dialog.h"
 
-
+extern void debugQt(const QString & message);
 extern QString username_login;
 extern QString passwd_login;
 

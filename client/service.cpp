@@ -70,7 +70,7 @@ service::service(Q3ListViewItem * parent,const QString & PID,const QString & Fil
 }
 
 service::~service(){
-	debugQt("instance service : "+QString::number(--compteur_objet));
+	debugQt("Object service : "+QString::number(--compteur_objet));
 	Q3ListViewItemList.removeAll (this);
 }
 

@@ -33,7 +33,8 @@
 */ 
 login_windows::login_windows(QWidget *parent)
  : QDialog(parent)
-{	
+{
+	debugQt("login_windows::login_windows()");
 	this->setAttribute(Qt::WA_DeleteOnClose);
 	setupUi(this);
 	input_username->setText ( username_login );
@@ -43,10 +44,12 @@ login_windows::login_windows(QWidget *parent)
 
 login_windows::~login_windows()
 {
+	debugQt("login_windows::~login_windows()");
 }
 
 void login_windows::Slot_login_button()
 {
+	debugQt("login_windows::Slot_login_button()");
 	username_login=input_username->text();
 	passwd_login=input_password->text();
 }
