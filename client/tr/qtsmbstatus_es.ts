@@ -31,52 +31,52 @@
 <context>
     <name>ClientSocket</name>
     <message>
-        <location filename="../clientsocket.cpp" line="150"/>
+        <location filename="../clientsocket.cpp" line="153"/>
         <source>Host not found !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="430"/>
+        <location filename="../clientsocket.cpp" line="433"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="404"/>
+        <location filename="../clientsocket.cpp" line="407"/>
         <source>Send out message to all users</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="414"/>
+        <location filename="../clientsocket.cpp" line="417"/>
         <source>Send out message to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="424"/>
+        <location filename="../clientsocket.cpp" line="427"/>
         <source>Disconnect user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="544"/>
+        <location filename="../clientsocket.cpp" line="561"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="544"/>
+        <location filename="../clientsocket.cpp" line="561"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="487"/>
+        <location filename="../clientsocket.cpp" line="498"/>
         <source>Message to send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="514"/>
+        <location filename="../clientsocket.cpp" line="526"/>
         <source>Message to send to %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="543"/>
+        <location filename="../clientsocket.cpp" line="560"/>
         <source>Do you really want to disconnect user %1 ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -454,107 +454,107 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="385"/>
+        <location filename="../main_windows.cpp" line="388"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Este programa esta licenciado a usted bajo los terminos de la Licencia General Publica GNU version 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="425"/>
+        <location filename="../main_windows.cpp" line="428"/>
         <source>Find text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="436"/>
+        <location filename="../main_windows.cpp" line="439"/>
         <source>Search machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="446"/>
+        <location filename="../main_windows.cpp" line="449"/>
         <source>Search user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="455"/>
+        <location filename="../main_windows.cpp" line="458"/>
         <source>Search share</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="464"/>
+        <location filename="../main_windows.cpp" line="467"/>
         <source>Search locked file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="620"/>
+        <location filename="../main_windows.cpp" line="623"/>
         <source>Text not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="39"/>
+        <location filename="../main_windows.cpp" line="40"/>
         <source>QtSmbstatus Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="338"/>
+        <location filename="../main_windows.cpp" line="341"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="46"/>
+        <location filename="../main_windows.cpp" line="47"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="128"/>
+        <location filename="../main_windows.cpp" line="130"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="51"/>
+        <location filename="../main_windows.cpp" line="52"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="126"/>
+        <location filename="../main_windows.cpp" line="128"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="318"/>
+        <location filename="../main_windows.cpp" line="321"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="706"/>
+        <location filename="../main_windows.cpp" line="709"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="707"/>
+        <location filename="../main_windows.cpp" line="710"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="44"/>
+        <location filename="../main_windows.cpp" line="45"/>
         <source>Show CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="60"/>
+        <location filename="../main_windows.cpp" line="61"/>
         <source>Impossible to know samba version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="369"/>
+        <location filename="../main_windows.cpp" line="372"/>
         <source>Invalid login or password !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="718"/>
+        <location filename="../main_windows.cpp" line="721"/>
         <source>CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="380"/>
+        <location filename="../main_windows.cpp" line="383"/>
         <source>Thanks to:</source>
         <translation type="unfinished"></translation>
     </message>

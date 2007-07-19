@@ -47,8 +47,8 @@ RC_FILE = qtsmbstatus.rc
 
 TRANSLATIONS += ./tr/qtsmbstatus_fr.ts \
                 ./tr/qtsmbstatus_es.ts \
-                ./tr/qtsmbstatus_pl.ts
-
+                ./tr/qtsmbstatus_pl.ts \
+                ./tr/qtsmbstatus_de.ts
 
 FORMS +=  form_smbstatus.ui \
           configure.ui \

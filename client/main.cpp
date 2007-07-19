@@ -279,9 +279,9 @@ int main(int argc, char *argv[])
 	a.installTranslator( &myappTranslator );
 	//  < /translate >
 
+	a.setQuitOnLastWindowClosed ( false );
 	main_windows fenetre_principale;
 	fenetre_principale.show();
-	a.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );
 	int value_return=a.exec();
 
 	// for debug only
