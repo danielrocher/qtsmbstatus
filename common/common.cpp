@@ -23,8 +23,8 @@
 #include <openssl/err.h>
 
 //include Qt
-#include <qstring.h>
-#include <q3socketdevice.h>
+#include <QString>
+#include <Q3SocketDevice>
 
 /**
 	\mainpage QtSmbstatus

@@ -221,8 +221,6 @@ void ClientSocket::core(const Q3CString & rcv_txt)
 				{
 					case auth_ack: // authentication ok
 							debugQt("["+QString::number(reponse)+"] auth_ack");
-							// start smbstatus timer
-							timer->singleShot(interval*1000, this, SLOT(slot_timer()));
 							slot_timer(); // first time
 							break;
 					case end: // end socket by server

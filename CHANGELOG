@@ -1,6 +1,6 @@
 Changelog for QtSmbstatus:
 
-207-06-26 - Version 2.0.0:
+2007-07-20 - Version 2.0.0:
 	- Porting to Qt 4
 	- Add tray icon
 	- Show SMB/CIFS activities (optional)
