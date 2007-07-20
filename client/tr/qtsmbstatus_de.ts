@@ -337,8 +337,7 @@
     <message>
         <location filename="../form_smbstatus.ui" line="264"/>
         <source>Search share open</source>
-        <translation>
-            </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="275"/>
@@ -492,7 +491,7 @@
     <message>
         <location filename="../main_windows.cpp" line="52"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">beenden</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="128"/>
