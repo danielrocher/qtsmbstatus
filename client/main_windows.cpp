@@ -196,7 +196,7 @@ void main_windows::closeEvent(QCloseEvent *e)
 		logform->close();
 		logform->deleteLater();
 		if (connected) clientsocket->Disconnect(); //if connected, disconnect
-		QTimer::singleShot(1500, qApp, SLOT(quit())); // wait before quit
+		QTimer::singleShot(800, qApp, SLOT(quit())); // wait before quit
 		e->accept();
 	}
 }
@@ -381,11 +381,14 @@ void main_windows::helpAbout()
 	QMessageBox::about( this, "QtSmbstatus","<b>QtSmbstatus : </b>"+web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>"
 		"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
 		"<b>"+tr("Thanks to:")+"</b><br/>"
-		"Polish translation : Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br>"
-		"Spanish translation : Mauro<br/>"
-		"German translation : Alex Djekic<br/><br/>"
-		"RPM packages for FC3 : CG (cyberkoa)<br/>"
-		"Second reading : Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a><br><hr>"+
+		"<table>"
+		"<tr><td>Polish translation :</td><td>Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a></td></tr>"
+		"<tr><td></td><td>Pawel Dyda</td></tr>"
+		"<tr><td>Spanish translation :</td><td>Mauro</td></tr>"
+		"<tr><td>German translation :</td><td>Alex Djekic</td></tr>"
+		"<tr><td>RPM packages for FC3 :</td><td>CG (cyberkoa)</td></tr>"
+		"<tr><td>Second reading :</td><td>Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a></td></tr>"
+		"</table><br><hr>"+
 		tr("This program is licensed to you under the terms of the GNU General Public License version 2"));
 }
 
