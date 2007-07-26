@@ -23,6 +23,7 @@
 #define MAIN_WINDOWS_H
 
 #include <QMainWindow>
+#include <QApplication>
 #include <QSystemTrayIcon>
 
 #include "ui_form_smbstatus.h"
@@ -42,11 +43,23 @@ extern QString auteur_qtsmbstatus;
 extern QString web_qtsmbstatus;
 extern bool debug_qtsmbstatus;
 
+class MyApplication : public QApplication
+{
+	Q_OBJECT
+public:
+	MyApplication (int & argc, char ** argv );
+	virtual void commitData(QSessionManager& manager);
+signals:
+	void quitMyApp();
+};
+
 class main_windows : public QMainWindow, public Ui::form_smbstatus  {
    Q_OBJECT
 public:
 	main_windows(QWidget *parent=0);
 	virtual ~main_windows();
+public slots:
+	void beforeQuit();
 signals:
 	void refreshviewlog(const type_message &);
 private slots: // Private slots
@@ -67,7 +80,6 @@ private slots: // Private slots
 	void trayicon_activated(QSystemTrayIcon::ActivationReason reason);
 	void restore_minimize();
 	void configuration_changed();
-	void beforeQuit();
 	//! Info CIFS/SMB for log and balloon messages
 	void InfoSMB();
 private: // Private attributes

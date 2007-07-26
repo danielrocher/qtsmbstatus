@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	QApplication a( argc, argv );
+	MyApplication a( argc, argv );
 
 	//  < translate >
 
@@ -281,6 +281,7 @@ int main(int argc, char *argv[])
 
 	a.setQuitOnLastWindowClosed ( false );
 	main_windows fenetre_principale;
+	a.connect (&a, SIGNAL(quitMyApp()),&fenetre_principale,SLOT(beforeQuit()));
 	fenetre_principale.show();
 	int value_return=a.exec();
 

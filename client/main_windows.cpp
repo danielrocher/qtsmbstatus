@@ -24,6 +24,28 @@
 
 #include "main_windows.h"
 
+/**
+	\class MyApplication
+	\brief reimplementing QApplication::commitData()
+	\date 2007-07-26
+	\version 1.0
+	\author Daniel Rocher
+*/
+MyApplication::MyApplication(int & argc, char ** argv ) : QApplication(argc,argv) { }
+
+/**
+	reimplementing QApplication::commitData().
+	This function deals with session management. It is invoked when the QSessionManager wants the application to commit all its data.
+*/
+void MyApplication::commitData(QSessionManager& manager)
+{
+	debugQt("MyApplication::commitData()");
+	if (manager.allowsInteraction())
+	{
+		manager.release();
+		emit quitMyApp();
+	}
+}
 
 /**
 	\class main_windows
