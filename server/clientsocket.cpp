@@ -326,7 +326,7 @@ void ClientSocket :: CmdAuthRq(const QString & texte)
 		pamthread->setAuth(Username,Passwd);
 		pamthread->start();
 		timer->start( 500, FALSE ); //request every 500ms to know pamthread status (finished)
-        	return;
+		return;
 	}
 	sendToClient(error_auth);
 	socketConnectionClose();
