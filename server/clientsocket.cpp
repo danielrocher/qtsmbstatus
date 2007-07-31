@@ -311,37 +311,22 @@ void ClientSocket :: CmdAuthRq(const QString & texte)
 	core_syntax stx(texte);
 	QString Username=stx.returnArg(1);
 	QString Passwd=stx.returnArg(2);
-	if (Username!="")
+	if ( (!Username.isEmpty()) && (Username.length () < 50) && (!Passwd.isEmpty()) && (Passwd.length () < 50))
 	{
-		if ( (Username.length ())  > 50 )
-			{
-				sendToClient(error_auth);
-				return;
-			}
-
-		if (Passwd!="")
-		{
-			if ( (Passwd.length ()) > 50 )
-			{
-				sendToClient(error_auth);
-				return;
-			}
-
-			// if client is authorized to disconnect user
-			for ( QStringList::Iterator it = AllowUserDisconnect.begin(); it != AllowUserDisconnect.end(); ++it ) {
-				if (((*it)==Username) || ((*it).lower()=="all")) permitDisconnectUser=true;
-			}
-			// if client is authorized to send popup message
-			for ( QStringList::Iterator it = AllowUserSendMsg.begin(); it != AllowUserSendMsg.end(); ++it ) {
-				if (((*it)==Username) || ((*it).lower()=="all")) permitSendMsg=true;
-			}
-
-			// PAM Request
-			pamthread->setAuth(Username,Passwd);
-			pamthread->start();
-        	timer->start( 500, FALSE ); //request every 500ms to know pamthread status (finished)
-        	return;
+		// if client is authorized to disconnect user
+		for ( QStringList::Iterator it = AllowUserDisconnect.begin(); it != AllowUserDisconnect.end(); ++it ) {
+			if (((*it)==Username) || ((*it).lower()=="all")) permitDisconnectUser=true;
 		}
+		// if client is authorized to send popup message
+		for ( QStringList::Iterator it = AllowUserSendMsg.begin(); it != AllowUserSendMsg.end(); ++it ) {
+			if (((*it)==Username) || ((*it).lower()=="all")) permitSendMsg=true;
+		}
+
+		// PAM Request
+		pamthread->setAuth(Username,Passwd);
+		pamthread->start();
+		timer->start( 500, FALSE ); //request every 500ms to know pamthread status (finished)
+        	return;
 	}
 	sendToClient(error_auth);
 	socketConnectionClose();

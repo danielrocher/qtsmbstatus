@@ -24,7 +24,7 @@ Changelog for QtSmbstatus:
 2005-10-14 - Version 0.9.11:
 	- Append 'properties' in popupmenu (server, user or service)
 	- Correction bug in client smbstatus module (minor)
-	- rewrited classes of client : server, user and service
+	- rewrote classes of client : server, user and service
 
 2005-08-21 - Version 0.9.10:
 	- Append in server's configuration file : permit_disconnect_user and permit_send_msg
