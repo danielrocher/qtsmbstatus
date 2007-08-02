@@ -168,10 +168,10 @@ void main_windows::restoreWindowSize()
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
 			QRect rec= this->geometry ();
-			int left=settings.readNumEntry( "left",20 );
-			int top=settings.readNumEntry( "top", 20 );
-			int width=settings.readNumEntry( "width",300 );
-			int height=settings.readNumEntry( "height", 600 );
+			int left=settings.value( "left",20 ).toInt();
+			int top=settings.value( "top", 20 ).toInt();
+			int width=settings.value( "width",300 ).toInt();
+			int height=settings.value( "height", 600 ).toInt();
 		settings.endGroup();
 	settings.endGroup();
 	this->setGeometry(QRect( left, top, width, height ));
@@ -190,10 +190,10 @@ void main_windows::saveWindowSize()
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
 			QRect rec= this->geometry ();
-			settings.writeEntry( "left", rec.left () );
-			settings.writeEntry( "top", rec.top () );
-			settings.writeEntry( "width", rec.width () );
-			settings.writeEntry( "height", rec.height () );
+			settings.setValue( "left", rec.left () );
+			settings.setValue( "top", rec.top () );
+			settings.setValue( "width", rec.width () );
+			settings.setValue( "height", rec.height () );
 		settings.endGroup();
 	settings.endGroup();
 }
@@ -236,7 +236,7 @@ void main_windows::writeHistoryFile()
 			int index=0;
 			while (index<comboBox_hostaddr->count ())
 			{
-				settings.writeEntry("recentAddress"+QString::number(index),comboBox_hostaddr->text(index) );
+				settings.setValue("recentAddress"+QString::number(index),comboBox_hostaddr->text(index) );
 				index++;
 			}
 		settings.endGroup();
@@ -256,7 +256,7 @@ void main_windows::readHistoryFile()
 		settings.beginGroup("/History");
 			for ( int i = 0; i < 20 ; ++i )
 			{
-				value=settings.readEntry( "recentAddress" +QString::number( i) );
+				value=settings.value( "recentAddress" +QString::number( i) ).toString();
 				if (!value.isEmpty())
 					comboBox_hostaddr->insertItem( value );
 			}
