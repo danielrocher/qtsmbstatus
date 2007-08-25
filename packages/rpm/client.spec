@@ -14,7 +14,7 @@
 
 Summary:		A GUI for smbstatus with Qt
 Name:			qtsmbstatus-client
-Version:		1.2.1
+Version:		2.0
 Release:		1
 License:		GPL
 Vendor:			ADELLA
@@ -28,23 +28,26 @@ BuildArchitectures:	i586
 %if "%{_distribution}" == "Mandriva" || "%{_distribution}" == "Mandrake"
 # Mandrake / Mandriva requirements
 BuildRequires:		gcc-c++, XFree86-devel
-BuildRequires:		libqt3-devel >= 3.1
+BuildRequires:		libqt4-dev >= 4.2
 BuildRequires:		libopenssl-devel
 Requires:		openssl
+Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
 %else
 %if  "%{_distribution}" == "Suse"
 # Suse requirements
 BuildRequires:		gcc-c++, XFree86-devel
-BuildRequires:		qt3-devel >= 3.1
+BuildRequires:		qt4-dev >= 4.2
 BuildRequires:		openssl-devel
 Requires:		openssl
+Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
 %else
 %if  "%{_distribution}" == "Fedora"
 # Fedora requirements
 BuildRequires:          gcc-c++,libX11-devel
-BuildRequires:          qt-devel >= 3.1
+BuildRequires:          qt4-devel >= 4.2
 BuildRequires:          openssl-devel
 Requires:		openssl
+Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
 %else
 #Unknown Distribution !
 %endif
@@ -67,9 +70,9 @@ rm %{_tmppath}/* -r -f
 
 %build
 # create Makefile
-qmake %{qmake_pro}
+qmake-qt4 %{qmake_pro}
 
-/usr/lib/qt3/bin/lrelease %{qmake_pro}
+lrelease-qt4 %{qmake_pro}
 
 # build
 make
@@ -100,7 +103,7 @@ fi
 # defaults attr
 %defattr(644,root,root)
 %{instaldir_int}/*.qm
-%attr(-,root,root) %doc README README-FR INSTALL COPYING VERSIONS
+%attr(-,root,root) %doc README README-FR INSTALL COPYING CHANGELOG
 
 %changelog
 

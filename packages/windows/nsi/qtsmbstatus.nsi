@@ -1,5 +1,5 @@
 ; qtsmbstatus.nsi
-; by Daniel Rocher
+; créé par Daniel ROCHER
 ;
 
 ;--------------------------------
@@ -10,7 +10,7 @@
 ;--------------------------------
 
 Name "QtSmbstatus"
-OutFile "qtsmbstatus-client.1.2.1-1.exe"
+OutFile "qtsmbstatus-client.2.0-1.exe"
 
 InstallDir "$PROGRAMFILES\qtsmbstatus"
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qtsmbstatus""UninstallString"
@@ -37,49 +37,41 @@ InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qtsmb
   !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
-;Sections
+;Installer Sections
 
 InstType "full"
 InstType "minimal"
 
-; install program
+; installe le programme
 Section "!Programs and libraries (required)" SecProgram
 SectionIn 1 2 RO
 SetOutPath "$INSTDIR\bin"
 File "bin\qtsmbstatus.exe"
 
-File "bin\mingwm10.dll"
-File "bin\libeay32.dll"
-File "bin\libssl32.dll"
-File "bin\Qt3Support4.dll"
-File "bin\QtCore4.dll"
-File "bin\QtGui4.dll"
-File "bin\QtNetwork4.dll"
-File "bin\QtSql4.dll"
-File "bin\QtXml4.dll"
+File "bin\*.dll"
 
 
 SectionEnd 
 
-; install documentation
+; installe la documentation
 Section "Documentation" SecDoc
 SectionIn 1
 SetOutPath "$INSTDIR\doc"
 File "doc\license.txt"
 File "doc\readme.txt"
-File "doc\readme-fr.txt"
+File "doc\readme-*.txt"
 File "doc\versions.txt"
 
 SectionEnd 
 
-; install languages
+; installe les langues disponibles
 Section "Languages" SecLang
 SectionIn 1
 SetOutPath "$INSTDIR\tr"
 File "tr\qtsmbstatus_*.qm"
 SectionEnd 
 
-; install shortcuts
+; installe les racourcis
 Section "shortcuts" SecShortcuts
 SectionIn 1
 SetOutPath "$SMPROGRAMS\qtsmbstatus"
@@ -125,18 +117,10 @@ Delete "$INSTDIR\uninst-qtsmbstatus.exe"
 
 Delete "$INSTDIR\bin\qtsmbstatus.exe"
 
-Delete "$INSTDIR\bin\mingwm10.dll"
-Delete "$INSTDIR\bin\libeay32.dll"
-Delete "$INSTDIR\bin\libssl32.dll"
-Delete "$INSTDIR\bin\Qt3Support4.dll"
-Delete "$INSTDIR\bin\QtCore4.dll"
-Delete "$INSTDIR\bin\QtGui4.dll"
-Delete "$INSTDIR\bin\QtNetwork4.dll"
-Delete "$INSTDIR\bin\QtSql4.dll"
-Delete "$INSTDIR\bin\QtXml4.dll"
+Delete "$INSTDIR\bin\*.dll"
 
 Delete "$INSTDIR\doc\readme.txt"
-Delete "$INSTDIR\doc\readme-fr.txt"
+Delete "$INSTDIR\doc\readme-*.txt"
 Delete "$INSTDIR\doc\versions.txt"
 Delete "$INSTDIR\doc\license.txt"
 

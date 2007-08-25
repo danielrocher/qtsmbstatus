@@ -1,6 +1,6 @@
-qtsmbstatus-client (1.2.1-1) feisty; urgency=low
+qtsmbstatus-client (2.0-1) feisty; urgency=low
 
   * Initial release
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Tue,  5 Jun 2007 22:46:43 +0200
+ -- Daniel Rocher <daniel.rocher@adella.org>  Sat,  25 Aug 2007 22:46:43 +0200
 

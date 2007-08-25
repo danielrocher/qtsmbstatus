@@ -99,7 +99,7 @@
   <kdevtrollproject>
     <run>
       <mainprogram>/home/ubuntu/Desktop/projet_qtsmbstatus/qtsmbstatus/home/ubuntu/Desktop/projet_qtsmbstatus/qtsmbstatus/client/bin/qtsmbstatus</mainprogram>
-      <programargs/>
+      <programargs>-m</programargs>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
       <terminal>false</terminal>

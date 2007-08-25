@@ -23,7 +23,7 @@ endif
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	/usr/bin/qmake
+	/usr/bin/qmake-qt4
 	touch configure-stamp
 
 
