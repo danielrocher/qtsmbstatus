@@ -31,23 +31,23 @@ BuildRequires:		gcc-c++, XFree86-devel
 BuildRequires:		libqt4-dev >= 4.2
 BuildRequires:		libopenssl-devel
 Requires:		openssl
-Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
+Requires:		libqt4-core >= 4.2, libqt4-gui >= 4.2, libqt4-sql >= 4.2, libqt4-qt3support >= 4.2
 %else
 %if  "%{_distribution}" == "Suse"
 # Suse requirements
 BuildRequires:		gcc-c++, XFree86-devel
-BuildRequires:		qt4-dev >= 4.2
+BuildRequires:		libqt4-devel >= 4.2
 BuildRequires:		openssl-devel
 Requires:		openssl
-Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
+Requires:		libqt4 >= 4.2, libqt4-x11 >= 4.2, libqt4-sql >= 4.2, libqt4-qt3support >= 4.2
 %else
 %if  "%{_distribution}" == "Fedora"
 # Fedora requirements
 BuildRequires:          gcc-c++,libX11-devel
-BuildRequires:          qt4-devel >= 4.2
+BuildRequires:          qt4 >= 4.2, qt4-devel >= 4.2
 BuildRequires:          openssl-devel
 Requires:		openssl
-Requires:		libqt4-core >=4.2, libqt4-gui >=4.2, libqt4-sql >=4.2, libqt4-qt3support >=4.2
+Requires:		qt4 >= 4.2, qt4-x11 >= 4.2
 %else
 #Unknown Distribution !
 %endif
