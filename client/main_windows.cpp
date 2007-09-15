@@ -407,6 +407,7 @@ void main_windows::helpAbout()
 		"<tr><td>Polish translation :</td><td>Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a></td></tr>"
 		"<tr><td></td><td>Pawel Dyda</td></tr>"
 		"<tr><td>Spanish translation :</td><td>Mauro</td></tr>"
+		"<tr><td>Italian translation :</td><td>Naldini Paolo</td></tr>"
 		"<tr><td>German translation :</td><td>Alex Djekic</td></tr>"
 		"<tr><td>RPM packages for FC3 :</td><td>CG (cyberkoa)</td></tr>"
 		"<tr><td>Second reading :</td><td>Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a></td></tr>"

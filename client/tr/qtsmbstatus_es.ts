@@ -454,37 +454,37 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="414"/>
+        <location filename="../main_windows.cpp" line="415"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Este programa esta licenciado a usted bajo los terminos de la Licencia General Publica GNU version 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="454"/>
+        <location filename="../main_windows.cpp" line="455"/>
         <source>Find text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="465"/>
+        <location filename="../main_windows.cpp" line="466"/>
         <source>Search machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="475"/>
+        <location filename="../main_windows.cpp" line="476"/>
         <source>Search user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="484"/>
+        <location filename="../main_windows.cpp" line="485"/>
         <source>Search share</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="493"/>
+        <location filename="../main_windows.cpp" line="494"/>
         <source>Search locked file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="649"/>
+        <location filename="../main_windows.cpp" line="650"/>
         <source>Text not found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -524,12 +524,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="735"/>
+        <location filename="../main_windows.cpp" line="736"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="736"/>
+        <location filename="../main_windows.cpp" line="737"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -549,7 +549,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="747"/>
+        <location filename="../main_windows.cpp" line="748"/>
         <source>CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>

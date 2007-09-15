@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="fr_FR">
 <context>
     <name>ClientSSL</name>
     <message>
@@ -204,12 +204,12 @@
     <message>
         <location filename="../configure.ui" line="204"/>
         <source>Show hidden shares (share$)</source>
-        <translation></translation>
+        <translation>Zeige verstecke Anteile (&amp;anteile)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="207"/>
         <source>Show hidden shares</source>
-        <translation></translation>
+        <translation>Zeige verstecke Anteile</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="217"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../form_smbstatus.ui" line="264"/>
         <source>Search share open</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche geöffnete Anteile</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="275"/>
@@ -372,12 +372,12 @@
     <message>
         <location filename="../form_smbstatus.ui" line="319"/>
         <source>&amp;Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zeige CIFS/SMB aktivitäten</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="197"/>
         <source>About QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Über QtSmbstatus</translation>
     </message>
 </context>
 <context>
@@ -385,37 +385,37 @@
     <message>
         <location filename="../log.ui" line="13"/>
         <source>View Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Aktivitäten</translation>
     </message>
     <message>
         <location filename="../log.ui" line="124"/>
         <source>View/hide shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige/Verstecke Anteile</translation>
     </message>
     <message>
         <location filename="../log.ui" line="156"/>
         <source>View/hide files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige/verstecke Dateien</translation>
     </message>
     <message>
         <location filename="../log.ui" line="196"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <location filename="../log.ui" line="41"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeren/Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../log.ui" line="104"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="../log.ui" line="70"/>
         <source>Save log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log speichern</translation>
     </message>
 </context>
 <context>
@@ -423,70 +423,70 @@
     <message>
         <location filename="../login_dialog.ui" line="84"/>
         <source>login</source>
-        <translation type="unfinished"></translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="115"/>
         <source>exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="52"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Username</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="132"/>
         <source>root</source>
-        <translation type="unfinished"></translation>
+        <translation>root</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="162"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="19"/>
         <source>Connect to qtsmbstatus server</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde zum qtsmbstatus Server</translation>
     </message>
 </context>
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="414"/>
+        <location filename="../main_windows.cpp" line="415"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
-        <translation type="unfinished"></translation>
+        <translation>This program is licensed to you under the terms of the GNU General Public License version 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="484"/>
+        <location filename="../main_windows.cpp" line="485"/>
         <source>Search share</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche Anteile</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="493"/>
+        <location filename="../main_windows.cpp" line="494"/>
         <source>Search locked file</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche gesperrte Dateien</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="649"/>
+        <location filename="../main_windows.cpp" line="650"/>
         <source>Text not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Text nicht gefunden</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="62"/>
         <source>QtSmbstatus Client</source>
-        <translation></translation>
+        <translation>QtSmbstatus Client</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="363"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbunden.</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="152"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimieren</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="74"/>
@@ -496,47 +496,47 @@
     <message>
         <location filename="../main_windows.cpp" line="150"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederherstellen</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="343"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="735"/>
-        <source>User %1 has opened share %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Getrennt</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="736"/>
+        <source>User %1 has opened share %2 (%3)</source>
+        <translation>Benutzer %1 hat die Datei(en) %2 (%3) geöffnet</translation>
+    </message>
+    <message>
+        <location filename="../main_windows.cpp" line="737"/>
         <source>User %1 has opened file %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzer %1 hat dei Datei(en) %2 (%3) geöffnet</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="67"/>
         <source>Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige CIFS/SMB aktivitäten</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="83"/>
         <source>Impossible to know samba version</source>
-        <translation type="unfinished"></translation>
+        <translation>Unmöglich die Samba Version zukennen</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="394"/>
         <source>Invalid login or password !</source>
-        <translation type="unfinished"></translation>
+        <translation>Falscher Login oder Passwort</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="747"/>
+        <location filename="../main_windows.cpp" line="748"/>
         <source>CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>CIFS/SMB aktivitäten</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="405"/>
         <source>Thanks to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dank an:</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="69"/>
@@ -544,17 +544,17 @@
         <translation>Einrichten</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="454"/>
+        <location filename="../main_windows.cpp" line="455"/>
         <source>Find text</source>
         <translation>Text suchen</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="465"/>
+        <location filename="../main_windows.cpp" line="466"/>
         <source>Search machine</source>
         <translation>Suche Maschine</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="475"/>
+        <location filename="../main_windows.cpp" line="476"/>
         <source>Search user</source>
         <translation>Suche User</translation>
     </message>
