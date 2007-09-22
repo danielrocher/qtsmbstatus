@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 	#ifdef Q_WS_WIN
 	translate_file= QDir::currentPath () + QString(  "/tr/qtsmbstatus_");
 	#else
-	translate_file=QString("/usr/local/share/qtsmbstatus/qtsmbstatus_");
+	translate_file=QString("/usr/share/qtsmbstatus/qtsmbstatus_");
 	#endif
 
 	QTranslator myappTranslator;

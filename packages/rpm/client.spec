@@ -6,7 +6,7 @@
 
 
 %define instaldir_bin  /usr/bin
-%define instaldir_int  /usr/local/share/qtsmbstatus
+%define instaldir_int  /usr/share/qtsmbstatus
 
 # file .pro
 %define qmake_pro      client/client.pro

@@ -59,7 +59,7 @@ FORMS +=  form_smbstatus.ui \
 # install
 !win32 {
 # Translation
-TRANSDIR   = /usr/local/share/qtsmbstatus
+TRANSDIR   = /usr/share/qtsmbstatus
 TRANSFILES = ./tr/*.qm
 trans.path = $$TRANSDIR 
 trans.files = $$TRANSFILES 

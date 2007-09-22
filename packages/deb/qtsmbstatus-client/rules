@@ -54,7 +54,7 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 	cp $(CURDIR)/client/bin/qtsmbstatus $(CURDIR)/debian/qtsmbstatus-client/usr/bin/qtsmbstatus
-	cp $(CURDIR)/client/tr/*.qm $(CURDIR)/debian/qtsmbstatus-client/usr/local/share/qtsmbstatus
+	cp $(CURDIR)/client/tr/*.qm $(CURDIR)/debian/qtsmbstatus-client/usr/share/qtsmbstatus
 	cp $(CURDIR)/client/icons/qtsmbstatus.png $(CURDIR)/debian/qtsmbstatus-client/usr/share/pixmaps/
 	cp $(CURDIR)/debian/qtsmbstatus.desktop $(CURDIR)/debian/qtsmbstatus-client/usr/share/applications/qtsmbstatus.desktop
 
