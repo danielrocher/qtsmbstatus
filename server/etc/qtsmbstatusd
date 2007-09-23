@@ -1,18 +1,19 @@
-#! /bin/bash
+#!/bin/bash
 #  script for qtsmbstatusd
 #
 
-# For Suse:
+# For LSB
 ### BEGIN INIT INFO
-# Provides:       QtSbstatusd
-# Required-Start: $smb
+# Provides:          QtSbstatusd
+# Required-Start:    $smb
 # Required-Stop:
-# Default-Start:  3 5
-# Default-Stop:   0 1 2 6
-# Description:   qtsmbstatusd server (QtSmbstatus is a graphical user interface for smbstatus)
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: start qtsmbstatusd server at boot time
+# Description:       QtSmbstatus is a graphical user interface for smbstatus
 ### END INIT INFO
 
-# For Mandrake/Mandriva:
+# For Mandrake/Mandriva/Fedora:
 # chkconfig: 35 99 20
 # description: qtsmbstatusd server (QtSmbstatus is a graphical user interface for smbstatus)
 
@@ -24,7 +25,7 @@ pid=`ps ax | awk '{print $1,$5}' | grep $NAME | awk '{print $1}' | awk '{print $
 
 # Start or stop the qtsmbstatusd server
 case $1 in
-	start | restart | reload)
+	start | restart | reload | force-reload)
                 if test "$pid" != ""; then
                         kill $pid
 			if /usr/bin/qtsmbstatusd -d; then
@@ -52,10 +53,9 @@ case $1 in
 		;;
 
 	*)
-		echo "Usage: qtsmbstatusd {reload|restart|start|status|stop}"
+		echo "Usage: qtsmbstatusd {start|stop|reload|restart|status|force-reload}"
 		exit 1
 		;;
 esac
 
 exit 0
-
