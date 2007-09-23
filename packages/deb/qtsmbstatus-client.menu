@@ -1,0 +1,6 @@
+?package(qtsmbstatus-client): \
+   needs="X11" \
+   section="Apps/Tools" \
+   title="QtSmbstatus Client" \
+   icon="/usr/share/pixmaps/qtsmbstatus.xpm" \
+   command="/usr/bin/qtsmbstatus"

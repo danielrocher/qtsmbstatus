@@ -1,0 +1,27 @@
+Source: qtsmbstatus
+Section: net
+Priority: optional
+Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+XSBC-Original-Maintainer: Daniel Rocher <daniel.rocher@adella.org>
+Build-Depends: debhelper (>= 5), libqt4-dev, libqt4-core, libssl-dev, libpam0g-dev
+Standards-Version: 3.7.2
+
+Package: qtsmbstatus-client
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, openssl
+Description: GUI (graphical user interface) for smbstatus (client)
+ It is meant to provide the possibility of administering remote machines.
+ QtSmbstatus was designed as a client/server system secured with SSL.
+ .
+  Homepage: http://qtsmbstatus.free.fr/
+
+Package: qtsmbstatus-server
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, openssl, samba
+Description: GUI (graphical user interface) for smbstatus (server)
+ It is meant to provide the possibility of administering remote machines.
+ QtSmbstatus was designed as a client/server system secured with SSL.
+ .
+ The server's application ought to be installed with samba-server.
+ .
+  Homepage: http://qtsmbstatus.free.fr/
