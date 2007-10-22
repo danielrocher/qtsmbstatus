@@ -48,63 +48,13 @@ bool log_activity=false;
 int limitLog=1;
 
 /**
-	Save configuration file (create if not exist)
-	\sa readConfigFile
+	Convert QtSmbstatus config file to new format 2.0.1.
+	We never use .qtsmbstatus.conf (replaced by QSetting).
+	Read old file and save setting
 */
-void writeConfigFile()
+void convertto201()
 {
-	debugQt("WriteConfigFile()");
-	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
-	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
-	{
-		qDebug("Impossible to create configuration file");
-		return;
-	}
-	QTextStream t( &f1 );
-	t <<
-	"# This is the configuration file for qtsmbstatus (client)\n" <<
-	"# Port destination\n" <<
-	"# default :  port = 4443\n" <<
-	"port = " << QString::number(port_server) << "\n\n" <<
-	"# Interval, in seconds, between every request to smbstatus (interval > 2)\n" <<
-	"# default :  interval = 10\n" <<
-	"interval = " << QString::number(interval) << "\n\n" <<
-	"# Host Address\n" <<
-	"# default :  host_address = 127.0.0.1\n" <<
-	"host_address = " << host << "\n\n" <<
-	"# Username\n" <<
-	"# default :  username = root\n" <<
-	"username = " << username_login << "\n\n" <<
-	"# Autoconnect when qtsmbstatus start\n" <<
-	"# default :  autoconnect = false\n" <<
-	"autoconnect = " << BoolToStr(autoconnect) << "\n\n" <<
-	"#View Hidden Shares\n"
-	"# default :  view_hidden_shares = true\n" <<
-	"view_hidden_shares = " << BoolToStr(view_hidden_shares) << "\n\n" <<
-	"#Iconize QtSmbstatus on system tray\n" <<
-	"# default :  system_tray = true\n" <<
-	"system_tray = " << BoolToStr(iconize) << "\n\n" <<
-	"#Show status notification messages\n" <<
-	"# default :  notification_messages = true\n" <<
-	"notification_messages = " << BoolToStr(show_messages) << "\n\n" <<
-	"#Log SMB/CIFS activities\n" <<
-	"# default :  log_activity = false\n" <<
-	"log_activity = " << BoolToStr(log_activity) << "\n\n" <<
-	"#Limit log SMB/CIFS (number of days)\n" <<
-	"# default :  limit_log = 1\n" <<
-	"limit_log = " << QString::number(limitLog) << "\n\n" <<
-	"# end file configuration\n";
-	f1.close();
-}
-
-
-/**
-	Read configuration file.
-	\sa writeConfigFile
-*/
-void readConfigFile()
-{
-	debugQt("readConfigFile()");
+	debugQt("convertto201()");
 	QString ligne;
 	QString attr;
 	QString variable;
@@ -158,6 +108,111 @@ void readConfigFile()
 		}
 	}
 	f1.close();
+	// save change
+	writeConfigFile();
+}
+
+/**
+	Save configuration file (create if not exist)
+	\sa readConfigFile
+*/
+void writeConfigFile()
+{
+	debugQt("WriteConfigFile()");
+	// new format
+	// qtsmbstatus >= 2.0.1
+	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	settings.beginGroup("/Configuration");
+		settings.setValue("qtsmbstatusVersion",201);
+		settings.setValue("port",port_server);
+		settings.setValue("interval",interval);
+		settings.setValue("hostAddress",host);
+		settings.setValue("username",username_login);
+		settings.setValue("autoconnect",autoconnect);
+		settings.setValue("viewHiddenShares",view_hidden_shares);
+		settings.setValue("systemTray",iconize);
+		settings.setValue("notificationMessages",show_messages);
+		settings.setValue("logActivity",log_activity);
+		settings.setValue("limitLog",limitLog);
+	settings.endGroup();
+
+	// old format (.qtsmbstatus.conf)
+	// qtsmbstatus < 2.0.1
+	/*
+	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
+	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
+	{
+		qDebug("Impossible to create configuration file");
+		return;
+	}
+	QTextStream t( &f1 );
+	t <<
+	"# This is the configuration file for qtsmbstatus (client)\n" <<
+	"# Port destination\n" <<
+	"# default :  port = 4443\n" <<
+	"port = " << QString::number(port_server) << "\n\n" <<
+	"# Interval, in seconds, between every request to smbstatus (interval > 2)\n" <<
+	"# default :  interval = 10\n" <<
+	"interval = " << QString::number(interval) << "\n\n" <<
+	"# Host Address\n" <<
+	"# default :  host_address = 127.0.0.1\n" <<
+	"host_address = " << host << "\n\n" <<
+	"# Username\n" <<
+	"# default :  username = root\n" <<
+	"username = " << username_login << "\n\n" <<
+	"# Autoconnect when qtsmbstatus start\n" <<
+	"# default :  autoconnect = false\n" <<
+	"autoconnect = " << BoolToStr(autoconnect) << "\n\n" <<
+	"#View Hidden Shares\n"
+	"# default :  view_hidden_shares = true\n" <<
+	"view_hidden_shares = " << BoolToStr(view_hidden_shares) << "\n\n" <<
+	"#Iconize QtSmbstatus on system tray\n" <<
+	"# default :  system_tray = true\n" <<
+	"system_tray = " << BoolToStr(iconize) << "\n\n" <<
+	"#Show status notification messages\n" <<
+	"# default :  notification_messages = true\n" <<
+	"notification_messages = " << BoolToStr(show_messages) << "\n\n" <<
+	"#Log SMB/CIFS activities\n" <<
+	"# default :  log_activity = false\n" <<
+	"log_activity = " << BoolToStr(log_activity) << "\n\n" <<
+	"#Limit log SMB/CIFS (number of days)\n" <<
+	"# default :  limit_log = 1\n" <<
+	"limit_log = " << QString::number(limitLog) << "\n\n" <<
+	"# end file configuration\n";
+	f1.close(); */
+}
+
+
+/**
+	Read configuration file.
+	\sa writeConfigFile
+*/
+void readConfigFile()
+{
+	debugQt("readConfigFile()");
+
+	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	settings.beginGroup("/Configuration");
+	// if qtsmbstatus < 2.0.1 or first time
+	if  ((settings.value("qtsmbstatusVersion",-1).toInt())==-1)
+	{
+		// convert to new format
+		convertto201();
+		return;
+	}
+		int port_conf=settings.value("port",port_server).toInt();
+ 		if (validatePort(port_conf)) port_server=port_conf;
+		int interval_conf=settings.value("interval",interval).toInt();
+		if (interval_conf>2) interval=interval_conf;
+		host=settings.value("hostAddress",host).toString();
+		username_login=settings.value("username",username_login).toString();
+		autoconnect=settings.value("autoconnect",autoconnect).toBool();
+		view_hidden_shares=settings.value("viewHiddenShares",view_hidden_shares).toBool();
+		iconize=settings.value("systemTray",iconize).toBool();
+		show_messages=settings.value("notificationMessages",show_messages).toBool();
+		log_activity=settings.value("logActivity",log_activity).toBool();
+		limitLog=settings.value("limitLog",limitLog).toInt();
+	settings.endGroup();
 }
 
 int main(int argc, char *argv[])

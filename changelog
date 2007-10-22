@@ -1,5 +1,8 @@
 Changelog for QtSmbstatus:
 
+2007-10-22 - Version 2.0.1:
+	- replace configuration file (.qtsmbstatus.conf) by QSettings
+
 2007-08-25 - Version 2.0.0:
 	- Porting to Qt 4
 	- Add tray icon

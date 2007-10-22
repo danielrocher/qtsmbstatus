@@ -11,12 +11,12 @@
     </keywords>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
+    <description></description>
     <ignoreparts/>
     <secondaryLanguages/>
     <versioncontrol/>
     <projectname>qtsmbstatus</projectname>
-    <defaultencoding/>
+    <defaultencoding></defaultencoding>
   </general>
   <kdevfileview>
     <groups>
@@ -80,15 +80,16 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
-      <dbgshell/>
+      <dbgshell></dbgshell>
       <programargs>-m</programargs>
-      <gdbpath/>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <gdbpath></gdbpath>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>false</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
+      <raiseGDBOnStart>false</raiseGDBOnStart>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -98,15 +99,15 @@
   </kdevdebugger>
   <kdevtrollproject>
     <run>
-      <mainprogram>/home/ubuntu/Desktop/projet_qtsmbstatus/qtsmbstatus/home/ubuntu/Desktop/projet_qtsmbstatus/qtsmbstatus/client/bin/qtsmbstatus</mainprogram>
+      <mainprogram>/home/ubuntu/developement/projet_qtsmbstatus/qtsmbstatus/client/bin/qtsmbstatus</mainprogram>
       <programargs>-m</programargs>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
-      <globaldebugarguments/>
-      <globalcwd>/home/ubuntu/Desktop/projet_qtsmbstatus/qtsmbstatus</globalcwd>
+      <globaldebugarguments></globaldebugarguments>
+      <globalcwd>/home/ubuntu/developement/projet_qtsmbstatus/qtsmbstatus</globalcwd>
       <useglobalprogram>true</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
@@ -118,7 +119,7 @@
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
       <envvars/>
       <prio>0</prio>
       <runmultiplejobs>false</runmultiplejobs>
@@ -128,6 +129,7 @@
       <savebehaviour>2</savebehaviour>
       <replacePaths>false</replacePaths>
       <disableDefaultOpts>true</disableDefaultOpts>
+      <enableFilenamesOnly>false</enableFilenamesOnly>
     </qmake>
   </kdevtrollproject>
   <kdevfilecreate>
@@ -167,9 +169,11 @@
       <usePermanentCaching>true</usePermanentCaching>
       <alwaysIncludeNamespaces>false</alwaysIncludeNamespaces>
       <includePaths>.;</includePaths>
+      <parseMissingHeadersExperimental>false</parseMissingHeadersExperimental>
+      <resolveIncludePathsUsingMakeExperimental>false</resolveIncludePathsUsingMakeExperimental>
     </codecompletion>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -179,11 +183,11 @@
     <qt>
       <used>false</used>
       <version>3</version>
-      <root>/usr/share/qt3</root>
+      <root></root>
       <includestyle>3</includestyle>
       <designerintegration>EmbeddedKDevDesigner</designerintegration>
-      <qmake>/usr/bin/qmake-qt3</qmake>
-      <designer>/usr/bin/designer-qt3</designer>
+      <qmake>/usr/bin/qmake</qmake>
+      <designer>/usr/bin/designer</designer>
       <designerpluginpaths/>
     </qt>
     <splitheadersource>
