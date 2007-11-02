@@ -29,6 +29,8 @@ extern bool validatePort(const int & port);
 extern bool StrToBool(QString & value);
 extern QString BoolToStr(bool & value);
 
+extern uint int_qtsmbstatus_version;
+
 //default value
 QString host="127.0.0.1";
 //! Interval, in seconds, between every request to smbstatus
@@ -123,7 +125,7 @@ void writeConfigFile()
 	// qtsmbstatus >= 2.0.1
 	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
 	settings.beginGroup("/Configuration");
-		settings.setValue("qtsmbstatusVersion",201);
+		settings.setValue("qtsmbstatusVersion",int_qtsmbstatus_version);
 		settings.setValue("port",port_server);
 		settings.setValue("interval",interval);
 		settings.setValue("hostAddress",host);
@@ -322,15 +324,21 @@ int main(int argc, char *argv[])
 
 
 	QString translate_file;
+	QTranslator myappTranslator;
 	// only windows
 	#ifdef Q_WS_WIN
 	translate_file= QDir::currentPath () + QString(  "/tr/qtsmbstatus_");
+	myappTranslator.load(translate_file+ QLocale::system().name());
 	#else
 	translate_file=QString("/usr/share/qtsmbstatus/qtsmbstatus_");
+	myappTranslator.load(translate_file+ QLocale::system().name());
+	if (myappTranslator.isEmpty())
+	{
+		translate_file=QString("/usr/local/share/qtsmbstatus/qtsmbstatus_");
+		myappTranslator.load(translate_file+ QLocale::system().name());
+	}
 	#endif
 
-	QTranslator myappTranslator;
-	myappTranslator.load(translate_file+ QLocale::system().name());
 	a.installTranslator( &myappTranslator );
 	//  < /translate >
 

@@ -1,22 +1,4 @@
 
-DATADIR= /etc/qtsmbstatusd
-DATAFILES = ./etc/privkey.pem \
-            ./etc/qtsmbstatusd.conf \
-            ./etc/server.pem \
-            ./etc/qtsmbstatusd.users
-
-PAMDIR = /etc/pam.d
-PAMFILE = ./pam.d/qtsmbstatusd
-
-INITDIR= /etc/init.d
-INITFILE = ./etc/qtsmbstatusd
-
-DOCDIR = /usr/share/doc/qtsmbstatusd
-DOCFILES = ../README \
-           ../README-FR \
-           ../INSTALL \
-           ../COPYING
-
 SOURCES += server.cpp \
            clientsocket.cpp \
            main.cpp \
@@ -51,19 +33,54 @@ DESTDIR +=  bin
 LIBS += -lpam \
         -lssl
 
+DATADIR= /etc/qtsmbstatusd
+DATAFILES = ./etc/privkey.pem \
+            ./etc/qtsmbstatusd.conf \
+            ./etc/server.pem \
+            ./etc/qtsmbstatusd.users
 data.path = $$DATADIR 
-data.files += $$DATAFILES 
+data.files += $$DATAFILES
+
+PAMDIR = /etc/pam.d
+PAMFILE = ./pam.d/qtsmbstatusd
 pam.path = $$PAMDIR 
-pam.files += $$PAMFILE 
+pam.files += $$PAMFILE
+
+INITDIR= /etc/init.d
+INITFILE = ./etc/qtsmbstatusd
 init.path = $$INITDIR 
-init.files += $$INITFILE 
+init.files += $$INITFILE
+
+#doc
+DOCDIR = /usr/local/share/doc/qtsmbstatusd
+DOCFILES = ../README \
+           ../README-FR \
+           ../INSTALL \
+           ../COPYING
 doc.path = $$DOCDIR 
 doc.files += $$DOCFILES 
-target.path = /usr/bin/ 
+
+#manpage
+MANDIR   = /usr/local/share/man/man7
+MANFILES = qtsmbstatusd.7.gz
+manpage.path = $$MANDIR
+manpage.files = $$MANFILES
+
+target.path = /usr/bin/
+
+postinstall.path=/
+postinstall.extra+= chmod 640 /etc/qtsmbstatusd/* ; \
+                    chmod 640 /etc/pam.d/qtsmbstatusd ; \
+                    chmod 750 /etc/init.d/qtsmbstatusd ; \
+                    /etc/init.d/qtsmbstatusd start
+
 INSTALLS += data \
             pam \
             init \
             doc \
-            target
+            manpage \
+            target \
+            postinstall
+
 
 QT +=  network qt3support

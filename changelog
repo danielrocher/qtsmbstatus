@@ -1,7 +1,10 @@
 Changelog for QtSmbstatus:
 
-2007-10-22 - Version 2.0.1:
-	- replace configuration file (.qtsmbstatus.conf) by QSettings
+2007-11-02 - Version 2.0.1:
+	- Fix crash in qtsmbstatus client when server disconnect client (bad name or bad password)
+	- Replace configuration file (.qtsmbstatus.conf) by QSettings
+	- Append manpages
+	- Added a menu entry for qtsmbstatus client (freedesktop)
 
 2007-08-25 - Version 2.0.0:
 	- Porting to Qt 4

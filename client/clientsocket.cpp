@@ -237,7 +237,7 @@ void ClientSocket::core(const Q3CString & rcv_txt)
 							break;
 					case error_auth: // authentication error
 							debugQt("["+QString::number(reponse)+"] error_auth");
-							socketclient->closeConnection();
+							// socketclient->closeConnection(); (don't close here, server will do it)
 							emit (SignalErrorAuth());
 							break;
 					case error_command: // Command error ( the last command is not recognized)

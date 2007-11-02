@@ -59,13 +59,13 @@ FORMS +=  form_smbstatus.ui \
 # install
 !win32 {
 # Translation
-TRANSDIR   = /usr/share/qtsmbstatus
+TRANSDIR   = /usr/local/share/qtsmbstatus
 TRANSFILES = ./tr/*.qm
 trans.path = $$TRANSDIR 
 trans.files = $$TRANSFILES 
 
 # Documentation
-DOCDIR   = /usr/share/doc/qtsmbstatus
+DOCDIR   = /usr/local/share/doc/qtsmbstatus
 DOCFILES = ../README \
            ../README-FR \
            ../INSTALL \
@@ -73,12 +73,33 @@ DOCFILES = ../README \
 doc.path = $$DOCDIR
 doc.files = $$DOCFILES
 
-target.path = /usr/bin 
+#icons
+ICONSDIR   = /usr/share/pixmaps
+ICONSFILES = qtsmbstatus.xpm
+icons.path = $$ICONSDIR
+icons.files = $$ICONSFILES
+
+#menu
+MENUDIR   = /usr/local/share/applications
+MENUFILES = qtsmbstatus.desktop
+menu.path = $$MENUDIR
+menu.files = $$MENUFILES
+
+#manpage
+MANDIR   = /usr/local/share/man/man7
+MANFILES = qtsmbstatus.7.gz
+manpage.path = $$MANDIR
+manpage.files = $$MANFILES
+
+
+target.path = /usr/bin
 
 INSTALLS += trans \
             target \
-            doc
-
+            doc \
+            icons \
+            menu \
+            manpage
 }
 
 
