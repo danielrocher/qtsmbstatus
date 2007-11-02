@@ -63,8 +63,8 @@ install: build
 	#install client
 	cp $(CURDIR)/client/bin/qtsmbstatus $(CURDIR)/debian/qtsmbstatus-client/usr/bin/qtsmbstatus
 	cp $(CURDIR)/client/tr/*.qm $(CURDIR)/debian/qtsmbstatus-client/usr/share/qtsmbstatus
-	cp $(CURDIR)/debian/qtsmbstatus.xpm $(CURDIR)/debian/qtsmbstatus-client/usr/share/pixmaps/
-	cp $(CURDIR)/debian/qtsmbstatus.desktop $(CURDIR)/debian/qtsmbstatus-client/usr/share/applications/qtsmbstatus.desktop
+	cp $(CURDIR)/client/qtsmbstatus.xpm $(CURDIR)/debian/qtsmbstatus-client/usr/share/pixmaps/
+	cp $(CURDIR)/client/qtsmbstatus.desktop $(CURDIR)/debian/qtsmbstatus-client/usr/share/applications/qtsmbstatus.desktop
 
 # Build architecture-independent files here.
 binary-indep: build install
