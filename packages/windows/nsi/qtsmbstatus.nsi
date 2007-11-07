@@ -1,5 +1,5 @@
 ; qtsmbstatus.nsi
-; créé par Daniel ROCHER
+; Daniel Rocher
 ;
 
 ;--------------------------------
