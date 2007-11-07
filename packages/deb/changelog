@@ -1,6 +1,7 @@
-qtsmbstatus (2.0.1-0ubuntu1) gutsy; urgency=low
+qtsmbstatus (2.0.1-0ubuntu1) hardy; urgency=low
 
   * Initial release
+  * fixes LP: #119179
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Sat, 02 Nov 2007 22:15:49 +0200
+ -- Daniel Rocher <daniel.rocher@adella.org>  Sat, 07 Nov 2007 21:31:00 +0200
 

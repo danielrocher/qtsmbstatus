@@ -1,0 +1,4 @@
+/etc/qtsmbstatusd/qtsmbstatusd.conf
+/etc/qtsmbstatusd/qtsmbstatusd.users
+/etc/qtsmbstatusd/server.pem
+/etc/qtsmbstatusd/privkey.pem
