@@ -1,5 +1,8 @@
 Changelog for QtSmbstatus:
 
+2007-11-07 - Version 2.0.2:
+	- Added russian and ukrainian translation
+
 2007-11-02 - Version 2.0.1:
 	- Fix crash in qtsmbstatus client when server disconnect client (bad name or bad password)
 	- Replace configuration file (.qtsmbstatus.conf) by QSettings
