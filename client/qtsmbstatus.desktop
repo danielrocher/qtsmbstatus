@@ -2,11 +2,15 @@
 Encoding=UTF-8
 Name=QtSmbstatus Client
 Comment=QtSmbstatus is a GUI (graphical user interface) for smbstatus
+Comment[fr]=QtSmbstatus - une interface graphique à smbstatus
+Comment[es]=QtSmbstatus - una interface grafica de smbstatus
+Comment[ru]=QtSmbstatus - графический интейфейс для smbstatus
+Comment[uk]=QtSmbstatus - графічний інтерфейс для smbstatus
 Exec=qtsmbstatus
 Terminal=false
 Type=Application
 Icon=qtsmbstatus.xpm
-Categories=Utility
+Categories=Qt;Network;Utility;
 MimeType=application/qtsmbstatus
 StartupNotify=false
 X-GNOME-Bugzilla-Bugzilla=GNOME
