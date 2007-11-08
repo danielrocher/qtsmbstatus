@@ -76,7 +76,7 @@ signals:
 	void SignalShortMessage(const QString &);
 
 private: // Private methods
-	void sendToServer(int cmd,const QString & inputText="");
+	void sendToServer(int cmd,const QString & inputArg1="",const QString & inputArg2="");
 	void infoserver(const QString & text);
 	void AnalysisSmbstatus();
 

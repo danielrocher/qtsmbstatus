@@ -88,7 +88,7 @@ private slots:
 public slots:
 	void socketConnectionClose();
 private://methods
-	void sendToClient(int cmd,const QString & em_txt="");
+	void sendToClient(int cmd,const QString & inputArg1="",const QString & inputArg2="");
 	void core (const Q3CString & rcv_txt) ;
 	void CmdKillUser(const QString & texte);
 	void CmdSendMsg(const QString & texte);

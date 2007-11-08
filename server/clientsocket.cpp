@@ -187,17 +187,19 @@ void ClientSocket ::readClient()
 
 /**
 	Send datas to client
-	\param inputText datas to send
 	\param cmd command
 	\sa ClientSocket::command
 	\sa readClient
 	\sa core_syntax
 */
-void ClientSocket ::sendToClient(int cmd,const QString & em_txt)
+void ClientSocket ::sendToClient(int cmd,const QString & inputArg1,const QString & inputArg2)
 {
 	debugQt ("ClientSocket::sendToClient()");
 	if (SSL_init==false) return;
-	Q3CString send_txt = ("["+QString::number(cmd)+"]"+em_txt+"\n").utf8 () ;
+	QString MyTxt;
+	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
+	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
+	Q3CString send_txt = ("["+QString::number(cmd)+"]"+MyTxt+"\n").utf8 () ;
 	int value=SSL_write (ssl, send_txt.data() , send_txt.length ());
 	if (!value)
 	{
@@ -495,8 +497,7 @@ void ClientSocket ::slot_smbstatus(const QStringList & rcv_smb)
 		// if size > 2048 char or if it's the end of stringlist, send data
 		if ((taille>2048) || (it == data.end()))
 		{
-			sendToClient(smb_data,toSend); // et on l'envoi au client
-			 // on rinitialise les variables
+			sendToClient(smb_data,toSend);
 			toSend="";
 			taille=0;
 			start=true;

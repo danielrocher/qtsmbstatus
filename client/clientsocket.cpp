@@ -119,7 +119,7 @@ void ClientSocket::socketconnected()
 	emit(SignalConnected());
 	// create icon server on listview
 	item_server = new server( listView );
-	sendToServer(auth_rq,username_login+";"+passwd_login); // send username and password to server
+	sendToServer(auth_rq,username_login,passwd_login); // send username and password to server
 	echo=0;
 	echo_timer->start( TimoutTimerEcho, FALSE ); // start echo timer
 }
@@ -378,11 +378,14 @@ void ClientSocket::add_lockedfile(const QString & strPid,const QString & strName
 	\sa ClientSocket::command
 	\sa ClientSSL core_syntax
 */
-void ClientSocket::sendToServer(int cmd,const QString & inputText)
+void ClientSocket::sendToServer(int cmd,const QString & inputArg1,const QString & inputArg2)
 {
 	debugQt("ClientSocket::sendToServer()");
 	if (!ssl_connected) return; // if deconnected
-	socketclient->sendToServer("["+QString::number(cmd)+"]"+inputText+"\n");
+	QString MyTxt;
+	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
+	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
+	socketclient->sendToServer("["+QString::number(cmd)+"]"+MyTxt+"\n");
 }
 
 /**
@@ -503,7 +506,7 @@ void ClientSocket::slotSendMessageAllUsers() {
 	while( Item ) // all machines
 	{
 		if (!ssl_connected) return;
-		sendToServer(send_msg,Item->machine_name+";"+message);
+		sendToServer(send_msg,Item->machine_name,message);
 		Item=dynamic_cast<machine *>(Item->nextSibling ()); // next
 	}
 }
@@ -531,7 +534,7 @@ void ClientSocket::slotSendMessage() {
 		// if object is dead
 		if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 
-		sendToServer(send_msg,Item->machine_name+";"+message);
+		sendToServer(send_msg,Item->machine_name,message);
 	}
 }
 
@@ -562,7 +565,7 @@ void ClientSocket::slotDisconnectUser() {
 		if (!Q3ListViewItemList.contains(currentPopupMenuItem)) return;
 
 		if (!ssl_connected) return;
-		sendToServer(kill_user,pid+";"+username);
+		sendToServer(kill_user,pid,username);
 	}
 }
 

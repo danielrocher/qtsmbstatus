@@ -24,6 +24,9 @@
 
 class QString;
 
+extern QString addEscapeKeys(QString txt);
+extern QString removeEscapeKeys( QString txt);
+
 class core_syntax
 {
 public:

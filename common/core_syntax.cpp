@@ -20,13 +20,14 @@
 
 
 #include <QRegExp>
+#include <QtCore>
 #include "core_syntax.h"
 
 /**
 	\class core_syntax
 	\brief This class manage the dialog between client and server
-	\date 2007-06-17
-	\version 1.0
+	\date 2007-11-08
+	\version 1.1
 	\author Daniel Rocher
 
 		Client and server use a protocol :
@@ -109,17 +110,21 @@ QString core_syntax::returnArg(int index)
 		}
 	}
 
+	//same length without escape key
+	QString withoutEscapeKeyTxt=myTxt;
+	withoutEscapeKeyTxt.replace("\\\\","AA").replace("\\;","AA");
 
 	debut = myTxt.find("]");
 	if (debut==-1) return ("");
 	for (i=1 ; i<=index ; ++i)
 	{
 		debut+=1;
-		fin=myTxt.find(";",debut);
+
+		fin=withoutEscapeKeyTxt.find(";",debut);
 		if (index==i)
 		{
-			if (fin!=-1) return (myTxt.mid(debut , fin-debut ));
-			else return (myTxt.mid(debut ));
+			if (fin!=-1) return (removeEscapeKeys(myTxt.mid(debut , fin-debut )));
+			else return (removeEscapeKeys(myTxt.mid(debut )));
 		}
 		if (fin==-1)
 		{
@@ -128,5 +133,24 @@ QString core_syntax::returnArg(int index)
 		debut=fin;
 	}
 	return ("");
+}
+
+
+/**
+	return string with escape keys
+	\sa core_syntax removeEscapeKeys
+*/
+QString addEscapeKeys(QString txt)
+{
+	return txt.replace("\\","\\\\").replace(";","\\;");
+}
+
+/**
+	return string without escape keys
+	\sa core_syntax addEscapeKeys
+*/
+QString removeEscapeKeys(QString txt)
+{
+	return txt.replace("\\\\","\\").replace("\\;",";");
 }
 
