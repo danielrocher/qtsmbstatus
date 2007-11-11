@@ -82,7 +82,7 @@ icons.path = $$ICONSDIR
 icons.files = $$ICONSFILES
 
 #menu
-MENUDIR   = /usr/local/share/applications
+MENUDIR   = /usr/share/applications
 MENUFILES = qtsmbstatus.desktop
 menu.path = $$MENUDIR
 menu.files = $$MENUFILES

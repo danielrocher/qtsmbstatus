@@ -1,7 +1,9 @@
 Changelog for QtSmbstatus:
 
-2007-11-08 - Version 2.0.2:
+2007-11-11 - Version 2.0.2:
+	- Added postinstall/postuninstall scripts (server)
 	- Fixes issue 4 (escape key)
+	- Fixes issue 5 (QtSmbstatusd PAM config)
 	- Added russian and ukrainian translation
 
 2007-11-02 - Version 2.0.1:

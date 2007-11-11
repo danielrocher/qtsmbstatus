@@ -69,11 +69,9 @@ manpage.files = $$MANFILES
 target.path = /usr/bin/
 
 postinstall.path=/
-postinstall.extra+= chmod 640 /etc/qtsmbstatusd/* ; \
-                    chmod 640 /etc/pam.d/qtsmbstatusd ; \
-                    chmod 750 /etc/init.d/qtsmbstatusd ; \
-                    /etc/init.d/qtsmbstatusd start
+postinstall.extra+= sh \$(PWD)/postinst.sh \$(INSTALL_ROOT)
 
+!win32 {
 INSTALLS += data \
             pam \
             init \
@@ -81,6 +79,6 @@ INSTALLS += data \
             manpage \
             target \
             postinstall
-
+}
 
 QT +=  network qt3support
