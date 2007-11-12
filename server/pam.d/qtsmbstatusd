@@ -1,6 +1,7 @@
 #
 # The PAM configuration file for the qtsmbstatusd daemon
 #
+# This is a generic file. Please read documentation.
 
 auth 		required	pam_unix.so nullok
 auth		required	pam_listfile.so file=/etc/qtsmbstatusd/qtsmbstatusd.users onerr=fail sense=allow item=user

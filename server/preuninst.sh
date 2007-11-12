@@ -1,22 +1,15 @@
 #!/bin/bash
 #
 # Stop service
-# Remove PAM files
 # Remove System-V style init script links
 # 
 
 ROOT_DIR=$1
-PATH_PAM=$ROOT_DIR/etc/pam.d
 
-echo $ROOT_DIR
 
 # stop service
 echo "stop qtsmbstatusd service"
 $ROOT_DIR/etc/init.d/qtsmbstatusd stop
-
-if test -r $PATH_PAM/qtsmbstatusd; then
-      rm $PATH_PAM/qtsmbstatusd -f 2>/dev/null
-fi
 
 # service
 

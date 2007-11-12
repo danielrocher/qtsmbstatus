@@ -1,0 +1,6 @@
+#%PAM-1.0
+@include common-auth
+auth     required    pam_env.so
+auth     required    pam_listfile.so file=/etc/qtsmbstatusd/qtsmbstatusd.users onerr=fail sense=allow item=user
+@include common-account
+@include common-session

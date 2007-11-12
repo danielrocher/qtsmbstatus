@@ -40,7 +40,7 @@ Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString 
 	to_machine=machine.stripWhiteSpace();
 	my_message=message.stripWhiteSpace();
 
-	my_message=my_message.replace( QChar('"'), " " );
+	my_message.replace( "\"", " ").replace( "\\", " ");
 
 	my_message="echo \"" + my_message +  "\" | smbclient -M " + to_machine;
 
