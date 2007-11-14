@@ -17,8 +17,9 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
 1/ Compilation a partir des sources
 2/ Options en ligne de commande
 3/ Demarrage et arret du serveur
-4/ Fonctionnement du client sous X11 (Unix/Linux)
-5/ Fonctionnement du client sous Windows
+4/ Configurer le  serveur
+5/ Fonctionnement du client sous X11 (Unix/Linux)
+6/ Fonctionnement du client sous Windows
 
 -------------------------------------------------------------
 1/ Compilation a partir des sources:
@@ -66,6 +67,10 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
               ou
                   service qtsmbstatusd stop
 
+-------------------------------------------------------------
+4/ Configurer le  serveur:
+-------------------------------------------------------------
+
          Les fichiers de configuration du serveur se trouvent sur:
                   /etc/qtsmbstatusd/
 
@@ -94,13 +99,17 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
                                          Vous pouvez autoriser un utilisateur a envoyer un message.
                                          Utilisez son Username ou 'all' pour autoriser tous les clients.
 
+        == PAM: ==
+        Le fichier de configuration de PAM est dépendant de la distribution. Si la connexion échoue, il faudra le modifier:
+                /etc/pam.d/qtsmbstusd
 
+       Exemples de configuration: ./server/pam.d/samples/
 
-         Les utilisateurs autorises a se connecter sont dans: qtsmbstatusd.users
+       Les utilisateurs autorises a se connecter sont dans: qtsmbstatusd.users
          (root par defaut)
 
 -------------------------------------------------------------
-4/ Fonctionnement du client sous X11 (Unix/Linux) :
+5/ Fonctionnement du client sous X11 (Unix/Linux) :
 -------------------------------------------------------------
          Executez sous X11: qtsmbstatus
          Rentrez l'adresse IP du serveur, connectez et authentifiez-vous
@@ -109,7 +118,7 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
          (smbclient est necessaire pour les popupwindows)
 
 -------------------------------------------------------------
-5/ Fonctionnement du client sous Windows :
+6/ Fonctionnement du client sous Windows :
 -------------------------------------------------------------
          Installez qtsmbstatus-client.X.X.X.exe
          Executez qtsmbstatus.exe

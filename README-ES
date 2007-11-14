@@ -24,9 +24,9 @@ Incluye las siguientes posibilidades:
 1/ Compilacion desde las fuentes siguientes
 2/ Opcion de linea de comandos
 3/ Iniciar y parar el servicio
-4/ Cliente para x11 (unix/linux)
-5/ Cliente para windows
-6/ Configurar cliente
+4/ Configure server
+5/ Cliente para x11 (unix/linux)
+6/ Cliente para windows
 
 -------------------------------------------------------------
 1/ Compilacion desde las fuentes siguientes:
@@ -83,6 +83,10 @@ Incluye las siguientes posibilidades:
               o
                   service qtsmbstatusd stop
 
+-------------------------------------------------------------
+4/ Configure server:
+-------------------------------------------------------------
+
         La configuracion de los archivos del servidor son encontrados en:
                   /etc/qtsmbstatusd/
 
@@ -111,12 +115,17 @@ Incluye las siguientes posibilidades:
                                          Puedes autorizar a un cliente para enviar un mensage.
                                          Use un nombre de usuario o 'all' para todos los clientes.
 
+        == PAM: ==
+        PAM configuration file is distribution dependent. If logon failed, change it:
+                /etc/pam.d/qtsmbstusd
 
-         Los usuarios autorizados (PAM) son registrados dentro de: qtsmbstatusd.users
+       see samples here: ./server/pam.d/samples/
+
+       Los usuarios autorizados (PAM) son registrados dentro de: qtsmbstatusd.users
          (por omision como root)
 
 ------------------------------------------------------------- 
-4/ Cliente para x11 (unix/linux) :
+5/ Cliente para x11 (unix/linux) :
 -------------------------------------------------------------
 
         Ejecutar bajo x11: qtsmbstatus
@@ -127,7 +136,7 @@ Incluye las siguientes posibilidades:
 
 
 ------------------------------------------------------------- 
-5/ Cliente para windows :
+6/ Cliente para windows :
 -------------------------------------------------------------
 
         Instalar qtsmbstatus-client.X.X.X.exe

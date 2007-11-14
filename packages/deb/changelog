@@ -1,3 +1,9 @@
+qtsmbstatus (2.0.2-0ubuntu1) hardy; urgency=low
+
+  * Update to qtsmbstatus 2.0.2
+
+ -- Daniel Rocher <daniel.rocher@adella.org>  Wed, 14 Nov 2007 21:00:00 +0200
+
 qtsmbstatus (2.0.1-0ubuntu1) hardy; urgency=low
 
   * Initial release

@@ -21,8 +21,9 @@ Possibilities include:
 1/ Compilation from the following sources
 2/ Command line options
 3/ Start and stop server
-4/ Client for X11 (Unix/Linux)
-5/ Client for Windows
+4/ Configure server
+5/ Client for X11 (Unix/Linux)
+6/ Client for Windows
 
 -------------------------------------------------------------
 1/ Compilation from the following sources:
@@ -78,6 +79,10 @@ Possibilities include:
               or
                   service qtsmbstatusd stop
 
+-------------------------------------------------------------
+4/ Configure server:
+-------------------------------------------------------------
+
         The server's configuration files are found at:
                   /etc/qtsmbstatusd/
 
@@ -104,12 +109,17 @@ Possibilities include:
                 permit_send_msg :        Allow client to send a message
                                          You can authorize a client to Send message. Use Username or 'all' for all clients.
 
+        == PAM: ==
+        PAM configuration file is distribution dependent. If logon failed, change it:
+                /etc/pam.d/qtsmbstusd
 
-        The authorized users (PAM) are registered into: qtsmbstatusd.users
+       see samples here: ./server/pam.d/samples/
+
+       The authorized users (PAM) are registered into: /etc/qtsmbstatusd/qtsmbstatusd.users
          (default as root)
 
 ------------------------------------------------------------- 
-4/ Client for X11 (Unix/Linux) :
+5/ Client for X11 (Unix/Linux) :
 -------------------------------------------------------------
 
         Execute under X11: qtsmbstatus
@@ -120,7 +130,7 @@ Possibilities include:
 
          
 ------------------------------------------------------------- 
-5/ Client for Windows :
+6/ Client for Windows :
 -------------------------------------------------------------
 
         Install qtsmbstatus-client.X.X.X.exe
