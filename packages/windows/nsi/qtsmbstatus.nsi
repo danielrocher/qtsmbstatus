@@ -1,5 +1,5 @@
 ; qtsmbstatus.nsi
-; Daniel Rocher
+; by Daniel ROCHER
 ;
 
 ;--------------------------------
@@ -10,7 +10,7 @@
 ;--------------------------------
 
 Name "QtSmbstatus"
-OutFile "qtsmbstatus-client.2.0-1.exe"
+OutFile "qtsmbstatus-client.2.0.2-1.exe"
 
 InstallDir "$PROGRAMFILES\qtsmbstatus"
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qtsmbstatus""UninstallString"
@@ -60,7 +60,7 @@ SetOutPath "$INSTDIR\doc"
 File "doc\license.txt"
 File "doc\readme.txt"
 File "doc\readme-*.txt"
-File "doc\versions.txt"
+File "doc\changelog.txt"
 
 SectionEnd 
 
@@ -115,16 +115,11 @@ DeleteRegKey HKLM "Software\qtsmbstatus"
 
 Delete "$INSTDIR\uninst-qtsmbstatus.exe"
 
-Delete "$INSTDIR\bin\qtsmbstatus.exe"
+Delete "$INSTDIR\bin\*"
 
-Delete "$INSTDIR\bin\*.dll"
+Delete "$INSTDIR\doc\*"
 
-Delete "$INSTDIR\doc\readme.txt"
-Delete "$INSTDIR\doc\readme-*.txt"
-Delete "$INSTDIR\doc\versions.txt"
-Delete "$INSTDIR\doc\license.txt"
-
-Delete "$INSTDIR\tr\qtsmbstatus_*.qm"
+Delete "$INSTDIR\tr\*"
 
 RMDir $INSTDIR\doc
 RMDir $INSTDIR\bin
