@@ -100,7 +100,7 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
                                          Utilisez son Username ou 'all' pour autoriser tous les clients.
 
         == PAM: ==
-        Le fichier de configuration de PAM est dépendant de la distribution. Si la connexion échoue, il faudra le modifier:
+        Le fichier de configuration de PAM est dependant de la distribution. Si la connexion échoue, il faudra le modifier:
                 /etc/pam.d/qtsmbstusd
 
        Exemples de configuration: ./server/pam.d/samples/
