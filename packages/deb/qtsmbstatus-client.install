@@ -1,0 +1,4 @@
+client/bin/qtsmbstatus  usr/bin/
+client/tr/*.qm usr/share/qtsmbstatus/
+client/qtsmbstatus.xpm usr/share/pixmaps/
+client/qtsmbstatus.desktop usr/share/applications/

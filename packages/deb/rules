@@ -54,18 +54,6 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# install server 
-	cp $(CURDIR)/server/bin/qtsmbstatusd $(CURDIR)/debian/qtsmbstatus-server/usr/bin/qtsmbstatusd
-	cp $(CURDIR)/server/etc/*.pem $(CURDIR)/debian/qtsmbstatus-server/etc/qtsmbstatusd/
-	cp $(CURDIR)/server/etc/qtsmbstatusd.conf $(CURDIR)/debian/qtsmbstatus-server/etc/qtsmbstatusd/
-	cp $(CURDIR)/server/etc/qtsmbstatusd.users $(CURDIR)/debian/qtsmbstatus-server/etc/qtsmbstatusd/
-
-	#install client
-	cp $(CURDIR)/client/bin/qtsmbstatus $(CURDIR)/debian/qtsmbstatus-client/usr/bin/qtsmbstatus
-	cp $(CURDIR)/client/tr/*.qm $(CURDIR)/debian/qtsmbstatus-client/usr/share/qtsmbstatus
-	cp $(CURDIR)/client/qtsmbstatus.xpm $(CURDIR)/debian/qtsmbstatus-client/usr/share/pixmaps/
-	cp $(CURDIR)/client/qtsmbstatus.desktop $(CURDIR)/debian/qtsmbstatus-client/usr/share/applications/qtsmbstatus.desktop
-
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
@@ -74,14 +62,14 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs 
+	dh_installchangelogs changelog
 	dh_installdocs
 	dh_installexamples
 	dh_installmenu
+	dh_install
 	dh_installinit --name=qtsmbstatusd
 	dh_installpam --name=qtsmbstatusd
 	dh_installman
-	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms

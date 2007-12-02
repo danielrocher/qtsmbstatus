@@ -1,0 +1,4 @@
+server/bin/qtsmbstatusd usr/bin/
+server/etc/*.pem etc/qtsmbstatusd/
+server/etc/qtsmbstatusd.conf etc/qtsmbstatusd/
+server/etc/qtsmbstatusd.users etc/qtsmbstatusd/
