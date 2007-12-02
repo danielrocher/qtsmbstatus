@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=QtSmbstatus Client
 Comment=QtSmbstatus is a GUI (graphical user interface) for smbstatus
 Comment[fr]=QtSmbstatus - une interface graphique à smbstatus
@@ -12,10 +11,3 @@ Type=Application
 Icon=qtsmbstatus.xpm
 Categories=Qt;Network;Utility;
 StartupNotify=false
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=qtsmbstatus
-X-GNOME-Bugzilla-Component=general
-X-Ubuntu-Gettext-Domain=qtsmbstatus
-X-AppInstall-Package=qtsmbstatus
-X-AppInstall-Section=main
-X-AppInstall-Popcon=5
