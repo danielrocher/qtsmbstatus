@@ -55,6 +55,7 @@ binary-arch: build install
 	dh_installexamples
 	dh_installmenu
 	dh_install
+	dh_desktop
 	dh_installinit --name=qtsmbstatusd
 	dh_installpam --name=qtsmbstatusd
 	dh_installman

@@ -8,6 +8,6 @@ Comment[uk]=QtSmbstatus - графічний інтерфейс для smbstatus
 Exec=qtsmbstatus
 Terminal=false
 Type=Application
-Icon=qtsmbstatus.xpm
+Icon=qtsmbstatus
 Categories=Qt;Network;Utility;
 StartupNotify=false
