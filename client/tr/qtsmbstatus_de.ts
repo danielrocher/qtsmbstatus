@@ -31,47 +31,47 @@
 <context>
     <name>ClientSocket</name>
     <message>
-        <location filename="../clientsocket.cpp" line="431"/>
+        <location filename="../clientsocket.cpp" line="434"/>
         <source>Properties</source>
         <translation>Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="405"/>
+        <location filename="../clientsocket.cpp" line="408"/>
         <source>Send out message to all users</source>
         <translation>Sende Nachricht an alle Benutzer</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="415"/>
+        <location filename="../clientsocket.cpp" line="418"/>
         <source>Send out message to</source>
         <translation>Sende Nachricht an</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="425"/>
+        <location filename="../clientsocket.cpp" line="428"/>
         <source>Disconnect user</source>
         <translation>Schliesse Verbindung von User</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="559"/>
+        <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="559"/>
+        <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="496"/>
+        <location filename="../clientsocket.cpp" line="499"/>
         <source>Message to send</source>
         <translation>Nachricht zum Senden</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="524"/>
+        <location filename="../clientsocket.cpp" line="527"/>
         <source>Message to send to %1:</source>
         <translation>nachricht zu %1 senden:</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="558"/>
+        <location filename="../clientsocket.cpp" line="561"/>
         <source>Do you really want to disconnect user %1 ?</source>
         <translation>Möchten Sie wirklich die Verbindung von User %1 beenden?</translation>
     </message>
@@ -454,22 +454,22 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="415"/>
+        <location filename="../main_windows.cpp" line="416"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>This program is licensed to you under the terms of the GNU General Public License version 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="485"/>
+        <location filename="../main_windows.cpp" line="486"/>
         <source>Search share</source>
         <translation>Suche Anteile</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="494"/>
+        <location filename="../main_windows.cpp" line="495"/>
         <source>Search locked file</source>
         <translation>Suche gesperrte Dateien</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="650"/>
+        <location filename="../main_windows.cpp" line="651"/>
         <source>Text not found.</source>
         <translation>Text nicht gefunden</translation>
     </message>
@@ -504,12 +504,12 @@
         <translation>Getrennt</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="736"/>
+        <location filename="../main_windows.cpp" line="737"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation>Benutzer %1 hat die Datei(en) %2 (%3) geöffnet</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="737"/>
+        <location filename="../main_windows.cpp" line="738"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation>Benutzer %1 hat dei Datei(en) %2 (%3) geöffnet</translation>
     </message>
@@ -529,7 +529,7 @@
         <translation>Falscher Login oder Passwort</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="748"/>
+        <location filename="../main_windows.cpp" line="749"/>
         <source>CIFS/SMB activities</source>
         <translation>CIFS/SMB aktivitäten</translation>
     </message>
@@ -544,17 +544,17 @@
         <translation>Einrichten</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="455"/>
+        <location filename="../main_windows.cpp" line="456"/>
         <source>Find text</source>
         <translation>Text suchen</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="466"/>
+        <location filename="../main_windows.cpp" line="467"/>
         <source>Search machine</source>
         <translation>Suche Maschine</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="476"/>
+        <location filename="../main_windows.cpp" line="477"/>
         <source>Search user</source>
         <translation>Suche User</translation>
     </message>

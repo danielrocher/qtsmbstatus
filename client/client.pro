@@ -51,7 +51,9 @@ TRANSLATIONS += ./tr/qtsmbstatus_fr.ts \
                 ./tr/qtsmbstatus_de.ts \
                 ./tr/qtsmbstatus_it.ts \
                 ./tr/qtsmbstatus_ru.ts \
-                ./tr/qtsmbstatus_uk.ts
+                ./tr/qtsmbstatus_uk.ts \
+                ./tr/qtsmbstatus_sv.ts \
+                ./tr/qtsmbstatus_hu.ts
 
 FORMS +=  form_smbstatus.ui \
           configure.ui \

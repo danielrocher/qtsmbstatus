@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="uk">
-<defaultcodec></defaultcodec>
 <context>
     <name>ClientSSL</name>
     <message>
@@ -37,47 +36,47 @@
         <translation>Хост не знайдено!</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="431"/>
+        <location filename="../clientsocket.cpp" line="434"/>
         <source>Properties</source>
         <translation>Властивості</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="405"/>
+        <location filename="../clientsocket.cpp" line="408"/>
         <source>Send out message to all users</source>
         <translation>Повідомлення всім користувачам</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="415"/>
+        <location filename="../clientsocket.cpp" line="418"/>
         <source>Send out message to</source>
         <translation>Повідомлення для</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="425"/>
+        <location filename="../clientsocket.cpp" line="428"/>
         <source>Disconnect user</source>
         <translation>Від&apos;єднати користувача</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="496"/>
+        <location filename="../clientsocket.cpp" line="499"/>
         <source>Message to send</source>
         <translation>Повідомлення</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="524"/>
+        <location filename="../clientsocket.cpp" line="527"/>
         <source>Message to send to %1:</source>
         <translation>Повідомлення для %1:</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="558"/>
+        <location filename="../clientsocket.cpp" line="561"/>
         <source>Do you really want to disconnect user %1 ?</source>
         <translation>Ви бажаєте від&apos;єднати користувача %1 ?</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="559"/>
+        <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;Yes</source>
         <translation>&amp;Так</translation>
     </message>
     <message>
-        <location filename="../clientsocket.cpp" line="559"/>
+        <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;No</source>
         <translation>&amp;Ні</translation>
     </message>
@@ -510,52 +509,52 @@
         <translation>Подяки:</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="415"/>
+        <location filename="../main_windows.cpp" line="416"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Ця программа розповсюджується під ліцензією GNU General Public License версії 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="455"/>
+        <location filename="../main_windows.cpp" line="456"/>
         <source>Find text</source>
         <translation>Знайти текст</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="466"/>
+        <location filename="../main_windows.cpp" line="467"/>
         <source>Search machine</source>
         <translation>Пошук комп&apos;ютера</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="476"/>
+        <location filename="../main_windows.cpp" line="477"/>
         <source>Search user</source>
         <translation>Пошук користувача</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="485"/>
+        <location filename="../main_windows.cpp" line="486"/>
         <source>Search share</source>
         <translation>Пошук ресурсів</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="494"/>
+        <location filename="../main_windows.cpp" line="495"/>
         <source>Search locked file</source>
         <translation>Пошук блокованих файлів</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="650"/>
+        <location filename="../main_windows.cpp" line="651"/>
         <source>Text not found.</source>
         <translation>Текст не знайдено.</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="736"/>
+        <location filename="../main_windows.cpp" line="737"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation>Користувач %1 відкрив ресурс %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="737"/>
+        <location filename="../main_windows.cpp" line="738"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation>Користувач %1 відкрив файл %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="748"/>
+        <location filename="../main_windows.cpp" line="749"/>
         <source>CIFS/SMB activities</source>
         <translation>Активність SMB/CIFS</translation>
     </message>

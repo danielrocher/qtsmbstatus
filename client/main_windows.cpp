@@ -409,7 +409,9 @@ void main_windows::helpAbout()
 		"<tr><td>Spanish translation :</td><td>Mauro</td></tr>"
 		"<tr><td>Italian translation :</td><td>Naldini Paolo</td></tr>"
 		"<tr><td>German translation :</td><td>Alex Djekic</td></tr>"
+		"<tr><td>Hungarian translation :</td><td>Szenogradi Norbert Peter <a href='mailto:sevoir75@gmail.com'>sevoir75@gmail.com</a></td></tr>"
 		"<tr><td>Russian and Ukrainian translation :</td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a></td></tr>"
+		"<tr><td>Swedish translation :</td><td>Zirro</td></tr>"
 		"<tr><td>RPM packages for FC3 :</td><td>CG (cyberkoa)</td></tr>"
 		"<tr><td>Second reading :</td><td>Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a></td></tr>"
 		"</table><br><hr>"+
