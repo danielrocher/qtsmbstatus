@@ -1,3 +1,9 @@
+qtsmbstatus (2.0.4-0ubuntu1) hardy; urgency=low
+
+  * New upstream version
+
+ -- Daniel Rocher <daniel.rocher@adella.org>  Wed, 14 May 2008 15:00:00 +0200
+
 qtsmbstatus (2.0.3-0ubuntu1) hardy; urgency=low
 
   * Initial release (LP: #119179)
