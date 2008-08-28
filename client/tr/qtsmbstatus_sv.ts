@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
-<defaultcodec></defaultcodec>
 <context>
     <name>ClientSSL</name>
     <message>
@@ -455,22 +454,22 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="416"/>
+        <location filename="../main_windows.cpp" line="418"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="486"/>
+        <location filename="../main_windows.cpp" line="488"/>
         <source>Search share</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="495"/>
+        <location filename="../main_windows.cpp" line="497"/>
         <source>Search locked file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="651"/>
+        <location filename="../main_windows.cpp" line="653"/>
         <source>Text not found.</source>
         <translation>Texten hittades inte.</translation>
     </message>
@@ -505,12 +504,12 @@
         <translation>Koppla ner</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="737"/>
+        <location filename="../main_windows.cpp" line="739"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="738"/>
+        <location filename="../main_windows.cpp" line="740"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -530,7 +529,7 @@
         <translation>Ogiltigt användarnamn eller lösenord!</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="749"/>
+        <location filename="../main_windows.cpp" line="751"/>
         <source>CIFS/SMB activities</source>
         <translation>CIFS/SMB aktiviteter</translation>
     </message>
@@ -545,17 +544,17 @@
         <translation>Konfigurera</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="456"/>
+        <location filename="../main_windows.cpp" line="458"/>
         <source>Find text</source>
         <translation>Sök text</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="467"/>
+        <location filename="../main_windows.cpp" line="469"/>
         <source>Search machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="477"/>
+        <location filename="../main_windows.cpp" line="479"/>
         <source>Search user</source>
         <translation type="unfinished"></translation>
     </message>

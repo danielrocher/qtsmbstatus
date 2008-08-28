@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<defaultcodec></defaultcodec>
 <context>
     <name>ClientSSL</name>
     <message>
         <location filename="../clientssl.cpp" line="248"/>
         <source>Connected to host</source>
-        <translation>Csatlakoztatva a hoszthoz</translation>
+        <translation>Verbonden met host</translation>
     </message>
     <message>
         <location filename="../clientssl.cpp" line="264"/>
         <source>Socket error</source>
-        <translation>Foglalathiba</translation>
+        <translation>Socketfout</translation>
     </message>
     <message>
         <location filename="../clientssl.cpp" line="277"/>
         <source>Connection closed</source>
-        <translation>Kapcsolat lezárva</translation>
+        <translation>Verbinding verbroken</translation>
     </message>
     <message>
         <location filename="../clientssl.cpp" line="143"/>
         <source>Host not found !</source>
-        <translation>Hoszt nem található !</translation>
+        <translation>Host niet gevbnden !</translation>
     </message>
     <message>
         <location filename="../clientssl.cpp" line="118"/>
         <source>Connection in progress on %1</source>
-        <translation>Csatlakozás folyamatban %1</translation>
+        <translation>Verbinding maken bezig op %1</translation>
     </message>
 </context>
 <context>
@@ -33,52 +34,52 @@
     <message>
         <location filename="../clientsocket.cpp" line="434"/>
         <source>Properties</source>
-        <translation>Tulajdonságok</translation>
+        <translation>Eigenschappen</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="408"/>
         <source>Send out message to all users</source>
-        <translation>Üzenet küldése minden felhasználónak</translation>
+        <translation>Verzend bericht naar alle gebruikers</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="418"/>
         <source>Send out message to</source>
-        <translation>Üzenet küldése</translation>
+        <translation>Verzend bericht naar</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="428"/>
         <source>Disconnect user</source>
-        <translation>Felhasználó lecsatlakoztatása</translation>
+        <translation>Verbinding gebruiker verbreken</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Igen</translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="562"/>
         <source>&amp;No</source>
-        <translation>&amp;Nem</translation>
+        <translation>&amp;Nee</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="499"/>
         <source>Message to send</source>
-        <translation>Üzenet küldése</translation>
+        <translation>Te versturen bericht</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="527"/>
         <source>Message to send to %1:</source>
-        <translation>Üzenet küldése ide : %1:</translation>
+        <translation>Te versturen berciht naar %1:</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="561"/>
         <source>Do you really want to disconnect user %1 ?</source>
-        <translation>Valóban le akarja csatlakoztatni a következő felhasználót: %1 ?</translation>
+        <translation>Weet je zeker dat je de verbinding van gebruiker %1 wil verbreken ?</translation>
     </message>
     <message>
         <location filename="../clientsocket.cpp" line="153"/>
         <source>Host not found !</source>
-        <translation>Hoszt nem található !</translation>
+        <translation>Host niet gevbnden !</translation>
     </message>
 </context>
 <context>
@@ -86,32 +87,32 @@
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Date</source>
-        <translation>Dátum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Machine</source>
-        <translation>Gép</translation>
+        <translation>Machine</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>User</source>
-        <translation>Felhasználó</translation>
+        <translation>Gebruiker</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Service</source>
-        <translation>Szolgáltatás</translation>
+        <translation>Service</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="106"/>
         <source>Open File</source>
-        <translation>Fájl megnyitása</translation>
+        <translation>Bestand openen</translation>
     </message>
     <message>
         <location filename="../log.cpp" line="80"/>
         <source>Type</source>
-        <translation>Tipus</translation>
+        <translation>Type</translation>
     </message>
 </context>
 <context>
@@ -119,37 +120,37 @@
     <message>
         <location filename="../configure.ui" line="13"/>
         <source>Configure</source>
-        <translation>Beállítás</translation>
+        <translation>Configureren</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="251"/>
         <source>Autoconnect</source>
-        <translation>Autocsatlakozás</translation>
+        <translation>Automatisch verbinden</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="258"/>
         <source>&lt;p align=&quot;right&quot;&gt;Default host address:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Alapértelmezett hoszt cím:&lt;/p&gt;</translation>
+        <translation>&lt;p align=&quot;right&quot;&gt;Standaard host adres:&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="235"/>
         <source>&lt;p align=&quot;right&quot;&gt;Default Username:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Alapértelmezett felhasználónév:&lt;/p&gt;</translation>
+        <translation>&lt;p align=&quot;right&quot;&gt;Standaard Gebruikersnaam:&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="281"/>
         <source>Host Address</source>
-        <translation>Hoszt cím</translation>
+        <translation>Hostadres</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="178"/>
         <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Időtartam:&lt;/p&gt;</translation>
+        <translation>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="327"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="320"/>
@@ -159,37 +160,37 @@
     <message>
         <location filename="../configure.ui" line="271"/>
         <source>Username (default :  username = root)</source>
-        <translation>Felhasználónév (alapértelmezett : felhasználónév = root)</translation>
+        <translation>Gebruikersnaam (standaard:  gebruikersnaam = root)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="108"/>
         <source>Log SMB/CIFS activities</source>
-        <translation>SMB/CIFS tevékenységek tárolása</translation>
+        <translation>Log SMB/CIFS activiteiten</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="98"/>
         <source>Status notification messages</source>
-        <translation>Állapot figyelmeztető üzenetek</translation>
+        <translation>Status notificatie berichten</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="25"/>
         <source>Notifications and log</source>
-        <translation>Figyelmeztetések és log</translation>
+        <translation>Notificaties en log</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="43"/>
         <source>Limit log:</source>
-        <translation>Log korlát:</translation>
+        <translation>Limiet log:</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="72"/>
         <source>days</source>
-        <translation>napok</translation>
+        <translation>dagen</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="88"/>
         <source>Iconize QtSmbstatus in system tray</source>
-        <translation>QtSmbstatus ikon méretűre a rendszertálcára.</translation>
+        <translation>Laat icoon zien QtSmbstatus in de systeembalk</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="147"/>
@@ -199,32 +200,32 @@
     <message>
         <location filename="../configure.ui" line="191"/>
         <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
-        <translation>Az smbstatus lekérdezések időtartama között másodpercben. (időtartam &gt; 2)</translation>
+        <translation>Interval tussen smbstatus verzoeken in seconden, (interval &gt; 2)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="204"/>
         <source>Show hidden shares (share$)</source>
-        <translation>Mutasd a rejtett megosztásokat (share$)</translation>
+        <translation>Laat verborgen shares zien (share$)</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="207"/>
         <source>Show hidden shares</source>
-        <translation>A rejtett megosztások megjelenítése</translation>
+        <translation>Laat verborgen shares zien</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="217"/>
         <source>Connection</source>
-        <translation>Kapcsolat</translation>
+        <translation>Verbinding</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="248"/>
         <source>Autoconnect on qtsmbstatus startup</source>
-        <translation>Automatikus kapcsolódás a QtSmbstatus indulásakor</translation>
+        <translation>Verbind automatisch bij het opstarten van qtsmbstatus</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="95"/>
         <source>Show activities in &quot;balloon messages&quot;</source>
-        <translation>Tevékenységek mutatása &quot;buborék-üzenetekben&quot;</translation>
+        <translation>Laat activiteiten zien in &quot;ballon berichten&quot;</translation>
     </message>
 </context>
 <context>
@@ -237,62 +238,62 @@
     <message>
         <location filename="../form_smbstatus.ui" line="174"/>
         <source>&amp;Help</source>
-        <translation>&amp;Súgó</translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="194"/>
         <source>&amp;About QtSmbstatus</source>
-        <translation>QtSmbst&amp;atus névjegy</translation>
+        <translation>&amp;Over QtSmbstatus</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="211"/>
         <source>About &amp;Qt</source>
-        <translation>&amp;Qt névjegy</translation>
+        <translation>Over &amp;Qt</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="41"/>
         <source>Connect/Disconnect</source>
-        <translation>Kapcsolódás/Bontás</translation>
+        <translation>Verbinden / Verbinding verbreken</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="65"/>
         <source>Host:</source>
-        <translation>Kiszolgáló:</translation>
+        <translation>Host:</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="228"/>
         <source>&amp;Configure client</source>
-        <translation>Kliens &amp;beállítása</translation>
+        <translation>&amp;Configureer client</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="161"/>
         <source>&amp;Search</source>
-        <translation>Keresé&amp;s</translation>
+        <translation>&amp;Zoeken</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="239"/>
         <source>&amp;Machine</source>
-        <translation>&amp;Gép</translation>
+        <translation>&amp;Machine</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="250"/>
         <source>&amp;User</source>
-        <translation>Fel&amp;használó</translation>
+        <translation>&amp;Gebruiker</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="261"/>
         <source>Share &amp;open</source>
-        <translation>Megosztás &amp;megnyitása</translation>
+        <translation>Share &amp;open</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="272"/>
         <source>&amp;Locked file</source>
-        <translation>&amp;Zárolt fájlok</translation>
+        <translation>&amp;Geblokkeerd bestand</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="283"/>
         <source>&amp;Next</source>
-        <translation>&amp;Következő</translation>
+        <translation>&amp;Volgende</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="289"/>
@@ -302,7 +303,7 @@
     <message>
         <location filename="../form_smbstatus.ui" line="297"/>
         <source>&amp;Find text</source>
-        <translation>&amp;Szöveg keresése</translation>
+        <translation>&amp;Vind volgende</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="303"/>
@@ -312,72 +313,72 @@
     <message>
         <location filename="../form_smbstatus.ui" line="150"/>
         <source>&amp;File</source>
-        <translation>&amp;Fájl</translation>
+        <translation>&amp;Bestand</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="214"/>
         <source>About Qt</source>
-        <translation>Qt névjegy</translation>
+        <translation>Over Qt</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="231"/>
         <source>Configure QtSmbstatus client</source>
-        <translation>QtSmbstatus kliens beállítása</translation>
+        <translation>Configureer QtSmbstatus client</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="242"/>
         <source>Search machine</source>
-        <translation>Gép keresése</translation>
+        <translation>Zoek machine</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="253"/>
         <source>Search user</source>
-        <translation>Felhasználó keresése</translation>
+        <translation>Zoek gebruiker</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="264"/>
         <source>Search share open</source>
-        <translation>Megosztás nyitás keresése</translation>
+        <translation>Zoek share open</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="275"/>
         <source>Search file open</source>
-        <translation>Fájl nyitás keresése</translation>
+        <translation>Zoek bestand open</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="286"/>
         <source>Next</source>
-        <translation>Következő</translation>
+        <translation>Volgende</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="300"/>
         <source>Find text</source>
-        <translation>Szöveg kereése</translation>
+        <translation>Tekst zoeken</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="311"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Kilépés</translation>
+        <translation>&amp;Afsluiten</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="314"/>
         <source>Quit QtSmbstatus</source>
-        <translation>Kilépés a QtSmbstatus -ból</translation>
+        <translation>Sluit QtSmbstatus</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="327"/>
         <source>Co&amp;nnect</source>
-        <translation>Cs&amp;atlakozás</translation>
+        <translation>Verbi&amp;nden</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="319"/>
         <source>&amp;Show CIFS/SMB activities</source>
-        <translation>CIFS/SMB tevékenységek &amp;mutatása</translation>
+        <translation>&amp;Laat CIFS/SMB activiteiten zien</translation>
     </message>
     <message>
         <location filename="../form_smbstatus.ui" line="197"/>
         <source>About QtSmbstatus</source>
-        <translation>QtSmbstatus névjegy</translation>
+        <translation>Over QtSmbstatus</translation>
     </message>
 </context>
 <context>
@@ -385,37 +386,37 @@
     <message>
         <location filename="../log.ui" line="13"/>
         <source>View Activities</source>
-        <translation>Tevékenységek megtekintése</translation>
+        <translation>Laat Acitiviteiten Zien</translation>
     </message>
     <message>
         <location filename="../log.ui" line="124"/>
         <source>View/hide shares</source>
-        <translation>Megosztások megjelenítése/elrejtése</translation>
+        <translation>Bekijk / Verberg shares</translation>
     </message>
     <message>
         <location filename="../log.ui" line="156"/>
         <source>View/hide files</source>
-        <translation>Fájlok megjelenítése/elrejtése</translation>
+        <translation>Bekijk / verberg bestanden</translation>
     </message>
     <message>
         <location filename="../log.ui" line="196"/>
         <source>Filter:</source>
-        <translation>Szűrő:</translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <location filename="../log.ui" line="41"/>
         <source>Clear</source>
-        <translation>Tisztítás</translation>
+        <translation>Wissen</translation>
     </message>
     <message>
         <location filename="../log.ui" line="104"/>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Sluiten</translation>
     </message>
     <message>
         <location filename="../log.ui" line="70"/>
         <source>Save log</source>
-        <translation>Napló mentése</translation>
+        <translation>Log opslaan</translation>
     </message>
 </context>
 <context>
@@ -423,17 +424,17 @@
     <message>
         <location filename="../login_dialog.ui" line="84"/>
         <source>login</source>
-        <translation>bejelentkezés</translation>
+        <translation>aanmelden</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="115"/>
         <source>exit</source>
-        <translation>kilépés</translation>
+        <translation>afsluiten</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="52"/>
         <source>Username</source>
-        <translation>Felhasználónév</translation>
+        <translation>Gebruikersnaam</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="132"/>
@@ -443,12 +444,12 @@
     <message>
         <location filename="../login_dialog.ui" line="162"/>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation>Wachtwoord</translation>
     </message>
     <message>
         <location filename="../login_dialog.ui" line="19"/>
         <source>Connect to qtsmbstatus server</source>
-        <translation>Csatlakozás a qtsmbstatus szerverhez</translation>
+        <translation>Verbind naar qtsmbstatus server</translation>
     </message>
 </context>
 <context>
@@ -456,107 +457,107 @@
     <message>
         <location filename="../main_windows.cpp" line="418"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
-        <translation></translation>
+        <translation>Dit programma is gelicenseerd onder de termen van de GNU General Public License versie 2</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="488"/>
         <source>Search share</source>
-        <translation>Megosztás keresése</translation>
+        <translation>Zoek een share</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="497"/>
         <source>Search locked file</source>
-        <translation>Zárolt fájl keresése</translation>
+        <translation>Zoek een geblokkeerd bestand</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="653"/>
         <source>Text not found.</source>
-        <translation>Szöveg nem található.</translation>
+        <translation>Tekst niet gevonden.</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="62"/>
         <source>QtSmbstatus Client</source>
-        <translation>QtSmbstatus kliens</translation>
+        <translation>QtSmbstatus Client</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="363"/>
         <source>Connect</source>
-        <translation>Kapcsolat</translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="152"/>
         <source>Minimize</source>
-        <translation>Minimalizálás</translation>
+        <translation>Minimaliseren</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="74"/>
         <source>Quit</source>
-        <translation>Kilépés</translation>
+        <translation>Afsluiten</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="150"/>
         <source>Restore</source>
-        <translation>Helyreállítás</translation>
+        <translation>Herstellen</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="343"/>
         <source>Disconnect</source>
-        <translation>Kapcsolat bontása</translation>
+        <translation>Verbinding verbreken</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="739"/>
         <source>User %1 has opened share %2 (%3)</source>
-        <translation>%1 felhasználó megnyitotta a(z) %2 (%3) megosztást</translation>
+        <translation>Gebruiker %1 heeft share %2 (%3) geopend</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="740"/>
         <source>User %1 has opened file %2 (%3)</source>
-        <translation>%1 felhasználó megnyitotta a(z) %2 (%3) fájlt</translation>
+        <translation>Gebruiker %1 heeft bestand %2 (%3) geopend</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="67"/>
         <source>Show CIFS/SMB activities</source>
-        <translation>CIFS/SMB tevékenységek mutatása</translation>
+        <translation>Laat CIFS/SMB activitieten zien</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="83"/>
         <source>Impossible to know samba version</source>
-        <translation>Samba verzió lekérdezése lehetetlen</translation>
+        <translation>Onmogelijk om de samba versie te herkennen</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="394"/>
         <source>Invalid login or password !</source>
-        <translation>Érvénytelen felhasználónév vagy jelszó !</translation>
+        <translation>Ongeldig gebruikersnaam of wachtwoord !</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="751"/>
         <source>CIFS/SMB activities</source>
-        <translation>CIFS/SMB tevékenységek</translation>
+        <translation>CIFS/SMB activitieten</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="405"/>
         <source>Thanks to:</source>
-        <translation>Köszönetnyilvánítás:</translation>
+        <translation>Met dank aan:</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="69"/>
         <source>Configure</source>
-        <translation type="unfinished">Beállítás</translation>
+        <translation>Configureren</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="458"/>
         <source>Find text</source>
-        <translation type="unfinished">Szöveg kereése</translation>
+        <translation>Tekst zoeken</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="469"/>
         <source>Search machine</source>
-        <translation type="unfinished">Gép keresése</translation>
+        <translation>Zoek machine</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="479"/>
         <source>Search user</source>
-        <translation type="unfinished">Felhasználó keresése</translation>
+        <translation>Zoek gebruiker</translation>
     </message>
 </context>
 </TS>

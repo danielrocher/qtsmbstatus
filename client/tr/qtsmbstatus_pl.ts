@@ -454,22 +454,22 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="416"/>
+        <location filename="../main_windows.cpp" line="418"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Ten program jest licencjonowany na zasadach GNU General Public License wersja 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="486"/>
+        <location filename="../main_windows.cpp" line="488"/>
         <source>Search share</source>
         <translation>Znajdź udział</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="495"/>
+        <location filename="../main_windows.cpp" line="497"/>
         <source>Search locked file</source>
         <translation>Znajdź zablokowany plik</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="651"/>
+        <location filename="../main_windows.cpp" line="653"/>
         <source>Text not found.</source>
         <translation>Nie odnaleziono tekstu.</translation>
     </message>
@@ -504,12 +504,12 @@
         <translation>Rozłącz</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="737"/>
+        <location filename="../main_windows.cpp" line="739"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation>Użytkownik %1 otworzył udział %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="738"/>
+        <location filename="../main_windows.cpp" line="740"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation>Użytkownik %1 otworzył plik %2 (%3)</translation>
     </message>
@@ -529,7 +529,7 @@
         <translation>Nieprawidłowa nazwa użytkownika lub hasło!</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="749"/>
+        <location filename="../main_windows.cpp" line="751"/>
         <source>CIFS/SMB activities</source>
         <translation>Zdarzenia CIFS/SMB</translation>
     </message>
@@ -544,17 +544,17 @@
         <translation>Konfiguracja</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="456"/>
+        <location filename="../main_windows.cpp" line="458"/>
         <source>Find text</source>
         <translation>Znajdź tekst</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="467"/>
+        <location filename="../main_windows.cpp" line="469"/>
         <source>Search machine</source>
         <translation>Znajdź komputer</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="477"/>
+        <location filename="../main_windows.cpp" line="479"/>
         <source>Search user</source>
         <translation>Znajdź użytkownika</translation>
     </message>

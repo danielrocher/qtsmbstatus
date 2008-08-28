@@ -509,52 +509,52 @@
         <translation>Подяки:</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="416"/>
+        <location filename="../main_windows.cpp" line="418"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Ця программа розповсюджується під ліцензією GNU General Public License версії 2</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="456"/>
+        <location filename="../main_windows.cpp" line="458"/>
         <source>Find text</source>
         <translation>Знайти текст</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="467"/>
+        <location filename="../main_windows.cpp" line="469"/>
         <source>Search machine</source>
         <translation>Пошук комп&apos;ютера</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="477"/>
+        <location filename="../main_windows.cpp" line="479"/>
         <source>Search user</source>
         <translation>Пошук користувача</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="486"/>
+        <location filename="../main_windows.cpp" line="488"/>
         <source>Search share</source>
         <translation>Пошук ресурсів</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="495"/>
+        <location filename="../main_windows.cpp" line="497"/>
         <source>Search locked file</source>
         <translation>Пошук блокованих файлів</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="651"/>
+        <location filename="../main_windows.cpp" line="653"/>
         <source>Text not found.</source>
         <translation>Текст не знайдено.</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="737"/>
+        <location filename="../main_windows.cpp" line="739"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation>Користувач %1 відкрив ресурс %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="738"/>
+        <location filename="../main_windows.cpp" line="740"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation>Користувач %1 відкрив файл %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="749"/>
+        <location filename="../main_windows.cpp" line="751"/>
         <source>CIFS/SMB activities</source>
         <translation>Активність SMB/CIFS</translation>
     </message>
