@@ -3,74 +3,24 @@
 # Thanks:
 #    Mike A. Harris <mharris@redhat.com>
 #    Stephane URBANOVSKI
+#    Johan Cwiklinski
 
+Summary:                A GUI for smbstatus with Qt
+Name:                   qtsmbstatus-client
+Version:                2.0.5
+Release:                1%{?dist}
+License:                GPLv2
+Group:                  Applications/System
+Vendor:                 ADELLA
+Packager:               Daniel Rocher <daniel.rocher@adella.org>
+URL:                    http://qtsmbstatus.free.fr
+Source0:                http://qtsmbstatus.free.fr/files/qtsmbstatus-%{version}.tar.gz
+BuildRoot:              %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%define instaldir_bin  /usr/bin
-%define instaldir_int  /usr/share/qtsmbstatus
-%define instaldir_icons /usr/share/pixmaps/
-%define instaldir_man /usr/local/share/man/man7/
-%define instaldir_menu /usr/share/applications/
+BuildRequires:          gcc-c++ libX11-devel openssl-devel
+BuildRequires:          qt4 >= 4.2 qt4-devel >= 4.2 desktop-file-utils
+Requires:               openssl qt4 >= 4.2 qt4-x11 >= 4.2
 
-# file .pro
-%define qmake_pro      client/client.pro
-
-%define is_mandrake %(test -e /etc/mandrake-release && echo 1 || echo 0)
-%define is_suse %(test -e /etc/SuSE-release && echo 1 || echo 0)
-%define is_fedora %(test -e /etc/fedora-release && echo 1 || echo 0)
-
-%if %is_mandrake
-%define distribution Mandrake
-%endif
-
-%if %is_suse
-%define distribution Suse
-%endif
-
-%if %is_fedora
-%define distribution Fedora
-%endif
-
-Summary:		A GUI for smbstatus with Qt
-Name:			qtsmbstatus-client
-Version:		2.0.2
-Release:		1
-License:		GPL
-Vendor:			ADELLA
-Packager:		Daniel ROCHER <daniel.rocher@adella.org>
-Group:			Networking/Other
-URL:			http://qtsmbstatus.free.fr
-Source0:		%{name}-%{version}.tar.gz
-BuildRoot:		%{_tmppath}/%{name}-buildroot
-BuildArchitectures:	i586
-
-%if "%{distribution}" == "Mandriva" || "%{distribution}" == "Mandrake"
-# Mandrake / Mandriva requirements
-BuildRequires:		gcc-c++, XFree86-devel
-BuildRequires:		libqt4-dev >= 4.2
-BuildRequires:		libopenssl-devel
-Requires:		openssl
-Requires:		libqt4-core >= 4.2, libqt4-gui >= 4.2, libqt4-sql >= 4.2, libqt4-qt3support >= 4.2
-%else
-%if  "%{distribution}" == "Suse"
-# Suse requirements
-BuildRequires:		gcc-c++, XFree86-devel
-BuildRequires:		libqt4-devel >= 4.2
-BuildRequires:		openssl-devel
-Requires:		openssl
-Requires:		libqt4 >= 4.2, libqt4-x11 >= 4.2, libqt4-sql >= 4.2, libqt4-qt3support >= 4.2
-%else
-%if  "%{distribution}" == "Fedora"
-# Fedora requirements
-BuildRequires:          gcc-c++,libX11-devel
-BuildRequires:          qt4 >= 4.2, qt4-devel >= 4.2
-BuildRequires:          openssl-devel
-Requires:		openssl
-Requires:		qt4 >= 4.2, qt4-x11 >= 4.2
-%else
-#Unknown Distribution !
-%endif
-%endif
-%endif
 
 %description
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
@@ -80,63 +30,56 @@ to log on to server.
 
 
 %prep
-# delete temporary files
-rm %{_builddir}/* -r -f
-rm %{_tmppath}/* -r -f
-
-%setup -q
+%setup -q -n qtsmbstatus-%{version}
 
 %build
 # create Makefile
-qmake-qt4 %{qmake_pro}
+qmake-qt4 client/client.pro -o client/Makefile
 
-lrelease-qt4 %{qmake_pro}
+# Internationalization
+lrelease-qt4 client/tr/*.ts
 
 # build
-make
+make --directory=client/
 
 %install
-
-mkdir -p $RPM_BUILD_ROOT/%{instaldir_bin}
-mkdir -p $RPM_BUILD_ROOT/%{instaldir_int}
-mkdir -p $RPM_BUILD_ROOT/%{instaldir_icons}
-mkdir -p $RPM_BUILD_ROOT/%{instaldir_menu}
-mkdir -p $RPM_BUILD_ROOT/%{instaldir_man}
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/%{_bindir}
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/qtsmbstatus
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/pixmaps
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/applications
+mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man7
 
 # bin
-cp -a bin/qtsmbstatus $RPM_BUILD_ROOT/%{instaldir_bin}
+cp -a client/bin/qtsmbstatus $RPM_BUILD_ROOT/%{_bindir}
 # translations
-cp -a client/tr/*.qm $RPM_BUILD_ROOT/%{instaldir_int}
+cp -a client/tr/*.qm $RPM_BUILD_ROOT/%{_datadir}/qtsmbstatus/
 #icons
-cp -a client/qtsmbstatus.xpm $RPM_BUILD_ROOT/%{instaldir_icons}
+cp -a client/qtsmbstatus.xpm $RPM_BUILD_ROOT/%{_datadir}/pixmaps/
 #menu
-cp -a client/qtsmbstatus.desktop $RPM_BUILD_ROOT/%{instaldir_menu}
+cp -a client/qtsmbstatus.desktop $RPM_BUILD_ROOT/%{_datadir}/applications/
+desktop-file-install --vendor=""  \
+       --dir=$RPM_BUILD_ROOT/%{_datadir}/applications qtsmbstatus.desktop
 #manpage
-cp -a client/qtsmbstatus.7.gz $RPM_BUILD_ROOT/%{instaldir_man}
+cp -a client/qtsmbstatus.7.gz $RPM_BUILD_ROOT/%{_mandir}/man7/
 
 %clean
+rm -rf $RPM_BUILD_ROOT
 
-%preun
-
-%postun
-if [ $1 = 0 ]; then
-# If uninstall, remove directory
-test -d $RPM_BUILD_ROOT/%{instaldir_int} && rmdir $RPM_BUILD_ROOT/%{instaldir_int} 2>/dev/null
-fi
 
 %files
-# defaults attr
 %defattr(755,root,root)
-%{instaldir_bin}/qtsmbstatus
+%{_bindir}/qtsmbstatus
+%dir %{_datadir}/qtsmbstatus
 
-# defaults attr
 %defattr(644,root,root)
-%{instaldir_int}/*.qm
+%{_datadir}/qtsmbstatus/*.qm
 %attr(-,root,root) %doc README README-* INSTALL COPYING changelog
-%{instaldir_icons}/*.xpm
-%{instaldir_menu}/*.desktop
-%{instaldir_man}/qtsmbstatus.7.gz
+%{_datadir}/pixmaps/*.xpm
+%{_datadir}/applications/qtsmbstatus.desktop
+%{_mandir}/man7/qtsmbstatus.7.gz
 
 %changelog
-* Wed Nov 14 2007 - daniel.rocher (at) adella.org
+* Sun Aug 31 2008 Daniel Rocher <daniel.rocher@adella.org> 2.0.5-1
 - Initial release
+
