@@ -5,35 +5,46 @@
 #    Stephane URBANOVSKI
 #    Johan Cwiklinski
 
-Summary:                A GUI for smbstatus with Qt (client)
-Name:                   qtsmbstatus-client
+
+Summary:                A GUI for smbstatus with Qt
+Name:                   qtsmbstatus
+Group:                  Applications/System
 Version:                2.0.5
 Release:                1%{?dist}
 License:                GPLv2
-Group:                  Applications/System
 Vendor:                 ADELLA
 Packager:               Daniel Rocher <daniel.rocher@adella.org>
 URL:                    http://qtsmbstatus.free.fr
 Source0:                http://qtsmbstatus.free.fr/files/qtsmbstatus-%{version}.tar.gz
+Patch0:                 %{name}-%{version}-init.patch
 BuildRoot:              %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:          qt4-devel >= 4.2 desktop-file-utils
 BuildRequires:          pam-devel openssl-devel
-Requires:               openssl qt4-x11 >= 4.2
-
 
 %description
+QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
+the possibility of administering remote machines. QtSmbstatus was designed
+as a client/server system secured with SSL.
+
+%package client
+Group:                  Applications/System
+Summary:                A GUI for smbstatus with Qt (client)
+Requires:               openssl qt4-x11 >= 4.2
+
+%description client
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
 the possibility of administering remote machines. QtSmbstatus was designed
 as a client/server system secured with SSL. A login and password is required
 to log on to server.
 
-%package qtsmbstatus-server
+%package server
+Group:                  Applications/System
 Summary:                A GUI for smbstatus with Qt (server)
 Requires:               openssl pam samba samba-client
 Requires:               qt4 >= 4.2
 
-%description qtsmbstatus-server
+%description server
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
 the possibility of administering remote machines. QtSmbstatus was designed
 as a client/server system secured with SSL. A login and password is required
@@ -42,7 +53,8 @@ where SAMBA executes.
 
 
 %prep
-%setup -q -n qtsmbstatus-%{version}
+%setup -q -n %{name}-%{version}
+%patch0 -p1 -b .init
 
 %build
 # create Makefile
@@ -91,12 +103,12 @@ cp -a server/qtsmbstatusd.7.gz $RPM_BUILD_ROOT/%{_mandir}/man7/
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post qtsmbstatus-server
+%post server
 # postinstall: service
 chkconfig --add qtsmbstatusd
 %{_initrddir}/qtsmbstatusd start
 
-%preun qtsmbstatus-server
+%preun server
 # If uninstall
 if [ $1 = 0 ]; then
 # stop qtsmbstatus server and remove service
@@ -106,7 +118,7 @@ chkconfig --del qtsmbstatusd 2>/dev/null
 fi
 
 
-%files
+%files client
 %defattr(755,root,root)
 %{_bindir}/qtsmbstatus
 %dir %{_datadir}/qtsmbstatus
@@ -119,7 +131,7 @@ fi
 %{_mandir}/man7/qtsmbstatus.7.gz
 
 
-%files qtsmbstatus-server
+%files server
 %defattr(755,root,root)
 %{_bindir}/qtsmbstatusd
 %{_initrddir}/qtsmbstatusd
@@ -130,7 +142,6 @@ fi
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/qtsmbstatusd/*
 %attr(-,root,root) %doc README README-* INSTALL COPYING changelog
 %{_mandir}/man7/qtsmbstatusd.7.gz
-
 
 %changelog
 * Sun Aug 31 2008 Daniel Rocher <daniel.rocher@adella.org> 2.0.5-1
