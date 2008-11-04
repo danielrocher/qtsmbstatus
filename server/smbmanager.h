@@ -21,12 +21,10 @@
 #ifndef SMBMANAGER_H
 #define SMBMANAGER_H
 
-#include <Q3Process>
+#include <QProcess>
 #include <QObject>
 
 class QStringList;
-
-
 
 extern void debugQt(const QString & message);
 
@@ -37,15 +35,15 @@ public:
 	virtual ~smbmanager();
 	static int compteur_objet;
 private: // Private attributes
-	Q3Process* proc;
-	QStringList data;
-	bool error_proc;
-	bool stError;
+	QProcess proc;
+	QByteArray data;
+	bool requestFailed;
   
 private slots: // Private slots
 	void end_process ();
 	void read_data ();
 	void ReadStderr();
+	void error(QProcess::ProcessError);
   
 signals: // Signals
 	void signal_std_output(const QStringList  & );

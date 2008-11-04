@@ -37,8 +37,8 @@ int pem_passwd_cb(char *buf, int size, int rwflag, void *password)
 	\brief The Server class handles new connections to the server.
 	\param port_server Port where the server should listen at
 	\param parent pointer to the parent object
-	\date 2007-06-15
-	\version 1.0
+	\date 2008-11-03
+	\version 1.1
 	\author Daniel Rocher
 	For every client that connects, it creates a new ClientSocket
 */
@@ -121,12 +121,4 @@ void Server :: newConnection( int socket )
 	connect (this,SIGNAL(destroyed()),s,SLOT(socketConnectionClose()));
 }
 
-/**
-	Stop server (kill , CTRL+C, ...)
-*/
-void Server ::stopserver()
-{
-	debugQt ("Server :: stopserver()");
-	deleteLater();
-}
 

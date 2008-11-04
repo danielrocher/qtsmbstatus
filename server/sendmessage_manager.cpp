@@ -23,8 +23,8 @@
 /**
 	\class Sendmessage_manager
 	\brief Send message popup (smbclient required)
-	\date 2007-06-18
-	\version 1.0
+	\date 2008-11-04
+	\version 1.1
 	\author Daniel Rocher
 	\param machine Machine name
 	\param message message to be sent
@@ -35,40 +35,53 @@ int Sendmessage_manager::compteur_objet=0;
 
 Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString & message,QObject *parent) : QObject(parent) {
 	debugQt("Object Sendmessage_manager : "+ QString::number(++compteur_objet));
-	error_proc=false;
 
 	to_machine=machine.stripWhiteSpace();
 	my_message=message.stripWhiteSpace();
 
 	my_message.replace( "\"", " ").replace( "\\", " ");
-
 	my_message="echo \"" + my_message +  "\" | smbclient -M " + to_machine;
 
-	proc = new Q3Process( this );
-	proc->addArgument( "sh");   // run a shell
-	debugQt ("Send message to "+machine+ " - " + my_message);
+	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
+	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
+	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
+	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
 
-	connect( proc, SIGNAL(processExited()),
-	this, SLOT(end_process()) );
+	QStringList arguments;
+	arguments << "-c" << my_message;
+	debugQt ("Send message to "+machine+ " - sh " + arguments.join(" "));
 
-	connect( proc, SIGNAL(readyReadStdout ()),
-	this, SLOT(readFromStdout()) );
-
-	connect( proc, SIGNAL(readyReadStderr ()),
-	this, SLOT(ReadStderr()) );
-
-	State=begin;
-	if ( !proc->launch (my_message) ) {
-		// error handling
-		qWarning("process smbclient error");
-		error_proc=true;
-		deleteLater();
-	}
+	proc.start("sh",arguments,QIODevice::ReadOnly);
 }
 
 Sendmessage_manager::~Sendmessage_manager(){
 	debugQt("Object Sendmessage_manager : "+ QString::number(--compteur_objet));
-	if (error_proc) emit ObjError(tr("process smbclient error"));
+}
+
+/**
+	an error occurs with the process
+*/
+void Sendmessage_manager::error(QProcess::ProcessError err) {
+	debugQt("Sendmessage_manager::error()");
+	// error handling
+	qWarning("process smbclient error");
+
+	switch (err) {
+		case 0: debugQt("  ==> FailedToStart");
+			break;
+		case 1: debugQt("  ==> Crashed");
+			break;
+		case 2: debugQt("  ==> Timedout");
+			break;
+		case 3: debugQt("  ==> ReadError");
+			break;
+		case 4: debugQt("  ==> WriteError");
+			break;
+		case 5: debugQt("  ==> UnknownError");
+			break;
+	}
+	emit ObjError(tr("process smbclient error"));
+	deleteLater ();
 }
 
 /**
@@ -76,16 +89,10 @@ Sendmessage_manager::~Sendmessage_manager(){
 */
 void Sendmessage_manager::ReadStderr(){
 	debugQt("Sendmessage_manager::ReadStderr()");
-	QString ligne;
+	QString str(proc.readAllStandardError());
+	debugQt(str);
 
-	while ( proc->canReadLineStderr () )
-	{
-		ligne=proc->readLineStderr (); // Read one line
-		debugQt(ligne);
-
-		emit ObjError(tr("Failed to send message")+" : "+ ligne );
-		return;
-	}
+	emit ObjError(tr("Failed to send message")+" : "+ str );
 }
 
 
@@ -95,20 +102,11 @@ void Sendmessage_manager::ReadStderr(){
 void Sendmessage_manager::readFromStdout(){
 
 	debugQt("Sendmessage_manager::readFromStdout()");
-	QString ligne;
-
-	while ( proc->canReadLineStdout () )  
-	{
-		ligne=proc->readLineStdout (); // Read one line
-
-		if (ligne.contains ("Cannot resolve",false) or ligne.contains (" failed",false) or ligne.contains ("ERRSRV",false))
-		{
-			State = error;
-			emit ObjError(tr("Could not send message to") + " " + to_machine);
-			deleteLater ();
-			return;
-		}
-	}
+	QString str(proc.readAllStandardOutput ());
+	debugQt(str);
+	
+	if (str.contains ("Cannot resolve",false) or str.contains (" failed",false) or str.contains ("ERRSRV",false))
+		emit ObjError(tr("Could not send message to") + " " + to_machine);
 }
 
 
@@ -117,5 +115,5 @@ void Sendmessage_manager::readFromStdout(){
 */
 void Sendmessage_manager::end_process(){
 	debugQt("Sendmessage_manager::end_process()");
-	if (State!=error) deleteLater ();
+	deleteLater ();
 }

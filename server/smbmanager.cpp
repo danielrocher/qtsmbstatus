@@ -23,37 +23,60 @@
 
 int smbmanager::compteur_objet=0;
 
+/**
+	\class smbmanager
+	\brief start smbstatus process
+	\date 2008-11-03
+	\version 1.0
+	\author Daniel Rocher
+	\param parent pointer to parent for this object
+ */
 smbmanager::smbmanager(QObject *parent ) : QObject(parent)
 {
 	debugQt("Object smbmanager : "+ QString::number(++compteur_objet));
-	error_proc=false; 
-	stError=false; 
+	requestFailed=false;
 
-	proc = new Q3Process( this );
-	proc->addArgument( "smbstatus" );
+	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
+	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(read_data()) );
+	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
+	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
 
-	connect( proc, SIGNAL(processExited()),
-	this, SLOT(end_process()) );
-
-	connect( proc, SIGNAL(readyReadStdout ()),
-	this, SLOT(read_data()) );
-
-	connect( proc, SIGNAL(readyReadStderr ()),
-	this, SLOT(ReadStderr()) );
-
-	if ( !proc->start() ) {
-		// error handling
-		qWarning("process smbstatus error");
-		error_proc=true;
-		deleteLater ();
-	}
+	proc.start("smbstatus",QIODevice::ReadOnly);
 }
 
 smbmanager::~smbmanager()
 {
 	debugQt("Object smbmanager : "+ QString::number(--compteur_objet));
-	if (error_proc) emit ObjError(tr("process smbstatus error"));
 }
+
+
+/**
+	an error occurs with the process
+*/
+void smbmanager::error(QProcess::ProcessError err) {
+	debugQt("smbmanager::error()");
+	// error handling
+	qWarning("process smbstatus error");
+
+	switch (err) {
+		case 0: debugQt("  ==> FailedToStart");
+			break;
+		case 1: debugQt("  ==> Crashed");
+			break;
+		case 2: debugQt("  ==> Timedout");
+			break;
+		case 3: debugQt("  ==> ReadError");
+			break;
+		case 4: debugQt("  ==> WriteError");
+			break;
+		case 5: debugQt("  ==> UnknownError");
+			break;
+	}
+	emit ObjError(tr("process smbstatus error"));
+	requestFailed=true;
+	deleteLater ();
+}
+
 
 /**
 	Read Std error
@@ -61,17 +84,11 @@ smbmanager::~smbmanager()
 void smbmanager::ReadStderr()
 {
 	debugQt("smbmanager::ReadStderr()");
-	QString ligne;
+	QString str(proc.readAllStandardError());
+	debugQt(str);
 
-	while ( proc->canReadLineStderr () ) 
-	{
-		ligne=proc->readLineStderr (); // read one line
-		debugQt(ligne);
-
-		emit ObjError(tr("Smbstatus request error")+" : "+ ligne );
-		stError=true;
-		return;
-	}
+	emit ObjError(tr("Smbstatus request error")+" : "+ str );
+	requestFailed=true;
 }
 
 
@@ -81,10 +98,7 @@ void smbmanager::ReadStderr()
 void smbmanager::read_data ()
 {
 	debugQt("smbmanager::read_data ()");
-	while (proc->canReadLineStdout ())
-	{
-		data << (proc->readLineStdout ());
-	}
+	data.append(proc.readAllStandardOutput ());
 }
 
 /**
@@ -93,6 +107,8 @@ void smbmanager::read_data ()
 void smbmanager::end_process ()
 {
 	debugQt("smbmanager::end_process ()");
-	if ((!stError) && (!error_proc)) emit signal_std_output(data);
+	QStringList list=QString(data).split('\n');
+
+	if (!requestFailed) emit signal_std_output(list);
 	deleteLater();
 }

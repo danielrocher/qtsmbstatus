@@ -22,7 +22,7 @@
 #define SENDMESSAGE_MANAGER_H
 
 #include <QObject>
-#include <Q3Process>
+#include <QProcess>
 
 class QString;
 
@@ -36,15 +36,14 @@ public:
 	virtual ~Sendmessage_manager();
 	static int compteur_objet;
 private: // Private attributes
-	Q3Process* proc;
+	QProcess proc;
 	QString my_message;
 	QString to_machine;
-	bool error_proc;
-	enum {begin,error} State;
 private slots: // Private slots
-  void readFromStdout();
-  void ReadStderr();
-  void end_process();
+	void readFromStdout();
+	void ReadStderr();
+	void end_process();
+	void error(QProcess::ProcessError);
 signals:
 	void ObjError(const QString & );
 };

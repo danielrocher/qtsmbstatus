@@ -21,8 +21,9 @@
 #include <signal.h>
 
 #include <QApplication>
+#include <QTimer>
 #include <QFile>
-#include <Q3TextStream>
+#include <QTextStream>
 
 #include "server.h"
 
@@ -48,7 +49,7 @@ Server* myserver;
 */
 void signal_handler(int) {
 	qDebug ("Stop QtSmbstatusd , please wait ...");
-	myserver->stopserver();
+	QTimer::singleShot( 0, myserver, SLOT (deleteLater()));
 }
 
 /**
@@ -110,7 +111,7 @@ void readConfigFile()
 		qDebug("Impossible to read configuration file. Use default settings.");
 		return;
 	}
-	Q3TextStream t( &f1 );
+	QTextStream t( &f1);
 	while ( !t.atEnd() )
 	{
 		ligne =  t.readLine();

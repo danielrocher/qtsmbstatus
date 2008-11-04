@@ -22,7 +22,7 @@
 #define PROCESS_SMBD_EXIST_H
 
 #include <QObject>
-#include <Q3Process>
+#include <QProcess>
 
 class QString;
 
@@ -39,13 +39,14 @@ public:
     virtual ~process_smbd_exist();
 	static int compteur_objet;
 private: // Private attributes
-	Q3Process* proc;
+	QProcess proc;
 	QString MyPid;
 	QString UserSamba;
 	enum {begin,find} State;
 private slots: // Private slots
 	void end_process();
 	void readFromStdout();
+	void error(QProcess::ProcessError);
 protected slots:
     virtual void slot_EndProcessKill();
 signals: // Signals

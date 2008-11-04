@@ -22,7 +22,7 @@
 #define DISCONNECT_MANAGER_H
 
 #include <QObject>
-#include <Q3Process>
+#include <QProcess>
 
 class QString;
 
@@ -35,14 +35,13 @@ public:
 	virtual ~disconnect_manager();
 	static int compteur_objet;
 private: // Private attributes
-	Q3Process* proc;
+	QProcess proc;
 	QString MyPid;
 	QString user;
-	bool error_proc;
-	enum {begin,error} State;
 private slots: // Private slots
 	void end_process();
 	void ReadStderr();
+	void error(QProcess::ProcessError);
 signals: // Signals
 	void ObjError(const QString & );
 };

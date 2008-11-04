@@ -34,8 +34,6 @@ public:
 	Server( QObject* parent=0 );
 	virtual ~Server();
 	void newConnection( int socket );
-public slots:
-	void stopserver();
 };
 
 #endif

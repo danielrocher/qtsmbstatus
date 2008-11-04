@@ -26,8 +26,8 @@ int disconnect_manager::compteur_objet=0;
 /**
 	\class disconnect_manager
 	\brief Kill a process
-	\date 2007-06-18
-	\version 1.0
+	\date 2008-11-03
+	\version 1.1
 	\author Daniel Rocher
 	\param MyPID PID of process
 	\param USER username
@@ -39,34 +39,49 @@ disconnect_manager::disconnect_manager(const QString & MyPID,const QString & USE
 	debugQt("Object disconnect_manager : "+QString::number(++compteur_objet));
 	MyPid=MyPID.stripWhiteSpace();
 	user=USER.stripWhiteSpace();
-	QString kill_argument;
-	error_proc=false;
 
-	proc = new Q3Process( this );
-	proc->addArgument( "sh");   // run a shell
-	kill_argument="kill -15 " + MyPid;
-	debugQt ("Disconnect "+user+ " - "+kill_argument);
+	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
+	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
+	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
 
-	connect( proc, SIGNAL(processExited()),
-	this, SLOT(end_process()) );
+	QStringList arguments;
+	arguments << "-c" << "kill -15 "+MyPid;
 
-	connect( proc, SIGNAL(readyReadStderr ()),
-	this, SLOT(ReadStderr()) );
+	debugQt ("Disconnect "+user+ " - sh "+arguments.join(" "));
 
-	State=begin;
-	if ( !proc->launch (kill_argument) )
-	{
-		// error handling
-		qWarning("process kill error");
-		error_proc=true;
-		deleteLater();
-	}
+	proc.start("sh",arguments,QIODevice::ReadOnly);
 }
 
 disconnect_manager::~disconnect_manager()
 {
 	debugQt("Object disconnect_manager : "+QString::number(--compteur_objet));
-	if (error_proc) emit ObjError(tr("process kill error"));
+}
+
+
+/**
+	an error occurs with the process
+*/
+void disconnect_manager::error(QProcess::ProcessError err) {
+	debugQt("disconnect_manager::error()");
+	// error handling
+	qWarning("process kill error");
+
+	switch (err) {
+		case 0: debugQt("  ==> FailedToStart");
+			break;
+		case 1: debugQt("  ==> Crashed");
+			break;
+		case 2: debugQt("  ==> Timedout");
+			break;
+		case 3: debugQt("  ==> ReadError");
+			break;
+		case 4: debugQt("  ==> WriteError");
+			break;
+		case 5: debugQt("  ==> UnknownError");
+			break;
+	}
+	emit ObjError(tr("process kill error"));
+	deleteLater ();
 }
 
 /**
@@ -75,7 +90,7 @@ disconnect_manager::~disconnect_manager()
 void disconnect_manager::end_process()
 {
 	debugQt("disconnect_manager::end_process()");
-	if (State!=error) deleteLater (); // delete this object
+	deleteLater (); // delete this object
 }
 
 /**
@@ -85,16 +100,9 @@ void disconnect_manager::ReadStderr()
 {
 
 	debugQt("disconnect_manager::ReadStderr()");
-	QString ligne;
 
-	while ( proc->canReadLineStderr () )
-	{
-		ligne=proc->readLineStderr ();
-		debugQt(ligne);
-		State = error;
+	QString str(proc.readAllStandardError());
+	debugQt(str);
 
-		emit ObjError(tr("Failed to disconnect user")+" "+ user + " : "  + ligne );
-		deleteLater ();
-		return;
-	}
+	emit ObjError(tr("Failed to disconnect user")+" "+ user + " : "  + str );
 }

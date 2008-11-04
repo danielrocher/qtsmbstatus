@@ -25,8 +25,8 @@ int process_smbd_exist::compteur_objet=0;
 /**
 	\class process_smbd_exist
 	\brief test if PID it's a correct smbd process.
-	\date 2007-06-18
-	\version 1.0
+	\date 2008-11-04
+	\version 1.1
 	\author Daniel Rocher
 	\param MyPID PID of process
 	\param USER username
@@ -37,28 +37,20 @@ process_smbd_exist::process_smbd_exist(const QString & MyPID,const QString & USE
  : QObject(parent)
 {
 	debugQt("Object process_smbd_exist : "+QString::number(++compteur_objet));
+	State=begin;
 
 	MyPid=MyPID.stripWhiteSpace();
 	UserSamba=USER.stripWhiteSpace();
-	QString argument;
 
-	proc = new Q3Process( this );
-	proc->addArgument( "sh");   // run a shell
-	argument="ps -f " + MyPid;
-	debugQt ("verifie coherence process :" + argument);
+	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
+	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
+	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
 
-	connect( proc, SIGNAL(processExited()),
-	this, SLOT(end_process()) );
+	QStringList arguments;
+	arguments  << "-c" << "ps -f "+MyPid;
+	debugQt ("check process : sh " + arguments.join(" "));
 
-	connect( proc, SIGNAL(readyReadStdout ()),
-	this, SLOT(readFromStdout()) );
-
-	State=begin;
-	if ( !proc->launch (argument) ) {
-		// error handling
-		qWarning("process 'ps -f pid' error");
-		deleteLater();
-	}
+	proc.start("sh",arguments,QIODevice::ReadOnly);
 }
 
 process_smbd_exist::~process_smbd_exist()
@@ -68,26 +60,49 @@ process_smbd_exist::~process_smbd_exist()
 
 
 /**
+	an error occurs with the process
+*/
+void process_smbd_exist::error(QProcess::ProcessError err) {
+	debugQt("process_smbd_exist::error()");
+	// error handling
+	qWarning("process sh error");
+
+	switch (err) {
+		case 0: debugQt("  ==> FailedToStart");
+			break;
+		case 1: debugQt("  ==> Crashed");
+			break;
+		case 2: debugQt("  ==> Timedout");
+			break;
+		case 3: debugQt("  ==> ReadError");
+			break;
+		case 4: debugQt("  ==> WriteError");
+			break;
+		case 5: debugQt("  ==> UnknownError");
+			break;
+	}
+	emit ObjError("Process sh error. Contact your administrator.");
+	deleteLater ();
+}
+
+
+/**
 	Read Std output
 */
 void process_smbd_exist::readFromStdout(){
 	debugQt("process_smbd_exist::readFromStdout()");
-	QString ligne;
+	QString str(proc.readAllStandardOutput ());
 
-	while ( proc->canReadLineStdout ())
+	debugQt(str);
+	if (str.contains (MyPid,false) && str.contains ("smbd",false))
 	{
-		ligne=proc->readLineStdout (); // Read one line
-		if (ligne.contains (MyPid,false) && ligne.contains ("smbd",false))
-		{  
-			// It's a correct process
-			State = find;
-			debugQt("process is smbd  : "+ ligne);
-			// disconnect user (kill process)
-			disconnect_manager * kill_process = new disconnect_manager(MyPid,UserSamba,this);
-
-			connect( kill_process, SIGNAL(destroyed()),this, SLOT(slot_EndProcessKill()) );
-			return;
-		}
+		// It's a correct process
+		State=find;
+		debugQt("process is smbd");
+		// disconnect user (kill process)
+		disconnect_manager * kill_process = new disconnect_manager(MyPid,UserSamba,this);
+		connect (kill_process,SIGNAL(ObjError(QString)), this,SIGNAL(ObjError(QString)));
+		connect( kill_process, SIGNAL(destroyed()),this, SLOT(slot_EndProcessKill()) );
 	}
 }
 
@@ -100,7 +115,7 @@ void process_smbd_exist::end_process(){
 	{
 		// It isn't process smbd
 		debugQt("process is not smbd  !  Pid: "+MyPid +  " User: "+ UserSamba);
-		emit ObjError("Failed to disconnect user "+ UserSamba);
+		emit ObjError(tr("Failed to disconnect user")+" "+ UserSamba);
 		deleteLater ();
 	}
 }
