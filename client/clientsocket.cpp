@@ -28,7 +28,7 @@
 */
 
 
-#include <Q3CString>
+#include <QByteArray>
 #include <Q3PopupMenu>
 #include <QTextStream>
 
@@ -99,7 +99,7 @@ void ClientSocket::connectionToServer(const QString & username, const QString & 
 	// socketclient can post a message on statusBar
 	connect (socketclient,SIGNAL(info(const QString & )),this,SIGNAL(SignalShortMessage(const QString & )) );
 	// when server sends data, send it to core methods
-	connect (socketclient,SIGNAL(readFromHost(const Q3CString& )),this,SLOT(core(const Q3CString& )) );
+	connect (socketclient,SIGNAL(readFromHost(const QByteArray& )),this,SLOT(core(const QByteArray& )) );
 	// connect to slots, signals connected and closed
 	connect (socketclient,SIGNAL(socketconnected()),this,SLOT(socketconnected()) );
 	connect (socketclient,SIGNAL(socketclosed()),this,SLOT(socketclosed()) );
@@ -193,7 +193,7 @@ void ClientSocket::infoserver(const QString & text)
 	\param rcv_txt data sent by server
 	\sa ClientSSL core_syntax
 */
-void ClientSocket::core(const Q3CString & rcv_txt)
+void ClientSocket::core(const QByteArray & rcv_txt)
 {
 	debugQt ("ClientSocket::core()");
 	QString texte;

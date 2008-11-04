@@ -30,7 +30,7 @@
 
 class Q3SocketDevice;
 class QSocketNotifier;
-class Q3CString;
+class QByteArray;
 class QTimer;
 
 #include "process_smbd_exist.h"
@@ -89,7 +89,7 @@ public slots:
 	void socketConnectionClose();
 private://methods
 	void sendToClient(int cmd,const QString & inputArg1="",const QString & inputArg2="");
-	void core (const Q3CString & rcv_txt) ;
+	void core (const QByteArray & rcv_txt) ;
 	void CmdKillUser(const QString & texte);
 	void CmdSendMsg(const QString & texte);
 	void CmdSmbRq();

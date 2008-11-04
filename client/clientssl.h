@@ -47,7 +47,7 @@ public:
 	static int compteur_objet;
 signals:
 	void info(const QString &);
-	void readFromHost(const Q3CString &);
+	void readFromHost(const QByteArray &);
 	void socketconnected();
 	void socketclosed();
 	void Socketerror();

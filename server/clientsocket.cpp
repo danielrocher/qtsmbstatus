@@ -18,7 +18,7 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#include <Q3CString>
+#include <QByteArray>
 #include <QTextStream>
 #include <QTimer>
 #include <Q3SocketDevice>
@@ -160,7 +160,7 @@ void ClientSocket ::readClient()
 		socketConnectionClose();
 		return;
 	}
-	Q3CString rcvtxt;
+	QByteArray rcvtxt;
 	rcvtxt.resize(16384);
 	int ret = SSL_read(ssl, rcvtxt.data(), rcvtxt.size());
 	if (ret <=0 )
@@ -199,7 +199,7 @@ void ClientSocket ::sendToClient(int cmd,const QString & inputArg1,const QString
 	QString MyTxt;
 	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
 	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
-	Q3CString send_txt = ("["+QString::number(cmd)+"]"+MyTxt+"\n").utf8 () ;
+	QByteArray send_txt = ("["+QString::number(cmd)+"]"+MyTxt+"\n").utf8 () ;
 	int value=SSL_write (ssl, send_txt.data() , send_txt.length ());
 	if (!value)
 	{
@@ -377,7 +377,7 @@ void ClientSocket ::slot_pam()
 	\param rcv_txt data sent by client
 	\sa core_syntax
 */
-void ClientSocket :: core (const Q3CString & rcv_txt)
+void ClientSocket :: core (const QByteArray & rcv_txt)
 {
 	debugQt ("ClientSocket::core()");
 	QString texte;

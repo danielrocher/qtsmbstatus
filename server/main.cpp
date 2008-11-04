@@ -30,6 +30,8 @@
 extern void unsupported_options(char *erreur, const QString & usage);
 extern bool validatePort(const int & port);
 
+extern SSL_CTX* ssl_ctx;
+
 // default values of configs
 QString Certificat = "/etc/qtsmbstatusd/server.pem";
 QString Private_key = "/etc/qtsmbstatusd/privkey.pem";
@@ -51,6 +53,19 @@ void signal_handler(int) {
 	qDebug ("Stop QtSmbstatusd , please wait ...");
 	QTimer::singleShot( 0, myserver, SLOT (deleteLater()));
 }
+
+
+/**
+	password callback for ssl key usage
+*/
+
+int pem_passwd_cb(char *buf, int size, int rwflag, void *password)
+{
+	strncpy(buf, ssl_password, size);
+	buf[size - 1] = '\0';
+	return(strlen(buf));
+}
+
 
 /**
 	Add user to a list
@@ -218,7 +233,57 @@ int main( int argc,char *argv[] )
 	}
 
 	QApplication app(argc, argv, false ); // user interface is unused in this program
+
+
+	// ***************** initialize TLS/SSL **************************
+
+	// Load error strings
+	SSL_load_error_strings();
+	// Initialize SSL library by registering algorithms
+	OpenSSL_add_ssl_algorithms();
+	debugQt ("add ssl algorithms    OK");
+
+	// Create a new SSL_CTX object
+	ssl_ctx = SSL_CTX_new (SSLv23_server_method());
+	debugQt ("SSL CTX new           OK");
+
+	// set passwd callback for encrypted PEM file handling
+	SSL_CTX_set_default_passwd_cb(ssl_ctx,pem_passwd_cb);
+	debugQt ("set default passwd    OK");
+
+	// loads the first certificate stored in file into ctx
+	if (SSL_CTX_use_certificate_file(ssl_ctx, Certificat, SSL_FILETYPE_PEM) <= 0)
+	{
+		qWarning("Error in use_certificate_file");
+		ERR_print_errors_fp(stderr);
+		exit(1);
+	}
+	debugQt ("use certificate file  OK");
+
+	// adds the first private key found in file to ctx
+	if (SSL_CTX_use_PrivateKey_file(ssl_ctx, Private_key , SSL_FILETYPE_PEM) <= 0)
+	{
+		qWarning("Error in use_privatekey_file");
+		ERR_print_errors_fp(stderr);
+		exit(1);
+	}
+	debugQt ("use PrivateKey file   OK");
+
+	// load certificate and key data
+	if (!SSL_CTX_check_private_key(ssl_ctx))
+	{
+		qWarning("Error loading ssl certificate: Private key does not match the certificate public key");
+		exit(1);
+	}
+	debugQt ("check private key     OK");
+
+	// here, SSL is ready
+
 	myserver = new Server(&app);
+	if (! myserver->listen (  QHostAddress::Any, port_server)) {
+		qWarning("Failed to bind to port "+QString::number( port_server ));
+		exit(1);
+	}
 
 	app.connect( myserver, SIGNAL( destroyed ()), &app, SLOT(quit()) );
 	int value_return=app.exec();

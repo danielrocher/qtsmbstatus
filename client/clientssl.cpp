@@ -165,7 +165,7 @@ void ClientSSL :: sendToServer(const QString & inputText)
 {
 	debugQt ("ClientSSL::sendToServer()");
 	if (SSL_init==false) return;
-	Q3CString send_txt = inputText.utf8 () ;
+	QByteArray send_txt = inputText.utf8 () ;
 	if (!SSL_write (ssl, send_txt.data() , send_txt.length ()))
 	{
 		// an error occurred
@@ -189,7 +189,7 @@ void ClientSSL :: socketReadyRead()
 		closeConnection();
 		return;
 	}
-	Q3CString rcv_txt;
+	QByteArray rcv_txt;
 	rcv_txt.resize(16384);
 	ret = SSL_read(ssl, rcv_txt.data(), rcv_txt.size());
 

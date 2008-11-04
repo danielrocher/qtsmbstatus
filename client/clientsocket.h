@@ -22,7 +22,7 @@
 #ifndef CLIENTSOCKET_H
 #define CLIENTSOCKET_H
 
-#include <Q3CString>
+#include <QByteArray>
 
 #include "server.h"
 #include "clientssl.h"
@@ -58,7 +58,7 @@ private slots:
 	void InfoUser();
 	void InfoService();
 	void InfoMachine();
-	void core(const Q3CString & rcv_txt);
+	void core(const QByteArray & rcv_txt);
 	void setSambaVersion (const QString &);
 	void add_user (const QString &,const QString &,const QString &,const QString &,const QString &);
 	void add_share(const QString &,const QString &,const QString &);

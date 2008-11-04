@@ -21,19 +21,16 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include <Q3ServerSocket>
-
+#include <QTcpServer>
 #include "clientsocket.h"
 
-extern SSL_CTX* ssl_ctx;
-
-class Server : public Q3ServerSocket
+class Server : public QTcpServer
 {
     Q_OBJECT
 public:
 	Server( QObject* parent=0 );
 	virtual ~Server();
-	void newConnection( int socket );
+	void incomingConnection( int socket );
 };
 
 #endif
