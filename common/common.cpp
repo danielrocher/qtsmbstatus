@@ -54,7 +54,7 @@ Q_UINT16  port_server=4443;
 /**
 	view debug messages. The message is printed to stderr.
 */
-void debugQt(const QString & message) {if (debug_qtsmbstatus) qDebug ("%s",message.latin1()); }
+void debugQt(const QString & message) {if (debug_qtsmbstatus) qDebug(message.toUtf8()); }
 
 //! command line error
 void unsupported_options(char *erreur, const QString & usage) 
