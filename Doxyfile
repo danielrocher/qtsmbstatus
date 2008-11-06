@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
-PROJECT_NAME           = qtsmbstatus.kdevelop
+PROJECT_NAME           = QtSmbstatus
 PROJECT_NUMBER         = 2.0.6
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO
