@@ -21,27 +21,35 @@
  /**
 	\class machine
 	\brief Class of machine items
-	\date 2007-07-04
-	\version 1.1
+	\date 2008-11-08
+	\version 2.0
 	\author Daniel Rocher
 	\sa server user service
 
 	'machine' is parent of 'user' and child of 'server'
  */
 
+
+#include <QtGui>
+
 #include "machine.h"
+
+extern QList<QTreeWidgetItem *> QTreeWidgetItemList;
+extern void debugQt(const QString & message);
 
 int machine::compteur_objet=0;
 
 
-machine::machine(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group,const QString & MachineName, const QString & MachineIP) : Q3ListViewItem(parent)
+machine::machine(QTreeWidgetItem * parent,const QString & PID,const QString & Username, const QString & Group,const QString & MachineName, const QString & MachineIP) : QTreeWidgetItem(parent)
 {
 	debugQt("Object machine : "+QString::number(++compteur_objet));
-	Q3ListViewItemList.append(this);
+	QTreeWidgetItemList.append(this);
 	mark=true;
 	machine_name=MachineName;
 	machine_ip=MachineIP;
-	this->setPixmap( 0, QPixmap::QPixmap(":/icons/machine.png") ); //icone
+	QIcon icon;
+	icon.addPixmap(QPixmap(":/icons/machine.png"), QIcon::Normal, QIcon::Off);
+	this->setIcon( 0, icon ); //icone
 	this->setText ( 0, machine_name) ;
 	// add new user
 	new user(this,PID,Username,Group);
@@ -49,7 +57,7 @@ machine::machine(Q3ListViewItem * parent,const QString & PID,const QString & Use
 
 machine::~machine(){
 	debugQt("Object machine : "+QString::number(--compteur_objet));
-	Q3ListViewItemList.removeAll (this);
+	QTreeWidgetItemList.removeAll (this);
 }
 
 /**
@@ -57,10 +65,11 @@ machine::~machine(){
 */
 void machine::append_user(const QString & PID,const QString & Name,const QString & Group)
 {
-	user * Child= dynamic_cast<user *>(this->firstChild());
 	bool exist=false;
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		user * Child= dynamic_cast<user *>(this->child (i) );
+		if (!Child) break;
 		// If exist
 		if  (Child->pid==PID)
 		{
@@ -76,7 +85,6 @@ void machine::append_user(const QString & PID,const QString & Name,const QString
 			}
 			return; // exit loop
 		}
-		Child = dynamic_cast<user *>(Child->nextSibling());
 	}
 	// if not exist add user
 	if (!exist) new user (this,PID,Name,Group);
@@ -89,22 +97,20 @@ void machine::append_user(const QString & PID,const QString & Name,const QString
 */
 void machine::refresh_childs()
 {
-	user * item_temp;
-	user * Child= dynamic_cast<user *>(this->firstChild());
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		user * Child= dynamic_cast<user *>(this->child (i) );
+		if (!Child) break;
+		
 		// if child doesn't exist any more
 		if (!Child->mark)
 		{
-			// delete child
-			item_temp= Child;
-			Child = dynamic_cast<user *>(Child->nextSibling()); // next
-			delete item_temp; // delete item and his children
+			delete Child;  // delete item and his children
+			--i;
 			continue;
 		}
 		// if child exist
 		Child->refresh_childs();
-		Child = dynamic_cast<user *>(Child->nextSibling());
 	}
 }
 
@@ -117,11 +123,11 @@ void machine::refresh_childs()
  */
 void machine::mark_childs()
 {
-	user * Child= dynamic_cast<user *>(this->firstChild());
-	 while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		user * Child= dynamic_cast<user *>(this->child (i) );
+		if (!Child) break;
 		Child->mark=false;
 		Child->mark_childs();
-		Child = dynamic_cast<user *>(Child->nextSibling());
 	}
 }

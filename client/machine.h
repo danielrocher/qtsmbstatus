@@ -22,17 +22,13 @@
 #define MACHINE_H
 
 #include <QPixmap>
-#include <Q3ListView>
+#include <QTreeWidgetItem>
 
 #include "user.h"
 
-
-extern void debugQt(const QString & message);
-extern QList<Q3ListViewItem *> Q3ListViewItemList;
-
-class machine : public Q3ListViewItem  {
+class machine : public QTreeWidgetItem  {
 public: 
-	machine(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group, const QString & MachineName, const QString & MachineIP);
+	machine(QTreeWidgetItem * parent,const QString & PID,const QString & Username, const QString & Group, const QString & MachineName, const QString & MachineIP);
 	virtual ~machine();
 	void append_user(const QString & PID,const QString & Name,const QString & Group);
 	void refresh_childs();

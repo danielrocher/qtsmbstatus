@@ -18,56 +18,34 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-
-#ifndef CLIENTSSL_H
-#define CLIENTSSL_H
-
-
- //SSL
-#include <openssl/ssl.h>
-#include <openssl/err.h>
+#ifndef instances_dlg_H
+#define instances_dlg_H
 
 #include <QtGui>
-#include <QtNetwork>
-#include <Qt3Support>
 
-extern void debugQt(const QString & message);
-extern void SSL_print_error(int errorcode);
-extern void Socket_print_error (int errorcode);
-
-class ClientSSL : public QObject
+class instances_dlg : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	ClientSSL(QObject *parent=0);
-	virtual ~ClientSSL();
-	void sendToServer(const QString & inputText="");
-	void Connect(const QString & d_host, Q_UINT16 d_port);
-	void closeConnection();
+	instances_dlg(QWidget * parent = 0);
+	virtual ~instances_dlg();
 	static int compteur_objet;
-signals:
-	void info(const QString &);
-	void readFromHost(const QByteArray &);
-	void socketconnected();
-	void socketclosed();
-	void Socketerror();
-	void UnreachableHost();
-private slots:
-	void connectToHost();
-	void ResolveName(QHostInfo host_info);
-	void socketReadyRead();
-	void Exception();
-	void socketConnected();
-	void socketClosed();
+protected slots:
+	virtual void slotTimer();
+private: //methods
+	void appendObject(int * compteur,const QString & name);
 private: //attributes
-	Q3SocketDevice *socketdevice;
-	QSocketNotifier * sn_read;
-	QSocketNotifier * sn_exception;
-	bool SSL_init;
-	SSL_CTX* ssl_ctx;
-	SSL* ssl;
-	QString host;
-	Q_UINT16 port;
+	struct struct_object
+	{
+		int * compteur;
+		QString name;
+		QLabel * label1;
+		QLabel * label2;
+	};
+	QTimer * timer;
+	QVBoxLayout *layoutV;
+	QList<struct_object> list_object;
 };
 
 #endif
+

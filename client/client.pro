@@ -5,9 +5,12 @@ CONFIG += release \
           warn_on
 
 TARGET =    qtsmbstatus
-DESTDIR +=  bin
 
-LIBS += -lssl
+MOC_DIR =     ./build/moc
+OBJECTS_DIR = ./build
+DESTDIR =     ./bin
+UI_DIR =      ./build/ui
+RCC_DIR =     ./build/rcc
 
 SOURCES += main.cpp \
            main_windows.cpp \
@@ -16,15 +19,14 @@ SOURCES += main.cpp \
            service.cpp \
            user.cpp \
            smbstatus.cpp \
-           clientssl.cpp \
-           clientsocket.cpp \
            login_windows.cpp \
            configure_windows.cpp \
            linecore.cpp \
            ../common/core_syntax.cpp \
            ../common/common.cpp \
            log.cpp \
-           mysortfilterproxymodel.cpp
+           mysortfilterproxymodel.cpp \
+           instances_dlg.cpp
 
 HEADERS += main_windows.h \
            server.h \
@@ -32,14 +34,13 @@ HEADERS += main_windows.h \
            service.h \
            user.h \
            smbstatus.h \
-           clientssl.h \
-           clientsocket.h \
            linecore.h \
            login_windows.h \
            ../common/core_syntax.h \
            configure_windows.h \
            log.h \
-           mysortfilterproxymodel.h
+           mysortfilterproxymodel.h \
+           instances_dlg.h
 
 RESOURCES = client.qrc
 

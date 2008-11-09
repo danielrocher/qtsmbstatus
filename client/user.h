@@ -22,17 +22,13 @@
 #define USER_H
 
 #include <QPixmap>
-#include <Q3ListView>
+#include <QTreeWidgetItem>
 
 #include "service.h"
 
-
-extern void debugQt(const QString & message);
-extern QList<Q3ListViewItem *> Q3ListViewItemList;
-
-class user : public Q3ListViewItem  {
+class user : public QTreeWidgetItem  {
 public:
-	user(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group);
+	user(QTreeWidgetItem * parent,const QString & PID,const QString & Username, const QString & Group);
 	virtual ~user();
 	bool append_share(const QString & PID,const QString & Share,const QString & DateOpen);
 	bool append_lockedfile(const QString & PID,const QString & File,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen);

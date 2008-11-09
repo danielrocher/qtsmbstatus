@@ -23,8 +23,8 @@
 /**
 	\class PamThread
 	\brief Authenticate with PAM
-	\date 2007-06-18
-	\version 1.0
+	\date 2008-11-06
+	\version 1.1
 	\author Daniel Rocher
 
 	Use thread (don't block Mainwindow event loop)
@@ -63,7 +63,7 @@ void PamThread::run()
 {
 	debugQt ("PamThread::run()");
 	// try to authenticate using username and password
-	if (auth((char *) Name.latin1() , (char *) Passwd.latin1() ) ) 
+	if (auth((char *) Name.toUtf8().data() , (char *) Passwd.toUtf8().data() ))
 	{
 		// authentication OK
 		debugQt ("PAM AUTH : OK !");

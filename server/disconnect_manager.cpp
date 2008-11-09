@@ -37,8 +37,8 @@ int disconnect_manager::compteur_objet=0;
 disconnect_manager::disconnect_manager(const QString & MyPID,const QString & USER,QObject *parent ) : QObject(parent)
 {
 	debugQt("Object disconnect_manager : "+QString::number(++compteur_objet));
-	MyPid=MyPID.stripWhiteSpace();
-	user=USER.stripWhiteSpace();
+	MyPid=MyPID.simplified();
+	user=USER.simplified();
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );

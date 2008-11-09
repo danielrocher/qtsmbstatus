@@ -22,30 +22,38 @@
 /**
 	\class service
 	\brief Class of service items (share or locked file)
-	\date 2007-07-05
-	\version 1.1
+	\date 2008-11-08
+	\version 2.0
 	\author Daniel Rocher
 	\sa machine user server
 
 	'service' is child of 'user'
 */
 
+#include <QtGui>
+
 #include "service.h"
+
+
+extern void debugQt(const QString & message);
+extern QList<QTreeWidgetItem *> QTreeWidgetItemList;
 
 int service::compteur_objet=0;
 
 /**
 	Constructor of share
 */
-service::service(Q3ListViewItem * parent,const QString & PID,const QString & Share,const QString & DateOpen ) : Q3ListViewItem(parent) {
+service::service(QTreeWidgetItem * parent,const QString & PID,const QString & Share,const QString & DateOpen ) : QTreeWidgetItem(parent) {
 	debugQt("Object service : "+QString::number(++compteur_objet));
-	Q3ListViewItemList.append(this);
+	QTreeWidgetItemList.append(this);
 	mark=true;
 	pid=PID;
 	share=Share;
 	dateopen=DateOpen;
 	this->setText ( 0, Share) ;
-	this->setPixmap( 0, QPixmap(":/icons/folder_open.png") ); //icon
+	QIcon icon;
+	icon.addPixmap(QPixmap(":/icons/folder_open.png"), QIcon::Normal, QIcon::Off);
+	this->setIcon( 0, icon ); //icon
 	// define object type
 	TypeOfService=Tshare;
 }
@@ -53,9 +61,9 @@ service::service(Q3ListViewItem * parent,const QString & PID,const QString & Sha
 /**
 	Constructor of locked file
 */
-service::service(Q3ListViewItem * parent,const QString & PID,const QString & FileName,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen): Q3ListViewItem(parent) {
+service::service(QTreeWidgetItem * parent,const QString & PID,const QString & FileName,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen): QTreeWidgetItem(parent) {
 	debugQt("Object service : "+QString::number(++compteur_objet));
-	Q3ListViewItemList.append(this);
+	QTreeWidgetItemList.append(this);
 	mark=true;
 	pid=PID;
 	filename=FileName;
@@ -64,13 +72,15 @@ service::service(Q3ListViewItem * parent,const QString & PID,const QString & Fil
 	oplock=Oplock;
 	dateopen=DateOpen;
 	this->setText ( 0, FileName) ;
-	this->setPixmap( 0, QPixmap(":/icons/document.png") ); //icon
+	QIcon icon;
+	icon.addPixmap(QPixmap(":/icons/document.png"), QIcon::Normal, QIcon::Off);
+	this->setIcon( 0, icon ); //icon
 	// define object type
 	TypeOfService=Tlockedfile;
 }
 
 service::~service(){
 	debugQt("Object service : "+QString::number(--compteur_objet));
-	Q3ListViewItemList.removeAll (this);
+	QTreeWidgetItemList.removeAll (this);
 }
 

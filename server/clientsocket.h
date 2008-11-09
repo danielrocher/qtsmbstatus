@@ -21,75 +21,36 @@
 #ifndef CLIENTSOCKET_H
 #define CLIENTSOCKET_H
 
-//SSL
-#include<openssl/ssl.h>
-#include <openssl/err.h>
-
-//Qt
-#include <QObject>
-
-class Q3SocketDevice;
-class QSocketNotifier;
-class QByteArray;
-class QTimer;
-
-#include "process_smbd_exist.h"
-#include "sendmessage_manager.h"
-#include "smbmanager.h"
+#include <QSslSocket>
+#include <QTimer>
 #include "pamthread.h"
-#include "../common/core_syntax.h"
 
-extern void debugQt(const QString & message);
-extern void SSL_print_error(int errorcode);
-extern void Socket_print_error (int errorcode);
-
-extern bool debug_qtsmbstatus;
-extern bool daemonize;
-extern Q_UINT16 port_server;
-extern QString Certificat;
-extern QString Private_key;
-extern QString ssl_password;
-extern QString version_qtsmbstatus;
-extern QStringList AllowUserDisconnect;
-extern QStringList AllowUserSendMsg;
-
-class ClientSocket: public QObject {
-	Q_OBJECT
+class ClientSocket: public QSslSocket
+{
+    Q_OBJECT
 public:
-	ClientSocket( const int & sock, QObject *parent=0);
+	ClientSocket(QObject* parent=0);
 	virtual ~ClientSocket();
 	static int compteur_objet;
-private: //attributes
-	Q3SocketDevice *socketdevice;
-	QSocketNotifier * sn_read;
-	QSocketNotifier * sn_exception;
-	int echo;
-	static int TimoutTimerEcho;
-	QTimer * echo_timer;
-	int socket;
+private slots:
+	void core ();
+	void SocketError();
+	void SslErrors (const QList<QSslError> & listError);
+	void socketEncrypted();
+	void slot_pam();
+	void ObjError(const QString & error_txt);
+	void slot_smbstatus(const QStringList &);
+private:
 	//! if user authenticated
 	bool AuthUser;
 	//! if client is authorized to disconnect user
 	bool permitDisconnectUser;
 	//! if client is authorized to send popup message
 	bool permitSendMsg;
-	bool SSL_init;
-	SSL* ssl;
 	PamThread * pamthread;
-	QTimer *timer;
+	QTimer *pamTimer;
 	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,not_imp1,server_info,error_auth,error_command,error_obj,echo_request,echo_reply} ;
-private slots:
-	void readClient();
-	void Exception();
-	void ObjError(const QString & error_txt);
-	void slot_smbstatus(const QStringList &);
-	void slot_pam();
-	void slot_echo_timer();
-public slots:
-	void socketConnectionClose();
-private://methods
 	void sendToClient(int cmd,const QString & inputArg1="",const QString & inputArg2="");
-	void core (const QByteArray & rcv_txt) ;
 	void CmdKillUser(const QString & texte);
 	void CmdSendMsg(const QString & texte);
 	void CmdSmbRq();
@@ -97,3 +58,4 @@ private://methods
 };
 
 #endif
+

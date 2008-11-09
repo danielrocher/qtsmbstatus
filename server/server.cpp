@@ -18,44 +18,97 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
+#include <QFile>
 #include "server.h"
+
+extern void debugQt(const QString & message);
+
+int Server::compteur_objet=0;
 
 /**
 	\class Server
 	\brief The Server class handles new connections to the server.
+	\param certificatFile certificat file name
+	\param privateKeyFile private key file name
+	\param sslPassword passphras for private key
 	\param parent pointer to the parent object
-	\date 2008-11-03
-	\version 1.1
+	\sa ClientSocket
+	\date 2008-11-06
+	\version 2.0
 	\author Daniel Rocher
 	For every client that connects, it creates a new ClientSocket
 */
-Server :: Server( QObject* parent ) : QTcpServer ( parent )
+Server :: Server( const QString & certificatFile , const QString & privateKeyFile ,const QString & sslPassword , QObject* parent ) : QTcpServer ( parent )
 {
-	if (daemonize) // if daemonize server (run as server)
-	{
-        if (daemon(0, 0)==-1)
-		{
-			qWarning("Error in daemon(0,0) call - exiting");
-			exit(1);
-		}
+	debugQt("Server::Server(): "+QString::number(++compteur_objet));
+
+
+	// Certificat
+	QFile f_certif(certificatFile);
+
+	if (!f_certif.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        	qWarning() <<  "Impossible to open certificat file : " << certificatFile << " !\n\n";
+		exit (1);
 	}
+
+	certif=QSslCertificate( &f_certif );
+	if (! certif.isValid()) {
+		qWarning() << "Bad certificate !\n\n";
+		exit (1);
+	}
+	debugQt("Certificate      OK");
+
+
+	// private key
+	QByteArray sslPassPhras;
+	sslPassPhras.append(sslPassword);
+
+	QFile f_pKey(privateKeyFile);
+	if (!f_pKey.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        	qWarning() <<  "Impossible to open private key file : " << privateKeyFile << " !\n\n";
+		exit (1);
+	}
+	
+	s_key=QSslKey( &f_pKey, QSsl::Rsa, QSsl::Pem, QSsl::PrivateKey, sslPassPhras );
+	if (s_key.isNull()) {
+		qWarning() << "the private key or password are bad !\n\n";
+		exit (1);
+	}
+	debugQt("Private key      OK");
 }
 
 Server :: ~Server()
 {
-	debugQt("~Server()");
+	debugQt("Server::~Server(): "+QString::number(--compteur_objet));
 }
 
 /**
 	New client
 	create new Clientsocket
-	\param socket socket number
+	\param socketId socket number
 */
-void Server :: incomingConnection( int socket )
+void Server :: incomingConnection( int socketId )
 {
 	debugQt ("Server :: incomingConnection()");
-	ClientSocket *s = new ClientSocket( socket, this );
-	connect (this,SIGNAL(destroyed()),s,SLOT(socketConnectionClose()));
+	ClientSocket *socket = new ClientSocket( this );
+	// set protocol (SSLv2,v3 and TLS)
+	socket->setProtocol (QSsl::AnyProtocol);
+        socket->setLocalCertificate(certif);
+        socket->setPrivateKey(s_key);
+	if( socket->setSocketDescriptor( socketId ) ) {
+		debugQt( "Calling sslSocket->startServerEncryption()");
+		socket->startServerEncryption();
+	} else {
+		qWarning() << "Couldn't setSocketDescriptor(" << socketId << ") for this connection";
+		delete socket;
+	}
 }
 
-
+/**
+	Stop server
+*/
+void Server ::stopServer()
+{
+	debugQt("Server::stopServer()");
+	deleteLater();
+}

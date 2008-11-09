@@ -23,15 +23,22 @@ HEADERS += server.h \
 
 TEMPLATE = app 
 
+QT +=  network
+
 CONFIG += release \
           warn_on \
           thread
 
 TARGET = qtsmbstatusd
-DESTDIR +=  bin
 
-LIBS += -lpam \
-        -lssl
+MOC_DIR =     ./build/moc
+OBJECTS_DIR = ./build
+DESTDIR =     ./bin
+UI_DIR =      ./build/ui
+RCC_DIR =     ./build/rcc
+
+
+LIBS += -lpam
 
 DATADIR= /etc/qtsmbstatusd
 DATAFILES = ./etc/privkey.pem \
@@ -81,4 +88,3 @@ INSTALLS += data \
             postinstall
 }
 
-QT +=  network qt3support

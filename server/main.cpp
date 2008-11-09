@@ -26,11 +26,19 @@
 #include <QTextStream>
 
 #include "server.h"
+#include "process_smbd_exist.h"
+#include "sendmessage_manager.h"
+#include "smbmanager.h"
+#include "pamthread.h"
 
-extern void unsupported_options(char *erreur, const QString & usage);
+extern void unsupported_options(char *error, const QString & usage);
 extern bool validatePort(const int & port);
+extern void debugQt(const QString & message);
+extern void writeToConsole(const QString & message);
 
-extern SSL_CTX* ssl_ctx;
+extern quint16 port_server;
+extern QString version_qtsmbstatus;
+extern bool debug_qtsmbstatus;
 
 // default values of configs
 QString Certificat = "/etc/qtsmbstatusd/server.pem";
@@ -50,20 +58,8 @@ Server* myserver;
 	Receive SIGTERM, SIGINT or SIGQUIT signal
 */
 void signal_handler(int) {
-	qDebug ("Stop QtSmbstatusd , please wait ...");
-	QTimer::singleShot( 0, myserver, SLOT (deleteLater()));
-}
-
-
-/**
-	password callback for ssl key usage
-*/
-
-int pem_passwd_cb(char *buf, int size, int rwflag, void *password)
-{
-	strncpy(buf, ssl_password, size);
-	buf[size - 1] = '\0';
-	return(strlen(buf));
+	writeToConsole ("Stop QtSmbstatusd , please wait ...");
+	QTimer::singleShot( 0, myserver, SLOT (stopServer()));
 }
 
 
@@ -79,9 +75,9 @@ void GetUserDisconnect(QString variable)
 	AllowUserDisconnect.clear();
 	while (variable.length() > 0)
 	{
-		fin=variable.find(",");
+		fin=variable.indexOf (",");
 		if (fin==-1) fin=variable.length();
-		allow_user=(variable.mid(0,fin)).simplifyWhiteSpace();
+		allow_user=(variable.mid(0,fin)).simplified ();
 
 		if (allow_user!="") AllowUserDisconnect.append(allow_user);
 		variable=variable.mid(fin+1);
@@ -100,9 +96,9 @@ void GetUserSend(QString variable)
 	AllowUserSendMsg.clear();
 	while (variable.length() > 0)
 	{
-		fin=variable.find(",");
+		fin=variable.indexOf (",");
 		if (fin==-1) fin=variable.length();
-		allow_user=(variable.mid(0,fin)).simplifyWhiteSpace();
+		allow_user=(variable.mid(0,fin)).simplified();
 
 		if (allow_user!="") AllowUserSendMsg.append(allow_user);
 		variable=variable.mid(fin+1);
@@ -123,19 +119,19 @@ void readConfigFile()
 	QFile f1( "/etc/qtsmbstatusd/qtsmbstatusd.conf" );
 	if ( !f1.open( QIODevice::ReadOnly ) )
 	{
-		qDebug("Impossible to read configuration file. Use default settings.");
+		writeToConsole("Impossible to read configuration file. Use default settings.");
 		return;
 	}
 	QTextStream t( &f1);
 	while ( !t.atEnd() )
 	{
 		ligne =  t.readLine();
-		ligne = ligne.simplifyWhiteSpace();
+		ligne = ligne.simplified();
 		if ((ligne.mid(0,1) == "#") || (ligne.length ()==0)) continue;
 		if (ligne.contains("="))
 		{
-			attr= (ligne.mid(0,ligne.find("="))).simplifyWhiteSpace();
-			variable = (ligne.mid(ligne.find("=")+1)).simplifyWhiteSpace();
+			attr= (ligne.mid(0,ligne.indexOf ("="))).simplified();
+			variable = (ligne.mid(ligne.indexOf ("=")+1)).simplified();
 			if (attr=="port")
 			{
 				port=(variable).toInt(&ok);
@@ -177,7 +173,7 @@ int main( int argc,char *argv[] )
 	{
 		if (QString(argv[i])=="--help")
 		{
-			qDebug(usage);
+			writeToConsole(usage);
 			return 0;
 		}
 		if (argv[i][0] == '-')
@@ -189,7 +185,7 @@ int main( int argc,char *argv[] )
 					port_server=(QString(argv[++i])).toInt(&ok);
 					if (ok==false) 
 					{
-						qDebug("\n    Missing argument : -p   \n" + usage);
+						writeToConsole("\n    Missing argument : -p   \n" + usage);
 						return 1;
 					}
 					if (!validatePort(port_server)) return 1;  // port not valid
@@ -201,7 +197,7 @@ int main( int argc,char *argv[] )
 				}
 				break;
 			case 'v': //version
-				if (argv[i][2]=='\0')  qDebug("QtSmbstatusd version : " + version_qtsmbstatus); // view qtsmbstatusd version
+				if (argv[i][2]=='\0')  writeToConsole("QtSmbstatusd version : " + version_qtsmbstatus); // view qtsmbstatusd version
 				else
 				{
 					unsupported_options(argv[i],usage);
@@ -234,55 +230,19 @@ int main( int argc,char *argv[] )
 
 	QApplication app(argc, argv, false ); // user interface is unused in this program
 
-
-	// ***************** initialize TLS/SSL **************************
-
-	// Load error strings
-	SSL_load_error_strings();
-	// Initialize SSL library by registering algorithms
-	OpenSSL_add_ssl_algorithms();
-	debugQt ("add ssl algorithms    OK");
-
-	// Create a new SSL_CTX object
-	ssl_ctx = SSL_CTX_new (SSLv23_server_method());
-	debugQt ("SSL CTX new           OK");
-
-	// set passwd callback for encrypted PEM file handling
-	SSL_CTX_set_default_passwd_cb(ssl_ctx,pem_passwd_cb);
-	debugQt ("set default passwd    OK");
-
-	// loads the first certificate stored in file into ctx
-	if (SSL_CTX_use_certificate_file(ssl_ctx, Certificat, SSL_FILETYPE_PEM) <= 0)
-	{
-		qWarning("Error in use_certificate_file");
-		ERR_print_errors_fp(stderr);
-		exit(1);
-	}
-	debugQt ("use certificate file  OK");
-
-	// adds the first private key found in file to ctx
-	if (SSL_CTX_use_PrivateKey_file(ssl_ctx, Private_key , SSL_FILETYPE_PEM) <= 0)
-	{
-		qWarning("Error in use_privatekey_file");
-		ERR_print_errors_fp(stderr);
-		exit(1);
-	}
-	debugQt ("use PrivateKey file   OK");
-
-	// load certificate and key data
-	if (!SSL_CTX_check_private_key(ssl_ctx))
-	{
-		qWarning("Error loading ssl certificate: Private key does not match the certificate public key");
-		exit(1);
-	}
-	debugQt ("check private key     OK");
-
-	// here, SSL is ready
-
-	myserver = new Server(&app);
+	myserver = new Server(Certificat, Private_key, ssl_password , &app);
 	if (! myserver->listen (  QHostAddress::Any, port_server)) {
-		qWarning("Failed to bind to port "+QString::number( port_server ));
+		writeToConsole("Failed to bind to port "+QString::number( port_server ));
 		exit(1);
+	}
+
+	if (daemonize) // if daemonize server (run as server)
+	{
+		if (daemon(0, 0)==-1)
+		{
+			writeToConsole("Error in daemon(0,0) call - exiting");
+			exit(1);
+		}
 	}
 
 	app.connect( myserver, SIGNAL( destroyed ()), &app, SLOT(quit()) );

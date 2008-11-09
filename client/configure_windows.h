@@ -25,7 +25,7 @@ class QLineEdit;
 class QCheckBox;
 class QSpinBox;
 
-#include "ui_configure.h"
+#include "build/ui/ui_configure.h"
 
 extern void debugQt(const QString & message);
 extern void writeConfigFile();

@@ -18,198 +18,176 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#include <QByteArray>
-#include <QTextStream>
-#include <QTimer>
-#include <Q3SocketDevice>
-#include <QSocketNotifier>
-
 #include "clientsocket.h"
+#include "process_smbd_exist.h"
+#include "sendmessage_manager.h"
+#include "smbmanager.h"
+#include "../common/core_syntax.h"
 
-// SSL context
-SSL_CTX* ssl_ctx;
+extern void debugQt(const QString & message);
+
+extern QStringList AllowUserDisconnect;
+extern QStringList AllowUserSendMsg;
 
 int ClientSocket::compteur_objet=0;
 
-//! Time between 2 echo request
-int ClientSocket::TimoutTimerEcho=30000;
-
 /**
 	\class ClientSocket
-	\brief This class dialogs with client. (One object per client)
-	\date 2007-06-18
-	\version 1.0
+	\brief This class dialogs with client. (One object/client)
+	\date 2008-11-06
+	\version 2.0
 	\author Daniel Rocher
 	\sa Server
 	\param sock Socket number
 	\param parent pointer to parent for this object
  */
 
-ClientSocket :: ClientSocket( const int & sock, QObject *parent ) : QObject (parent)
+ClientSocket :: ClientSocket( QObject* parent ) : QSslSocket ( parent )
 {
-	debugQt("Object ClientSocket : "+QString::number(++compteur_objet));
-	debugQt("New client - socket : "+ QString::number(sock));
+	debugQt("ClientSocket::ClientSocket(): "+QString::number(++compteur_objet));
 
-	SSL_init=false;
 	AuthUser=false;
 	permitDisconnectUser=false;
 	permitSendMsg=false;
 
-	timer = new QTimer( this );
-	connect( timer, SIGNAL(timeout()), this, SLOT(slot_pam()) );
-
 	pamthread = new PamThread();
+	pamTimer = new QTimer( this );
+	connect( pamTimer, SIGNAL(timeout()), this, SLOT(slot_pam()) );
 
-	socket = sock;
-	socketdevice = new Q3SocketDevice(socket , Q3SocketDevice::Stream );
-	int ret = socketdevice->error();
-	if (ret!=0)
-	{ // TCP Error
-		qWarning("TCP Error !");
-		Socket_print_error(ret);
-		deleteLater ();
-	}
-
-	// create a new SSL structure for a connection
-	ssl=SSL_new (ssl_ctx);
-	if (!ssl)
-	{
-		qWarning ("Error creating SSL structure" );
-		SSL_print_error(SSL_get_error(ssl, 0));
-		socketConnectionClose();
-		return;
-	}
-	debugQt ("Create a new SSL structure             OK");
-
-	SSL_set_mode (ssl, SSL_MODE_AUTO_RETRY); //auto retry
-
-	// set the file descriptor for the socket
-	if (!SSL_set_fd( ssl , socket ) )
-	{
-		qWarning( "Error initializing SSL-socket" );
-		SSL_print_error(SSL_get_error(ssl, 0));
-		socketConnectionClose();
-		return;
-	}
-	debugQt ("Connect SSL object with a socket       OK");
-
-	// wait for a TLS/SSL client to initiate a TLS/SSL handshake
-	ret = SSL_accept(ssl);
-	if (ret <= 0 )
-	{
-		qWarning( "Error accept connect" );
-		SSL_print_error(SSL_get_error(ssl, ret));
-		socketConnectionClose();
-		return;
-	}
-	debugQt ("SSL connection                         OK");
-	SSL_init=true;
-	// Socket notificier
-	sn_read= new QSocketNotifier(socketdevice->socket(), QSocketNotifier::Read,this) ;
-	connect( sn_read,SIGNAL(activated(int)),this, SLOT(readClient()) );
-
-	sn_exception= new QSocketNotifier(socketdevice->socket(), QSocketNotifier::Exception ,this) ;
-	connect( sn_exception,SIGNAL(activated(int)),this, SLOT(Exception ()) );
-
-	// test if connection is not dead
-	// reset timer if we receive data from client
-	echo=0; // if echo > 2, disconnect
-	echo_timer = new QTimer (this);
-	connect( echo_timer, SIGNAL(timeout()), this, SLOT(slot_echo_timer()) );
-	echo_timer->start( TimoutTimerEcho, FALSE );
+	ignoreSslErrors ();
+	connect (this, SIGNAL(readyRead()),this, SLOT(core()));
+	connect (this, SIGNAL(disconnected()),this, SLOT(deleteLater()));
+	connect (this, SIGNAL( error ( QAbstractSocket::SocketError )),this,SLOT(SocketError()));
+	connect (this, SIGNAL(sslErrors ( const QList<QSslError> & )),this,SLOT(SslErrors(const QList<QSslError> &)));
+	connect (this, SIGNAL(encrypted ()),this,SLOT(socketEncrypted ()));
 }
 
-
-ClientSocket ::~ClientSocket()
+ClientSocket :: ~ClientSocket()
 {
-	debugQt("Object ClientSocket : "+QString::number(--compteur_objet));
-	delete socketdevice;
+	debugQt("ClientSocket::~ClientSocket(): "+QString::number(--compteur_objet));
 	// Blocks until the thread PamThread has finished execution
 	pamthread->wait();
 	delete pamthread;
 }
 
+/** Socket error */
+void ClientSocket::SocketError () {
+	debugQt("ClientSocket::SocketError()");
+	qWarning() << errorString();
+	deleteLater();
+}
 
-/**
-	There is a TCP error
-*/
-void ClientSocket ::Exception()
-{
-	debugQt ("ClientSocket::Exception()");
-	int ret = socketdevice->error();
-	if (ret!=0)
-	{
-		// an error occurred
-		qWarning("Socket error !");
-		Socket_print_error(ret);
-		socketConnectionClose();
-	}
+/** SSL error */
+void ClientSocket::SslErrors (const QList<QSslError> & listErrors) {
+	debugQt("ClientSocket::SslErrors()");
+	for (int i = 0; i < listErrors.size(); ++i)
+             qWarning() <<listErrors.at(i).errorString ();
 }
 
 
 /**
-	Receive datas from client
-	\sa sendToClient
+	now, socket is encrypted
 */
-void ClientSocket ::readClient()
-{
-	debugQt ("ClientSocket::readClient()");
-	if (SSL_init==false) return;
-	if (!socketdevice->isOpen()) //if not connected
-	{
-		socketConnectionClose();
-		return;
-	}
-	QByteArray rcvtxt;
-	rcvtxt.resize(16384);
-	int ret = SSL_read(ssl, rcvtxt.data(), rcvtxt.size());
-	if (ret <=0 )
-	{
-		// an error occurred
-		SSL_print_error(SSL_get_error(ssl, ret));
-		socketConnectionClose();
-		return;
-	}
-
-
-	if (AuthUser)  // if client authenticated
-	{
-		// reset echo timer because client has sent data
-		echo=0;
-		echo_timer->stop();
-		echo_timer->start( TimoutTimerEcho, FALSE );
-	}
-
-	rcvtxt.resize(ret);  // Sets the size of the byte array to size bytes
-	debugQt (rcvtxt);
-	core ( rcvtxt );
+void ClientSocket::socketEncrypted () {
+	debugQt("ClientSocket::socketEncrypted()");
 }
+
+/**
+	Protocol interpreter.
+	analyze the client's answers.
+	\sa core_syntax
+*/
+void ClientSocket :: core ()
+{
+	debugQt ("ClientSocket::core()");
+	QString line;
+	int commande;
+	bool ok;
+	core_syntax stx;
+	QTextStream in(this);
+	while (!in.atEnd () )
+	{
+		line=in.readLine();
+
+		debugQt(line);
+		stx.setValue(line);
+		if (stx.returnArg(0) != "")
+		{
+			commande=(stx.returnArg(0)).toInt(&ok);
+			if (ok) // if txt to int conversion is ok
+			{
+				switch (commande)
+				{
+					case auth_rq: // auth_rq
+							debugQt("["+QString::number(commande)+"] auth_rq");
+							CmdAuthRq(line);
+							break;
+					case end: // end socket by client
+							debugQt("["+QString::number(commande)+"] end");
+							deleteLater();
+							break;
+					case kill_user: // disconnect user
+							debugQt("["+QString::number(commande)+"] kill_user");
+							CmdKillUser(line);
+							break;
+					case send_msg: // send message to user
+							debugQt("["+QString::number(commande)+"] send_msg");
+							CmdSendMsg(line);
+							break;
+					case smb_rq: // smbstatus request
+							debugQt("["+QString::number(commande)+"] smb_rq");
+							CmdSmbRq();
+							break;
+					case echo_request:// echo request from client
+							debugQt("["+QString::number(commande)+"] echo_request");
+							sendToClient(echo_reply);
+							break;
+					case echo_reply: // echo reply from client
+							debugQt("["+QString::number(commande)+"] echo_reply");
+							// now, ignore it (compatibility to qtsmbstatus =< 2.0.6)
+							break;
+					case error_command: // Command error ( the last command is not recognized)
+							debugQt("["+QString::number(commande)+"] error_command");
+							break;
+					default: // not implemented
+							debugQt("["+QString::number(commande)+"] not implemented");
+							sendToClient(error_command,"["+QString::number(commande)+"] not implemented");
+							break;
+				}
+			}
+			else
+			{ //conversion error string->int
+				debugQt("Command error !");
+			}
+		}
+		else
+		{ // core_syntax sends an error
+			debugQt("Command error !");
+		}
+	}
+}
+
 
 /**
 	Send datas to client
 	\param cmd command
+	\param inputArg1 argument 1
+	\param inputArg2 argument 2
 	\sa ClientSocket::command
-	\sa readClient
 	\sa core_syntax
 */
 void ClientSocket ::sendToClient(int cmd,const QString & inputArg1,const QString & inputArg2)
 {
 	debugQt ("ClientSocket::sendToClient()");
-	if (SSL_init==false) return;
 	QString MyTxt;
 	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
 	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
-	QByteArray send_txt = ("["+QString::number(cmd)+"]"+MyTxt+"\n").utf8 () ;
-	int value=SSL_write (ssl, send_txt.data() , send_txt.length ());
-	if (!value)
-	{
-		// an error occurred
-		SSL_print_error(SSL_get_error(ssl, 0));
-		socketConnectionClose();
-		return;
-	}
+	QString send_txt = "["+QString::number(cmd)+"]"+MyTxt+"\n" ;
+	QTextStream out(this);
+	out << send_txt;
 	debugQt(send_txt);
 }
+
 
 /**
 	Request from client to disconnect an user
@@ -302,166 +280,6 @@ void ClientSocket ::CmdSmbRq()
 	}
 }
 
-/**
-	Authentication Request
-	\param texte arg=1=username, arg2=password
-	\sa core_syntax PamThread
-*/
-void ClientSocket :: CmdAuthRq(const QString & texte)
-{
-	debugQt(" ClientSocket :: CmdAuthRq()");
-	core_syntax stx(texte);
-	QString Username=stx.returnArg(1);
-	QString Passwd=stx.returnArg(2);
-	if ( (!Username.isEmpty()) && (Username.length () < 50) && (!Passwd.isEmpty()) && (Passwd.length () < 50))
-	{
-		// if client is authorized to disconnect user
-		for ( QStringList::Iterator it = AllowUserDisconnect.begin(); it != AllowUserDisconnect.end(); ++it ) {
-			if (((*it)==Username) || ((*it).lower()=="all")) permitDisconnectUser=true;
-		}
-		// if client is authorized to send popup message
-		for ( QStringList::Iterator it = AllowUserSendMsg.begin(); it != AllowUserSendMsg.end(); ++it ) {
-			if (((*it)==Username) || ((*it).lower()=="all")) permitSendMsg=true;
-		}
-
-		// PAM Request
-		pamthread->setAuth(Username,Passwd);
-		pamthread->start();
-		timer->start( 500, FALSE ); //request every 500ms to know pamthread status (finished)
-		return;
-	}
-	sendToClient(error_auth);
-	socketConnectionClose();
-}
-
-
-
-/**
-	test if pamthread has terminated
-*/
-void ClientSocket ::slot_pam()
-{
-	debugQt ("ClientSocket::slot_pam()");
-	if (pamthread->isFinished ())
-	{
-		// stop timer
-		timer->stop();
-		if (pamthread->auth_resu)
-		{
-			// client authenticated
-			AuthUser=true;
-			sendToClient(auth_ack);
-			/*
-			infoserver : right for current client
-			0000 0001 : permit client to disconnect an user
-			0000 0010 : permit client to send popup messages (popupwindows)
-			*/
-			int infoserver=0;
-			if (permitDisconnectUser) infoserver=1;
-			if (permitSendMsg) infoserver+=2;
-			// send client's rights
-			sendToClient(server_info,QString::number(infoserver));
-		}
-		else
-		{
-			// client is not authenticated. disconnect it
-			sendToClient(error_auth);
-			socketConnectionClose();
-		}
-	}
-}
-
-/**
-	Protocol interpreter.
-	analyze the client's answers.
-	\param rcv_txt data sent by client
-	\sa core_syntax
-*/
-void ClientSocket :: core (const QByteArray & rcv_txt)
-{
-	debugQt ("ClientSocket::core()");
-	QString texte;
-	int commande;
-	bool ok;
-	core_syntax stx;
-	QTextStream ts( rcv_txt, QIODevice::ReadOnly );
-	while ( !ts.atEnd () )
-	{
-		texte=ts.readLine();
-
-		texte=QString::fromUtf8( texte );
-		stx.setValue(texte);
-		if (stx.returnArg(0) != "")
-		{
-			commande=(stx.returnArg(0)).toInt(&ok);
-			if (ok) // if txt to int conversion is ok
-			{
-				switch (commande)
-				{
-					case auth_rq: // auth_rq
-							debugQt("["+QString::number(commande)+"] auth_rq");
-							CmdAuthRq(texte);
-							break;
-					case end: // end socket by client
-							debugQt("["+QString::number(commande)+"] end");
-							socketConnectionClose();
-							break;
-					case kill_user: // disconnect user
-							debugQt("["+QString::number(commande)+"] kill_user");
-							CmdKillUser(texte);
-							break;
-					case send_msg: // send message to user
-							debugQt("["+QString::number(commande)+"] send_msg");
-							CmdSendMsg(texte);
-							break;
-					case smb_rq: // smbstatus request
-							debugQt("["+QString::number(commande)+"] smb_rq");
-							CmdSmbRq();
-							break;
-					case echo_request:// echo request from client
-							debugQt("["+QString::number(commande)+"] echo_request");
-							sendToClient(echo_reply);
-							break;
-					case echo_reply: // echo reply from client, reset echo timer
-							debugQt("["+QString::number(commande)+"] echo_reply");
-							if (AuthUser) echo=0; // only if client is authenticated
-							break;
-					case error_command: // Command error ( the last command is not recognized)
-							debugQt("["+QString::number(commande)+"] error_command");
-							break;
-					default: // not implemented
-							debugQt("["+QString::number(commande)+"] not implemented");
-							sendToClient(error_command,"["+QString::number(commande)+"] not implemented");
-							break;
-				}
-			}
-			else
-			{ //conversion error string->int
-				debugQt("Command error !");
-			}
-		}
-		else
-		{ // core_syntax sends an error
-			debugQt("Command error !");
-		}
-	}
-}
-
-
-/**
-	Close connection.
-*/
-void ClientSocket ::socketConnectionClose()
-{
-	debugQt("ClientSocket ::socketConnectionClose()");
-	SSL_init=false;
-	SSL_shutdown(ssl);
-	debugQt ("SSL_shutdown                  OK");
-	SSL_free(ssl);
-	debugQt ("SSL_free                      OK");
-	socketdevice->close();
-	deleteLater();
-}
 
 
 /**
@@ -503,7 +321,7 @@ void ClientSocket ::slot_smbstatus(const QStringList & rcv_smb)
 			start=true;
 		}
 	}
-	sendToClient(end_smb_rq); // end of smbstatus reply. All data has been sent
+	sendToClient(end_smb_rq); // end of smbstatus reply. All datas has been sent
 }
 
 
@@ -519,14 +337,71 @@ void ClientSocket ::ObjError(const QString & error_txt)
 
 
 /**
-	Timer ending (echo), sends a new echo request. After 3 failures, disconnect.
+	Authentication Request
+	\param texte arg=1=username, arg2=password
+	\sa core_syntax PamThread
 */
-void ClientSocket::slot_echo_timer()
+void ClientSocket :: CmdAuthRq(const QString & texte)
 {
-	echo++;
-	debugQt("ClientSocket::slot_echo_timer() - echo = "+QString::number(echo));
-	if (echo > 2) socketConnectionClose();  //  After 3 failures, disconnect
-	else sendToClient(echo_request);  // sends a new echo request
+	debugQt(" ClientSocket :: CmdAuthRq()");
+	core_syntax stx(texte);
+	QString Username=stx.returnArg(1);
+	QString Passwd=stx.returnArg(2);
+	if ( (!Username.isEmpty()) && (Username.length () < 50) && (!Passwd.isEmpty()) && (Passwd.length () < 50))
+	{
+		// if client is authorized to disconnect user
+		for ( QStringList::Iterator it = AllowUserDisconnect.begin(); it != AllowUserDisconnect.end(); ++it ) {
+			if (((*it)==Username) || ((*it).toLower()=="all")) permitDisconnectUser=true;
+		}
+		// if client is authorized to send popup message
+		for ( QStringList::Iterator it = AllowUserSendMsg.begin(); it != AllowUserSendMsg.end(); ++it ) {
+			if (((*it)==Username) || ((*it).toLower ()=="all")) permitSendMsg=true;
+		}
+
+		// PAM Request
+		pamthread->setAuth(Username,Passwd);
+		pamthread->start();
+		pamTimer->start( 500); //request every 500ms to know pamthread status (finished)
+		return;
+	}
+	sendToClient(error_auth);
+	QTimer::singleShot(100,this,SLOT(deleteLater()));
 }
 
+
+
+/**
+	test if pamthread has terminated
+*/
+void ClientSocket ::slot_pam()
+{
+	debugQt ("ClientSocket::slot_pam()");
+	if (pamthread->isFinished ())
+	{
+		// stop timer
+		pamTimer->stop();
+		if (pamthread->auth_resu)
+		{
+			// client authenticated
+			AuthUser=true;
+			sendToClient(auth_ack);
+			/*
+			infoserver : right for current client
+			0000 0001 : permit client to disconnect an user
+			0000 0010 : permit client to send popup messages (popupwindows)
+			*/
+			int infoserver=0;
+			if (permitDisconnectUser) infoserver=1;
+			if (permitSendMsg) infoserver+=2;
+			// send client's rights
+			sendToClient(server_info,QString::number(infoserver));
+		}
+		else
+		{
+			// client is not authenticated. disconnect it
+			sendToClient(error_auth);
+			QTimer::singleShot(100,this,SLOT(deleteLater()));
+		}
+	}
+}
 

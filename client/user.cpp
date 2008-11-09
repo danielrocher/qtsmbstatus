@@ -21,33 +21,40 @@
  /**
 	\class user
 	\brief Class of user items
-	\date 2007-07-05
-	\version 1.1
+	\date 2008-11-08
+	\version 2.0
 	\author Daniel Rocher
 	\sa server machine service
 
 	'user' is parent of 'service' and child of 'machine'
  */
 
+#include <QtGui>
+
 #include "user.h"
+
+extern void debugQt(const QString & message);
+extern QList<QTreeWidgetItem *> QTreeWidgetItemList;
 
 int user::compteur_objet=0;
 
-user::user(Q3ListViewItem * parent,const QString & PID,const QString & Username, const QString & Group) : Q3ListViewItem(parent)
+user::user(QTreeWidgetItem * parent,const QString & PID,const QString & Username, const QString & Group) : QTreeWidgetItem(parent)
 {
 	debugQt("Object user : "+QString::number(++compteur_objet));
-	Q3ListViewItemList.append(this);
+	QTreeWidgetItemList.append(this);
 	mark=true;
 	username=Username;
 	pid=PID;
 	group=Group;
-	this->setPixmap( 0,QPixmap(":/icons/user.png") ); //icon
+	QIcon icon;
+	icon.addPixmap(QPixmap(":/icons/user.png"), QIcon::Normal, QIcon::Off);
+	this->setIcon( 0, icon ); //icon
 	this->setText ( 0, Username) ;
 }
 
 user::~user(){
 	debugQt("Object user : "+QString::number(--compteur_objet));
-	Q3ListViewItemList.removeAll (this);
+	QTreeWidgetItemList.removeAll (this);
 }
 
 /**
@@ -58,9 +65,10 @@ user::~user(){
 bool user::append_share(const QString & PID,const QString & Share,const QString & DateOpen)
 {
 	bool exist=false;
-	service * Child = dynamic_cast<service *>(this->firstChild());
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		service * Child= dynamic_cast<service *>(this->child (i) );
+		if (!Child) break;
 		// if child exist
 		if  ((Child->pid==PID) && (Child->share==Share) )
 		{
@@ -69,7 +77,6 @@ bool user::append_share(const QString & PID,const QString & Share,const QString 
 			Child->mark=true;
 			return true; // exit loop
 		}
-		Child = dynamic_cast<service *>(Child->nextSibling());
 	}
 	// if not exist add it
 	if (!exist) new service (this,PID,Share,DateOpen);
@@ -84,9 +91,10 @@ bool user::append_share(const QString & PID,const QString & Share,const QString 
 bool user::append_lockedfile(const QString & PID,const QString & File,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen)
 {
 	bool exist=false;
-	service * Child = dynamic_cast<service *>(this->firstChild());
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		service * Child= dynamic_cast<service *>(this->child (i) );
+		if (!Child) break;
 		// if child exist
 		if  ((Child->pid==PID) && (Child->filename==File) && (Child->denymode==DenyMode)  && (Child->rw==RW) && (Child->oplock==Oplock) && (Child->dateopen==DateOpen) )
 		{
@@ -95,7 +103,6 @@ bool user::append_lockedfile(const QString & PID,const QString & File,const QStr
 			Child->mark=true;
 			return true;  // exit loop
 		}
-		Child = dynamic_cast<service *>(Child->nextSibling());
 	}
 	// if not exist add it
 	if (!exist) new service (this,PID,File,DenyMode,RW,Oplock,DateOpen);
@@ -108,20 +115,17 @@ bool user::append_lockedfile(const QString & PID,const QString & File,const QStr
 */
 void user::refresh_childs()
 {
-	service * item_temp;
-	service * Child= dynamic_cast<service *>(this->firstChild());
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		service * Child= dynamic_cast<service *>(this->child (i) );
+		if (!Child) break;
 		// if child doesn't exist any more
 		if (!Child->mark)
 		{
-			// delete child
-			item_temp= Child;
-			Child = dynamic_cast<service *>(Child->nextSibling()); // next
-			delete item_temp; // delete item and his children
+			delete Child;  // delete item and his children
+			--i;
 			continue;
 		}
-		Child = dynamic_cast<service *>(Child->nextSibling());
 	}
 }
 
@@ -134,10 +138,10 @@ void user::refresh_childs()
  */
 void user::mark_childs()
 {
-	service * Child= dynamic_cast<service *>(this->firstChild());
-	 while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		service * Child= dynamic_cast<service *>(this->child (i) );
+		if (!Child) break;
 		Child->mark=false;
-		Child = dynamic_cast<service *>(Child->nextSibling());
 	}
 }

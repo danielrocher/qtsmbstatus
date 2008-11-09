@@ -36,8 +36,8 @@ int Sendmessage_manager::compteur_objet=0;
 Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString & message,QObject *parent) : QObject(parent) {
 	debugQt("Object Sendmessage_manager : "+ QString::number(++compteur_objet));
 
-	to_machine=machine.stripWhiteSpace();
-	my_message=message.stripWhiteSpace();
+	to_machine=machine.simplified();
+	my_message=message.simplified();
 
 	my_message.replace( "\"", " ").replace( "\\", " ");
 	my_message="echo \"" + my_message +  "\" | smbclient -M " + to_machine;
@@ -105,7 +105,7 @@ void Sendmessage_manager::readFromStdout(){
 	QString str(proc.readAllStandardOutput ());
 	debugQt(str);
 	
-	if (str.contains ("Cannot resolve",false) or str.contains (" failed",false) or str.contains ("ERRSRV",false))
+	if (str.contains ("Cannot resolve",Qt::CaseInsensitive) or str.contains (" failed",Qt::CaseInsensitive) or str.contains ("ERRSRV",Qt::CaseInsensitive))
 		emit ObjError(tr("Could not send message to") + " " + to_machine);
 }
 

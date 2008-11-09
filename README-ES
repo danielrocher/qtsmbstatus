@@ -35,7 +35,7 @@ Incluye las siguientes posibilidades:
         Para instalar el servicio:
         **************************
 
-        chequear las dependencias : pam-dev, ssl-dev et qt4-dev>=4.2
+        chequear las dependencias : pam-dev y qt4-dev>=4.3
 
                   cd server
                   qmake
@@ -48,7 +48,7 @@ Incluye las siguientes posibilidades:
         Para instalar el cliente:
         *************************
 
-        chequear las dependencias : ssl-dev et qt4-dev>=4.2
+        chequear las dependencias : qt4-dev>=4.3
 
                   cd client
                   qmake

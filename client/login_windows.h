@@ -22,7 +22,7 @@
 #define LOGIN_WINDOWS_H
 
 
-#include "ui_login_dialog.h"
+#include "build/ui/ui_login_dialog.h"
 
 extern void debugQt(const QString & message);
 extern QString username_login;

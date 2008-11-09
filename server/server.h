@@ -22,15 +22,23 @@
 #define SERVER_H
 
 #include <QTcpServer>
+#include <QSslCertificate>
+#include <QSslKey>
 #include "clientsocket.h"
 
 class Server : public QTcpServer
 {
     Q_OBJECT
 public:
-	Server( QObject* parent=0 );
+	Server(const QString & certificatFile, const QString & privateKeyFile ,const QString & sslPassword , QObject* parent=0 );
 	virtual ~Server();
 	void incomingConnection( int socket );
+	static int compteur_objet;
+public slots:
+	void stopServer();
+private:
+	QSslCertificate certif;
+	QSslKey s_key;
 };
 
 #endif

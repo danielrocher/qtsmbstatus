@@ -22,14 +22,9 @@
 #define SERVER_H
 
 #include <QPixmap>
-#include <Q3ListView>
-#include <QTextStream>
+#include <QTreeWidgetItem>
 
 #include "machine.h"
-
-
-extern void debugQt(const QString & message);
-extern QList<Q3ListViewItem *> Q3ListViewItemList;
 
 struct type_message
 {
@@ -42,9 +37,9 @@ struct type_message
 	short unsigned int type_message;
 };
 
-class server : public Q3ListViewItem  {
+class server : public QTreeWidgetItem  {
 public:
-	server(Q3ListView * parent);
+	server(QTreeWidget * parent);
 	virtual ~server();
 	void refresh_childs();
 	void mark_childs();
@@ -54,9 +49,9 @@ public:
 	void setSambaVersion (const QString &);
 	QString getSambaVersion();
 	QString ViewInfoServer();
-	QString ViewInfoUser(Q3ListViewItem* Item);
-	QString ViewInfoService(Q3ListViewItem* Item);
-	QString ViewInfoMachine(Q3ListViewItem* Item);
+	QString ViewInfoUser(QTreeWidgetItem* Item);
+	QString ViewInfoService(QTreeWidgetItem* Item);
+	QString ViewInfoMachine(QTreeWidgetItem* Item);
 	static int compteur_objet;
 	QList<type_message> listMessages;
 private: //private attributes

@@ -21,7 +21,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-#include "ui_log.h"
+#include "build/ui/ui_log.h"
 #include "server.h"
 
 class QStandardItemModel;

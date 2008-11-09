@@ -26,8 +26,8 @@
 /**
 	\class core_syntax
 	\brief This class manage the dialog between client and server
-	\date 2007-11-08
-	\version 1.1
+	\date 2008-11-06
+	\version 1.2
 	\author Daniel Rocher
 
 		Client and server use a protocol :
@@ -102,10 +102,10 @@ QString core_syntax::returnArg(int index)
 	if (index==0)
 	{
 		QRegExp rx( "^\\[\\d\\d?\\]" );
-		debut=rx.search(myTxt);
+		debut=rx.indexIn(myTxt);
 		if (debut != -1)
 		{
-			fin = myTxt.find("]");
+			fin = myTxt.indexOf("]");
 			return (myTxt.mid(debut+1 , fin-debut -1 ));
 		}
 	}
@@ -114,13 +114,13 @@ QString core_syntax::returnArg(int index)
 	QString withoutEscapeKeyTxt=myTxt;
 	withoutEscapeKeyTxt.replace("\\\\","AA").replace("\\;","AA");
 
-	debut = myTxt.find("]");
+	debut = myTxt.indexOf("]");
 	if (debut==-1) return ("");
 	for (i=1 ; i<=index ; ++i)
 	{
 		debut+=1;
 
-		fin=withoutEscapeKeyTxt.find(";",debut);
+		fin=withoutEscapeKeyTxt.indexOf(";",debut);
 		if (index==i)
 		{
 			if (fin!=-1) return (removeEscapeKeys(myTxt.mid(debut , fin-debut )));

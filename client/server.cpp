@@ -23,8 +23,8 @@
  /**
 	\class server
 	\brief Class of server items
-	\date 2007-07-05
-	\version 1.1
+	\date 2008-11-08
+	\version 2.0
 	\author Daniel Rocher
 	\sa machine user service
 
@@ -35,20 +35,27 @@
 
 #include "server.h"
 
+// know instancies
+QList<QTreeWidgetItem *> QTreeWidgetItemList;
+
+extern void debugQt(const QString & message);
+
 int server::compteur_objet=0;
 
-server::server(Q3ListView * parent) : Q3ListViewItem(parent)
+server::server(QTreeWidget * parent) : QTreeWidgetItem(parent)
 {
 	debugQt("Object server : "+QString::number(++compteur_objet));
-	Q3ListViewItemList.append(this);
+	QTreeWidgetItemList.append(this);
 	SambaVersion="";
-	this->setPixmap( 0, QPixmap(":/icons/server.png") ); //icon
-	this->setOpen( TRUE ); // Sets item to be open
+	QIcon icon;
+	icon.addPixmap(QPixmap(":/icons/server.png"), QIcon::Normal, QIcon::Off);
+	this->setIcon( 0, icon ); //icon
+	this->setExpanded ( true ); // Sets item to be open
 }
 server::~server()
 {
 	debugQt("Object server : "+QString::number(--compteur_objet));
-	Q3ListViewItemList.removeAll (this);
+	QTreeWidgetItemList.removeAll (this);
 }
 
 /**
@@ -58,24 +65,22 @@ server::~server()
 void server::refresh_childs()
 {
 	debugQt("server::refresh_childs()");
-	machine * item_temp;
-	machine * Child= dynamic_cast<machine *>(this->firstChild());
-	while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		machine * Child= dynamic_cast<machine *>(this->child (i) );
+		if (!Child) break;
+		
 		// if child doesn't exist any more
 		if (!Child->mark)
 		{
-			// delete child
-			item_temp= Child;
-			Child = dynamic_cast<machine *>(Child->nextSibling()); // next
-			delete item_temp;  // delete item and his children
+			delete Child;  // delete item and his children
+			--i;
 			continue;
 		}
 		// if child exist
 		Child->refresh_childs();
-		Child = dynamic_cast<machine *>(Child->nextSibling());
 	}
-	this->setOpen( TRUE ); // Sets item to be open
+	this->setExpanded ( true ); // Sets item to be open
 }
 
 /**
@@ -87,12 +92,12 @@ void server::refresh_childs()
 void server::mark_childs()
 {
 	debugQt("server::mark_childs()");
-	machine * Child= dynamic_cast<machine *>(this->firstChild());
-	 while ( Child )
+	for (int i=0;  i < this->childCount (); ++i )
 	{
+		machine * Child= dynamic_cast<machine *>(this->child (i) );
+		if (!Child) break;
 		Child->mark=false;
 		Child->mark_childs();
-		Child = dynamic_cast<machine *>(Child->nextSibling());
 	}
 }
 
@@ -102,10 +107,11 @@ void server::mark_childs()
  */
 void server::add_user(const QString & PID,const QString & Name,const QString & Group,const QString & MachineName,const QString & MachineIP)
 {
-	machine * Child= dynamic_cast<machine *>(this->firstChild());
 	bool exist=false;
-	while ( Child )
+	for (int i=0; i < this->childCount (); ++i )
 	{
+		machine * Child= dynamic_cast<machine *>(this->child (i) );
+		if (!Child) break;
 		// if child exist
 		if  (Child->machine_name==MachineName)
 		{
@@ -115,7 +121,6 @@ void server::add_user(const QString & PID,const QString & Name,const QString & G
 			Child->append_user(PID,Name,Group);
 			return; // exit loop
 		}
-		Child = dynamic_cast<machine *>(Child->nextSibling());
 	}
 	// if not exist add machine
 	if (!exist) new machine (this,PID,Name,Group,MachineName,MachineIP);
@@ -127,12 +132,15 @@ void server::add_user(const QString & PID,const QString & Name,const QString & G
 **/
 void server::add_share(const QString & PID,const QString & Share,const QString & DateOpen)
 {
-	machine * Child= dynamic_cast<machine *>(this->firstChild());
-	while ( Child )
+	for (int i=0; i < this->childCount (); ++i )
 	{
-		user * grandChildren = dynamic_cast<user *>(Child->firstChild());
-		while (grandChildren)
+		machine * Child= dynamic_cast<machine *>(this->child (i) );
+		if (!Child) break;
+		for (int j=0; j < Child->childCount (); ++j )
 		{
+			user * grandChildren = dynamic_cast<user *>(Child->child (j));
+			if (!grandChildren) break;
+			
 			// if child exist
 			if  (grandChildren->pid==PID)
 			{
@@ -151,9 +159,7 @@ void server::add_share(const QString & PID,const QString & Share,const QString &
 				}
 				return; // exit loop
 			}
-			grandChildren = dynamic_cast<user *>(grandChildren->nextSibling());
 		}
-		Child = dynamic_cast<machine *>(Child->nextSibling());
 	}
 }
 
@@ -163,12 +169,14 @@ void server::add_share(const QString & PID,const QString & Share,const QString &
 **/
 void server::add_lockedfile(const QString & PID,const QString & File,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen)
 {
-	machine * Child= dynamic_cast<machine *>(this->firstChild());
-	while ( Child )
+	for (int i=0; i < this->childCount (); ++i )
 	{
-		user * grandChildren = dynamic_cast<user *>(Child->firstChild());
-		while (grandChildren)
+		machine * Child= dynamic_cast<machine *>(this->child (i) );
+		if (!Child) break;
+		for (int j=0; j < Child->childCount (); ++j )
 		{
+			user * grandChildren = dynamic_cast<user *>(Child->child (j));
+			if (!grandChildren) break;
 			// if child exist
 			if  (grandChildren->pid==PID)
 			{
@@ -187,9 +195,7 @@ void server::add_lockedfile(const QString & PID,const QString & File,const QStri
 				}
 				return; // exit loop
 			}
-			grandChildren = dynamic_cast<user *>(grandChildren->nextSibling());
 		}
-		Child = dynamic_cast<machine *>(Child->nextSibling());
 	}
 }
 
@@ -207,7 +213,7 @@ QString server::ViewInfoServer()
 	Return user informations
 	\sa ClientSocket::InfoUser
 */
-QString server::ViewInfoUser(Q3ListViewItem* Item)
+QString server::ViewInfoUser(QTreeWidgetItem* Item)
 {
 	debugQt("server::ViewInfoUser()");
 	QString message;
@@ -226,7 +232,7 @@ QString server::ViewInfoUser(Q3ListViewItem* Item)
 	Return machine informations
 	\sa ClientSocket::InfoMachine
 */
-QString server::ViewInfoMachine(Q3ListViewItem* Item)
+QString server::ViewInfoMachine(QTreeWidgetItem* Item)
 {
 	debugQt("server::ViewInfoMachine()");
 	QString message;
@@ -245,7 +251,7 @@ QString server::ViewInfoMachine(Q3ListViewItem* Item)
 	\sa  ClientSocket::InfoService
 	\sa TypeService
 */
-QString server::ViewInfoService(Q3ListViewItem* Item)
+QString server::ViewInfoService(QTreeWidgetItem* Item)
 {
 	debugQt("server::ViewInfoService()");
 	QString message;

@@ -39,8 +39,8 @@ process_smbd_exist::process_smbd_exist(const QString & MyPID,const QString & USE
 	debugQt("Object process_smbd_exist : "+QString::number(++compteur_objet));
 	State=begin;
 
-	MyPid=MyPID.stripWhiteSpace();
-	UserSamba=USER.stripWhiteSpace();
+	MyPid=MyPID.simplified();
+	UserSamba=USER.simplified();
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
@@ -94,7 +94,7 @@ void process_smbd_exist::readFromStdout(){
 	QString str(proc.readAllStandardOutput ());
 
 	debugQt(str);
-	if (str.contains (MyPid,false) && str.contains ("smbd",false))
+	if (str.contains (MyPid,Qt::CaseInsensitive) && str.contains ("smbd",Qt::CaseInsensitive))
 	{
 		// It's a correct process
 		State=find;

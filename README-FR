@@ -26,7 +26,7 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
 -------------------------------------------------------------
          Pour installer le serveur:
          **************************
-                  Verifier les dependances: pam-dev, ssl-dev et qt4-dev>=4.2
+                  Verifier les dependances: pam-dev et qt4-dev>=4.3
                   cd server
                   qmake
                   make
@@ -36,7 +36,7 @@ Cette application a un fonctionnement client/serveur. Les connexions sont securi
 
          Pour installer le client:
          *************************
-                  verifier les dependances: ssl-dev et qt4-dev>=4.2
+                  verifier les dependances: qt4-dev>=4.3
                   cd client
                   qmake
                   make

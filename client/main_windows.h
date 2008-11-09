@@ -24,14 +24,19 @@
 
 #include <QMainWindow>
 #include <QApplication>
+#include <QSslSocket>
+#include <QTimer>
 #include <QSystemTrayIcon>
+#include <QMenu>
+#include <QErrorMessage>
 
-#include "ui_form_smbstatus.h"
-
-#include "clientsocket.h"
+#include "build/ui/ui_form_smbstatus.h"
 #include "login_windows.h"
 #include "configure_windows.h"
 #include "log.h"
+#include "server.h"
+#include "smbstatus.h"
+#include "../common/core_syntax.h"
 
 extern void debugQt(const QString & message);
 
@@ -63,56 +68,88 @@ public slots:
 signals:
 	void refreshviewlog(const type_message &);
 private slots: // Private slots
-	virtual void helpAbout();
-	virtual void helpAboutQt();
-	virtual void ConfigureSlot();
-	virtual void MachineSearchSlot();
-	virtual void UserSearchSlot();
-	virtual void ShareSearchSlot();
-	virtual void FileSearchSlot();
-	virtual void AllSearchSlot();
-	virtual void NextSlot();
-	virtual void Slot_connect();
-	virtual void socketconnected();
-	virtual void socketclosed();
-	virtual void SignalErrorAuth();
+	void slot_timer();
+	void helpAbout();
+	void helpAboutQt();
+	void ConfigureSlot();
+	void AllSearchSlot();
+	void NextSlot();
+	void Slot_connect();
+	void socketConnected();
+	void socketClosed();
+	void core();
+	void InfoServer();
+	void InfoUser();
+	void InfoService();
+	void InfoMachine();
+	void slotSendMessage();
+	void slotSendMessageAllUsers();
+	void slotDisconnectUser();
+	void slotPopupMenu( const QPoint & );
+	void error(QAbstractSocket::SocketError);
+	void SslErrors (const QList<QSslError> &);
+	void errorAuth();
 	void on_action_View_log_triggered ();
 	void trayicon_activated(QSystemTrayIcon::ActivationReason reason);
 	void restore_minimize();
 	void configuration_changed();
-	//! Info CIFS/SMB for log and balloon messages
+	void setSambaVersion (const QString &);
+	void add_user (const QString &,const QString &,const QString &,const QString &,const QString &);
+	void add_share(const QString &,const QString &,const QString &);
+	void add_lockedfile(const QString &,const QString &,const QString &,const QString &,const QString &,const QString &);
+	void AnalysisSmbDestroyed();
 	void InfoSMB();
 private: // Private attributes
-	bool connected;
-	ClientSocket * clientsocket;
-	Q3ListViewItem * FindItem;
-	//! type of search (a machine, an user, ...)
-	enum T_Item{T_All,T_Machine,T_User,T_Share,T_File};
+	QErrorMessage * msgError;
+	QStringList ListSmbstatus;
+	server * item_server;
+	bool permitDisconnectUser;
+	bool permitSendMsg;
+	QMenu* menuPopup;
+	QTreeWidgetItem* currentPopupMenuItem;
+	QSslSocket sslSocket;
+	QTreeWidgetItem * FindItem;
 	//! direction of search 
 	enum T_Direction {to_first,to_preview,to_next};
-	QString currentSearchStr;
-	T_Item currentSearchItem;
+	QString SearchTxt;
+	int currentIndexOfListItem;
 	QAction * configure_action;
 	QAction * restore_action;
 	QAction * connect_action;
 	QAction * viewlog_action;
 	QSystemTrayIcon * trayicon;
+	QTimer timerSmbRequest;
+	QTimer timerinfoSmb;
 	bool firstTime;
 	LogForm * logform;
+	smbstatus * InstanceSmbstatus;
+	/**
+		These enums describe connection state.
+		\sa setWidgetState socketState
+	*/
+	enum socket_state {UnconnectedState,ConnectingState,ConnectedState};
+	/**
+		These enums describe protocol between server and client.
+		\sa core_syntax
+	*/
+	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,not_imp1,server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
 protected:
 	virtual void closeEvent(QCloseEvent *e);
 private: // Private methods
+	void infoserver(const QString & text);
+	void setWidgetState();
+	void Disconnect();
+	void sendToServer(int cmd,const QString & inputArg1="",const QString & inputArg2="");
+	short unsigned int socketState();
 	void writeHistoryFile();
 	void readHistoryFile();
 	void comboBox_valid();
 	void open_dialog_for_login();
-	void search(T_Item typeOfSearch,const QString & str,T_Direction direction=to_first);
-	void selectItem(Q3ListViewItem *item);
-	QString getSearchStr(const QString & msg);
-	Q3ListViewItem * nextItem(Q3ListViewItem * item);
+	void search(T_Direction direction=to_first);
+	void selectItem(QTreeWidgetItem *item);
 	void restoreWindowSize();
 	void saveWindowSize();
-
+	void AnalysisSmbstatus();
 };
 
 #endif

@@ -24,7 +24,6 @@
 
 //include Qt
 #include <QString>
-#include <Q3SocketDevice>
 
 /**
 	\mainpage QtSmbstatus
@@ -38,9 +37,9 @@
 
 
 // variables environnements
-QString version_qtsmbstatus="2.0.6";
-uint int_qtsmbstatus_version=206;
-QString date_qtsmbstatus="2008-11-08";
+QString version_qtsmbstatus="2.1";
+uint int_qtsmbstatus_version=210;
+QString date_qtsmbstatus="2008-11-09";
 QString auteur_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";
@@ -49,17 +48,24 @@ QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus
 //! view debug messages
 bool debug_qtsmbstatus=false;
 //! TCP port
-Q_UINT16  port_server=4443;
+quint16  port_server=4443;
 
 /**
-	view debug messages. The message is printed to stderr.
+	Write to console. The message is printed to stderr.
 */
-void debugQt(const QString & message) {if (debug_qtsmbstatus) qDebug(message.toUtf8()); }
+void writeToConsole (const QString & message) { qDebug(message.toUtf8()); }
+
+
+/**
+	view debug messages. The message is printed to stderr only if debug is enabled.
+*/
+void debugQt(const QString & message) {if (debug_qtsmbstatus) writeToConsole(message); }
+
 
 //! command line error
-void unsupported_options(char *erreur, const QString & usage) 
+void unsupported_options(char *error, const QString & usage) 
 {
-	qDebug("\n      Unsupported option : %s \n"+ usage , erreur);
+	writeToConsole(QString("\n      Unsupported option : %1 \n%2").arg(error).arg(usage));
 }
 
 /**
@@ -68,7 +74,7 @@ void unsupported_options(char *erreur, const QString & usage)
 */
 bool StrToBool(QString & value)
 {
-	if (value.lower()=="true") return true;
+	if (value.toLower()=="true") return true;
 	return false;
 }
 
@@ -97,85 +103,5 @@ bool validatePort(const int & port)
 		return false;
 	}
 	return true;
-}
-
-/**
-	Print to stderr, QSocketDevice error
-	\param errorcode code error
-	\sa SSL_print_error
-*/
-void Socket_print_error (int errorcode) 
-{ 
-	switch (errorcode) {
-	case 0:
-		return;
-		break;
-	case Q3SocketDevice::AlreadyBound:
-		qDebug  ("The device is already bound, according to bind().") ;
-		break;
-	case Q3SocketDevice::Inaccessible:
-		qDebug  ( "The operating system or firewall prohibited the action.") ;
-		break;
-	case Q3SocketDevice::NoResources:
-		qDebug  ( " The operating system ran out of a resource. ") ;
-		break;
-	case Q3SocketDevice::InternalError:
-		qDebug  ( "An internal error occurred in QSocketDevice.") ;
-		break;
-	case Q3SocketDevice::Impossible:
-		qDebug  ( "An attempt was made to do something which makes no sense") ;
-		break;
-	case Q3SocketDevice::NoFiles:
-		qDebug  ( "The operating system will not let QSocketDevice open another file.") ;
-		break;
-	case Q3SocketDevice::ConnectionRefused:
-		qDebug  ( " A connection attempt was rejected by the peer.") ;
-		break;
-	case Q3SocketDevice::NetworkFailure:
-		qDebug  ( " There is a network failure. " );
-		break;
-	case Q3SocketDevice::UnknownError:
-		qDebug  ( " The operating system did something unexpected. ") ;
-		break;
-	default:
-		qDebug  ( "Socket error");
-	}
-}
-
-/**
-	Print to stderr, TLS/SSL error
-	\param errorcode code error
-	\sa Socket_print_error
-*/
-void SSL_print_error(int errorcode) 
-{
-	switch (errorcode) {
-	case SSL_ERROR_NONE:
-		qDebug  (  "SSL Operation successful");
-		break;
-	case SSL_ERROR_ZERO_RETURN:
-		qDebug  (  "SSL socket shutdown cleanly") ;
-		break;
-	case SSL_ERROR_WANT_READ:
-		qDebug  ( "SSL want read") ;
-		break;
-	case SSL_ERROR_WANT_WRITE:
-		qDebug  ( "SSL want write") ;
-		break;
-	case SSL_ERROR_WANT_CONNECT:
-		qDebug  ( "SSL want connect") ;
-		break;
-	case SSL_ERROR_WANT_X509_LOOKUP:
-		qDebug  ( "SSL want x509 lookup" );
-		break;
-	case SSL_ERROR_SYSCALL:
-		qDebug  ( "SSL io error") ;
-		break;
-	case SSL_ERROR_SSL:
-		qDebug  ( "SSL protocol error" );
-		break;
-	default:
-		qDebug  ( "SSL Unknown error");
-	}
 }
 

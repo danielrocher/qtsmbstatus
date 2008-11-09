@@ -22,16 +22,12 @@
 #define SERVICE_H
 
 #include <QPixmap>
-#include <Q3ListView>
+#include <QTreeWidgetItem>
 
-
-extern void debugQt(const QString & message);
-extern QList<Q3ListViewItem *> Q3ListViewItemList;
-
-class service : public Q3ListViewItem  {
+class service : public QTreeWidgetItem  {
 public:
-	service(Q3ListViewItem * parent,const QString & PID,const QString & Share,const QString & DateOpen);
-	service(Q3ListViewItem * parent,const QString & PID,const QString & FileName,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen);
+	service(QTreeWidgetItem * parent,const QString & PID,const QString & Share,const QString & DateOpen);
+	service(QTreeWidgetItem * parent,const QString & PID,const QString & FileName,const QString & DenyMode,const QString & RW,const QString & Oplock,const QString & DateOpen);
 	virtual ~service();
 	static int compteur_objet;
 	bool mark;

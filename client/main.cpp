@@ -21,10 +21,12 @@
 #include <QApplication>
 #include <QtGui>
 
+#include "smbstatus.h"
+#include "instances_dlg.h"
 #include "main_windows.h"
 
 
-extern void unsupported_options(char *erreur, const QString & usage);
+extern void unsupported_options(char *error, const QString & usage);
 extern bool validatePort(const int & port);
 extern bool StrToBool(QString & value);
 extern QString BoolToStr(bool & value);
@@ -315,13 +317,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	MyApplication a( argc, argv );
+	MyApplication app( argc, argv );
 
 	//  < translate >
 
 	QTranslator qtTranslator;
 	qtTranslator.load("qt_" + QLocale::system().name());
-	a.installTranslator(&qtTranslator);
+	app.installTranslator(&qtTranslator);
 
 
 	QString translate_file;
@@ -340,26 +342,29 @@ int main(int argc, char *argv[])
 	}
 	#endif
 
-	a.installTranslator( &myappTranslator );
+	app.installTranslator( &myappTranslator );
 	//  < /translate >
 
-	a.setQuitOnLastWindowClosed ( false );
+	app.setQuitOnLastWindowClosed ( false );
 	main_windows fenetre_principale;
-	a.connect (&a, SIGNAL(quitMyApp()),&fenetre_principale,SLOT(beforeQuit()));
+	if (debug_qtsmbstatus)
+	{
+		instances_dlg * tempdlg = new instances_dlg(&fenetre_principale);
+		tempdlg->show();
+	}
+	app.connect (&app, SIGNAL(quitMyApp()),&fenetre_principale,SLOT(beforeQuit()));
 	fenetre_principale.show();
-	int value_return=a.exec();
+	int value_return=app.exec();
 
 	// for debug only
 	debugQt("\n\n ___________ OBJECTS _________________");
-	debugQt("ClientSocket        : "+QString::number(ClientSocket::compteur_objet));
-	debugQt("ClientSSL           : "+QString::number(ClientSSL::compteur_objet));
 	debugQt("LineCore            : "+QString::number(LineCore::compteur_objet));
 	debugQt("server              : "+QString::number(server::compteur_objet));
 	debugQt("machine             : "+ QString::number(machine::compteur_objet));
 	debugQt("user                : "+ QString::number(user::compteur_objet));
 	debugQt("service             : "+ QString::number(service::compteur_objet));
 	debugQt("smbstatus           : "+ QString::number(smbstatus::compteur_objet));
-	if ((ClientSocket::compteur_objet+ClientSSL::compteur_objet+LineCore::compteur_objet+server::compteur_objet
+	if ((LineCore::compteur_objet+server::compteur_objet
 		+machine::compteur_objet+user::compteur_objet+service::compteur_objet+smbstatus::compteur_objet)==0)
 		debugQt("\nDeleted objects : OK\n"); else debugQt("\nDeleted objects : Error !\n");
 	return value_return;

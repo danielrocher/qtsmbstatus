@@ -32,7 +32,7 @@ Possibilities include:
         To install server:
         ******************
 
-        Check dependency: pam-dev, ssl-dev and qt4-dev>=4.2
+        Check dependency: pam-dev and qt4-dev>=4.3
 
                   cd server
                   qmake
@@ -45,7 +45,7 @@ Possibilities include:
         To install client:
         ******************
 
-        Check dependency: ssl-dev and qt4-dev>=4.2
+        Check dependency: qt4-dev>=4.3
 
                   cd client
                   qmake
