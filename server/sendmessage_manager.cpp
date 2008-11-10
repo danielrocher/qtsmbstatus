@@ -23,8 +23,8 @@
 /**
 	\class Sendmessage_manager
 	\brief Send message popup (smbclient required)
-	\date 2008-11-04
-	\version 1.1
+	\date 2008-11-10
+	\version 1.2
 	\author Daniel Rocher
 	\param machine Machine name
 	\param message message to be sent
@@ -36,26 +36,28 @@ int Sendmessage_manager::compteur_objet=0;
 Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString & message,QObject *parent) : QObject(parent) {
 	debugQt("Object Sendmessage_manager : "+ QString::number(++compteur_objet));
 
+	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
+	
 	to_machine=machine.simplified();
 	my_message=message.simplified();
 
 	my_message.replace( "\"", " ").replace( "\\", " ");
-	my_message="echo \"" + my_message +  "\" | smbclient -M " + to_machine;
+	my_message="echo " + my_message +  " | smbclient -M " + to_machine;
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
 	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
 	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
 
-	QStringList arguments;
-	arguments << "-c" << my_message;
-	debugQt ("Send message to "+machine+ " - sh " + arguments.join(" "));
-
-	proc.start("sh",arguments,QIODevice::ReadOnly);
+	QByteArray str;
+	str.append ( "sh -c \"" + my_message + "\"");
+	debugQt ("Send message to "+machine+ " - "+ str);
+	proc.start(str,QIODevice::ReadOnly);
 }
 
 Sendmessage_manager::~Sendmessage_manager(){
 	debugQt("Object Sendmessage_manager : "+ QString::number(--compteur_objet));
+	delete m_textDecoder;
 }
 
 /**
@@ -89,7 +91,7 @@ void Sendmessage_manager::error(QProcess::ProcessError err) {
 */
 void Sendmessage_manager::ReadStderr(){
 	debugQt("Sendmessage_manager::ReadStderr()");
-	QString str(proc.readAllStandardError());
+	QString str=m_textDecoder->toUnicode(proc.readAllStandardError());
 	debugQt(str);
 
 	emit ObjError(tr("Failed to send message")+" : "+ str );
@@ -102,7 +104,7 @@ void Sendmessage_manager::ReadStderr(){
 void Sendmessage_manager::readFromStdout(){
 
 	debugQt("Sendmessage_manager::readFromStdout()");
-	QString str(proc.readAllStandardOutput ());
+	QString str(m_textDecoder->toUnicode(proc.readAllStandardOutput()));
 	debugQt(str);
 	
 	if (str.contains ("Cannot resolve",Qt::CaseInsensitive) or str.contains (" failed",Qt::CaseInsensitive) or str.contains ("ERRSRV",Qt::CaseInsensitive))

@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QProcess>
+#include <QTextCodec>
 
 class QString;
 
@@ -43,6 +44,7 @@ private: // Private attributes
 	QString MyPid;
 	QString UserSamba;
 	enum {begin,find} State;
+	QTextDecoder * m_textDecoder;
 private slots: // Private slots
 	void end_process();
 	void readFromStdout();

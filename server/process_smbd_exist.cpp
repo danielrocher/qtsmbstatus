@@ -25,8 +25,8 @@ int process_smbd_exist::compteur_objet=0;
 /**
 	\class process_smbd_exist
 	\brief test if PID it's a correct smbd process.
-	\date 2008-11-04
-	\version 1.1
+	\date 2008-11-10
+	\version 1.2
 	\author Daniel Rocher
 	\param MyPID PID of process
 	\param USER username
@@ -37,6 +37,8 @@ process_smbd_exist::process_smbd_exist(const QString & MyPID,const QString & USE
  : QObject(parent)
 {
 	debugQt("Object process_smbd_exist : "+QString::number(++compteur_objet));
+	
+	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
 	State=begin;
 
 	MyPid=MyPID.simplified();
@@ -56,6 +58,7 @@ process_smbd_exist::process_smbd_exist(const QString & MyPID,const QString & USE
 process_smbd_exist::~process_smbd_exist()
 {
 	debugQt("Object process_smbd_exist : "+QString::number(--compteur_objet));
+	delete m_textDecoder;
 }
 
 
@@ -91,7 +94,7 @@ void process_smbd_exist::error(QProcess::ProcessError err) {
 */
 void process_smbd_exist::readFromStdout(){
 	debugQt("process_smbd_exist::readFromStdout()");
-	QString str(proc.readAllStandardOutput ());
+	QString str=m_textDecoder->toUnicode(proc.readAllStandardOutput());
 
 	debugQt(str);
 	if (str.contains (MyPid,Qt::CaseInsensitive) && str.contains ("smbd",Qt::CaseInsensitive))

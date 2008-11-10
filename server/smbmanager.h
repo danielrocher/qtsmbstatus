@@ -23,6 +23,7 @@
 
 #include <QProcess>
 #include <QObject>
+#include <QTextCodec>
 
 class QStringList;
 
@@ -38,7 +39,7 @@ private: // Private attributes
 	QProcess proc;
 	QByteArray data;
 	bool requestFailed;
-  
+	QTextDecoder * m_textDecoder;
 private slots: // Private slots
 	void end_process ();
 	void read_data ();

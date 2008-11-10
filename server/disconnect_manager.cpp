@@ -26,8 +26,8 @@ int disconnect_manager::compteur_objet=0;
 /**
 	\class disconnect_manager
 	\brief Kill a process
-	\date 2008-11-03
-	\version 1.1
+	\date 2008-11-10
+	\version 1.2
 	\author Daniel Rocher
 	\param MyPID PID of process
 	\param USER username
@@ -37,6 +37,8 @@ int disconnect_manager::compteur_objet=0;
 disconnect_manager::disconnect_manager(const QString & MyPID,const QString & USER,QObject *parent ) : QObject(parent)
 {
 	debugQt("Object disconnect_manager : "+QString::number(++compteur_objet));
+	
+	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
 	MyPid=MyPID.simplified();
 	user=USER.simplified();
 
@@ -55,6 +57,7 @@ disconnect_manager::disconnect_manager(const QString & MyPID,const QString & USE
 disconnect_manager::~disconnect_manager()
 {
 	debugQt("Object disconnect_manager : "+QString::number(--compteur_objet));
+	delete m_textDecoder;
 }
 
 
@@ -101,7 +104,7 @@ void disconnect_manager::ReadStderr()
 
 	debugQt("disconnect_manager::ReadStderr()");
 
-	QString str(proc.readAllStandardError());
+	QString str=m_textDecoder->toUnicode(proc.readAllStandardError());
 	debugQt(str);
 
 	emit ObjError(tr("Failed to disconnect user")+" "+ user + " : "  + str );

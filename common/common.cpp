@@ -24,6 +24,8 @@
 
 //include Qt
 #include <QString>
+#include <QTextEncoder>
+#include <QTextCodec>
 
 /**
 	\mainpage QtSmbstatus
@@ -39,7 +41,7 @@
 // variables environnements
 QString version_qtsmbstatus="2.1";
 uint int_qtsmbstatus_version=210;
-QString date_qtsmbstatus="2008-11-09";
+QString date_qtsmbstatus="2008-11-10";
 QString auteur_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";
@@ -51,9 +53,15 @@ bool debug_qtsmbstatus=false;
 quint16  port_server=4443;
 
 /**
+	detect text encodings for locale
+	\sa writeToConsole debugQt
+*/
+QTextEncoder * encoder=QTextCodec::codecForLocale()->makeEncoder();
+
+/**
 	Write to console. The message is printed to stderr.
 */
-void writeToConsole (const QString & message) { qDebug(message.toUtf8()); }
+void writeToConsole (const QString & message) { qDebug("%s",encoder->fromUnicode ( message ).data()); }
 
 
 /**

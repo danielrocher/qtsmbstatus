@@ -26,8 +26,8 @@ int smbmanager::compteur_objet=0;
 /**
 	\class smbmanager
 	\brief start smbstatus process
-	\date 2008-11-03
-	\version 1.0
+	\date 2008-11-10
+	\version 1.2
 	\author Daniel Rocher
 	\param parent pointer to parent for this object
  */
@@ -35,7 +35,9 @@ smbmanager::smbmanager(QObject *parent ) : QObject(parent)
 {
 	debugQt("Object smbmanager : "+ QString::number(++compteur_objet));
 	requestFailed=false;
-
+	
+	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
+	
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(read_data()) );
 	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
@@ -47,6 +49,7 @@ smbmanager::smbmanager(QObject *parent ) : QObject(parent)
 smbmanager::~smbmanager()
 {
 	debugQt("Object smbmanager : "+ QString::number(--compteur_objet));
+	delete m_textDecoder;
 }
 
 
@@ -84,11 +87,10 @@ void smbmanager::error(QProcess::ProcessError err) {
 void smbmanager::ReadStderr()
 {
 	debugQt("smbmanager::ReadStderr()");
-	QString str(proc.readAllStandardError());
+	QString str=m_textDecoder->toUnicode(proc.readAllStandardError());
 	debugQt(str);
 
 	emit ObjError(tr("Smbstatus request error")+" : "+ str );
-	requestFailed=true;
 }
 
 
@@ -98,7 +100,7 @@ void smbmanager::ReadStderr()
 void smbmanager::read_data ()
 {
 	debugQt("smbmanager::read_data ()");
-	data.append(proc.readAllStandardOutput ());
+	data.append(m_textDecoder->toUnicode(proc.readAllStandardOutput()));
 }
 
 /**

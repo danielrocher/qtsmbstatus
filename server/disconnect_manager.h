@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QProcess>
+#include <QTextCodec>
 
 class QString;
 
@@ -38,6 +39,7 @@ private: // Private attributes
 	QProcess proc;
 	QString MyPid;
 	QString user;
+	QTextDecoder * m_textDecoder;
 private slots: // Private slots
 	void end_process();
 	void ReadStderr();
