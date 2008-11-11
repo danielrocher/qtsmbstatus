@@ -27,8 +27,8 @@
 /**
 	\class LineCore
 	\brief Analysis the lines of smbstatus reply.
-	\date 2007-06-15
-	\version 1.0
+	\date 2008-11-11
+	\version 1.1
 	\author Daniel Rocher
 	\sa smbstatus
 */
@@ -58,7 +58,7 @@ LineCore::~LineCore()
 	Init header. Received header for one section.
 	\param OneHeader header of one section (connections, shares, locked files, ...).
 
-	Exemple:
+	Example:
 	\verbatim
 	Pid    DenyMode   Access      R/W        Oplock           Name
 	\endverbatim
@@ -80,20 +80,20 @@ void LineCore::InitHeader(const QString & OneHeader)
 	\retval true field exist
 	\retval false field doesn't exist
 	\sa InitHeader
-	Exemple: "Pid", "DenyMode", ...
+	Example: "Pid", "DenyMode", ...
 */
-bool LineCore::InitElement(QString element)
+bool LineCore::InitElement(const QString & element)
 {
 	debugQt("LineCore::InitElement("+element+")");
 	if (!initHead) return false;
 	record mon_record;
 
-	mon_record.Begin=header.find(element,0,false);
+	mon_record.Begin=header.indexOf (element,0,Qt::CaseInsensitive);
 	// field doesn't exist
 	if (mon_record.Begin==-1) return false;
 
 	// find first space+characters after 'element'
-	mon_record.End=header.find(QRegExp("[\\s][\\S]"),mon_record.Begin+element.length());
+	mon_record.End=header.indexOf(QRegExp("[\\s][\\S]"),mon_record.Begin+element.length());
 	mon_record.New_Begin=0;
 	mon_record.New_End=0;
 	mon_record.Value="";
@@ -108,7 +108,7 @@ bool LineCore::InitElement(QString element)
 	Analysis one line
 	\param OneLine one line of smbstatus (without the header).
 
-	Exemple:
+	Example:
 	\verbatim
 	3456   DENY_NONE  0x1         RDONLY     NONE             /home/villou/Utilitaires/qtsmbstatus.pdf   Fri Sep 10 14:14:12 2004
 	\endverbatim
@@ -124,7 +124,7 @@ void LineCore::Analysis(const QString & OneLine)
 	line=OneLine;
 	int resu=0;
 	int CumulDelta=0;
-	recordList::iterator itI;
+	QList<record>::iterator itI;
 
 	for (itI = listElement.begin(); itI != listElement.end(); ++itI )
 	{
@@ -133,7 +133,7 @@ void LineCore::Analysis(const QString & OneLine)
 		// if not first field
 		if ((*itI).Begin!=0)
 		{
-			resu=line.find(QRegExp("[\\s][\\S]"),-back+(*itI).Begin+CumulDelta);
+			resu=line.indexOf(QRegExp("[\\s][\\S]"),-back+(*itI).Begin+CumulDelta);
 			(*itI).New_Begin=resu+1;
 			CumulDelta=(*itI).New_Begin-(*itI).Begin;
 		}
@@ -144,11 +144,11 @@ void LineCore::Analysis(const QString & OneLine)
 		}
 		else
 		{
-			resu=line.find(QRegExp("[\\s][\\S]"),-back+(*itI).End+CumulDelta);
+			resu=line.indexOf(QRegExp("[\\s][\\S]"),-back+(*itI).End+CumulDelta);
 			(*itI).New_End=resu;
 			CumulDelta=(*itI).New_End-(*itI).End;
 		}
-		(*itI).Value=(line.mid((*itI).New_Begin,(*itI).New_End-(*itI).New_Begin)).stripWhiteSpace();
+		(*itI).Value=(line.mid((*itI).New_Begin,(*itI).New_End-(*itI).New_Begin)).trimmed();
 
 		 /*debugQt( "  Begin:"+QString::number((*itI).Begin)+
 			"  End:"+QString::number((*itI).End)+
@@ -165,14 +165,14 @@ void LineCore::Analysis(const QString & OneLine)
 	\param element field name
 	\return one field contents
 */
-QString LineCore::ReturnElement(QString element)
+QString LineCore::ReturnElement(const QString & element)
 {
 	debugQt("LineCore::ReturnElement("+element+")");
 	if (!initHead || !analysisProc) return "";
-	recordList::iterator itI;
+	QList<record>::iterator itI;
 	for (itI = listElement.begin(); itI != listElement.end(); ++itI )
 	{
-		if (((*itI).Ident).lower()==element.lower()) return ((*itI).Value);
+		if (((*itI).Ident).toLower()==element.toLower ()) return ((*itI).Value);
 	}
 	// if doesn't exist
 	return "";
@@ -188,9 +188,9 @@ void LineCore::SortElements()
 	if (!initHead) return;
 	int plus_petit;
 
-	recordList::iterator itI;
-	recordList::iterator itJ;
-	recordList::iterator position;
+	QList<record>::iterator itI;
+	QList<record>::iterator itJ;
+	QList<record>::iterator position;
 	record mon_record;
 	for (itI = listElement.begin(); itI != listElement.end(); ++itI )
 	{

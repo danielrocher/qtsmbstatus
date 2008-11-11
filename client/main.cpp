@@ -30,6 +30,8 @@ extern void unsupported_options(char *error, const QString & usage);
 extern bool validatePort(const int & port);
 extern bool StrToBool(QString & value);
 extern QString BoolToStr(bool & value);
+extern void debugQt(const QString & message);
+extern void writeToConsole(const QString & message);
 
 extern uint int_qtsmbstatus_version;
 
@@ -69,10 +71,10 @@ void convertto201()
 	int limit_log_conf;
 	QString username_login_conf;
 
-	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
+	QFile f1( QDir::homePath () + "/.qtsmbstatus.conf" );
 	if ( !f1.open( QIODevice::ReadOnly | QIODevice::Text ) )
 	{
-		qDebug("Create configuration file, Use default settings.");
+		writeToConsole("Create configuration file, Use default settings.");
 		writeConfigFile(); // create configuration file, use default value
 		return;
 	}
@@ -80,12 +82,12 @@ void convertto201()
 	while ( !t.atEnd() )
 	{
 		ligne =  t.readLine();
-		ligne = ligne.simplifyWhiteSpace();
+		ligne = ligne.simplified();
 		if ((ligne.mid(0,1) == "#") || (ligne.length ()==0)) continue;
 		if (ligne.contains("="))
 		{
-			attr= (ligne.mid(0,ligne.find("="))).simplifyWhiteSpace();
-			variable = (ligne.mid(ligne.find("=")+1)).simplifyWhiteSpace();
+			attr= (ligne.mid(0,ligne.indexOf("="))).simplified();
+			variable = (ligne.mid(ligne.indexOf("=")+1)).simplified();
 			if (attr=="port")
 			{
 				port_conf=(variable).toInt(&ok);
@@ -147,7 +149,7 @@ void writeConfigFile()
 	QFile f1( QDir::homeDirPath () + "/.qtsmbstatus.conf" );
 	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
 	{
-		qDebug("Impossible to create configuration file");
+		writeToConsole("Impossible to create configuration file");
 		return;
 	}
 	QTextStream t( &f1 );
@@ -249,7 +251,7 @@ int main(int argc, char *argv[])
 	{
 		if (QString(argv[i])=="--help")
 		{
-			qDebug(usage);
+			writeToConsole(usage);
 			return 0;
 		}
 		if (argv[i][0] == '-')
@@ -261,12 +263,12 @@ int main(int argc, char *argv[])
 					interval=(QString(argv[++i])).toInt(&ok);
 					if (ok==false) // bad conversion, quit
 					{
-						qDebug("\n    Missing argument : -i   \n" + usage);
+						writeToConsole("\n    Missing argument : -i   \n" + usage);
 						return 1;
 					}
 					if (interval<3)
 					{
-						qDebug("\n    Interval it must be higher than two seconds (option: -i)  \n");
+						writeToConsole("\n    Interval it must be higher than two seconds (option: -i)  \n");
 						return 1;
 					}
 				}
@@ -282,7 +284,7 @@ int main(int argc, char *argv[])
 					port_server=(QString(argv[++i])).toInt(&ok);
 					if (ok==false)  // bad conversion, quit
 					{
-						qDebug("\n    Missing argument : -p   \n" + usage);
+						writeToConsole("\n    Missing argument : -p   \n" + usage);
 						return 1;
 					}
 					if (!validatePort(port_server)) return 1; // port not valid
@@ -302,7 +304,7 @@ int main(int argc, char *argv[])
 				}
 				break;
 			case 'v': //version
-				if (argv[i][2]=='\0')  qDebug("QtSmbstatus version : " + version_qtsmbstatus); // view qtsmbstatus version
+				if (argv[i][2]=='\0')  writeToConsole("QtSmbstatus version : " + version_qtsmbstatus); // view qtsmbstatus version
 				else
 				{
 					unsupported_options(argv[i],usage);

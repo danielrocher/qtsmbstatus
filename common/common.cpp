@@ -41,7 +41,7 @@
 // variables environnements
 QString version_qtsmbstatus="2.1";
 uint int_qtsmbstatus_version=210;
-QString date_qtsmbstatus="2008-11-10";
+QString date_qtsmbstatus="2008-11-11";
 QString auteur_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";
@@ -107,7 +107,7 @@ bool validatePort(const int & port)
 {
 	if ((port < 1024) || (port > 49151))
 	{
-		qDebug ( "available port : > 1023 and < 49152");
+		writeToConsole ( "available port : > 1023 and < 49152");
 		return false;
 	}
 	return true;

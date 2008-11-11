@@ -83,7 +83,7 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	trayicon->setContextMenu ( menuApp );
 	connect(trayicon,SIGNAL(activated ( QSystemTrayIcon::ActivationReason ) ),this,SLOT(trayicon_activated(QSystemTrayIcon::ActivationReason)));
 	restoreWindowSize();
-	this->setCaption ( "QtSmbstatus client "+version_qtsmbstatus); // forms title
+	this->setWindowTitle ( "QtSmbstatus client "+version_qtsmbstatus); // forms title
 	// create statusBar
 	statusBar()->showMessage (tr("Impossible to know samba version")); //status bar
 
@@ -96,10 +96,11 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	menuPopup = new QMenu( treeWidget );
 	connect(treeWidget, SIGNAL( customContextMenuRequested ( const QPoint & ) ), this, SLOT( slotPopupMenu( const QPoint & ) ) );
 	
+	comboBox_hostaddr->setDuplicatesEnabled ( false );
 	// read the address history
 	readHistoryFile();
+	comboBox_hostaddr->setEditText (host);
 
-	comboBox_hostaddr->setCurrentText (host);
 
 	// Socket SSL/TLS
 	connect(&sslSocket, SIGNAL( encrypted() ), this, SLOT(socketConnected() ) );
@@ -257,7 +258,7 @@ void main_windows::writeHistoryFile()
 			int index=0;
 			while (index<comboBox_hostaddr->count ())
 			{
-				settings.setValue("recentAddress"+QString::number(index),comboBox_hostaddr->text(index) );
+				settings.setValue("recentAddress"+QString::number(index),comboBox_hostaddr->itemText(index) );
 				index++;
 			}
 		settings.endGroup();
@@ -279,7 +280,7 @@ void main_windows::readHistoryFile()
 			{
 				value=settings.value( "recentAddress" +QString::number( i) ).toString();
 				if (!value.isEmpty())
-					comboBox_hostaddr->insertItem( value );
+					comboBox_hostaddr->addItem (  value );
 			}
 		settings.endGroup();
 	settings.endGroup();
@@ -294,14 +295,14 @@ void main_windows::comboBox_valid()
 	debugQt ("main_windows::comboBox_valid()");
 	int index=1;
 	QString texte = comboBox_hostaddr->currentText ();
-	comboBox_hostaddr->insertItem (texte,0);
+	comboBox_hostaddr->insertItem (0,texte);
 	while (index<comboBox_hostaddr->count ())
 	{
-		if ((comboBox_hostaddr->text(index) == texte) || (index > 19) )
+		if ((comboBox_hostaddr->itemText(index) == texte) || (index > 19) )
 			comboBox_hostaddr->removeItem (index);
 		else index++;
 	}
-	comboBox_hostaddr->setCurrentItem(0);
+	comboBox_hostaddr->setCurrentIndex(0);
 }
 
 
@@ -388,9 +389,9 @@ void main_windows::socketClosed()
 */
 void main_windows::error (QAbstractSocket::SocketError socketError) {
 	debugQt("main_windows::error()");
-	statusBar()->showMessage(tr(sslSocket.errorString()));
+	statusBar()->showMessage(sslSocket.errorString());
 	if (socketError!=QAbstractSocket::RemoteHostClosedError)
-		QMessageBox::warning ( this, "QtSmbstatus",tr(sslSocket.errorString()));
+		QMessageBox::warning ( this, "QtSmbstatus",sslSocket.errorString());
 	qWarning() << sslSocket.errorString();
 	Disconnect();
 }
@@ -444,9 +445,9 @@ void main_windows::setWidgetState() {
 			actionIsEnabled=false;
 			break;
 	}
-	pushButton_connect->setPixmap( pixmap );
-	connect_action->setIcon( pixmap );
-	action_Connect->setIcon( pixmap );
+	pushButton_connect->setIcon(QIcon(pixmap));
+	connect_action->setIcon(QIcon(pixmap));
+	action_Connect->setIcon(QIcon(pixmap));
 	connect_action->setText( label );
 	action_Connect->setText( label );
 	searchAll->setEnabled ( actionIsEnabled );
@@ -567,7 +568,7 @@ void main_windows::AllSearchSlot()
 	debugQt("main_windows::AllSearchSlot()");
 	bool ok;
 	currentIndexOfListItem=0;
-	QString txt = QInputDialog::getText("Search", tr("Find text")+":", QLineEdit::Normal,QString::null, &ok, this );
+	QString txt = QInputDialog::getText(this,"Search", tr("Find text")+":", QLineEdit::Normal,QString::null, &ok );
 	if ( ok && !txt.isEmpty() ) {
 		SearchTxt=txt;
 		search();
@@ -715,7 +716,7 @@ void main_windows::infoserver(const QString & text)
 	bool ok;
 	permitDisconnectUser=false;
 	permitSendMsg=false;
-	int value = (text.mid(text.find("]")+1)).toInt(&ok);
+	int value = (text.mid(text.indexOf("]")+1)).toInt(&ok);
 	debugQt("Info Serveur : "+QString::number(value));
 	if ( ok )
 	{
@@ -886,7 +887,7 @@ void main_windows::add_share(const QString & strPid ,const QString & strShare,co
 {
 	debugQt("main_windows::add_share ()");
 	// if hidden shares
-	if (!view_hidden_shares && (strShare.find(QRegExp("\\$$"))!=-1)) return;
+	if (!view_hidden_shares && (strShare.indexOf(QRegExp("\\$$"))!=-1)) return;
 	item_server->add_share(strPid,strShare,strConnected);
 }
 
@@ -913,7 +914,6 @@ void main_windows::add_lockedfile(const QString & strPid,const QString & strName
 */
 void main_windows::slotPopupMenu(  const QPoint & point )
 {
-	int id;
 	currentPopupMenuItem = treeWidget->itemAt ( point );
 	// if deconnected, no popup menu
 	if (socketState()!=ConnectedState) return;
@@ -924,9 +924,9 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 
 		if (currentPopupMenuItem==item_server) // if a server item
 		{
-			menuPopup->insertItem( tr( "Properties"),this,SLOT(InfoServer() ) );
-			id=menuPopup->insertItem( tr( "Send out message to all users"),this,SLOT(slotSendMessageAllUsers() ) );
-			menuPopup->setItemEnabled(id,permitSendMsg);
+			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoServer() ) );
+			QAction * action=menuPopup->addAction ( tr( "Send out message to all users"),this,SLOT(slotSendMessageAllUsers() ) );
+			action->setEnabled(permitSendMsg);
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
@@ -934,9 +934,9 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 		{
 			machine * myItem=dynamic_cast<machine *>(currentPopupMenuItem);
 			if (!myItem) return;
-			menuPopup->insertItem( tr( "Properties"),this,SLOT(InfoMachine() ) );
-			id=menuPopup->insertItem( tr( "Send out message to")+ " " + myItem->machine_name,this,SLOT(slotSendMessage() ) );
-			menuPopup->setItemEnabled(id,permitSendMsg); // if client can send popup messages
+			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoMachine() ) );
+			QAction * action=menuPopup->addAction ( tr( "Send out message to")+ " " + myItem->machine_name,this,SLOT(slotSendMessage() ) );
+			action->setEnabled(permitSendMsg); // if client can send popup messages
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
@@ -944,14 +944,14 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 		{
 			user * myItem=dynamic_cast<user *>(currentPopupMenuItem);
 			if (!myItem) return;
-			menuPopup->insertItem( tr( "Properties"),this,SLOT(InfoUser() ) );
-			id=menuPopup->insertItem( tr( "Disconnect user")+ " " + myItem->username,this,SLOT(slotDisconnectUser() ) );
-			menuPopup->setItemEnabled(id,permitDisconnectUser); //  if client can disconnect an user
+			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoUser() ) );
+			QAction * action=menuPopup->addAction ( tr( "Disconnect user")+ " " + myItem->username,this,SLOT(slotDisconnectUser() ) );
+			action->setEnabled(permitDisconnectUser); //  if client can disconnect an user
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
 		// it's a locked file or share
-		menuPopup->insertItem( tr( "Properties"),this,SLOT(InfoService() ) );
+		menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoService() ) );
 		menuPopup->exec( QCursor::pos() );
 	}
 }
@@ -1016,9 +1016,9 @@ void main_windows::InfoMachine()
 void main_windows::slotSendMessageAllUsers() {
 	machine* Item;
 	bool ok;
-	QString message = QInputDialog::getText(
+	QString message = QInputDialog::getText(this,
             "QtSmbstatus", tr("Message to send")+":", QLineEdit::Normal,
-            QString::null, &ok, 0 );
+            QString::null, &ok);
 
 	if ( !ok || message.isEmpty() || socketState()!=ConnectedState ) return;
 	
@@ -1042,9 +1042,9 @@ void main_windows::slotSendMessage() {
 	machine* Item=dynamic_cast<machine *>(currentPopupMenuItem);
 	if (!Item) return;
 
-	QString message = QInputDialog::getText(
+	QString message = QInputDialog::getText(this,
 		"QtSmbstatus", tr("Message to send to %1:").arg(Item->machine_name), QLineEdit::Normal,
-            QString::null, &ok, 0 );
+            QString::null, &ok);
 	if ( ok && !message.isEmpty() && socketState()==ConnectedState )
 	{
 		// user entered something and pressed OK

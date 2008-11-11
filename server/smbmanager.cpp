@@ -90,7 +90,7 @@ void smbmanager::ReadStderr()
 	QString str=m_textDecoder->toUnicode(proc.readAllStandardError());
 	debugQt(str);
 
-	emit ObjError(tr("Smbstatus request error")+" : "+ str );
+	emit ObjError(tr("Smbstatus request error")+" : "+ str.replace('\n',' '));
 }
 
 

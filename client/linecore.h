@@ -23,19 +23,19 @@
 #define LINECORE_H
 
 #include <QObject>
-#include <Q3ValueList>
+#include <QList>
 
 extern void debugQt(const QString & message);
 
 class LineCore : public QObject
 {
-Q_OBJECT
+   Q_OBJECT
 public:
 	LineCore(QObject *parent=0);
-	~LineCore();
+	virtual ~LineCore();
 	void InitHeader(const QString & OneHeader);
-	bool InitElement(QString element);
-	QString ReturnElement(QString element);
+	bool InitElement(const QString & element);
+	QString ReturnElement(const QString & element);
 	void Analysis(const QString & OneLine);
 	void SortElements();
 
@@ -48,18 +48,17 @@ private: //attributes
 	bool analysisProc;
 	bool initHead;
 	static const short int back;
-
-struct record {
-	Q_INT32 Begin;
-	Q_INT32 End;
-	Q_INT32 New_Begin;
-	Q_INT32 New_End;
-	QString Ident;
-	QString Value;
-};
-
-typedef Q3ValueList<record> recordList;
-recordList listElement;
+	
+	struct record {
+		qint32 Begin;
+		qint32 End;
+		qint32 New_Begin;
+		qint32 New_End;
+		QString Ident;
+		QString Value;
+	};
+	
+	QList<record> listElement;
 };
 
 #endif

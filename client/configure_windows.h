@@ -32,7 +32,7 @@ extern void writeConfigFile();
 extern void readConfigFile();
 
 extern QString host;
-extern Q_UINT16  port_server; //tcp port
+extern quint16  port_server; //tcp port
 extern int interval; // Interval, in seconds, between every request to smbstatus
 extern QString username_login;
 extern QString passwd_login;

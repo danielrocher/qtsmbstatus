@@ -21,8 +21,8 @@
 /**
 	\class smbstatus
 	\brief Analyse smbstatus reply
-	\date 2007-06-16
-	\version 1.0
+	\date 2008-11-11
+	\version 1.1
 	\author Daniel Rocher
 	\sa LineCore
 	\param stringlist smbstatus reply
@@ -77,18 +77,18 @@ void smbstatus::RQ_smbstatus()
 	for ( QStringList::Iterator it = ListSmbstatus.begin(); it != ListSmbstatus.end(); ++it ) {
 		ligne = *it; // one line
 		// ------------- get samba version --------------------
-		if ((ligne.contains("samba version",false)) && (version_samba==unknown))
+		if ((ligne.contains("samba version",Qt::CaseInsensitive)) && (version_samba==unknown))
 		{
-			ligne=ligne.simplifyWhiteSpace ();
-			if (ligne.contains("version 2.2",false) ) version_samba=version2;
-			if (ligne.contains("version 3.",false) ) version_samba=version3;
+			ligne=ligne.simplified ();
+			if (ligne.contains("version 2.2",Qt::CaseInsensitive) ) version_samba=version2;
+			if (ligne.contains("version 3.",Qt::CaseInsensitive) ) version_samba=version3;
 			emit setSambaVersion(ligne);
 		}
 
 		// inspired of ksmbstatus and updated for samba V3
 
 		// --------------- CONNECTIONS --------------------------
-		if ((readingpart==header_connexions) && ligne.contains("machine",false))
+		if ((readingpart==header_connexions) && ligne.contains("machine",Qt::CaseInsensitive))
 		{
 			linecore->InitHeader(ligne);
 			//version samba 3
@@ -109,30 +109,30 @@ void smbstatus::RQ_smbstatus()
 			}
 		}
 
-		if ((readingpart==connexions) && (ligne.simplifyWhiteSpace ().isEmpty ()==false))
+		if ((readingpart==connexions) && (ligne.simplified ().isEmpty ()==false))
 		{
 			linecore->Analysis(ligne);
 			if ((version_samba==version3) ||  (version_samba==version2 ) )
 			{ // version 2 and version 3 of samba
 					strPid=linecore->ReturnElement("pid");
 					strMachineName=linecore->ReturnElement("machine");
-					iMachineIP=strMachineName.find("(");
-					iConnected=strMachineName.find(")",iMachineIP)+1;
-					strMachineIP=(strMachineName.mid(iMachineIP+1,iConnected-iMachineIP-2)).stripWhiteSpace();
+					iMachineIP=strMachineName.indexOf("(");
+					iConnected=strMachineName.indexOf(")",iMachineIP)+1;
+					strMachineIP=(strMachineName.mid(iMachineIP+1,iConnected-iMachineIP-2)).trimmed();
 			}
 			if (version_samba==version3 )
 			{ //version samba 3
 				strUser=linecore->ReturnElement("username");
 				strGroup=linecore->ReturnElement("group");
-				strMachineName=(strMachineName.mid(0,iMachineIP)).stripWhiteSpace();
+				strMachineName=(strMachineName.mid(0,iMachineIP)).trimmed();
 			}
 			if (version_samba==version2 )
 			{ //version samba 2.2
 				strUser=linecore->ReturnElement("uid");
 				strGroup=linecore->ReturnElement("gid");
 				strShare=linecore->ReturnElement("Service");
-				strConnected=(strMachineName.mid(iConnected)).stripWhiteSpace();
-				strMachineName=(strMachineName.mid(0,iMachineIP)).stripWhiteSpace();
+				strConnected=(strMachineName.mid(iConnected)).trimmed();
+				strMachineName=(strMachineName.mid(0,iMachineIP)).trimmed();
 			}
 			emit add_user(strPid,strUser,strGroup,strMachineName,strMachineIP);
 			if (version_samba==version2 )
@@ -143,7 +143,7 @@ void smbstatus::RQ_smbstatus()
 		}
 
 		// --------------- SERVICES ---------------------------------------------
-		if ((readingpart==header_services) && ligne.contains("Service",false))
+		if ((readingpart==header_services) && ligne.contains("Service",Qt::CaseInsensitive))
 		{ // only samba 3.0
 			linecore->InitHeader(ligne);
 			linecore->InitElement("pid");
@@ -152,7 +152,7 @@ void smbstatus::RQ_smbstatus()
 			linecore->InitElement("Machine");
 		}
 
-		if ((readingpart==services) && (ligne.simplifyWhiteSpace ().isEmpty ()==false) && (ligne.contains("locked files",false)==false))
+		if ((readingpart==services) && (ligne.simplified ().isEmpty ()==false) && (ligne.contains("locked files",Qt::CaseInsensitive)==false))
 		// shares
 		{
 			linecore->Analysis(ligne);
@@ -165,7 +165,7 @@ void smbstatus::RQ_smbstatus()
 		}
 
 		// --------------- LOCKED FILES ---------------------------------------------
-		if ((readingpart==header_locked_files) && ligne.contains("pid",false))
+		if ((readingpart==header_locked_files) && ligne.contains("pid",Qt::CaseInsensitive))
 		{
 			linecore->InitHeader(ligne);
 			// samba 2 and 3
@@ -175,11 +175,11 @@ void smbstatus::RQ_smbstatus()
 			linecore->InitElement("R/W");
 			linecore->InitElement("Oplock");
 			// for samba >3.0.20
-			if (ligne.contains("SharePath   Name   Time",false))
+			if (ligne.contains("SharePath   Name   Time",Qt::CaseInsensitive))
 			{
 				linecore->InitElement("SharePath   Name   Time");
 			}
-			else if (ligne.contains("SharePath   Name",false))
+			else if (ligne.contains("SharePath   Name",Qt::CaseInsensitive))
 			{
 				linecore->InitElement("SharePath   Name");
 			}
@@ -187,7 +187,7 @@ void smbstatus::RQ_smbstatus()
 				linecore->InitElement("Name");
 		}
 
-		if ((readingpart==locked_files) && (ligne.simplifyWhiteSpace ().isEmpty ()==false))
+		if ((readingpart==locked_files) && (ligne.simplified ().isEmpty ()==false))
 		// locked files
 		{
 			linecore->Analysis(ligne);
@@ -199,8 +199,8 @@ void smbstatus::RQ_smbstatus()
 			strMode=linecore->ReturnElement("DenyMode");
 			strRW=linecore->ReturnElement("R/W");
 			strOplock=linecore->ReturnElement("Oplock");
-			strDateOpen=(strName.mid(strName.length()-24)).stripWhiteSpace();
-			strName=(strName.mid(0,strName.length()-24)).stripWhiteSpace();
+			strDateOpen=(strName.mid(strName.length()-24)).trimmed();
+			strName=(strName.mid(0,strName.length()-24)).trimmed();
 			emit add_lockedfile(strPid,strName,strMode,strRW,strOplock,strDateOpen);
 		}
 	what_part(ligne); // find section
@@ -218,14 +218,14 @@ deleteLater();
 */
 void smbstatus::what_part(QString part)
 {
-	if ((readingpart==header_connexions) && (part.contains("----",false)))
+	if ((readingpart==header_connexions) && (part.contains("----",Qt::CaseInsensitive)))
 	// end header, start connection
 	{
 		readingpart=connexions;
 		debugQt("header_connexions->connexions");
 	}
 
-	if ((readingpart==connexions) && (part.simplifyWhiteSpace ().isEmpty ()==true))
+	if ((readingpart==connexions) && (part.simplified ().isEmpty ()==true))
 	// and connection
 	{
 		if (version_samba==version3 )
@@ -241,21 +241,21 @@ void smbstatus::what_part(QString part)
 		}
 	}
 
-	if ((readingpart==header_services) && (part.contains("----",false)))
+	if ((readingpart==header_services) && (part.contains("----",Qt::CaseInsensitive)))
 	// end header_services, start services
 	{
 		readingpart=services;
 		debugQt("header_services->services");
 	}
 
-	if ((readingpart==services) && (part.contains("Locked files",false)))
+	if ((readingpart==services) && (part.contains("Locked files",Qt::CaseInsensitive)))
 	// end services, start header_locked_files
 	{
 		readingpart=header_locked_files;
 		debugQt("services->header_locked_files");
 	}
 
-	if ((readingpart==header_locked_files) && (part.contains("----",false)))
+	if ((readingpart==header_locked_files) && (part.contains("----",Qt::CaseInsensitive)))
 	// end header_locked_files, start locked_files
 	{
 		readingpart=locked_files;

@@ -110,5 +110,5 @@ INSTALLS += trans \
 }
 
 
-QT += network  qt3support
+QT += network
 

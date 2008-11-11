@@ -29,6 +29,8 @@
 #define name_of_share "Share"
 #define name_of_file  "File"
 
+extern void writeToConsole(const QString & message);
+
 /**
 	\class LogForm
 	\brief Form to view CIFS/SMB activities
@@ -103,7 +105,7 @@ void LogForm::on_SaveLogButton_clicked()
 	QString service;
 	QFileDialog fileDialog;
 	fileDialog.setDefaultSuffix ( "csv" );
-	QString fileName = fileDialog.getSaveFileName(this, tr("Open File"), QDir::homeDirPath (),"*.csv");
+	QString fileName = fileDialog.getSaveFileName(this, tr("Open File"), QDir::homePath (),"*.csv");
 
 	if (fileName.isEmpty())
 		return;
@@ -113,7 +115,7 @@ void LogForm::on_SaveLogButton_clicked()
 	QFile f1(fileName);
 	if ( !f1.open( QIODevice::WriteOnly | QIODevice::Text ) )
 	{
-		qDebug("Impossible to create file !");
+		writeToConsole("Impossible to create file !");
 		QMessageBox::warning ( this, "Error" , "Impossible to create file !");
 		return;
 	}
