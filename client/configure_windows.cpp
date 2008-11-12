@@ -49,7 +49,7 @@ configure_windows::configure_windows(QWidget *parent)
 	checkNotification->setChecked(show_messages);
 	checkLogActivity->setChecked(log_activity);
 	limitLogBox->setValue (limitLog);
-	checkNewVersion->setChecked(check_new_version);
+	checkNewRelease->setChecked(check_new_release);
 	// first time
 	on_checkIcon_toggled(iconize);
 	on_checkLogActivity_toggled(log_activity);
@@ -88,7 +88,7 @@ void configure_windows::on_okButton_clicked()
 	show_messages=checkNotification->isChecked();
 	log_activity=checkLogActivity->isChecked();
 	limitLog=limitLogBox->value ();
-	check_new_version=checkNewVersion->isChecked();
+	check_new_release=checkNewRelease->isChecked();
 	// save configuration
 	writeConfigFile();
 	emit (configuration_changed());

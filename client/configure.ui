@@ -336,12 +336,12 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2" >
       <item row="0" column="0" >
-       <widget class="QCheckBox" name="checkNewVersion" >
+       <widget class="QCheckBox" name="checkNewRelease" >
         <property name="toolTip" >
          <string/>
         </property>
         <property name="text" >
-         <string>Check for new version of qtsmbstatus</string>
+         <string>Automatically Check for updates</string>
         </property>
        </widget>
       </item>
@@ -360,7 +360,7 @@
   <tabstop>checkNotification</tabstop>
   <tabstop>checkLogActivity</tabstop>
   <tabstop>limitLogBox</tabstop>
-  <tabstop>checkNewVersion</tabstop>
+  <tabstop>checkNewRelease</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>

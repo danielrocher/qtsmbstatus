@@ -52,8 +52,8 @@ bool show_messages=true;
 bool log_activity=false;
 //! limit log (number of days)
 int limitLog=1;
-//!  check for new version of qtsmbstatus
-bool check_new_version=false;
+//!  check for new release of qtsmbstatus
+bool check_new_release=false;
 
 /**
 	Convert QtSmbstatus config file to new format 2.0.1.
@@ -142,7 +142,7 @@ void writeConfigFile()
 		settings.setValue("notificationMessages",show_messages);
 		settings.setValue("logActivity",log_activity);
 		settings.setValue("limitLog",limitLog);
-		settings.setValue("checkNewVersion",check_new_version);
+		settings.setValue("checkNewRelease",check_new_release);
 	settings.endGroup();
 
 	// old format (.qtsmbstatus.conf)
@@ -202,6 +202,8 @@ void readConfigFile()
 
 	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
 	settings.beginGroup("/Configuration");
+	if (!settings.contains ("uuid"))
+		settings.setValue("uuid",QUuid::createUuid().toString ());
 	// if qtsmbstatus < 2.0.1 or first time
 	if  ((settings.value("qtsmbstatusVersion",-1).toInt())==-1)
 	{
@@ -221,7 +223,7 @@ void readConfigFile()
 		show_messages=settings.value("notificationMessages",show_messages).toBool();
 		log_activity=settings.value("logActivity",log_activity).toBool();
 		limitLog=settings.value("limitLog",limitLog).toInt();
-		check_new_version=settings.value("checkNewVersion",check_new_version).toBool();
+		check_new_release=settings.value("checkNewRelease",check_new_release).toBool();
 	settings.endGroup();
 }
 

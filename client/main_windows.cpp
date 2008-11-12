@@ -62,7 +62,7 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 {
 	debugQt("main_windows::main_windows()");
 	setupUi(this);
-	if (check_new_version) checkNewVersionOfQtSmbstatus();
+	if (check_new_release) checkForUpdateOfQtSmbstatus();
 	
 	msgError=new QErrorMessage(this); // an error message display dialog
 	
@@ -1095,51 +1095,70 @@ void main_windows::slotDisconnectUser() {
 }
 
 /**
-	Check for new version of qtsmbstatus
+	Check for update of qtsmbstatus
 	\sa requestHtmlFinished
 */
-void main_windows::checkNewVersionOfQtSmbstatus () {
-	debugQt("main_windows::checkNewVersionOfQtSmbstatus ()");
+void main_windows::checkForUpdateOfQtSmbstatus () {
+	debugQt("main_windows::checkForUpdateOfQtSmbstatus ()");
+	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	settings.beginGroup("/Configuration");
+	QDateTime dateTimeForlastCheck=settings.value("dateTimeForlastCheck").toDateTime ();
+	QString uuid=settings.value("uuid").toString().remove(QRegExp("[{}]"));
+	settings.endGroup();
+	if (dateTimeForlastCheck.isValid()) {
+		if (dateTimeForlastCheck>QDateTime::currentDateTime().addDays(-1))
+			return; // wait 1 day 
+	}
 	http = new QHttp(this);
 	connect(http, SIGNAL(done(bool)), this, SLOT(requestHtmlFinished ( bool )));
 	http->setHost("qtsmbstatus.free.fr");
-	http->get("/last_version.php");
+	http->get("/last_version.php?uuid="+uuid);
 }
 
-
+/**
+	request HTML finished
+	\sa checkForUpdateOfQtSmbstatus
+*/
 void main_windows::requestHtmlFinished (  bool error ) {
 	debugQt("main_windows::requestHtmlFinished ()");
 	if (!error) {
 		bool ok;
-		uint available_version=QString(http->readAll()).simplified().toUInt (&ok);
+		uint available_release=QString(http->readAll()).simplified().toUInt (&ok);
 		if (ok) {
-			debugQt("Available version: "+QString::number(available_version));
+			debugQt("Available release: "+QString::number(available_release));
 			QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
 			settings.beginGroup("/Configuration");
-			uint last_known_version=settings.value("lastKnownVersion",int_qtsmbstatus_version).toUInt();
-			settings.setValue("lastKnownVersion",available_version);
-			if (available_version>last_known_version)
+			uint last_known_release=settings.value("lastKnownRelease",int_qtsmbstatus_version).toUInt();
+			settings.setValue("lastKnownRelease",available_release);
+			settings.setValue("dateTimeForlastCheck",QDateTime::currentDateTime());
+			if (available_release>last_known_release)
 			{
-				debugQt("A new version is available :-)");
+				debugQt("A new release is available :-)");
 				// New version available
 				QDialog * dialog= new QDialog(this);
 				dialog->setAttribute(Qt::WA_DeleteOnClose);
 				QDialogButtonBox * dialogButton=new QDialogButtonBox ( QDialogButtonBox::Ok, Qt::Horizontal,dialog);
-				dialog->setWindowTitle ( tr("New version available"));
+				dialog->setWindowTitle ( tr("Update is available"));
 				QGridLayout *layout = new QGridLayout(dialog);
-				QLabel * label= new QLabel(tr("A new version of %1 is available").arg("qtsmbstatus")+
-						".<p align='center'>"+
-						tr("You can download it here: %2").arg("<br>"+web_qtsmbstatus)+
-						"</p><br>",dialog);
+				QLabel * label= new QLabel("<p align='center'>"+
+					tr("A new release of %1 is available").arg("qtsmbstatus")+
+					".</p><p align='center'>"+
+					tr("You can download it here: %1").arg("<br>"+web_qtsmbstatus)+
+					"</p><hr>",dialog);
 				label->setTextFormat (Qt::RichText);
-				layout->addWidget(label, 0, 0, 5,-1);
-				layout->addWidget(dialogButton, 6, 0,Qt::AlignHCenter);
+				label->setTextInteractionFlags (Qt::LinksAccessibleByMouse);
+				label->setOpenExternalLinks (true);
+				QLabel * labelPixmap= new QLabel(dialog);
+				labelPixmap->setPixmap(QPixmap(":/icons/samba.png"));
+				layout->addWidget(labelPixmap, 0, 0, 5, 1);
+				layout->addWidget(label, 0, 1, 5, 1);
+				layout->addWidget(dialogButton, 6, 0, 1, 2, Qt::AlignHCenter);
 				dialog->setLayout(layout);
 				connect(dialogButton,SIGNAL(accepted ()),dialog,SLOT(accept()));
 				dialog->show();
-			} else debugQt("No new version");
+			} else debugQt("No new release");
 			settings.endGroup();
-		} else writeToConsole("impossible to convert version number");
-	} else writeToConsole("impossible to check new version of qtsmbstatus");
+		} else writeToConsole("impossible to convert release number");
+	} else writeToConsole("impossible to check for update");
 	http->deleteLater();
 }

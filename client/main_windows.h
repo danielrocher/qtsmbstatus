@@ -154,7 +154,7 @@ private: // Private methods
 	void restoreWindowSize();
 	void saveWindowSize();
 	void AnalysisSmbstatus();
-	void checkNewVersionOfQtSmbstatus ();
+	void checkForUpdateOfQtSmbstatus ();
 };
 
 #endif
