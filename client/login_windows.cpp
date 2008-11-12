@@ -26,8 +26,8 @@
 /**
 	\class login_windows
 	\brief InputBox login and password
-	\date 2007-06-15
-	\version 1.0
+	\date 2008-11-11
+	\version 1.1
 	\param parent pointer to the parent object
 	\author Daniel Rocher
 */ 
@@ -47,9 +47,11 @@ login_windows::~login_windows()
 	debugQt("login_windows::~login_windows()");
 }
 
-void login_windows::Slot_login_button()
+void login_windows::on_bt_login_clicked()
 {
-	debugQt("login_windows::Slot_login_button()");
+	debugQt("login_windows::on_bt_login_clicked()");
 	username_login=input_username->text();
 	passwd_login=input_password->text();
 }
+
+

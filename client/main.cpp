@@ -18,7 +18,6 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#include <QApplication>
 #include <QtGui>
 
 #include "smbstatus.h"
@@ -53,6 +52,8 @@ bool show_messages=true;
 bool log_activity=false;
 //! limit log (number of days)
 int limitLog=1;
+//!  check for new version of qtsmbstatus
+bool check_new_version=false;
 
 /**
 	Convert QtSmbstatus config file to new format 2.0.1.
@@ -141,6 +142,7 @@ void writeConfigFile()
 		settings.setValue("notificationMessages",show_messages);
 		settings.setValue("logActivity",log_activity);
 		settings.setValue("limitLog",limitLog);
+		settings.setValue("checkNewVersion",check_new_version);
 	settings.endGroup();
 
 	// old format (.qtsmbstatus.conf)
@@ -219,6 +221,7 @@ void readConfigFile()
 		show_messages=settings.value("notificationMessages",show_messages).toBool();
 		log_activity=settings.value("logActivity",log_activity).toBool();
 		limitLog=settings.value("limitLog",limitLog).toInt();
+		check_new_version=settings.value("checkNewVersion",check_new_version).toBool();
 	settings.endGroup();
 }
 

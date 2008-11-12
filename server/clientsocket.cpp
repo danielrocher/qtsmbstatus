@@ -28,6 +28,9 @@ extern void debugQt(const QString & message);
 
 extern QStringList AllowUserDisconnect;
 extern QStringList AllowUserSendMsg;
+extern uint int_qtsmbstatus_version;
+extern QString version_qtsmbstatus;
+extern QString date_qtsmbstatus;
 
 int ClientSocket::compteur_objet=0;
 
@@ -90,6 +93,9 @@ void ClientSocket::SslErrors (const QList<QSslError> & listErrors) {
 */
 void ClientSocket::socketEncrypted () {
 	debugQt("ClientSocket::socketEncrypted()");
+	// who i am 
+	sendToClient(whoiam,QString::number(int_qtsmbstatus_version),"QtSmbstatus server "+version_qtsmbstatus+" - "+date_qtsmbstatus);
+
 }
 
 /**
@@ -148,6 +154,9 @@ void ClientSocket :: core ()
 							break;
 					case error_command: // Command error ( the last command is not recognized)
 							debugQt("["+QString::number(commande)+"] error_command");
+							break;
+					case whoiam:
+							debugQt("["+QString::number(commande)+"] whoiam");
 							break;
 					default: // not implemented
 							debugQt("["+QString::number(commande)+"] not implemented");

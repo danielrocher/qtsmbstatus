@@ -20,10 +20,7 @@
 
 #include <signal.h>
 
-#include <QApplication>
-#include <QTimer>
-#include <QFile>
-#include <QTextStream>
+#include <QtCore>
 
 #include "server.h"
 #include "process_smbd_exist.h"
@@ -228,7 +225,7 @@ int main( int argc,char *argv[] )
 		}
 	}
 
-	QApplication app(argc, argv, false ); // user interface is unused in this program
+	QCoreApplication app(argc, argv); // user interface is unused in this program
 
 	myserver = new Server(Certificat, Private_key, ssl_password , &app);
 	if (! myserver->listen (  QHostAddress::Any, port_server)) {

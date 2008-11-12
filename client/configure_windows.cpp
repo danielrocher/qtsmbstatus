@@ -49,6 +49,7 @@ configure_windows::configure_windows(QWidget *parent)
 	checkNotification->setChecked(show_messages);
 	checkLogActivity->setChecked(log_activity);
 	limitLogBox->setValue (limitLog);
+	checkNewVersion->setChecked(check_new_version);
 	// first time
 	on_checkIcon_toggled(iconize);
 	on_checkLogActivity_toggled(log_activity);
@@ -75,9 +76,9 @@ void configure_windows::on_checkLogActivity_toggled(bool checked)
 /**
 	Save configuration
 */
-void configure_windows::SlotOk()
+void configure_windows::on_okButton_clicked()
 {
-	debugQt("configure_windows::SlotOk() - Save Config file");
+	debugQt("configure_windows::on_okButton_clicked() - Save Config file");
 	interval = spinInterval->value ();
 	host= EditHost->text ();
 	username_login = EditUsername->text();
@@ -87,6 +88,7 @@ void configure_windows::SlotOk()
 	show_messages=checkNotification->isChecked();
 	log_activity=checkLogActivity->isChecked();
 	limitLog=limitLogBox->value ();
+	check_new_version=checkNewVersion->isChecked();
 	// save configuration
 	writeConfigFile();
 	emit (configuration_changed());

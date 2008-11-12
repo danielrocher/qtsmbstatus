@@ -29,6 +29,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QErrorMessage>
+#include <QHttp>
 
 #include "build/ui/ui_form_smbstatus.h"
 #include "login_windows.h"
@@ -42,6 +43,7 @@ extern void debugQt(const QString & message);
 
 extern bool autoconnect;
 extern QString version_qtsmbstatus;
+extern uint int_qtsmbstatus_version;
 extern QString date_qtsmbstatus;
 extern QString mail_qtsmbstatus;
 extern QString auteur_qtsmbstatus;
@@ -99,6 +101,7 @@ private slots: // Private slots
 	void add_lockedfile(const QString &,const QString &,const QString &,const QString &,const QString &,const QString &);
 	void AnalysisSmbDestroyed();
 	void InfoSMB();
+	void requestHtmlFinished ( bool error );
 private: // Private attributes
 	QErrorMessage * msgError;
 	QStringList ListSmbstatus;
@@ -132,7 +135,8 @@ private: // Private attributes
 		These enums describe protocol between server and client.
 		\sa core_syntax
 	*/
-	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,not_imp1,server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
+	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
+	QHttp * http;
 protected:
 	virtual void closeEvent(QCloseEvent *e);
 private: // Private methods
@@ -150,6 +154,7 @@ private: // Private methods
 	void restoreWindowSize();
 	void saveWindowSize();
 	void AnalysisSmbstatus();
+	void checkNewVersionOfQtSmbstatus ();
 };
 
 #endif

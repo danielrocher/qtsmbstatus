@@ -25,6 +25,7 @@
 
 #include "main_windows.h"
 
+extern void writeToConsole(const QString & message);
 extern QList<QTreeWidgetItem *> QTreeWidgetItemList;
 
 /**
@@ -61,6 +62,8 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 {
 	debugQt("main_windows::main_windows()");
 	setupUi(this);
+	if (check_new_version) checkNewVersionOfQtSmbstatus();
+	
 	msgError=new QErrorMessage(this); // an error message display dialog
 	
 	trayicon =new QSystemTrayIcon(QIcon (":/icons/trayicon.png"),this);
@@ -362,6 +365,9 @@ void main_windows::socketConnected()
 	// create icon server on treeWidget
 	item_server = new server( treeWidget );
 	//treeWidget->addTopLevelItem (item_server);
+
+	// who i am 
+	sendToServer(whoiam,QString::number(int_qtsmbstatus_version),"QtSmbstatus client "+version_qtsmbstatus+" - "+date_qtsmbstatus);
 
 	//Authentication
 	sendToServer(auth_rq,username_login,passwd_login); // send username and password to server
@@ -794,6 +800,9 @@ void main_windows::core()
 							debugQt("["+QString::number(reponse)+"] server_info");
 							infoserver(line);
 							break;
+					case whoiam:
+							debugQt("["+QString::number(reponse)+"] whoiam");
+							break;
 					default: // not implemented
 							debugQt("["+QString::number(reponse)+"] not implemented");
 							sendToServer(error_command,"["+QString::number(reponse)+"] not implemented");
@@ -1085,3 +1094,52 @@ void main_windows::slotDisconnectUser() {
 	}
 }
 
+/**
+	Check for new version of qtsmbstatus
+	\sa requestHtmlFinished
+*/
+void main_windows::checkNewVersionOfQtSmbstatus () {
+	debugQt("main_windows::checkNewVersionOfQtSmbstatus ()");
+	http = new QHttp(this);
+	connect(http, SIGNAL(done(bool)), this, SLOT(requestHtmlFinished ( bool )));
+	http->setHost("qtsmbstatus.free.fr");
+	http->get("/last_version.php");
+}
+
+
+void main_windows::requestHtmlFinished (  bool error ) {
+	debugQt("main_windows::requestHtmlFinished ()");
+	if (!error) {
+		bool ok;
+		uint available_version=QString(http->readAll()).simplified().toUInt (&ok);
+		if (ok) {
+			debugQt("Available version: "+QString::number(available_version));
+			QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+			settings.beginGroup("/Configuration");
+			uint last_known_version=settings.value("lastKnownVersion",int_qtsmbstatus_version).toUInt();
+			settings.setValue("lastKnownVersion",available_version);
+			if (available_version>last_known_version)
+			{
+				debugQt("A new version is available :-)");
+				// New version available
+				QDialog * dialog= new QDialog(this);
+				dialog->setAttribute(Qt::WA_DeleteOnClose);
+				QDialogButtonBox * dialogButton=new QDialogButtonBox ( QDialogButtonBox::Ok, Qt::Horizontal,dialog);
+				dialog->setWindowTitle ( tr("New version available"));
+				QGridLayout *layout = new QGridLayout(dialog);
+				QLabel * label= new QLabel(tr("A new version of %1 is available").arg("qtsmbstatus")+
+						".<p align='center'>"+
+						tr("You can download it here: %2").arg("<br>"+web_qtsmbstatus)+
+						"</p><br>",dialog);
+				label->setTextFormat (Qt::RichText);
+				layout->addWidget(label, 0, 0, 5,-1);
+				layout->addWidget(dialogButton, 6, 0,Qt::AlignHCenter);
+				dialog->setLayout(layout);
+				connect(dialogButton,SIGNAL(accepted ()),dialog,SLOT(accept()));
+				dialog->show();
+			} else debugQt("No new version");
+			settings.endGroup();
+		} else writeToConsole("impossible to convert version number");
+	} else writeToConsole("impossible to check new version of qtsmbstatus");
+	http->deleteLater();
+}

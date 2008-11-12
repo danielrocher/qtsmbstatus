@@ -49,7 +49,7 @@ private:
 	bool permitSendMsg;
 	PamThread * pamthread;
 	QTimer *pamTimer;
-	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,not_imp1,server_info,error_auth,error_command,error_obj,echo_request,echo_reply} ;
+	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,server_info,error_auth,error_command,error_obj,echo_request,echo_reply} ;
 	void sendToClient(int cmd,const QString & inputArg1="",const QString & inputArg2="");
 	void CmdKillUser(const QString & texte);
 	void CmdSendMsg(const QString & texte);

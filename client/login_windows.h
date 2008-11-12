@@ -30,12 +30,12 @@ extern QString passwd_login;
 
 class login_windows :public QDialog, public Ui::login_dialog
 {
-Q_OBJECT
+   Q_OBJECT
 public:
     login_windows(QWidget *parent = 0);
     virtual ~login_windows();
 private slots:
-	virtual void Slot_login_button();
+	void on_bt_login_clicked();
 };
 
 #endif

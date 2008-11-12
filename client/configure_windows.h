@@ -42,6 +42,7 @@ extern bool iconize; // Iconize QtSmbstatus on system tray
 extern bool show_messages; // show status notification messages
 extern bool log_activity; // log SMB/CIFS activities
 extern int limitLog; // limit log (number of days)
+extern bool check_new_version; // check for new version of qtsmbstatus
 
 class configure_windows : public QDialog, public Ui::configure
 {
@@ -52,7 +53,7 @@ public:
 signals:
 	void configuration_changed();
 private slots: // Private slots
-	virtual void SlotOk();
+	virtual void on_okButton_clicked();
 	virtual void on_checkIcon_toggled(bool);
 	virtual void on_checkLogActivity_toggled(bool checked);
 };
