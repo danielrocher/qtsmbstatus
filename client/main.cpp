@@ -129,7 +129,7 @@ void writeConfigFile()
 	debugQt("WriteConfigFile()");
 	// new format
 	// qtsmbstatus >= 2.0.1
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/Configuration");
 		settings.setValue("qtsmbstatusVersion",int_qtsmbstatus_version);
 		settings.setValue("port",port_server);
@@ -200,7 +200,7 @@ void readConfigFile()
 {
 	debugQt("readConfigFile()");
 
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/Configuration");
 	if (!settings.contains ("uuid"))
 		settings.setValue("uuid",QUuid::createUuid().toString ());
@@ -248,6 +248,12 @@ int main(int argc, char *argv[])
 	}
 	#endif
 
+	MyApplication app( argc, argv );
+	app.setApplicationName("qtsmbstatus");
+	app.setApplicationVersion(version_qtsmbstatus);
+	app.setOrganizationName("adella.org");
+	app.setOrganizationDomain("qtsmbstatus.free.fr");
+	
 	// read configuration file
 	readConfigFile();
 
@@ -324,10 +330,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	MyApplication app( argc, argv );
-
 	//  < translate >
-
 	QTranslator qtTranslator;
 	qtTranslator.load("qt_" + QLocale::system().name());
 	app.installTranslator(&qtTranslator);

@@ -189,7 +189,7 @@ void main_windows::trayicon_activated(QSystemTrayIcon::ActivationReason reason)
 void main_windows::restoreWindowSize()
 {
 	debugQt("main_windows::restoreWindowSize()");
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
 			QRect rec= this->geometry ();
@@ -211,7 +211,7 @@ void main_windows::restoreWindowSize()
 void main_windows::saveWindowSize()
 {
 	debugQt("main_windows::saveWindowSize()");
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
 			QRect rec= this->geometry ();
@@ -255,7 +255,7 @@ void main_windows::closeEvent(QCloseEvent *e)
 void main_windows::writeHistoryFile()
 {
 	debugQt ("main_windows::writeHistoryFile()");
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/History");
 			int index=0;
@@ -276,7 +276,7 @@ void main_windows::readHistoryFile()
 {
 	debugQt ("main_windows::readHistoryFile()");
 	QString value;
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/History");
 			for ( int i = 0; i < 20 ; ++i )
@@ -1100,7 +1100,7 @@ void main_windows::slotDisconnectUser() {
 */
 void main_windows::checkForUpdateOfQtSmbstatus () {
 	debugQt("main_windows::checkForUpdateOfQtSmbstatus ()");
-	QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+	QSettings settings;
 	settings.beginGroup("/Configuration");
 	QDateTime dateTimeForlastCheck=settings.value("dateTimeForlastCheck").toDateTime ();
 	QString uuid=settings.value("uuid").toString().remove(QRegExp("[{}]"));
@@ -1126,7 +1126,7 @@ void main_windows::requestHtmlFinished (  bool error ) {
 		uint available_release=QString(http->readAll()).simplified().toUInt (&ok);
 		if (ok) {
 			debugQt("Available release: "+QString::number(available_release));
-			QSettings settings(QSettings::UserScope,"adella.org", "qtsmbstatus");
+			QSettings settings;
 			settings.beginGroup("/Configuration");
 			uint last_known_release=settings.value("lastKnownRelease",int_qtsmbstatus_version).toUInt();
 			settings.setValue("lastKnownRelease",available_release);

@@ -226,6 +226,10 @@ int main( int argc,char *argv[] )
 	}
 
 	QCoreApplication app(argc, argv); // user interface is unused in this program
+	app.setApplicationName("qtsmbstatusd");
+	app.setApplicationVersion(version_qtsmbstatus);
+	app.setOrganizationName("adella.org");
+	app.setOrganizationDomain("qtsmbstatus.free.fr");
 
 	myserver = new Server(Certificat, Private_key, ssl_password , &app);
 	if (! myserver->listen (  QHostAddress::Any, port_server)) {

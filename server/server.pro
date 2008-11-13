@@ -76,7 +76,7 @@ manpage.files = $$MANFILES
 target.path = /usr/bin/
 
 postinstall.path=/
-postinstall.extra+= sh \$(PWD)/postinst.sh \$(INSTALL_ROOT)
+postinstall.extra+= sh $$(PWD)/postinst.sh \$(INSTALL_ROOT)
 
 !win32 {
 INSTALLS += data \

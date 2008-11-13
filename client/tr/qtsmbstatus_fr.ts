@@ -190,7 +190,7 @@
     <message>
         <location filename="../configure.ui" line="255"/>
         <source>Iconize QtSmbstatus in system tray</source>
-        <translation>Afficher QtSmbstatus dans la barre à miniatures</translation>
+        <translation>Afficher QtSmbstatus dans la boite à miniatures</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="122"/>
