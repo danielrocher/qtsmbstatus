@@ -25,7 +25,7 @@ int disconnect_manager::compteur_objet=0;
 
 /**
 	\class disconnect_manager
-	\brief Kill a process
+	\brief Kill a smb process (disconnect an %user)
 	\date 2008-11-10
 	\version 1.2
 	\author Daniel Rocher

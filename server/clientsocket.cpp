@@ -41,7 +41,6 @@ int ClientSocket::compteur_objet=0;
 	\version 2.0
 	\author Daniel Rocher
 	\sa Server
-	\param sock Socket number
 	\param parent pointer to parent for this object
  */
 
@@ -200,7 +199,7 @@ void ClientSocket ::sendToClient(int cmd,const QString & inputArg1,const QString
 
 
 /**
-	Request from client to disconnect an user
+	Request from client to disconnect an %user
 	\param texte arg1=PID, arg2=username
 	\sa ClientSocket::permitDisconnectUser
 	\sa process_smbd_exist
@@ -273,6 +272,7 @@ void ClientSocket ::CmdSendMsg(const QString & texte)
 
 /**
 	Run Smbstatus request
+	\sa slot_smbstatus
 */
 void ClientSocket ::CmdSmbRq()
 {
@@ -293,7 +293,8 @@ void ClientSocket ::CmdSmbRq()
 
 
 /**
-	Slot : Receive smbstatus reply.
+	Slot : Receive %smbstatus reply.
+	\sa CmdSmbRq
 */
 void ClientSocket ::slot_smbstatus(const QStringList & rcv_smb)
 {
@@ -382,6 +383,7 @@ void ClientSocket :: CmdAuthRq(const QString & texte)
 
 /**
 	test if pamthread has terminated
+	\sa CmdAuthRq
 */
 void ClientSocket ::slot_pam()
 {

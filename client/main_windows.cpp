@@ -146,7 +146,7 @@ void main_windows::beforeQuit()
 
 
 /**
-	When user restore or minimize windows
+	When %user restore or minimize windows
 */
 void main_windows::restore_minimize()
 {
@@ -164,7 +164,7 @@ void main_windows::restore_minimize()
 }
 
 /**
-	Connected to signal when the user activates the system tray icon
+	Connected to signal when the %user activates the system tray icon
 	\param reason describes the reason the system tray was activated
 	\sa restore_minimize
 */
@@ -343,7 +343,7 @@ void main_windows::open_dialog_for_login()
 }
 
 /**
-	Slot connected. When client is connected to server
+	Slot connected. When client is connected to %server
 	\sa Slot_connect
 */
 void main_windows::socketConnected()
@@ -465,7 +465,7 @@ void main_windows::setWidgetState() {
 }
 
 /**
-	Send data to server.
+	Send data to %server.
 	\param cmd command
 	\param inputArg1 argument 1
 	\param inputArg2 argument 2
@@ -567,6 +567,7 @@ void main_windows::on_action_View_log_triggered ()
 
 /**
 	Find items
+	\sa search NextSlot
  */
 void main_windows::AllSearchSlot()
 {
@@ -595,7 +596,7 @@ void main_windows::NextSlot()
 /**
 	Select item
 	\param item pointer on QListViewItem
-	\sa nextItem search
+	\sa NextSlot search
 */
 void main_windows::selectItem(QTreeWidgetItem *item)
 {
@@ -606,8 +607,8 @@ void main_windows::selectItem(QTreeWidgetItem *item)
 
 /**
 	Search item.
-	\param direction see T_direction
-	\sa T_direction selectItem
+	\param direction
+	\sa T_Direction selectItem
 */
 void main_windows::search(T_Direction direction)
 {
@@ -698,8 +699,8 @@ short unsigned int main_windows::socketState() {
 
 
 /**
-	Slot smbstatus timer
-	Request smbstatus to server
+	Slot %smbstatus timer
+	Request %smbstatus to %server
 */
 void main_windows::slot_timer()
 {
@@ -708,7 +709,7 @@ void main_windows::slot_timer()
 }
 
 /**
-	Receive informations from server (right for current client)
+	Receive informations from %server (right for current client)
 	\param text client's right:
 	\verbatim
 	0000 0001 : permit client to disconnect an user
@@ -825,7 +826,7 @@ void main_windows::core()
 
 
 /**
-	Interpret smbstatus reply.
+	Interpret %smbstatus reply.
 	\sa smbstatus
 */
 void main_windows::AnalysisSmbstatus()
@@ -873,7 +874,7 @@ void main_windows::setSambaVersion (const QString & version_samba)
 }
 
 /**
-	InstanceSmbstatus has found an user
+	InstanceSmbstatus has found an %user
 	\param strPid PID
 	\param strUser User name
 	\param strGroup Group name
@@ -888,7 +889,7 @@ void main_windows::add_user (const QString & strPid,const QString & strUser,cons
 }
 
 /**
-	InstanceSmbstatus has found a share
+	InstanceSmbstatus has found a %share
 	\param strPid PID
 	\param strShare Share name
 	\param strConnected date
@@ -970,7 +971,7 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 /**
 	View samba version
 	\sa slotPopupMenu
-	\sa server::ViewInfoUser
+	\sa server::ViewInfoServer
 */
 void main_windows::InfoServer()
 {
@@ -981,7 +982,7 @@ void main_windows::InfoServer()
 }
 
 /**
-	View user informations
+	View %user informations
 	\sa slotPopupMenu
 	\sa server::ViewInfoUser
 */
@@ -994,7 +995,7 @@ void main_windows::InfoUser()
 }
 
 /**
-	View service informations (locked file or share)
+	View %service informations (locked file or %share)
 	\sa slotPopupMenu
 	\sa server::ViewInfoService
 */
@@ -1007,7 +1008,7 @@ void main_windows::InfoService()
 }
 
 /**
-	View machine informations
+	View %machine informations
 	\sa slotPopupMenu
 	\sa server::ViewInfoMachine
 */
@@ -1042,7 +1043,7 @@ void main_windows::slotSendMessageAllUsers() {
 }
 
 /**
-	send out messages (popupwindows) to one user
+	send out messages (popupwindows) to one %user
 	\sa slotPopupMenu
 */
 void main_windows::slotSendMessage() {
@@ -1067,7 +1068,7 @@ void main_windows::slotSendMessage() {
 }
 
 /**
-	Disconnect an user
+	Disconnect an %user
 	\sa slotPopupMenu
 */
 void main_windows::slotDisconnectUser() {

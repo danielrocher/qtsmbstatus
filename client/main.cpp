@@ -36,7 +36,7 @@ extern uint int_qtsmbstatus_version;
 
 //default value
 QString host="127.0.0.1";
-//! Interval, in seconds, between every request to smbstatus
+//! Interval, in seconds, between every request to %smbstatus
 int interval=10;
 QString username_login="root";
 QString passwd_login="";

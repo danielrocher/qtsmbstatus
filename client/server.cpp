@@ -200,7 +200,7 @@ void server::add_lockedfile(const QString & PID,const QString & File,const QStri
 }
 
 /**
-	Return server informations
+	\return %server informations
 	\sa ClientSocket::InfoServer
 */
 QString server::ViewInfoServer()
@@ -210,7 +210,7 @@ QString server::ViewInfoServer()
 }
 
 /**
-	Return user informations
+	\return %user informations
 	\sa ClientSocket::InfoUser
 */
 QString server::ViewInfoUser(QTreeWidgetItem* Item)
@@ -229,7 +229,7 @@ QString server::ViewInfoUser(QTreeWidgetItem* Item)
 }
 
 /**
-	Return machine informations
+	\return %machine informations
 	\sa ClientSocket::InfoMachine
 */
 QString server::ViewInfoMachine(QTreeWidgetItem* Item)
@@ -247,7 +247,7 @@ QString server::ViewInfoMachine(QTreeWidgetItem* Item)
 }
 
 /**
-	Return service informations (locked file or share)
+	\return %service informations (locked file or share)
 	\sa  ClientSocket::InfoService
 	\sa TypeService
 */
@@ -282,7 +282,8 @@ QString server::ViewInfoService(QTreeWidgetItem* Item)
 }
 
 /**
-	Set samba version
+	set samba version
+	\param sambaversion samba version
 */
 void server::setSambaVersion(const QString & sambaversion)
 {
@@ -290,7 +291,7 @@ void server::setSambaVersion(const QString & sambaversion)
 }
 
 /**
-	Return samba version
+	\return samba version
 */
 QString server::getSambaVersion()
 {

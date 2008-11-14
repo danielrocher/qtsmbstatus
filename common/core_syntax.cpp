@@ -25,12 +25,12 @@
 
 /**
 	\class core_syntax
-	\brief This class manage the dialog between client and server
+	\brief This class manage the dialog between client and %server
 	\date 2008-11-06
 	\version 1.2
 	\author Daniel Rocher
 
-		Client and server use a protocol :
+		Client and %server use a protocol :
 
 	\verbatim
 	command  client server   definition
@@ -42,13 +42,13 @@
 	- smb_rq        ->         Sambstatus request
 	- smb_data      <-         smbstatus reply
 	- end_smb_rq    <-         smbstatus command finish
-	- not_imp1                 Not implemented	
+	- whoiam        <->        version and application name
 	- server_info   <-         Server Information (right for current client : permit disconnect an user,...)
 	- error_auth    <-         Authentication error (bad password,...)
-	- error_command <-         Command error (server informs client : the last command is not recognized)
+	- error_command <->        Command error
 	- error_obj     <-         Server wants to open a dialogbox to visualize an error
-	- echo_request  <->        Test if connection is correct (is not dead)
-	- echo_reply    <->        connection is correct
+	- echo_request  <->        Test if connection is correct (is not dead) (obsolete)
+	- echo_reply    <->        connection is correct (obsolete)
 	\endverbatim
 
 	<b>syntax:</b>
@@ -59,7 +59,7 @@
 	- command is an integer
 	- field1 and field2 are optional
 
-	<b>exemple:</b>
+	<b>example:</b>
 	\verbatim
 	[auth_rq]login;password
 	[end]

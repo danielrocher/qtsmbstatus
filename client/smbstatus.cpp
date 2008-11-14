@@ -20,12 +20,12 @@
 
 /**
 	\class smbstatus
-	\brief Analyse smbstatus reply
+	\brief Analyse %smbstatus reply
 	\date 2008-11-11
 	\version 1.1
 	\author Daniel Rocher
 	\sa LineCore
-	\param stringlist smbstatus reply
+	\param stringlist %smbstatus reply
 	\param parent pointer to parent for this object
 */
 
@@ -211,7 +211,7 @@ deleteLater();
 }
 
 /**
-	Find section of smbstatus
+	Find section of %smbstatus
 	\sa readingpart
 
 	 Sections: header_connexions, connexions, header_services, services, header_locked_files, locked_files

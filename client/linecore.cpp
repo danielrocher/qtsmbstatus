@@ -26,7 +26,7 @@
 
 /**
 	\class LineCore
-	\brief Analysis the lines of smbstatus reply.
+	\brief Analysis the lines of %smbstatus reply.
 	\date 2008-11-11
 	\version 1.1
 	\author Daniel Rocher
@@ -76,11 +76,11 @@ void LineCore::InitHeader(const QString & OneHeader)
 
 /**
 	Find field on header
+	Example: "Pid", "DenyMode", .
 	\param element field
 	\retval true field exist
 	\retval false field doesn't exist
 	\sa InitHeader
-	Example: "Pid", "DenyMode", ...
 */
 bool LineCore::InitElement(const QString & element)
 {
@@ -106,7 +106,7 @@ bool LineCore::InitElement(const QString & element)
 
 /**
 	Analysis one line
-	\param OneLine one line of smbstatus (without the header).
+	\param OneLine one line of %smbstatus (without the header).
 
 	Example:
 	\verbatim

@@ -25,7 +25,7 @@ int smbmanager::compteur_objet=0;
 
 /**
 	\class smbmanager
-	\brief start smbstatus process
+	\brief start %smbstatus process
 	\date 2008-11-10
 	\version 1.2
 	\author Daniel Rocher

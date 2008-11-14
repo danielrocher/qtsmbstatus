@@ -27,7 +27,8 @@ int Server::compteur_objet=0;
 
 /**
 	\class Server
-	\brief The Server class handles new connections to the server.
+	\brief The Server class handles new connections to the %server.
+	For every client that connects, it creates a new ClientSocket
 	\param certificatFile certificat file name
 	\param privateKeyFile private key file name
 	\param sslPassword passphras for private key
@@ -36,7 +37,6 @@ int Server::compteur_objet=0;
 	\date 2008-11-06
 	\version 2.0
 	\author Daniel Rocher
-	For every client that connects, it creates a new ClientSocket
 */
 Server :: Server( const QString & certificatFile , const QString & privateKeyFile ,const QString & sslPassword , QObject* parent ) : QTcpServer ( parent )
 {

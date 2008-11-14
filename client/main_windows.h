@@ -112,7 +112,10 @@ private: // Private attributes
 	QTreeWidgetItem* currentPopupMenuItem;
 	QSslSocket sslSocket;
 	QTreeWidgetItem * FindItem;
-	//! direction of search 
+	/**
+		direction of search 
+		\sa search
+	*/
 	enum T_Direction {to_first,to_preview,to_next};
 	QString SearchTxt;
 	int currentIndexOfListItem;
@@ -132,10 +135,11 @@ private: // Private attributes
 	*/
 	enum socket_state {UnconnectedState,ConnectingState,ConnectedState};
 	/**
-		These enums describe protocol between server and client.
+		These enums describe protocol between %server and client.
 		\sa core_syntax
 	*/
-	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
+	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,
+		server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
 	QHttp * http;
 protected:
 	virtual void closeEvent(QCloseEvent *e);
