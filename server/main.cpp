@@ -21,6 +21,7 @@
 #include <signal.h>
 
 #include <QtCore>
+#include <unistd.h>
 
 #include "server.h"
 #include "process_smbd_exist.h"
@@ -157,7 +158,7 @@ int main( int argc,char *argv[] )
 
 	// help message (option --help)
 	QString usage="\n    Usage:  qtsmbstatusd -d -m -p <port> -v --help\n\n"
-		"    --help :       Show this help\n"
+		"    -h|--help :    Show this help\n"
 		"    -d :           Daemonize\n"
 		"    -p <port> :    TCP port - default = " + QString::number(port_server) +"\n"
 		"    -v :           Show qtsmbstatusd version\n"
@@ -166,70 +167,56 @@ int main( int argc,char *argv[] )
 	// read configuration file
 	readConfigFile();
 
-	for ( int i = 1; i < argc; i++ )
-	{
-		if (QString(argv[i])=="--help")
-		{
-			writeToConsole(usage);
-			return 0;
-		}
-		if (argv[i][0] == '-')
-		switch (argv[i][1])
-		{
-			case 'p':    // TCP Port
-				if (argv[i][2]=='\0')
-				{
-					port_server=(QString(argv[++i])).toInt(&ok);
-					if (ok==false) 
-					{
-						writeToConsole("\n    Missing argument : -p   \n" + usage);
-						return 1;
-					}
-					if (!validatePort(port_server)) return 1;  // port not valid
-				}
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			case 'v': //version
-				if (argv[i][2]=='\0')  writeToConsole("QtSmbstatusd version : " + version_qtsmbstatus); // view qtsmbstatusd version
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				return 0;
-				break;
-			case 'm':    // debug
-				if (argv[i][2]=='\0')  debug_qtsmbstatus=true; // view message debug
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			case 'd':    // daemonize
-				if (argv[i][2]=='\0')  daemonize=true;
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			default:     // unsupported option -> show message and exit
-				unsupported_options(argv[i],usage);
-				return 1;
-				break;
-		}
-	}
-
 	QCoreApplication app(argc, argv); // user interface is unused in this program
 	app.setApplicationName("qtsmbstatusd");
 	app.setApplicationVersion(version_qtsmbstatus);
 	app.setOrganizationName("adella.org");
 	app.setOrganizationDomain("qtsmbstatus.free.fr");
+
+	int optch;
+	extern int opterr;
+	opterr = 1; // show getopt errors
+
+	if( app.arguments().contains("--help")) {
+		writeToConsole(usage);
+		return 0;
+	}
+
+	while ((optch = getopt(argc, argv, "hdp:vm")) != -1) {
+		switch (optch) {
+			case 'h':
+				writeToConsole(usage);
+				return 0;
+				break;
+			case 'v':
+				writeToConsole("QtSmbstatusd version : " + version_qtsmbstatus); // view qtsmbstatusd version
+				return 0;
+				break;
+			case 'd':
+				daemonize=true;
+				break;
+			case 'p':
+				port_server=(QString(optarg)).toInt(&ok);
+				if (ok==false)
+				{
+					writeToConsole("\nbad syntax for -p\n" + usage);
+					return 1;
+				}
+				if (!validatePort(port_server)) return 1;  // port not valid
+				break;
+			case 'm':
+				debug_qtsmbstatus=true; // view message debug
+				break;
+			default: // '?'
+				writeToConsole(usage);
+				return 1;
+		}
+	}
+	
+	if (optind < argc) {
+		printf("\nUnknown option: %s\n\n",argv[optind]);
+		return 1;
+	}
 
 	// SSL support
 	if (!QSslSocket::supportsSsl())

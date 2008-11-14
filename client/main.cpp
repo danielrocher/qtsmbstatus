@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <unistd.h>
 
 #include "smbstatus.h"
 #include "instances_dlg.h"
@@ -231,7 +232,7 @@ int main(int argc, char *argv[])
 {
 	bool ok;
 	QString usage="\n    Usage:  qtsmbstatus -i <seconds> -m -p <port> -v --help\n\n"
-		"    --help :       Show this help\n"
+		"    -h|--help :    Show this help\n"
 		"    -i <seconds> : Interval between smbstatus requests in seconds, (interval > 2) - default value = " + QString::number(interval) + "\n"
 		"    -v :           Show qtsmbstatus version\n"
 		"    -p <port> :    TCP port - default = " + QString::number(port_server) + "\n"
@@ -257,77 +258,60 @@ int main(int argc, char *argv[])
 	// read configuration file
 	readConfigFile();
 
-	// get args
-	for ( int i = 1; i < argc; i++ )
-	{
-		if (QString(argv[i])=="--help")
-		{
-			writeToConsole(usage);
-			return 0;
-		}
-		if (argv[i][0] == '-')
-		switch (argv[i][1])
-		{
-			case 'i':    // timer interval
-				if (argv[i][2]=='\0')
-				{
-					interval=(QString(argv[++i])).toInt(&ok);
-					if (ok==false) // bad conversion, quit
-					{
-						writeToConsole("\n    Missing argument : -i   \n" + usage);
-						return 1;
-					}
-					if (interval<3)
-					{
-						writeToConsole("\n    Interval it must be higher than two seconds (option: -i)  \n");
-						return 1;
-					}
-				}
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			case 'p':    // TCP Port
-				if (argv[i][2]=='\0')
-				{
-					port_server=(QString(argv[++i])).toInt(&ok);
-					if (ok==false)  // bad conversion, quit
-					{
-						writeToConsole("\n    Missing argument : -p   \n" + usage);
-						return 1;
-					}
-					if (!validatePort(port_server)) return 1; // port not valid
-				}
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			case 'm':    // debug
-				if (argv[i][2]=='\0')  debug_qtsmbstatus=true; // view message debug
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
-				break;
-			case 'v': //version
-				if (argv[i][2]=='\0')  writeToConsole("QtSmbstatus version : " + version_qtsmbstatus); // view qtsmbstatus version
-				else
-				{
-					unsupported_options(argv[i],usage);
-					return 1;
-				}
+	
+	int optch;
+	extern int opterr;
+	opterr = 1; // show getopt errors
+
+	if( app.arguments().contains("--help")) {
+		writeToConsole(usage);
+		return 0;
+	}
+
+	while ((optch = getopt(argc, argv, "hi:vp:m")) != -1) {
+		switch (optch) {
+			case 'h':
+				writeToConsole(usage);
 				return 0;
 				break;
-			default:     // unsupported option -> show message and exit
-				unsupported_options(argv[i],usage);
-				return 1;
+			case 'v':
+				writeToConsole("QtSmbstatus version : " + version_qtsmbstatus); // view qtsmbstatus version
+				return 0;
 				break;
+			case 'i':
+				interval=(QString(optarg)).toInt(&ok);
+				if (ok==false) // bad conversion, quit
+				{
+					writeToConsole("\nbad syntax for -i\n" + usage);
+					return 1;
+				}
+				if (interval<3)
+				{
+					writeToConsole("\nInterval it must be higher than two seconds (option: -i)\n");
+					return 1;
+				}
+				break;
+			case 'p':
+				port_server=(QString(optarg)).toInt(&ok);
+				if (ok==false)
+				{
+					writeToConsole("\nbad syntax for -p\n" + usage);
+					return 1;
+				}
+				if (!validatePort(port_server)) return 1;  // port not valid
+				break;
+			case 'm':
+				debug_qtsmbstatus=true; // view message debug
+				break;
+			default: // '?'
+				writeToConsole(usage);
+				return 1;
 		}
+	}
+	
+	if (optind < argc) {
+		printf("\nUnknown option: %s\n\n",argv[optind]);
+		return 1;
 	}
 	
 	// SSL support
