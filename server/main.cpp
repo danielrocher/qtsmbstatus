@@ -231,6 +231,10 @@ int main( int argc,char *argv[] )
 	app.setOrganizationName("adella.org");
 	app.setOrganizationDomain("qtsmbstatus.free.fr");
 
+	// SSL support
+	if (!QSslSocket::supportsSsl())
+		writeToConsole("This platform don't supports SSL. The socket will fail in the connection phase.");
+	
 	myserver = new Server(Certificat, Private_key, ssl_password , &app);
 	if (! myserver->listen (  QHostAddress::Any, port_server)) {
 		writeToConsole("Failed to bind to port "+QString::number( port_server ));

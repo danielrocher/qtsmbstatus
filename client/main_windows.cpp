@@ -480,8 +480,7 @@ void main_windows::sendToServer(int cmd,const QString & inputArg1,const QString 
 	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
 	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
 	QString send_txt="["+QString::number(cmd)+"]"+MyTxt+"\n";
-	QTextStream out(&sslSocket);
-	out << send_txt;
+	sslSocket.write(send_txt.toUtf8());
 	debugQt(send_txt);
 }
 
@@ -741,14 +740,17 @@ void main_windows::core()
 {
 	debugQt ("main_windows::core()");
 	QString line;
+	QByteArray lineArray;
 	int reponse;
 	bool ok;
 	core_syntax stx;
 
-	QTextStream in(&sslSocket);
-	while (!in.atEnd () )
+	while (sslSocket.canReadLine ())
 	{
-		line=in.readLine();
+		lineArray = sslSocket.readLine();
+		line=QString::fromUtf8( lineArray.data() ).trimmed ();
+		debugQt(line);
+		
 		stx.setValue(line);
 		if (stx.returnArg(0) != "")
 		{

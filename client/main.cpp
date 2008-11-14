@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
 		"    -v :           Show qtsmbstatus version\n"
 		"    -p <port> :    TCP port - default = " + QString::number(port_server) + "\n"
 		"    -m :           Show debug messages\n\n"
-		"exemple:           qtsmbstatus -i 50\n\n";
+		"example:           qtsmbstatus -i 50\n\n";
 
 	#ifdef Q_WS_WIN
 	// for windows only - get install directory (register when qtsmbstatus has been installed)
@@ -329,7 +329,11 @@ int main(int argc, char *argv[])
 				break;
 		}
 	}
-
+	
+	// SSL support
+	if (!QSslSocket::supportsSsl())
+		writeToConsole("This platform don't supports SSL. The socket will fail in the connection phase.");
+		
 	//  < translate >
 	QTranslator qtTranslator;
 	qtTranslator.load("qt_" + QLocale::system().name());

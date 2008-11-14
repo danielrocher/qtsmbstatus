@@ -107,15 +107,17 @@ void ClientSocket :: core ()
 {
 	debugQt ("ClientSocket::core()");
 	QString line;
+	QByteArray lineArray;
 	int commande;
 	bool ok;
 	core_syntax stx;
-	QTextStream in(this);
-	while (!in.atEnd () )
-	{
-		line=in.readLine();
 
+	while ( this->canReadLine ())
+	{
+		lineArray = this->readLine();
+		line=QString::fromUtf8( lineArray.data() ).trimmed ();
 		debugQt(line);
+		
 		stx.setValue(line);
 		if (stx.returnArg(0) != "")
 		{
@@ -192,8 +194,7 @@ void ClientSocket ::sendToClient(int cmd,const QString & inputArg1,const QString
 	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
 	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
 	QString send_txt = "["+QString::number(cmd)+"]"+MyTxt+"\n" ;
-	QTextStream out(this);
-	out << send_txt;
+	this->write(send_txt.toUtf8());
 	debugQt(send_txt);
 }
 
