@@ -21,29 +21,27 @@
 
 #include <QtGui>
 
-#include "../common/core_syntax.h"
-
-#include "main_windows.h"
+#include "lmain_windows.h"
 
 extern void writeToConsole(const QString & message);
 extern QList<QTreeWidgetItem *> QTreeWidgetItemList;
 
 /**
-	\class MyApplication
+	\class MyApplicationL
 	\brief reimplementing QApplication::commitData()
 	\date 2007-07-26
 	\version 1.0
 	\author Daniel Rocher
 */
-MyApplication::MyApplication(int & argc, char ** argv ) : QApplication(argc,argv) { }
+MyApplicationL::MyApplicationL(int & argc, char ** argv ) : QApplication(argc,argv) { }
 
 /**
 	reimplementing QApplication::commitData().
 	This function deals with session management. It is invoked when the QSessionManager wants the application to commit all its data.
 */
-void MyApplication::commitData(QSessionManager& manager)
+void MyApplicationL::commitData(QSessionManager& manager)
 {
-	debugQt("MyApplication::commitData()");
+	debugQt("MyApplicationL::commitData()");
 	if (manager.allowsInteraction())
 	{
 		manager.release();
@@ -52,16 +50,17 @@ void MyApplication::commitData(QSessionManager& manager)
 }
 
 /**
-	\class main_windows
-	\brief Main Window for QtSmbstatus Client
+	\class main_windowsl
+	\brief Main Window for QtSmbstatus Light
 	\date 2008-11-07
 	\version 2.0
 	\author Daniel Rocher
 */
-main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
+main_windowsl::main_windowsl(QWidget *parent) : QMainWindow(parent)
 {
-	debugQt("main_windows::main_windows()");
+	debugQt("main_windowsl::main_windowsl()");
 	setupUi(this);
+
 	if (check_new_release) checkForUpdateOfQtSmbstatus();
 	
 	msgError=new QErrorMessage(this); // an error message display dialog
@@ -69,9 +68,6 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	trayicon =new QSystemTrayIcon(QIcon (":/icons/trayicon.png"),this);
 	trayicon->setToolTip ( tr("QtSmbstatus Client") );
 	QMenu * menuApp=new QMenu( this );
-	connect_action= menuApp->addAction ( QIcon (":/icons/connect_no.png"),tr("Connect") );
-	connect(connect_action,SIGNAL( triggered ()),this , SLOT(Slot_connect()));
-	menuApp->addSeparator ();
 	viewlog_action=menuApp->addAction ( tr("Show CIFS/SMB activities") );
 	connect(viewlog_action,SIGNAL( triggered ()),this , SLOT(on_action_View_log_triggered()));
 	configure_action= menuApp->addAction ( QIcon (":/icons/configure.png"),tr("Configure") );
@@ -82,13 +78,11 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	QAction * exit_action=menuApp->addAction (  QIcon (":/icons/exit.png"),tr("Quit") );
 	connect(exit_action,SIGNAL( triggered ()),this , SLOT(beforeQuit () ));
 	connect(action_Quit,SIGNAL( triggered ()),this , SLOT(beforeQuit () ));
-	connect(action_Connect,SIGNAL( triggered ()),this , SLOT(Slot_connect()));
 	trayicon->setContextMenu ( menuApp );
 	connect(trayicon,SIGNAL(activated ( QSystemTrayIcon::ActivationReason ) ),this,SLOT(trayicon_activated(QSystemTrayIcon::ActivationReason)));
 	restoreWindowSize();
-	this->setWindowTitle ( "QtSmbstatus client "+version_qtsmbstatus); // forms title
+	this->setWindowTitle ( "QtSmbstatus light "+version_qtsmbstatus); // forms title
 	// create statusBar
-	statusBar()->showMessage (tr("Impossible to know samba version")); //status bar
 
 	// treeWidget
 	treeWidget->setSortingEnabled ( true );
@@ -99,21 +93,6 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	menuPopup = new QMenu( treeWidget );
 	connect(treeWidget, SIGNAL( customContextMenuRequested ( const QPoint & ) ), this, SLOT( slotPopupMenu( const QPoint & ) ) );
 	
-	comboBox_hostaddr->setDuplicatesEnabled ( false );
-	// read the address history
-	readHistoryFile();
-	comboBox_hostaddr->setEditText (host);
-
-
-	// Socket SSL/TLS
-	connect(&sslSocket, SIGNAL( encrypted() ), this, SLOT(socketConnected() ) );
-	connect(&sslSocket, SIGNAL( disconnected() ), this, SLOT(socketClosed() ) );
-	connect(&sslSocket,SIGNAL(readyRead()), this, SLOT(core()) );
-	connect(&sslSocket,SIGNAL( error ( QAbstractSocket::SocketError )),this,SLOT(error(QAbstractSocket::SocketError)));
-	connect(&sslSocket, SIGNAL(sslErrors ( const QList<QSslError> & )),this,SLOT(SslErrors(const QList<QSslError> &)));
-	// initial state
-	setWidgetState();
-
 	// first time
 	configuration_changed();
 
@@ -124,22 +103,35 @@ main_windows::main_windows(QWidget *parent) : QMainWindow(parent)
 	connect(&timerinfoSmb, SIGNAL(timeout()), this, SLOT(InfoSMB()));
 	connect(&timerSmbRequest, SIGNAL(timeout()), this, SLOT(slot_timer()));
 
-	//autoconnect
-	if (autoconnect) Slot_connect();
+	currentIndexOfListItem=0;
+	QString SearchTxt="";
+
+	searchNextAction->setEnabled ( false );
+	firstTime=true;
+	timerinfoSmb.start(10000);
+
+	// start smbstatus request
+	slot_timer(); // first time
+	timerSmbRequest.start (interval*1000);
+
+	statusBar()->showMessage( tr("Connected to host") );
+
+	// create icon server on treeWidget
+	item_server = new server( treeWidget );
 
 }
 
-main_windows::~main_windows()
+main_windowsl::~main_windowsl()
 {
-	debugQt("main_windows::~main_windows()");
+	debugQt("main_windowsl::~main_windowsl()");
 }
 
 /**
 	Before quit qtsmbstatus-client
 */
-void main_windows::beforeQuit()
+void main_windowsl::beforeQuit()
 {
-	debugQt("main_windows::beforeQuit()");
+	debugQt("main_windowsl::beforeQuit()");
 	trayicon->setVisible(false);
 	this->close();
 }
@@ -148,9 +140,9 @@ void main_windows::beforeQuit()
 /**
 	When %user restore or minimize windows
 */
-void main_windows::restore_minimize()
+void main_windowsl::restore_minimize()
 {
-	debugQt("main_windows::restore_minimize()");
+	debugQt("main_windowsl::restore_minimize()");
 	if ((this->isMinimized ()) || !(this->isVisible()))
 	{
 		this->setVisible(true);
@@ -168,9 +160,9 @@ void main_windows::restore_minimize()
 	\param reason describes the reason the system tray was activated
 	\sa restore_minimize
 */
-void main_windows::trayicon_activated(QSystemTrayIcon::ActivationReason reason)
+void main_windowsl::trayicon_activated(QSystemTrayIcon::ActivationReason reason)
 {
-	debugQt("main_windows::trayicon_activated()");
+	debugQt("main_windowsl::trayicon_activated()");
 	if ((this->isMinimized ()) || !(this->isVisible()))
 		restore_action->setText(tr("Restore"));
 	else
@@ -186,9 +178,9 @@ void main_windows::trayicon_activated(QSystemTrayIcon::ActivationReason reason)
 
 	On startup, restore windows size.
 */
-void main_windows::restoreWindowSize()
+void main_windowsl::restoreWindowSize()
 {
-	debugQt("main_windows::restoreWindowSize()");
+	debugQt("main_windowsl::restoreWindowSize()");
 	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
@@ -208,9 +200,9 @@ void main_windows::restoreWindowSize()
 
 	Before quit, save window size
 */
-void main_windows::saveWindowSize()
+void main_windowsl::saveWindowSize()
 {
-	debugQt("main_windows::saveWindowSize()");
+	debugQt("main_windowsl::saveWindowSize()");
 	QSettings settings;
 	settings.beginGroup("/MainWindow");
 		settings.beginGroup("/Geometry");
@@ -226,9 +218,9 @@ void main_windows::saveWindowSize()
 /**
 	On close event.
 */
-void main_windows::closeEvent(QCloseEvent *e)
+void main_windowsl::closeEvent(QCloseEvent *e)
 {
-	debugQt("main_windows::closeEvent(QCloseEvent *e)");
+	debugQt("main_windowsl::closeEvent(QCloseEvent *e)");
 	if (trayicon->isVisible())
 	{
 		this->hide ();
@@ -237,250 +229,15 @@ void main_windows::closeEvent(QCloseEvent *e)
 	}
 	else
 	{
-		// write address history
-		writeHistoryFile();
 		saveWindowSize();
 		logform->close();
 		logform->deleteLater();
-		if (socketState()!=UnconnectedState) Disconnect(); //if connected, disconnect
+		treeWidget->clear();
+		timerinfoSmb.stop();
+		timerSmbRequest.stop();
 		QTimer::singleShot(800, qApp, SLOT(quit())); // wait before quit
 		e->accept();
 	}
-}
-
-/**
-	Write address history.
-	Before quit, write history.
-*/
-void main_windows::writeHistoryFile()
-{
-	debugQt ("main_windows::writeHistoryFile()");
-	QSettings settings;
-	settings.beginGroup("/MainWindow");
-		settings.beginGroup("/History");
-			int index=0;
-			while (index<comboBox_hostaddr->count ())
-			{
-				settings.setValue("recentAddress"+QString::number(index),comboBox_hostaddr->itemText(index) );
-				index++;
-			}
-		settings.endGroup();
-	settings.endGroup();
-}
-
-/**
-	Read the address history.
-	On startup, read history.
-*/
-void main_windows::readHistoryFile()
-{
-	debugQt ("main_windows::readHistoryFile()");
-	QString value;
-	QSettings settings;
-	settings.beginGroup("/MainWindow");
-		settings.beginGroup("/History");
-			for ( int i = 0; i < 20 ; ++i )
-			{
-				value=settings.value( "recentAddress" +QString::number( i) ).toString();
-				if (!value.isEmpty())
-					comboBox_hostaddr->addItem (  value );
-			}
-		settings.endGroup();
-	settings.endGroup();
-}
-
-/**
-	address lists
-	20 Max addresses
-*/
-void main_windows::comboBox_valid()
-{
-	debugQt ("main_windows::comboBox_valid()");
-	int index=1;
-	QString texte = comboBox_hostaddr->currentText ();
-	comboBox_hostaddr->insertItem (0,texte);
-	while (index<comboBox_hostaddr->count ())
-	{
-		if ((comboBox_hostaddr->itemText(index) == texte) || (index > 19) )
-			comboBox_hostaddr->removeItem (index);
-		else index++;
-	}
-	comboBox_hostaddr->setCurrentIndex(0);
-}
-
-
-/**
-	Slot connect. If connected, disconnect.
-*/
-void main_windows::Slot_connect()
-{
-	debugQt("main_windows::Slot_connect()");
-	if (socketState()==UnconnectedState) open_dialog_for_login(); // open authentication dialogbox
-	else Disconnect();
-}
-
-/**
-	Open authentication dialogbox
-	\sa login_windows
-*/
-void main_windows::open_dialog_for_login()
-{
-	debugQt("main_windows::open_dialog_for_login()");
-	login_windows * login_passwd = new login_windows(this);
-	if (login_passwd->exec()==QDialog::Accepted)
-	{
-
-		host=comboBox_hostaddr->currentText ();
-		// clear form log
-		logform->on_clearButton_clicked();
-
-		// now, try to connect ...
-		statusBar()->showMessage( tr("Connection in progress on %1").arg(host));
-		sslSocket.connectToHostEncrypted(host,port_server);
-		sslSocket.ignoreSslErrors ();
-		setWidgetState();
-	}
-}
-
-/**
-	Slot connected. When client is connected to %server
-	\sa Slot_connect
-*/
-void main_windows::socketConnected()
-{
-	debugQt("main_windows::socketConnected()");
-	// server address is valid, add to combobox
-	comboBox_valid();
-	setWidgetState();
-	permitDisconnectUser=false; // permit (or not) client to disconnect an user
-	permitSendMsg=false; // permit (or not) client to send popup messages
-	currentIndexOfListItem=0;
-	QString SearchTxt="";
-	
-	firstTime=true;
-	timerinfoSmb.start(10000);
-
-	statusBar()->showMessage( tr("Connected to host") );
-
-	// create icon server on treeWidget
-	item_server = new server( treeWidget );
-
-	// who i am 
-	sendToServer(whoiam,QString::number(int_qtsmbstatus_version),"QtSmbstatus client "+version_qtsmbstatus+" - "+date_qtsmbstatus);
-
-	//Authentication
-	sendToServer(auth_rq,username_login,passwd_login); // send username and password to server
-}
-
-/**
-	Slot socketClosed. When client is disconnected
-*/
-void main_windows::socketClosed()
-{
-	debugQt("main_windows::socketClosed()");
-	statusBar()->showMessage( tr("Connection closed") );
-	ListSmbstatus.clear();
-	// clear listview
-	treeWidget->clear();
-	timerinfoSmb.stop();
-	timerSmbRequest.stop();
-	menuPopup->clear ();
-	setWidgetState();
-}
-
-/**
-	socket error
-	\param socketError
-*/
-void main_windows::error (QAbstractSocket::SocketError socketError) {
-	debugQt("main_windows::error()");
-	statusBar()->showMessage(sslSocket.errorString());
-	if (socketError!=QAbstractSocket::RemoteHostClosedError)
-		QMessageBox::warning ( this, "QtSmbstatus",sslSocket.errorString());
-	qWarning() << sslSocket.errorString();
-	Disconnect();
-}
-
-/**
-	SSL error
-*/
-void main_windows::SslErrors (const QList<QSslError> & listErrors) {
-	debugQt("main_windows::SslErrors()");
-	for (int i = 0; i < listErrors.size(); ++i)
-             qWarning() << listErrors.at(i).errorString ();
-}
-
-
-/**
-	Close TCP connection
-*/
-void main_windows::Disconnect()
-{
-	debugQt("main_windows::Disconnect()");
-	sendToServer(end); // inform server
-	sslSocket.close(); // close SSL/TCP connection
-	setWidgetState();
-}
-
-
-/**
-	Enabled/disabled widget when connected/unconnected/...
-	\sa socketState
-*/
-void main_windows::setWidgetState() {
-	debugQt("main_windows::setWidgetState()");
-	QPixmap pixmap;
-	QString label;
-	bool actionIsEnabled=false;
-
-	switch (socketState()) {
-		case ConnectingState:
-			pixmap=QPixmap(":/icons/connect_creating.png") ;
-			label=tr("Disconnect");
-			actionIsEnabled=false;
-			break;
-		case ConnectedState:
-			pixmap=QPixmap(QPixmap(":/icons/connect_established.png"));
-			label=tr("Disconnect");
-			actionIsEnabled=true;
-			break;
-		default:
-			pixmap=QPixmap(":/icons/connect_no.png");
-			label=tr("Connect");
-			actionIsEnabled=false;
-			break;
-	}
-	pushButton_connect->setIcon(QIcon(pixmap));
-	connect_action->setIcon(QIcon(pixmap));
-	action_Connect->setIcon(QIcon(pixmap));
-	connect_action->setText( label );
-	action_Connect->setText( label );
-	searchAll->setEnabled ( actionIsEnabled );
-	searchMachineAction->setEnabled ( actionIsEnabled );
-	searchUserAction->setEnabled ( actionIsEnabled );
-	searchShare_openAction->setEnabled ( actionIsEnabled );
-	searchFile_openAction->setEnabled ( actionIsEnabled );
-	searchNextAction->setEnabled ( false );
-}
-
-/**
-	Send data to %server.
-	\param cmd command
-	\param inputArg1 argument 1
-	\param inputArg2 argument 2
-	\sa command
-	\sa core_syntax
-*/
-void main_windows::sendToServer(int cmd,const QString & inputArg1,const QString & inputArg2)
-{
-	debugQt("main_windows::sendToServer()");
-	if (socketState()!=ConnectedState) return; // if unconnected
-	QString MyTxt;
-	if (!inputArg1.isEmpty()) MyTxt=addEscapeKeys(inputArg1);
-	if (!inputArg2.isEmpty()) MyTxt+=";"+addEscapeKeys(inputArg2);
-	QString send_txt="["+QString::number(cmd)+"]"+MyTxt+"\n";
-	sslSocket.write(send_txt.toUtf8());
-	debugQt(send_txt);
 }
 
 
@@ -488,9 +245,9 @@ void main_windows::sendToServer(int cmd,const QString & inputArg1,const QString 
 	When configuration changed
 	\sa configure_windows
 */
-void main_windows::configuration_changed()
+void main_windowsl::configuration_changed()
 {
-	debugQt("main_windows::configuration_changed()");
+	debugQt("main_windowsl::configuration_changed()");
 	if (!iconize) this->setVisible(true);
 	action_View_log->setEnabled(log_activity);
 	viewlog_action->setEnabled(log_activity);
@@ -499,20 +256,11 @@ void main_windows::configuration_changed()
 }
 
 
-/**
-	Bad login or bad password.
-*/
-void main_windows::errorAuth()
-{
-	debugQt("main_windows::errorAuth()");
-	QMessageBox::warning ( this, "QtSmbstatus",tr("Invalid login or password !"));
-	Slot_connect();
-}
 
 /**
 	menu Help/helpAbout
 */
-void main_windows::helpAbout()
+void main_windowsl::helpAbout()
 {
 	QMessageBox::about( this, "QtSmbstatus","<b>QtSmbstatus : </b>"+web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>"
 		"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
@@ -536,7 +284,7 @@ void main_windows::helpAbout()
 /**
 	menu Help/helpAboutQt
 */
-void main_windows::helpAboutQt()
+void main_windowsl::helpAboutQt()
 {
 	QMessageBox::aboutQt( this, "Qt Application" );
 }
@@ -545,10 +293,10 @@ void main_windows::helpAboutQt()
 	Configure qtsmbstatus client (open form)
 	\sa configure_windows
 */
-void main_windows::ConfigureSlot()
+void main_windowsl::ConfigureSlot()
 {
-	debugQt("main_windows::ConfigureSlot()");
-	configure_windows * configurate = new configure_windows(this);
+	debugQt("main_windowsl::ConfigureSlot()");
+	configure_windowsl * configurate = new configure_windowsl(this);
 	connect (configurate,SIGNAL(configuration_changed()),this, SLOT(configuration_changed()));
 	configurate->exec();
 }
@@ -557,9 +305,9 @@ void main_windows::ConfigureSlot()
 	View log
 	\sa LogForm
 */
-void main_windows::on_action_View_log_triggered ()
+void main_windowsl::on_action_View_log_triggered ()
 {
-	debugQt("main_windows::on_action_View_log_triggered ()");
+	debugQt("main_windowsl::on_action_View_log_triggered ()");
 	logform->show();
 }
 
@@ -568,9 +316,9 @@ void main_windows::on_action_View_log_triggered ()
 	Find items
 	\sa search NextSlot
  */
-void main_windows::AllSearchSlot()
+void main_windowsl::AllSearchSlot()
 {
-	debugQt("main_windows::AllSearchSlot()");
+	debugQt("main_windowsl::AllSearchSlot()");
 	bool ok;
 	currentIndexOfListItem=0;
 	QString txt = QInputDialog::getText(this,"Search", tr("Find text")+":", QLineEdit::Normal,QString::null, &ok );
@@ -585,9 +333,9 @@ void main_windows::AllSearchSlot()
 	Find next.
 	\sa AllSearchSlot
 */
-void main_windows::NextSlot()
+void main_windowsl::NextSlot()
 {
-	debugQt("main_windows::NextSlot()");
+	debugQt("main_windowsl::NextSlot()");
 	search(to_next);
 }
 
@@ -597,9 +345,9 @@ void main_windows::NextSlot()
 	\param item pointer on QListViewItem
 	\sa NextSlot search
 */
-void main_windows::selectItem(QTreeWidgetItem *item)
+void main_windowsl::selectItem(QTreeWidgetItem *item)
 {
-	debugQt("main_windows::selectItem()");
+	debugQt("main_windowsl::selectItem()");
 	treeWidget->setCurrentItem(item);
 }
 
@@ -609,9 +357,9 @@ void main_windows::selectItem(QTreeWidgetItem *item)
 	\param direction
 	\sa T_Direction selectItem
 */
-void main_windows::search(T_Direction direction)
+void main_windowsl::search(T_Direction direction)
 {
-	debugQt("main_windows::search()");
+	debugQt("main_windowsl::search()");
 	
 	QList<QTreeWidgetItem *> listItemFound=treeWidget->findItems (SearchTxt, Qt::MatchContains | Qt::MatchRecursive);
 	
@@ -638,9 +386,9 @@ void main_windows::search(T_Direction direction)
 /**
 	Info CIFS/SMB for log and balloon messages
 */
-void main_windows::InfoSMB()
+void main_windowsl::InfoSMB()
 {
-	debugQt("main_windows::InfoSMB()");
+	debugQt("main_windowsl::InfoSMB()");
 	QString user;
 	QString opened;
 	QString machine;
@@ -680,160 +428,32 @@ void main_windows::InfoSMB()
 }
 
 
-/**
-	Return states in which a socket can be
-	\return state for socket
-	\sa socket_state
-*/
-short unsigned int main_windows::socketState() {
-	// connected and encrypted
-	if (sslSocket.state()==QAbstractSocket::ConnectedState && sslSocket.isEncrypted())
-		return ConnectedState;
-	// unconnected
-	if (sslSocket.state()==QAbstractSocket::UnconnectedState)
-		return UnconnectedState;
-	// try to connect
-	return ConnectingState;
-}
-
 
 /**
 	Slot %smbstatus timer
 	Request %smbstatus to %server
 */
-void main_windows::slot_timer()
+void main_windowsl::slot_timer()
 {
-	debugQt("main_windows::slot_timer()");
-	sendToServer(smb_rq);
+	debugQt("main_windowsl::slot_timer()");
+	smbmanager* processus_smbstatus = new  smbmanager(this);
+	connect(processus_smbstatus,SIGNAL(ObjError(const QString &)),msgError, SLOT(showMessage (const QString &)) );
+	connect( processus_smbstatus, SIGNAL(signal_std_output(const QStringList &)),this, SLOT(AnalysisSmbstatus(const QStringList &)) );
 }
 
-/**
-	Receive informations from %server (right for current client)
-	\param text client's right:
-	\verbatim
-	0000 0001 : permit client to disconnect an user
-	0000 0010 : permit client to send popup messages (popupwindows)
-	\endverbatim
-*/
-void main_windows::infoserver(const QString & text)
-{
-	debugQt("main_windows::infoserver()");
-	bool ok;
-	permitDisconnectUser=false;
-	permitSendMsg=false;
-	int value = (text.mid(text.indexOf("]")+1)).toInt(&ok);
-	debugQt("Info Serveur : "+QString::number(value));
-	if ( ok )
-	{
-		if (value & 1) permitDisconnectUser=true;
-		if (value & 2) permitSendMsg=true;
-	}
-}
-
-
-/**
-	Protocol interpreter.
-	analyze the server's answers.
-	\sa core_syntax
-*/
-void main_windows::core()
-{
-	debugQt ("main_windows::core()");
-	QString line;
-	QByteArray lineArray;
-	int reponse;
-	bool ok;
-	core_syntax stx;
-
-	while (sslSocket.canReadLine ())
-	{
-		lineArray = sslSocket.readLine();
-		line=QString::fromUtf8( lineArray.data() ).trimmed ();
-		debugQt(line);
-		
-		stx.setValue(line);
-		if (stx.returnArg(0) != "")
-		{
-			reponse=(stx.returnArg(0)).toInt(&ok);
-			if (ok) // if txt to int conversion is ok
-			{
-				switch (reponse)
-				{
-					case auth_ack: // authentication ok
-							debugQt("["+QString::number(reponse)+"] auth_ack");
-							slot_timer(); // first time
-							timerSmbRequest.start (interval*1000);
-							break;
-					case end: // end socket by server
-							debugQt("["+QString::number(reponse)+"] end");
-							sslSocket.close();
-							deleteLater();
-							break;
-					case smb_data: // smbstatus datas
-							debugQt("["+QString::number(reponse)+"] smb_data");
-							ListSmbstatus.append(stx.returnArg(1));
-							break;
-					case end_smb_rq: // smbstatus command is finished
-							debugQt("["+QString::number(reponse)+"] end_smb_rq");
-							AnalysisSmbstatus(); // interpret smbstatus reply
-							break;
-					case error_auth: // authentication error
-							debugQt("["+QString::number(reponse)+"] error_auth");
-							// socketclient->closeConnection(); (don't close here, server will do it)
-							QTimer::singleShot(200,this,SLOT(errorAuth())); // don't block loop
-							break;
-					case error_command: // Command error ( the last command is not recognized)
-							debugQt("["+QString::number(reponse)+"] error_command");
-							break;
-					case echo_request: // echo request from server
-							debugQt("["+QString::number(reponse)+"] echo_request");
-							sendToServer(echo_reply);
-							break;
-					case echo_reply: // echo reply from server, reset echo timer
-							debugQt("["+QString::number(reponse)+"] echo_reply");
-							// ignore it (for compatibility with qtsmbstatus =< 2.0.6)
-							break;
-					case error_obj: // Server wants to open a dialogbox to visualize an error
-							debugQt("["+QString::number(reponse)+"] error_obj");
-							// QMessageBox::warning ( 0, "QtSmbstatus",stx.returnArg(1));
-							msgError->showMessage ( stx.returnArg(1) ) ;
-							break;
-					case server_info: // informations from server
-							debugQt("["+QString::number(reponse)+"] server_info");
-							infoserver(line);
-							break;
-					case whoiam:
-							debugQt("["+QString::number(reponse)+"] whoiam");
-							break;
-					default: // not implemented
-							debugQt("["+QString::number(reponse)+"] not implemented");
-							sendToServer(error_command,"["+QString::number(reponse)+"] not implemented");
-							break;
-				}
-			}
-			else
-			{ //conversion error string->int
-				debugQt("Command error !");
-			}
-		}
-		else
-		{ // core_syntax sends an error
-			debugQt("Command error !");
-		}
-	}
-}
 
 
 /**
 	Interpret %smbstatus reply.
+	\param listSmbstatus a QStringList
 	\sa smbstatus
 */
-void main_windows::AnalysisSmbstatus()
+void main_windowsl::AnalysisSmbstatus(const QStringList & listSmbstatus)
 {
-	debugQt("main_windows::AnalysisSmbstatus()");
+	debugQt("main_windowsl::AnalysisSmbstatus()");
 	// mark items of listview first
 	item_server->mark_childs();
-	InstanceSmbstatus = new smbstatus(ListSmbstatus,this);
+	InstanceSmbstatus = new smbstatus(listSmbstatus,this);
 
 	// InstanceSmbstatus sends samba version
 	connect (InstanceSmbstatus,SIGNAL(setSambaVersion (const QString &)),this,SLOT(setSambaVersion (const QString &)));
@@ -853,11 +473,10 @@ void main_windows::AnalysisSmbstatus()
 	InstanceSmbstatus has finished his work
 	\sa smbstatus
 */
-void main_windows::AnalysisSmbDestroyed ()
+void main_windowsl::AnalysisSmbDestroyed ()
 {
-	debugQt("main_windows::AnalysisSmbDestroyed ()");
+	debugQt("main_windowsl::AnalysisSmbDestroyed ()");
 	item_server->refresh_childs(); // erase items obsoleted
-	ListSmbstatus.clear(); // clear QStringList
 }
 
 
@@ -866,9 +485,9 @@ void main_windows::AnalysisSmbDestroyed ()
 	\param version_samba samba version
 	\sa smbstatus
 */
-void main_windows::setSambaVersion (const QString & version_samba)
+void main_windowsl::setSambaVersion (const QString & version_samba)
 {
-	debugQt("main_windows::setSambaVersion ()");
+	debugQt("main_windowsl::setSambaVersion ()");
 	item_server->setSambaVersion(version_samba);
 }
 
@@ -881,9 +500,9 @@ void main_windows::setSambaVersion (const QString & version_samba)
 	\param strMachineIP IP address
 	\sa smbstatus
 **/
-void main_windows::add_user (const QString & strPid,const QString & strUser,const QString & strGroup,const QString & strMachineName,const QString & strMachineIP)
+void main_windowsl::add_user (const QString & strPid,const QString & strUser,const QString & strGroup,const QString & strMachineName,const QString & strMachineIP)
 {
-	debugQt("main_windows::add_user ()");
+	debugQt("main_windowsl::add_user ()");
 	item_server->add_user(strPid,strUser,strGroup,strMachineName,strMachineIP);
 }
 
@@ -894,9 +513,9 @@ void main_windows::add_user (const QString & strPid,const QString & strUser,cons
 	\param strConnected date
 	\sa smbstatus
 */
-void main_windows::add_share(const QString & strPid ,const QString & strShare,const QString & strConnected)
+void main_windowsl::add_share(const QString & strPid ,const QString & strShare,const QString & strConnected)
 {
-	debugQt("main_windows::add_share ()");
+	debugQt("main_windowsl::add_share ()");
 	// if hidden shares
 	if (!view_hidden_shares && (strShare.indexOf(QRegExp("\\$$"))!=-1)) return;
 	item_server->add_share(strPid,strShare,strConnected);
@@ -912,9 +531,9 @@ void main_windows::add_share(const QString & strPid ,const QString & strShare,co
 	\param strDateOpen date
 	\sa smbstatus
 */
-void main_windows::add_lockedfile(const QString & strPid,const QString & strName,const QString & strMode,const QString & strRW,const QString & strOplock,const QString & strDateOpen)
+void main_windowsl::add_lockedfile(const QString & strPid,const QString & strName,const QString & strMode,const QString & strRW,const QString & strOplock,const QString & strDateOpen)
 {
-	debugQt("main_windows::add_lockedfile ()");
+	debugQt("main_windowsl::add_lockedfile ()");
 	item_server->add_lockedfile(strPid,strName,strMode,strRW,strOplock,strDateOpen);
 
 }
@@ -923,11 +542,9 @@ void main_windows::add_lockedfile(const QString & strPid,const QString & strName
 /**
 	popup menu
 */
-void main_windows::slotPopupMenu(  const QPoint & point )
+void main_windowsl::slotPopupMenu(  const QPoint & point )
 {
 	currentPopupMenuItem = treeWidget->itemAt ( point );
-	// if deconnected, no popup menu
-	if (socketState()!=ConnectedState) return;
 	if( currentPopupMenuItem )
 	{
 		// create popup menu
@@ -936,8 +553,7 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 		if (currentPopupMenuItem==item_server) // if a server item
 		{
 			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoServer() ) );
-			QAction * action=menuPopup->addAction ( tr( "Send out message to all users"),this,SLOT(slotSendMessageAllUsers() ) );
-			action->setEnabled(permitSendMsg);
+			menuPopup->addAction ( tr( "Send out message to all users"),this,SLOT(slotSendMessageAllUsers() ) );
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
@@ -946,8 +562,7 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 			machine * myItem=dynamic_cast<machine *>(currentPopupMenuItem);
 			if (!myItem) return;
 			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoMachine() ) );
-			QAction * action=menuPopup->addAction ( tr( "Send out message to")+ " " + myItem->machine_name,this,SLOT(slotSendMessage() ) );
-			action->setEnabled(permitSendMsg); // if client can send popup messages
+			menuPopup->addAction ( tr( "Send out message to")+ " " + myItem->machine_name,this,SLOT(slotSendMessage() ) );
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
@@ -956,8 +571,7 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 			user * myItem=dynamic_cast<user *>(currentPopupMenuItem);
 			if (!myItem) return;
 			menuPopup->addAction ( tr( "Properties"),this,SLOT(InfoUser() ) );
-			QAction * action=menuPopup->addAction ( tr( "Disconnect user")+ " " + myItem->username,this,SLOT(slotDisconnectUser() ) );
-			action->setEnabled(permitDisconnectUser); //  if client can disconnect an user
+			menuPopup->addAction ( tr( "Disconnect user")+ " " + myItem->username,this,SLOT(slotDisconnectUser() ) );
 			menuPopup->exec( QCursor::pos() );
 			return;
 		}
@@ -972,7 +586,7 @@ void main_windows::slotPopupMenu(  const QPoint & point )
 	\sa slotPopupMenu
 	\sa server::ViewInfoServer
 */
-void main_windows::InfoServer()
+void main_windowsl::InfoServer()
 {
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
@@ -985,7 +599,7 @@ void main_windows::InfoServer()
 	\sa slotPopupMenu
 	\sa server::ViewInfoUser
 */
-void main_windows::InfoUser()
+void main_windowsl::InfoUser()
 {
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
@@ -998,7 +612,7 @@ void main_windows::InfoUser()
 	\sa slotPopupMenu
 	\sa server::ViewInfoService
 */
-void main_windows::InfoService()
+void main_windowsl::InfoService()
 {
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
@@ -1011,7 +625,7 @@ void main_windows::InfoService()
 	\sa slotPopupMenu
 	\sa server::ViewInfoMachine
 */
-void main_windows::InfoMachine()
+void main_windowsl::InfoMachine()
 {
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
@@ -1024,20 +638,21 @@ void main_windows::InfoMachine()
 	send out messages (popupwindows) to all users
 	\sa slotPopupMenu
 */
-void main_windows::slotSendMessageAllUsers() {
+void main_windowsl::slotSendMessageAllUsers() {
 	machine* Item;
 	bool ok;
 	QString message = QInputDialog::getText(this,
             "QtSmbstatus", tr("Message to send")+":", QLineEdit::Normal,
             QString::null, &ok);
 
-	if ( !ok || message.isEmpty() || socketState()!=ConnectedState ) return;
+	if ( !ok || message.isEmpty() ) return;
 	
-	for (int i=0;  i < item_server->childCount () && socketState()==ConnectedState ; ++i )
+	for (int i=0;  i < item_server->childCount () ; ++i )
 	{
 		Item= dynamic_cast<machine *>(item_server->child (i) );
 		if (!Item) break;
-		sendToServer(send_msg,Item->machine_name,message);
+		Sendmessage_manager* send_msg = new Sendmessage_manager(Item->machine_name,message,this);
+		connect(send_msg,SIGNAL(ObjError(const QString &)),msgError, SLOT(showMessage (const QString &)) );
 	}
 }
 
@@ -1045,7 +660,7 @@ void main_windows::slotSendMessageAllUsers() {
 	send out messages (popupwindows) to one %user
 	\sa slotPopupMenu
 */
-void main_windows::slotSendMessage() {
+void main_windowsl::slotSendMessage() {
 	bool ok;
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
@@ -1056,13 +671,14 @@ void main_windows::slotSendMessage() {
 	QString message = QInputDialog::getText(this,
 		"QtSmbstatus", tr("Message to send to %1:").arg(Item->machine_name), QLineEdit::Normal,
             QString::null, &ok);
-	if ( ok && !message.isEmpty() && socketState()==ConnectedState )
+	if ( ok && !message.isEmpty() )
 	{
 		// user entered something and pressed OK
 		// if object is dead
 		if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
 
-		sendToServer(send_msg,Item->machine_name,message);
+		Sendmessage_manager* send_msg = new Sendmessage_manager(Item->machine_name,message,this);
+		connect(send_msg,SIGNAL(ObjError(const QString &)),msgError, SLOT(showMessage (const QString &)) );
 	}
 }
 
@@ -1070,7 +686,7 @@ void main_windows::slotSendMessage() {
 	Disconnect an %user
 	\sa slotPopupMenu
 */
-void main_windows::slotDisconnectUser() {
+void main_windowsl::slotDisconnectUser() {
 	
 	QString username;
 	QString pid;
@@ -1087,12 +703,12 @@ void main_windows::slotDisconnectUser() {
 
 	if ( !QMessageBox::information(this,"QtSmbstatus",
 	      tr("Do you really want to disconnect user %1 ?").arg(username),
-		 tr("&Yes"), tr("&No"),QString::null, 1, 1 ) && socketState()==ConnectedState )
+		 tr("&Yes"), tr("&No"),QString::null, 1, 1 ) )
 	{
 		// if object is dead
 		if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
-
-		sendToServer(kill_user,pid,username);
+		process_smbd_exist* killSmbProc = new process_smbd_exist(pid,username,this);
+		connect(killSmbProc,SIGNAL(ObjError(const QString &)),msgError, SLOT(showMessage (const QString &)) );
 	}
 }
 
@@ -1100,8 +716,8 @@ void main_windows::slotDisconnectUser() {
 	Check for update of qtsmbstatus
 	\sa requestHtmlFinished
 */
-void main_windows::checkForUpdateOfQtSmbstatus () {
-	debugQt("main_windows::checkForUpdateOfQtSmbstatus ()");
+void main_windowsl::checkForUpdateOfQtSmbstatus () {
+	debugQt("main_windowsl::checkForUpdateOfQtSmbstatus ()");
 	QSettings settings;
 	settings.beginGroup("/Configuration");
 	QDateTime dateTimeForlastCheck=settings.value("dateTimeForlastCheck").toDateTime ();
@@ -1121,8 +737,8 @@ void main_windows::checkForUpdateOfQtSmbstatus () {
 	request HTML finished
 	\sa checkForUpdateOfQtSmbstatus
 */
-void main_windows::requestHtmlFinished (  bool error ) {
-	debugQt("main_windows::requestHtmlFinished ()");
+void main_windowsl::requestHtmlFinished (  bool error ) {
+	debugQt("main_windowsl::requestHtmlFinished ()");
 	if (!error) {
 		bool ok;
 		uint available_release=QString(http->readAll()).simplified().toUInt (&ok);

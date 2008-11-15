@@ -20,12 +20,6 @@
 
 
 #include "instances_dlg.h"
-#include "linecore.h"
-#include "smbstatus.h"
-#include "user.h"
-#include "server.h"
-#include "machine.h"
-#include "service.h"
 
 extern void debugQt(const QString & message);
 
@@ -33,8 +27,8 @@ extern void debugQt(const QString & message);
 	\class instances_dlg
   	\brief dialog box for debug only
   	\author Daniel Rocher
-  	\version 0.9.0
-  	\date    2006-10-17
+  	\version 0.9.1
+  	\date    2008-11-15
 */
 
 
@@ -50,13 +44,7 @@ instances_dlg::instances_dlg(QWidget * parent) : QDialog(parent)
 
 	layoutV = new QVBoxLayout(this);
 
-	appendObject(&instances_dlg::compteur_objet,"instances_dlg");
-	appendObject(&LineCore::compteur_objet,"LineCore");
-	appendObject(&server::compteur_objet,"server");
-	appendObject(&machine::compteur_objet,"machine");
-	appendObject(&user::compteur_objet,"user");
-	appendObject(&service::compteur_objet,"service");
-	appendObject(&smbstatus::compteur_objet,"smbstatus");
+	appendObject(&instances_dlg::compteur_objet,"instances_dlg"); // this
 	
 	this->setLayout(layoutV);
 

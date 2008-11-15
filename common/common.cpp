@@ -33,8 +33,16 @@
 	\section Introduction Introduction
 	QtSmbstatus is a GUI (graphical %user interface) for %smbstatus.
 
-	QtSmbstatus was designed as a client/server system secured with SSL. A login and password is required to log on to %server (PAM). Qtsmbstatusd ought to be installed on host where SAMBA executes.
+	<b>QtSmbstatus</b> was designed as a <b>client/server</b> system secured with SSL. A login and password is required to log on to %server (PAM). <i>qtsmbstatus-server</i> (qtsmbstatusd) ought to be installed on host where SAMBA executes.
 
+	To use QtSmbstatus only locally (without qtsmbstatus-server), see <b>smbstatusl</b>. smbstatusl only works locally (no remote access).
+
+	<b><i>Commands:</i></b>
+	- <b>qtsmbstatus</b> client of qtsmbstatus
+	- <b>qtsmbstatusd</b> %server of qtsmbstatus
+	- <b>qtsmbstatusl</b> qtsmbstatus light
+
+	\endverbatim
 	This program is licensed to you under the terms of the GNU General Public License version 2
 */
 

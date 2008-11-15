@@ -14,7 +14,7 @@ echo "install System-V style init script links"
 
 if test -s $ROOT_DIR/etc/debian_version; then
 	# Debian systems
-	update-rc.d qtsmbstatusd start 20 2 3 5 . stop 20 0 6 .
+	update-rc.d qtsmbstatusd start 01 2 3 5 . stop 20 0 6 .
 	echo "Debian systems"
 elif test -s $ROOT_DIR/etc/SuSE-release; then
 	# SuSE systems

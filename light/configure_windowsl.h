@@ -18,33 +18,39 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef instances_dlg_H
-#define instances_dlg_H
+#ifndef CONFIGURE_WINDOWSL_H
+#define CONFIGURE_WINDOWSL_H
 
-#include <QtGui>
+class QLineEdit;
+class QCheckBox;
+class QSpinBox;
 
-class instances_dlg : public QDialog
+#include "build/ui/ui_configure.h"
+
+extern void debugQt(const QString & message);
+extern void writeConfigFile();
+extern void readConfigFile();
+
+extern int interval; // Interval, in seconds, between every request to smbstatus
+extern bool view_hidden_shares; // View hidden shares (share$)
+extern bool iconize; // Iconize QtSmbstatus on system tray
+extern bool show_messages; // show status notification messages
+extern bool log_activity; // log SMB/CIFS activities
+extern int limitLog; // limit log (number of days)
+extern bool check_new_release; // check for new release of qtsmbstatus
+
+class configure_windowsl : public QDialog, public Ui::configure
 {
-    Q_OBJECT
+Q_OBJECT
 public:
-	instances_dlg(QWidget * parent = 0);
-	virtual ~instances_dlg();
-	static int compteur_objet;
-	void appendObject(int * compteur,const QString & name);
-protected slots:
-	virtual void slotTimer();
-private: //attributes
-	struct struct_object
-	{
-		int * compteur;
-		QString name;
-		QLabel * label1;
-		QLabel * label2;
-	};
-	QTimer * timer;
-	QVBoxLayout *layoutV;
-	QList<struct_object> list_object;
+	configure_windowsl(QWidget *parent = 0);
+	virtual ~configure_windowsl();
+signals:
+	void configuration_changed();
+private slots: // Private slots
+	virtual void on_okButton_clicked();
+	virtual void on_checkIcon_toggled(bool);
+	virtual void on_checkLogActivity_toggled(bool checked);
 };
 
 #endif
-

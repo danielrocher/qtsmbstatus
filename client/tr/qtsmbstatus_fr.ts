@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr_FR">
-<defaultcodec></defaultcodec>
 <context>
     <name>ClientSSL</name>
     <message>
@@ -118,122 +117,122 @@
 <context>
     <name>configure</name>
     <message>
-        <location filename="../configure.ui" line="13"/>
+        <location filename="../configure.ui" line="19"/>
         <source>Configure</source>
         <translation>Configure</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="53"/>
+        <location filename="../configure.ui" line="315"/>
         <source>Autoconnect</source>
         <translation>Autoconnexion</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="60"/>
+        <location filename="../configure.ui" line="322"/>
         <source>&lt;p align=&quot;right&quot;&gt;Default host address:&lt;/p&gt;</source>
         <translation>&lt;p align=&quot;right&quot;&gt;Adresse par défaut du serveur:&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="37"/>
+        <location filename="../configure.ui" line="299"/>
         <source>&lt;p align=&quot;right&quot;&gt;Default Username:&lt;/p&gt;</source>
         <translation>&lt;p align=&quot;right&quot;&gt;Utilisateur par défaut:&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="83"/>
+        <location filename="../configure.ui" line="345"/>
         <source>Host Address</source>
         <translation>Adresse du serveur</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="153"/>
+        <location filename="../configure.ui" line="62"/>
         <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
         <translation>&lt;p align=&quot;right&quot;&gt;Intervalle:&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="323"/>
+        <location filename="../configure.ui" line="238"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="300"/>
+        <location filename="../configure.ui" line="215"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="73"/>
+        <location filename="../configure.ui" line="335"/>
         <source>Username (default :  username = root)</source>
         <translation>Nom de l&apos;utilisateur ( defaut :  username = root)</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="275"/>
+        <location filename="../configure.ui" line="190"/>
         <source>Log SMB/CIFS activities</source>
         <translation>Journal des activités SMB/CIFS</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="265"/>
+        <location filename="../configure.ui" line="180"/>
         <source>Status notification messages</source>
         <translation>Messages de notification d&apos;état</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="192"/>
+        <location filename="../configure.ui" line="107"/>
         <source>Notifications and log</source>
         <translation>Notifications et journal</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="210"/>
+        <location filename="../configure.ui" line="125"/>
         <source>Limit log:</source>
         <translation>Limiter le journal:</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="239"/>
+        <location filename="../configure.ui" line="154"/>
         <source>days</source>
         <translation>jours</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="255"/>
+        <location filename="../configure.ui" line="170"/>
         <source>Iconize QtSmbstatus in system tray</source>
         <translation>Afficher QtSmbstatus dans la boite à miniatures</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="122"/>
+        <location filename="../configure.ui" line="31"/>
         <source>Smbstatus</source>
         <translation>Smbstatus</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="166"/>
+        <location filename="../configure.ui" line="75"/>
         <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
         <translation>Intervalle, en secondes, entre deux requêtes à smbstatus (intervalle &gt; 2)</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="179"/>
+        <location filename="../configure.ui" line="88"/>
         <source>Show hidden shares (share$)</source>
         <translation>Voir les partages cachés (share$)</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="182"/>
+        <location filename="../configure.ui" line="91"/>
         <source>Show hidden shares</source>
         <translation>Voir les partages cachés</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="19"/>
+        <location filename="../configure.ui" line="281"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="50"/>
+        <location filename="../configure.ui" line="312"/>
         <source>Autoconnect on qtsmbstatus startup</source>
         <translation>Autoconnexion au démarrage de qtsmbstatus</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="262"/>
+        <location filename="../configure.ui" line="177"/>
         <source>Show activities in &quot;balloon messages&quot;</source>
         <translation>Voir les activités dans des info-bulles</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="335"/>
+        <location filename="../configure.ui" line="256"/>
         <source>Misc</source>
         <translation>Divers</translation>
     </message>
     <message>
-        <location filename="../configure.ui" line="344"/>
+        <location filename="../configure.ui" line="265"/>
         <source>Automatically Check for updates</source>
         <translation>Rechercher automatiquement des mises à jour</translation>
     </message>
@@ -261,12 +260,12 @@
         <translation>A propos de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="112"/>
+        <location filename="../form_smbstatus.ui" line="121"/>
         <source>Connect/Disconnect</source>
         <translation>Connexion/Déconnexion</translation>
     </message>
     <message>
-        <location filename="../form_smbstatus.ui" line="56"/>
+        <location filename="../form_smbstatus.ui" line="65"/>
         <source>Host:</source>
         <translation>Hôte:</translation>
     </message>
@@ -465,12 +464,12 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="535"/>
+        <location filename="../main_windows.cpp" line="533"/>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
         <translation>Ce programme est distribué selon les termes de la General Public License version 2 </translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="577"/>
+        <location filename="../main_windows.cpp" line="576"/>
         <source>Find text</source>
         <translation>Rechercher un texte</translation>
     </message>
@@ -495,7 +494,7 @@
         <translation type="obsolete">Rechercher un fichier ouvert</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="628"/>
+        <location filename="../main_windows.cpp" line="627"/>
         <source>Text not found.</source>
         <translation>Texte non trouvé.</translation>
     </message>
@@ -505,7 +504,7 @@
         <translation>QtSmbstatus Client</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="450"/>
+        <location filename="../main_windows.cpp" line="449"/>
         <source>Connect</source>
         <translation>Connexion</translation>
     </message>
@@ -530,17 +529,17 @@
         <translation>Restaurer</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="445"/>
+        <location filename="../main_windows.cpp" line="444"/>
         <source>Disconnect</source>
         <translation>Déconnexion</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="666"/>
+        <location filename="../main_windows.cpp" line="665"/>
         <source>User %1 has opened share %2 (%3)</source>
         <translation>Utilisateur %1 a ouvert le partage %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="667"/>
+        <location filename="../main_windows.cpp" line="666"/>
         <source>User %1 has opened file %2 (%3)</source>
         <translation>Utilisateur %1 a ouvert le fichier %2 (%3)</translation>
     </message>
@@ -555,17 +554,17 @@
         <translation>Impossible de connaitre la version de samba</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="510"/>
+        <location filename="../main_windows.cpp" line="508"/>
         <source>Invalid login or password !</source>
         <translation>Mauvais login ou mauvais mot de passe !</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="678"/>
+        <location filename="../main_windows.cpp" line="677"/>
         <source>CIFS/SMB activities</source>
         <translation>Activités CIFS/SMB</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="521"/>
+        <location filename="../main_windows.cpp" line="519"/>
         <source>Thanks to:</source>
         <translation>Merci à:</translation>
     </message>
@@ -580,67 +579,67 @@
         <translation>Connecté au serveur</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="382"/>
+        <location filename="../main_windows.cpp" line="381"/>
         <source>Connection closed</source>
         <translation>Connexion fermé</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="963"/>
+        <location filename="../main_windows.cpp" line="965"/>
         <source>Properties</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="937"/>
+        <location filename="../main_windows.cpp" line="939"/>
         <source>Send out message to all users</source>
         <translation>Envoyer un message à tous les utilisateurs</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="947"/>
+        <location filename="../main_windows.cpp" line="949"/>
         <source>Send out message to</source>
         <translation>Envoyer un message à</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="957"/>
+        <location filename="../main_windows.cpp" line="959"/>
         <source>Disconnect user</source>
         <translation>Déconnecter l&apos;utilisateur</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1029"/>
+        <location filename="../main_windows.cpp" line="1031"/>
         <source>Message to send</source>
         <translation>Message à envoyer</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1055"/>
+        <location filename="../main_windows.cpp" line="1057"/>
         <source>Message to send to %1:</source>
         <translation>Message à envoyer à %1:</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1087"/>
+        <location filename="../main_windows.cpp" line="1089"/>
         <source>Do you really want to disconnect user %1 ?</source>
         <translation>Voulez-vous vraiment déconnecter l&apos;utilisateur %1 ?</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1088"/>
+        <location filename="../main_windows.cpp" line="1090"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1088"/>
+        <location filename="../main_windows.cpp" line="1090"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1141"/>
+        <location filename="../main_windows.cpp" line="1143"/>
         <source>Update is available</source>
         <translation>Mise à jour disponible</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1144"/>
+        <location filename="../main_windows.cpp" line="1146"/>
         <source>A new release of %1 is available</source>
         <translation>Une nouvelle version de %1 est disponible</translation>
     </message>
     <message>
-        <location filename="../main_windows.cpp" line="1146"/>
+        <location filename="../main_windows.cpp" line="1148"/>
         <source>You can download it here: %1</source>
         <translation>Vous pouvez la télécharger ici: %1</translation>
     </message>
