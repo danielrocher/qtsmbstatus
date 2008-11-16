@@ -22,7 +22,7 @@
 #ifndef CORE_SYNTAX_H
 #define CORE_SYNTAX_H
 
-class QString;
+#include <QString>
 
 extern QString addEscapeKeys(QString txt);
 extern QString removeEscapeKeys( QString txt);

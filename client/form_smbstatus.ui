@@ -12,10 +12,6 @@
   <property name="windowTitle" >
    <string>qtsmbstatus</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="client.qrc" >
-    <normaloff>:/icons/samba.png</normaloff>:/icons/samba.png</iconset>
-  </property>
   <widget class="QWidget" name="widget" >
    <property name="geometry" >
     <rect>
@@ -38,7 +34,7 @@
     <item row="0" column="0" >
      <layout class="QHBoxLayout" name="horizontalLayout" >
       <item>
-       <spacer>
+       <spacer name="spacer" >
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
@@ -154,7 +150,7 @@
     <addaction name="action_Connect" />
     <addaction name="separator" />
     <addaction name="action_View_log" />
-    <addaction name="configureConfigure_clientAction" />
+    <addaction name="configureAction" />
     <addaction name="separator" />
     <addaction name="action_Quit" />
    </widget>
@@ -212,7 +208,7 @@
     <string>About Qt</string>
    </property>
   </action>
-  <action name="configureConfigure_clientAction" >
+  <action name="configureAction" >
    <property name="enabled" >
     <bool>true</bool>
    </property>
@@ -367,22 +363,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>configureConfigure_clientAction</sender>
-   <signal>activated()</signal>
-   <receiver>form_smbstatus</receiver>
-   <slot>ConfigureSlot()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>searchNextAction</sender>
    <signal>activated()</signal>
    <receiver>form_smbstatus</receiver>
@@ -407,22 +387,6 @@
     <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_connect</sender>
-   <signal>clicked()</signal>
-   <receiver>form_smbstatus</receiver>
-   <slot>Slot_connect()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>319</x>
-     <y>57</y>
     </hint>
     <hint type="destinationlabel" >
      <x>20</x>

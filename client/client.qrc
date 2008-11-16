@@ -1,6 +1,6 @@
     <!DOCTYPE RCC><RCC version="1.0">
     <qresource>
-	<file>icons/connect_creating.png</file>
+        <file>icons/connect_creating.png</file>
         <file>icons/connect_no.png</file>
         <file>icons/connect_established.png</file>
         <file>icons/server.png</file>
@@ -13,6 +13,7 @@
         <file>icons/configure.png</file>
         <file>icons/clear.png</file>
         <file>icons/filesaveas.png</file>
-        <file>icons/trayicon.png</file>
+        <file>icons/qtsmbstatus.png</file>
+        <file>icons/qtsmbstatusl.png</file>
     </qresource>
     </RCC>

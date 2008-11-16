@@ -13,6 +13,7 @@ UI_DIR =      ./build/ui
 RCC_DIR =     ./build/rcc
 
 SOURCES += main.cpp \
+           ../client/mainwindows.cpp \
            lmain_windows.cpp \
            ../client/server.cpp \
            ../client/machine.cpp \
@@ -30,7 +31,8 @@ SOURCES += main.cpp \
            ../server/sendmessage_manager.cpp \
            ../server/disconnect_manager.cpp
 
-HEADERS += lmain_windows.h \
+HEADERS += ../client/mainwindows.h \
+           lmain_windows.h \
            ../client/server.h \
            ../client/machine.h \
            ../client/service.h \
@@ -51,27 +53,15 @@ RESOURCES = ../client/client.qrc
 
 RC_FILE = ../client/qtsmbstatus.rc
 
-TRANSLATIONS = ./tr/qtsmbstatus_fr.ts \
-                ./tr/qtsmbstatus_es.ts \
-                ./tr/qtsmbstatus_pl.ts \
-                ./tr/qtsmbstatus_de.ts \
-                ./tr/qtsmbstatus_it.ts \
-                ./tr/qtsmbstatus_ru.ts \
-                ./tr/qtsmbstatus_uk.ts \
-                ./tr/qtsmbstatus_sv.ts \
-                ./tr/qtsmbstatus_hu.ts \
-                ./tr/qtsmbstatus_nl.ts \
-                ./tr/qtsmbstatus_pt_BR.ts
-
-FORMS +=  form_smbstatusl.ui \
+FORMS +=  ../client/form_smbstatus.ui \
           ../client/configure.ui \
           ../client/log.ui
 
 # install
 !win32 {
     # Translation
-    TRANSDIR = /usr/local/share/qtsmbstatusl
-    TRANSFILES = ./tr/*.qm
+    TRANSDIR = /usr/local/share/qtsmbstatus
+    TRANSFILES = ../client/tr/*.qm
     trans.path = $$TRANSDIR 
     trans.files = $$TRANSFILES 
 

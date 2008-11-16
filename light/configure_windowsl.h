@@ -21,15 +21,10 @@
 #ifndef CONFIGURE_WINDOWSL_H
 #define CONFIGURE_WINDOWSL_H
 
-class QLineEdit;
-class QCheckBox;
-class QSpinBox;
-
 #include "build/ui/ui_configure.h"
 
 extern void debugQt(const QString & message);
 extern void writeConfigFile();
-extern void readConfigFile();
 
 extern int interval; // Interval, in seconds, between every request to smbstatus
 extern bool view_hidden_shares; // View hidden shares (share$)

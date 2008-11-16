@@ -22,113 +22,38 @@
 #ifndef MAIN_WINDOWS_H
 #define MAIN_WINDOWS_H
 
-#include <QMainWindow>
-#include <QApplication>
 #include <QSslSocket>
-#include <QTimer>
-#include <QSystemTrayIcon>
-#include <QMenu>
-#include <QErrorMessage>
-#include <QHttp>
 
-#include "build/ui/ui_form_smbstatus.h"
+
 #include "login_windows.h"
 #include "configure_windows.h"
-#include "log.h"
-#include "server.h"
-#include "smbstatus.h"
-#include "../common/core_syntax.h"
+#include "mainwindows.h"
 
-extern void debugQt(const QString & message);
 
 extern bool autoconnect;
-extern QString version_qtsmbstatus;
-extern uint int_qtsmbstatus_version;
-extern QString date_qtsmbstatus;
-extern QString mail_qtsmbstatus;
-extern QString auteur_qtsmbstatus;
-extern QString web_qtsmbstatus;
-extern bool debug_qtsmbstatus;
 
-class MyApplication : public QApplication
-{
-	Q_OBJECT
-public:
-	MyApplication (int & argc, char ** argv );
-	virtual void commitData(QSessionManager& manager);
-signals:
-	void quitMyApp();
-};
 
-class main_windows : public QMainWindow, public Ui::form_smbstatus  {
+class main_windows : public MainWindows  {
    Q_OBJECT
 public:
 	main_windows(QWidget *parent=0);
 	virtual ~main_windows();
-public slots:
-	void beforeQuit();
-signals:
-	void refreshviewlog(const type_message &);
 private slots: // Private slots
-	void slot_timer();
-	void helpAbout();
-	void helpAboutQt();
-	void ConfigureSlot();
-	void AllSearchSlot();
-	void NextSlot();
-	void Slot_connect();
+	virtual void slot_timer();
+	virtual void on_pushButton_connect_clicked();
+	virtual void sendMessage(const QString & machine,const QString & message);
+	virtual void disconnectUser(const QString & pid,const QString & user);
+	virtual void on_configureAction_triggered();
 	void socketConnected();
 	void socketClosed();
 	void core();
-	void InfoServer();
-	void InfoUser();
-	void InfoService();
-	void InfoMachine();
-	void slotSendMessage();
-	void slotSendMessageAllUsers();
-	void slotDisconnectUser();
-	void slotPopupMenu( const QPoint & );
 	void error(QAbstractSocket::SocketError);
 	void SslErrors (const QList<QSslError> &);
 	void errorAuth();
-	void on_action_View_log_triggered ();
-	void trayicon_activated(QSystemTrayIcon::ActivationReason reason);
-	void restore_minimize();
-	void configuration_changed();
-	void setSambaVersion (const QString &);
-	void add_user (const QString &,const QString &,const QString &,const QString &,const QString &);
-	void add_share(const QString &,const QString &,const QString &);
-	void add_lockedfile(const QString &,const QString &,const QString &,const QString &,const QString &,const QString &);
-	void AnalysisSmbDestroyed();
-	void InfoSMB();
-	void requestHtmlFinished ( bool error );
 private: // Private attributes
-	QErrorMessage * msgError;
 	QStringList ListSmbstatus;
-	server * item_server;
-	bool permitDisconnectUser;
-	bool permitSendMsg;
-	QMenu* menuPopup;
-	QTreeWidgetItem* currentPopupMenuItem;
 	QSslSocket sslSocket;
-	QTreeWidgetItem * FindItem;
-	/**
-		direction of search 
-		\sa search
-	*/
-	enum T_Direction {to_first,to_preview,to_next};
-	QString SearchTxt;
-	int currentIndexOfListItem;
-	QAction * configure_action;
-	QAction * restore_action;
 	QAction * connect_action;
-	QAction * viewlog_action;
-	QSystemTrayIcon * trayicon;
-	QTimer timerSmbRequest;
-	QTimer timerinfoSmb;
-	bool firstTime;
-	LogForm * logform;
-	smbstatus * InstanceSmbstatus;
 	/**
 		These enums describe connection state.
 		\sa setWidgetState socketState
@@ -140,7 +65,6 @@ private: // Private attributes
 	*/
 	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,
 		server_info,error_auth,error_command,error_obj,echo_request,echo_reply};
-	QHttp * http;
 protected:
 	virtual void closeEvent(QCloseEvent *e);
 private: // Private methods
@@ -153,12 +77,7 @@ private: // Private methods
 	void readHistoryFile();
 	void comboBox_valid();
 	void open_dialog_for_login();
-	void search(T_Direction direction=to_first);
-	void selectItem(QTreeWidgetItem *item);
-	void restoreWindowSize();
-	void saveWindowSize();
-	void AnalysisSmbstatus();
-	void checkForUpdateOfQtSmbstatus ();
 };
 
 #endif
+

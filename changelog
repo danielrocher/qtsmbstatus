@@ -1,8 +1,9 @@
 Changelog for QtSmbstatus:
 
-2008-11-11 - Version 2.1:
+2008-11-16 - Version 2.1:
 	- Qt3 support was removed
 	- Removed dependence on OpenSSL library (using QSslSocket for QT>= 4.3)
+	- Added qtsmbstatusl-light (qtsmbstatusl). QtSmbstatusl only works locally (no remote access).
 	- Converting non-Unicode formats to and from Unicode in process
 	- possibility to check if a new release of this program is available
 

@@ -35,22 +35,6 @@ extern void writeToConsole(const QString & message);
 
 extern uint int_qtsmbstatus_version;
 
-//default value
-//! Interval, in seconds, between every request to %smbstatus
-int interval=10;
-//!  View hidden shares (share$)
-bool view_hidden_shares = true;
-//! Iconize QtSmbstatus on system tray
-bool iconize=true;
-//! show status notification messages (balloon messages)
-bool show_messages=true;
-//! log SMB/CIFS activities
-bool log_activity=false;
-//! limit log (number of days)
-int limitLog=1;
-//!  check for new release of qtsmbstatus
-bool check_new_release=false;
-
 
 /**
 	Save configuration file (create if not exist)
@@ -118,7 +102,7 @@ int main(int argc, char *argv[])
 	}
 	#endif
 
-	MyApplicationL app( argc, argv );
+	MyApplication app( argc, argv );
 	app.setApplicationName("qtsmbstatusl");
 	app.setApplicationVersion(version_qtsmbstatus);
 	app.setOrganizationName("adella.org");
@@ -187,11 +171,11 @@ int main(int argc, char *argv[])
 	translate_file= QDir::currentPath () + QString(  "/tr/qtsmbstatus_");
 	myappTranslator.load(translate_file+ QLocale::system().name());
 	#else
-	translate_file=QString("/usr/share/qtsmbstatusl/qtsmbstatus_");
+	translate_file=QString("/usr/share/qtsmbstatus/qtsmbstatus_");
 	myappTranslator.load(translate_file+ QLocale::system().name());
 	if (myappTranslator.isEmpty())
 	{
-		translate_file=QString("/usr/local/share/qtsmbstatusl/qtsmbstatus_");
+		translate_file=QString("/usr/local/share/qtsmbstatus/qtsmbstatus_");
 		myappTranslator.load(translate_file+ QLocale::system().name());
 	}
 	#endif
@@ -238,3 +222,4 @@ int main(int argc, char *argv[])
 		debugQt("\nDeleted objects : OK\n"); else debugQt("\nDeleted objects : Error !\n");
 	return value_return;
 }
+

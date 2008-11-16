@@ -18,6 +18,7 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
+
 #include <QtGui>
 #include <unistd.h>
 
@@ -34,27 +35,7 @@ extern void debugQt(const QString & message);
 extern void writeToConsole(const QString & message);
 
 extern uint int_qtsmbstatus_version;
-
-//default value
-QString host="127.0.0.1";
-//! Interval, in seconds, between every request to %smbstatus
-int interval=10;
-QString username_login="root";
-QString passwd_login="";
-//! Autoconnect when qtsmbstatus start
-bool autoconnect=false;
-//!  View hidden shares (share$)
-bool view_hidden_shares = true;
-//! Iconize QtSmbstatus on system tray
-bool iconize=true;
-//! show status notification messages (balloon messages)
-bool show_messages=true;
-//! log SMB/CIFS activities
-bool log_activity=false;
-//! limit log (number of days)
-int limitLog=1;
-//!  check for new release of qtsmbstatus
-bool check_new_release=false;
+extern quint16  port_server; //tcp port
 
 /**
 	Convert QtSmbstatus config file to new format 2.0.1.

@@ -13,6 +13,7 @@ UI_DIR =      ./build/ui
 RCC_DIR =     ./build/rcc
 
 SOURCES += main.cpp \
+           mainwindows.cpp \
            main_windows.cpp \
            server.cpp \
            machine.cpp \
@@ -29,6 +30,7 @@ SOURCES += main.cpp \
            instances_dlg.cpp
 
 HEADERS += main_windows.h \
+           mainwindows.h \
            server.h \
            machine.h \
            service.h \

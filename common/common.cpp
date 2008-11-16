@@ -35,7 +35,7 @@
 
 	<b>QtSmbstatus</b> was designed as a <b>client/server</b> system secured with SSL. A login and password is required to log on to %server (PAM). <i>qtsmbstatus-server</i> (qtsmbstatusd) ought to be installed on host where SAMBA executes.
 
-	To use QtSmbstatus only locally (without qtsmbstatus-server), see <b>smbstatusl</b>. smbstatusl only works locally (no remote access).
+	To use QtSmbstatus only locally (without qtsmbstatus-server), see <b>qtsmbstatusl</b>. qtsmbstatusl only works locally (no remote access).
 
 	<b><i>Commands:</i></b>
 	- <b>qtsmbstatus</b> client of qtsmbstatus
@@ -50,7 +50,7 @@
 // variables environnements
 QString version_qtsmbstatus="2.1";
 uint int_qtsmbstatus_version=210;
-QString date_qtsmbstatus="2008-11-15";
+QString date_qtsmbstatus="2008-11-16";
 QString auteur_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";

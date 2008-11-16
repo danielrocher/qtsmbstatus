@@ -21,22 +21,17 @@
 #ifndef CONFIGURE_WINDOWS_H
 #define CONFIGURE_WINDOWS_H
 
-class QLineEdit;
-class QCheckBox;
-class QSpinBox;
-
 #include "build/ui/ui_configure.h"
 
 extern void debugQt(const QString & message);
 extern void writeConfigFile();
-extern void readConfigFile();
 
 extern QString host;
 extern quint16  port_server; //tcp port
-extern int interval; // Interval, in seconds, between every request to smbstatus
 extern QString username_login;
 extern QString passwd_login;
 extern bool autoconnect; //Autoconnect when qtsmbstatus start
+extern int interval; // Interval, in seconds, between every request to smbstatus
 extern bool view_hidden_shares; // View hidden shares (share$)
 extern bool iconize; // Iconize QtSmbstatus on system tray
 extern bool show_messages; // show status notification messages
