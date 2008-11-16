@@ -32,7 +32,7 @@ Include dependency graph for main.cpp:</div>
 <div class="dynsection">
 <p><center><img src="client_2main_8cpp__incl.png" border="0" usemap="#client/main.cpp_map" alt=""></center>
 <map name="client/main.cpp_map">
-<area shape="rect" href="smbstatus_8h.html" title="smbstatus.h" alt="" coords="215,156,308,180"><area shape="rect" href="instances__dlg_8h.html" title="instances_dlg.h" alt="" coords="5,81,117,105"><area shape="rect" href="main__windows_8h.html" title="main_windows.h" alt="" coords="951,81,1065,105"><area shape="rect" href="linecore_8h.html" title="linecore.h" alt="" coords="223,231,300,255"><area shape="rect" href="login__windows_8h.html" title="login_windows.h" alt="" coords="1199,156,1313,180"><area shape="rect" href="configure__windows_8h.html" title="configure_windows.h" alt="" coords="1337,156,1479,180"><area shape="rect" href="log_8h.html" title="log.h" alt="" coords="1503,156,1551,180"><area shape="rect" href="client_2server_8h.html" title="server.h" alt="" coords="1607,231,1673,255"><area shape="rect" href="core__syntax_8h.html" title="../common/core_syntax.h" alt="" coords="1625,156,1793,180"><area shape="rect" href="machine_8h.html" title="machine.h" alt="" coords="1600,305,1680,329"><area shape="rect" href="user_8h.html" title="user.h" alt="" coords="1612,380,1668,404"><area shape="rect" href="service_8h.html" title="service.h" alt="" coords="1603,455,1677,479"></map>
+<area shape="rect" href="smbstatus_8h.html" title="smbstatus.h" alt="" coords="1677,231,1771,255"><area shape="rect" href="instances__dlg_8h.html" title="instances_dlg.h" alt="" coords="705,82,817,106"><area shape="rect" href="main__windows_8h.html" title="main_windows.h" alt="" coords="932,82,1047,106"><area shape="rect" href="linecore_8h.html" title="linecore.h" alt="" coords="1685,306,1763,330"><area shape="rect" href="login__windows_8h.html" title="login_windows.h" alt="" coords="720,156,835,180"><area shape="rect" href="configure__windows_8h.html" title="configure_windows.h" alt="" coords="1216,156,1357,180"><area shape="rect" href="mainwindows_8h.html" title="mainwindows.h" alt="" coords="859,156,968,180"><area shape="rect" href="log_8h.html" title="log.h" alt="" coords="707,231,755,255"><area shape="rect" href="client_2server_8h.html" title="server.h" alt="" coords="759,306,825,330"><area shape="rect" href="core__syntax_8h.html" title="../common/core_syntax.h" alt="" coords="829,231,997,255"><area shape="rect" href="machine_8h.html" title="machine.h" alt="" coords="752,380,832,404"><area shape="rect" href="user_8h.html" title="user.h" alt="" coords="764,455,820,479"><area shape="rect" href="service_8h.html" title="service.h" alt="" coords="755,530,829,554"></map>
 </div>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -61,36 +61,9 @@ Include dependency graph for main.cpp:</div>
 <tr><td colspan="2"><br><h2>Variables</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">uint&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#9457b13072dda3a2511569a6df130326">int_qtsmbstatus_version</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#0564a52d02e84089184f50771f8ed743">host</a> = &quot;127.0.0.1&quot;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">quint16&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#14a2766ffa1ccc239a02710709657f45">port_server</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#e0c690118932b32ef40a74bb6a259acd">interval</a> = 10</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Interval, in seconds, between every request to smbstatus.  <a href="#e0c690118932b32ef40a74bb6a259acd"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#bca8ef9dbd9c8709dd7bd3332133f264">username_login</a> = &quot;root&quot;</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#0549d05ad8a54ea045cbaaf9ea329665">passwd_login</a> = &quot;&quot;</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#9ec78319c4910082cd06445737f01494">autoconnect</a> = false</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Autoconnect when qtsmbstatus start.  <a href="#9ec78319c4910082cd06445737f01494"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#c9524c139a2a5e949acb2a0d38f2c273">view_hidden_shares</a> = true</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">View hidden shares (share$).  <a href="#c9524c139a2a5e949acb2a0d38f2c273"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#79604de729f59a4883fa06b7d3048f5d">iconize</a> = true</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Iconize QtSmbstatus on system tray.  <a href="#79604de729f59a4883fa06b7d3048f5d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#83b85784b7a4d0fdc38938317c16ec1b">show_messages</a> = true</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">show status notification messages (balloon messages)  <a href="#83b85784b7a4d0fdc38938317c16ec1b"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#60f21f955ad470343a3dfec57cdc68fb">log_activity</a> = false</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">log SMB/CIFS activities  <a href="#60f21f955ad470343a3dfec57cdc68fb"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#b542a2d45ca1dafae7c8cb4757c41fb7">limitLog</a> = 1</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">limit log (number of days)  <a href="#b542a2d45ca1dafae7c8cb4757c41fb7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_2main_8cpp.html#3124f20916d9e025835536735be75c16">check_new_release</a> = false</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">check for new release of qtsmbstatus  <a href="#3124f20916d9e025835536735be75c16"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TCP port.  <a href="#14a2766ffa1ccc239a02710709657f45"></a><br></td></tr>
 </table>
 <hr><h2>Function Documentation</h2>
 <a class="anchor" name="e0d7597e60d00fbf5cfade812056c3d9"></a><!-- doxytag: member="main.cpp::BoolToStr" ref="e0d7597e60d00fbf5cfade812056c3d9" args="(bool &amp;value)" -->
@@ -198,7 +171,7 @@ view debug messages. The message is printed to stderr only if debug is enabled.
 <div class="memdoc">
 
 <p>
-Read configuration file. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="client_2main_8cpp.html#2d7c50d7d21a6d9ac3667f414aac49c6">writeConfigFile</a> </dd></dl>
+Read configuration file. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="light_2main_8cpp.html#2d7c50d7d21a6d9ac3667f414aac49c6">writeConfigFile</a> </dd></dl>
 
 </div>
 </div><p>
@@ -326,72 +299,6 @@ Write to console. The message is printed to stderr.
 </div>
 </div><p>
 <hr><h2>Variable Documentation</h2>
-<a class="anchor" name="9ec78319c4910082cd06445737f01494"></a><!-- doxytag: member="main.cpp::autoconnect" ref="9ec78319c4910082cd06445737f01494" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="main__windows_8h.html#9ec78319c4910082cd06445737f01494">autoconnect</a> = false          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Autoconnect when qtsmbstatus start. 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="3124f20916d9e025835536735be75c16"></a><!-- doxytag: member="main.cpp::check_new_release" ref="3124f20916d9e025835536735be75c16" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="client_2main_8cpp.html#3124f20916d9e025835536735be75c16">check_new_release</a> = false          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-check for new release of qtsmbstatus 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="0564a52d02e84089184f50771f8ed743"></a><!-- doxytag: member="main.cpp::host" ref="0564a52d02e84089184f50771f8ed743" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="client_2main_8cpp.html#0564a52d02e84089184f50771f8ed743">host</a> = &quot;127.0.0.1&quot;          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="79604de729f59a4883fa06b7d3048f5d"></a><!-- doxytag: member="main.cpp::iconize" ref="79604de729f59a4883fa06b7d3048f5d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="client_2main_8cpp.html#79604de729f59a4883fa06b7d3048f5d">iconize</a> = true          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Iconize QtSmbstatus on system tray. 
-<p>
-
-</div>
-</div><p>
 <a class="anchor" name="9457b13072dda3a2511569a6df130326"></a><!-- doxytag: member="main.cpp::int_qtsmbstatus_version" ref="9457b13072dda3a2511569a6df130326" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -407,123 +314,25 @@ Iconize QtSmbstatus on system tray.
 
 </div>
 </div><p>
-<a class="anchor" name="e0c690118932b32ef40a74bb6a259acd"></a><!-- doxytag: member="main.cpp::interval" ref="e0c690118932b32ef40a74bb6a259acd" args="" -->
+<a class="anchor" name="14a2766ffa1ccc239a02710709657f45"></a><!-- doxytag: member="main.cpp::port_server" ref="14a2766ffa1ccc239a02710709657f45" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="client_2main_8cpp.html#e0c690118932b32ef40a74bb6a259acd">interval</a> = 10          </td>
+          <td class="memname">quint16 <a class="el" href="server_2main_8cpp.html#14a2766ffa1ccc239a02710709657f45">port_server</a>          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Interval, in seconds, between every request to smbstatus. 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="b542a2d45ca1dafae7c8cb4757c41fb7"></a><!-- doxytag: member="main.cpp::limitLog" ref="b542a2d45ca1dafae7c8cb4757c41fb7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="client_2main_8cpp.html#b542a2d45ca1dafae7c8cb4757c41fb7">limitLog</a> = 1          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-limit log (number of days) 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="60f21f955ad470343a3dfec57cdc68fb"></a><!-- doxytag: member="main.cpp::log_activity" ref="60f21f955ad470343a3dfec57cdc68fb" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="client_2main_8cpp.html#60f21f955ad470343a3dfec57cdc68fb">log_activity</a> = false          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-log SMB/CIFS activities 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="0549d05ad8a54ea045cbaaf9ea329665"></a><!-- doxytag: member="main.cpp::passwd_login" ref="0549d05ad8a54ea045cbaaf9ea329665" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="client_2main_8cpp.html#0549d05ad8a54ea045cbaaf9ea329665">passwd_login</a> = &quot;&quot;          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="83b85784b7a4d0fdc38938317c16ec1b"></a><!-- doxytag: member="main.cpp::show_messages" ref="83b85784b7a4d0fdc38938317c16ec1b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="client_2main_8cpp.html#83b85784b7a4d0fdc38938317c16ec1b">show_messages</a> = true          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-show status notification messages (balloon messages) 
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="bca8ef9dbd9c8709dd7bd3332133f264"></a><!-- doxytag: member="main.cpp::username_login" ref="bca8ef9dbd9c8709dd7bd3332133f264" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="client_2main_8cpp.html#bca8ef9dbd9c8709dd7bd3332133f264">username_login</a> = &quot;root&quot;          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-</div>
-</div><p>
-<a class="anchor" name="c9524c139a2a5e949acb2a0d38f2c273"></a><!-- doxytag: member="main.cpp::view_hidden_shares" ref="c9524c139a2a5e949acb2a0d38f2c273" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="client_2main_8cpp.html#c9524c139a2a5e949acb2a0d38f2c273">view_hidden_shares</a> = true          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-View hidden shares (share$). 
+TCP port. 
 <p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Nov 15 14:14:56 2008 for QtSmbstatus by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Nov 16 22:48:53 2008 for QtSmbstatus by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

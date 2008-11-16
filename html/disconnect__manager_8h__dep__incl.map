@@ -1,5 +1,8 @@
-<area shape="rect" href="$process__smbd__exist_8h.html" title="server/process_smbd_exist.h" alt="" coords="145,82,337,106">
-<area shape="rect" href="$disconnect__manager_8cpp.html" title="server/disconnect_manager.cpp" alt="" coords="361,82,567,106">
-<area shape="rect" href="$clientsocket_8cpp.html" title="server/clientsocket.cpp" alt="" coords="5,156,160,180">
-<area shape="rect" href="$server_2main_8cpp.html" title="server/main.cpp" alt="" coords="184,156,299,180">
-<area shape="rect" href="$process__smbd__exist_8cpp.html" title="server/process_smbd_exist.cpp" alt="" coords="323,156,528,180">
+<area shape="rect" href="$process__smbd__exist_8h.html" title="server/process_smbd_exist.h" alt="" coords="235,81,427,105">
+<area shape="rect" href="$lmain__windows_8h.html" title="light/lmain_windows.h" alt="" coords="56,156,203,180">
+<area shape="rect" href="$disconnect__manager_8cpp.html" title="server/disconnect_manager.cpp" alt="" coords="451,81,656,105">
+<area shape="rect" href="$light_2main_8cpp.html" title="light/main.cpp" alt="" coords="189,230,291,254">
+<area shape="rect" href="$clientsocket_8cpp.html" title="server/clientsocket.cpp" alt="" coords="277,156,432,180">
+<area shape="rect" href="$server_2main_8cpp.html" title="server/main.cpp" alt="" coords="456,156,571,180">
+<area shape="rect" href="$process__smbd__exist_8cpp.html" title="server/process_smbd_exist.cpp" alt="" coords="595,156,800,180">
+<area shape="rect" href="$lmain__windows_8cpp.html" title="light/lmain_windows.cpp" alt="" coords="5,230,165,254">

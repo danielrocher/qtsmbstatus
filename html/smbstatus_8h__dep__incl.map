@@ -1,5 +1,9 @@
-<area shape="rect" href="$instances__dlg_8cpp.html" title="client/instances_dlg.cpp" alt="" coords="5,82,165,106">
-<area shape="rect" href="$client_2main_8cpp.html" title="client/main.cpp" alt="" coords="148,156,257,180">
-<area shape="rect" href="$main__windows_8h.html" title="client/main_windows.h" alt="" coords="240,82,392,106">
-<area shape="rect" href="$smbstatus_8cpp.html" title="client/smbstatus.cpp" alt="" coords="416,82,557,106">
-<area shape="rect" href="$main__windows_8cpp.html" title="client/main_windows.cpp" alt="" coords="281,156,447,180">
+<area shape="rect" href="$client_2main_8cpp.html" title="client/main.cpp" alt="" coords="5,230,115,254">
+<area shape="rect" href="$mainwindows_8h.html" title="client/mainwindows.h" alt="" coords="352,81,496,105">
+<area shape="rect" href="$light_2main_8cpp.html" title="light/main.cpp" alt="" coords="588,230,689,254">
+<area shape="rect" href="$smbstatus_8cpp.html" title="client/smbstatus.cpp" alt="" coords="676,81,817,105">
+<area shape="rect" href="$main__windows_8h.html" title="client/main_windows.h" alt="" coords="97,156,249,180">
+<area shape="rect" href="$mainwindows_8cpp.html" title="client/mainwindows.cpp" alt="" coords="273,156,431,180">
+<area shape="rect" href="$lmain__windows_8h.html" title="light/lmain_windows.h" alt="" coords="455,156,601,180">
+<area shape="rect" href="$main__windows_8cpp.html" title="client/main_windows.cpp" alt="" coords="139,230,304,254">
+<area shape="rect" href="$lmain__windows_8cpp.html" title="light/lmain_windows.cpp" alt="" coords="404,230,564,254">

@@ -1,4 +1,9 @@
-<area shape="rect" href="$log_8cpp.html" title="client/log.cpp" alt="" coords="5,82,104,106">
-<area shape="rect" href="$main__windows_8h.html" title="client/main_windows.h" alt="" coords="128,82,280,106">
-<area shape="rect" href="$client_2main_8cpp.html" title="client/main.cpp" alt="" coords="68,156,177,180">
-<area shape="rect" href="$main__windows_8cpp.html" title="client/main_windows.cpp" alt="" coords="201,156,367,180">
+<area shape="rect" href="$log_8cpp.html" title="client/log.cpp" alt="" coords="117,81,216,105">
+<area shape="rect" href="$mainwindows_8h.html" title="client/mainwindows.h" alt="" coords="240,81,384,105">
+<area shape="rect" href="$main__windows_8h.html" title="client/main_windows.h" alt="" coords="57,156,209,180">
+<area shape="rect" href="$mainwindows_8cpp.html" title="client/mainwindows.cpp" alt="" coords="233,156,391,180">
+<area shape="rect" href="$lmain__windows_8h.html" title="light/lmain_windows.h" alt="" coords="415,156,561,180">
+<area shape="rect" href="$client_2main_8cpp.html" title="client/main.cpp" alt="" coords="5,230,115,254">
+<area shape="rect" href="$main__windows_8cpp.html" title="client/main_windows.cpp" alt="" coords="139,230,304,254">
+<area shape="rect" href="$lmain__windows_8cpp.html" title="light/lmain_windows.cpp" alt="" coords="368,230,528,254">
+<area shape="rect" href="$light_2main_8cpp.html" title="light/main.cpp" alt="" coords="552,230,653,254">

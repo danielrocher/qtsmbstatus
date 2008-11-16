@@ -52,27 +52,26 @@
 <a name="l00030"></a>00030         <a class="code" href="classinstances__dlg.html#6c5fbb34bcf1a21e6c90294a7ca3026c">instances_dlg</a>(QWidget * parent = 0);
 <a name="l00031"></a>00031         <span class="keyword">virtual</span> <a class="code" href="classinstances__dlg.html#cd5dceaa44d46c59eb8d5aa5eb9a8e91">~instances_dlg</a>();
 <a name="l00032"></a><a class="code" href="classinstances__dlg.html#3e2975ac98f8c36257fed07424c883a0">00032</a>         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classinstances__dlg.html#3e2975ac98f8c36257fed07424c883a0">compteur_objet</a>;
-<a name="l00033"></a>00033 <span class="keyword">protected</span> slots:
-<a name="l00034"></a>00034         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinstances__dlg.html#3aa4bb3c009e1f31d875a2319c280d44">slotTimer</a>();
-<a name="l00035"></a>00035 <span class="keyword">private</span>: <span class="comment">//methods</span>
-<a name="l00036"></a>00036         <span class="keywordtype">void</span> <a class="code" href="classinstances__dlg.html#32a6798d9093136e7a4bf8ee8b6aeabe">appendObject</a>(<span class="keywordtype">int</span> * compteur,<span class="keyword">const</span> QString &amp; name);
-<a name="l00037"></a>00037 <span class="keyword">private</span>: <span class="comment">//attributes</span>
-<a name="l00038"></a><a class="code" href="structinstances__dlg_1_1struct__object.html">00038</a>         <span class="keyword">struct </span><a class="code" href="structinstances__dlg_1_1struct__object.html">struct_object</a>
-<a name="l00039"></a>00039         {
-<a name="l00040"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#694634d5eef47fb51907ac11effca21b">00040</a>                 <span class="keywordtype">int</span> * <a class="code" href="structinstances__dlg_1_1struct__object.html#694634d5eef47fb51907ac11effca21b">compteur</a>;
-<a name="l00041"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#ffa4aa9888945aa798c7fcb870258ef8">00041</a>                 QString <a class="code" href="structinstances__dlg_1_1struct__object.html#ffa4aa9888945aa798c7fcb870258ef8">name</a>;
-<a name="l00042"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#016887a4d47f25d61c9d09e371127c9f">00042</a>                 QLabel * <a class="code" href="structinstances__dlg_1_1struct__object.html#016887a4d47f25d61c9d09e371127c9f">label1</a>;
-<a name="l00043"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#c6a23e6a0bf1fb0ff2784f0d9b92e19b">00043</a>                 QLabel * <a class="code" href="structinstances__dlg_1_1struct__object.html#c6a23e6a0bf1fb0ff2784f0d9b92e19b">label2</a>;
-<a name="l00044"></a>00044         };
-<a name="l00045"></a><a class="code" href="classinstances__dlg.html#d877a496e0713a1d6467c2c0fca7f2c3">00045</a>         QTimer * <a class="code" href="classinstances__dlg.html#d877a496e0713a1d6467c2c0fca7f2c3">timer</a>;
-<a name="l00046"></a><a class="code" href="classinstances__dlg.html#9eab77ecdde3e7c0b016e22218e36ca9">00046</a>         QVBoxLayout *<a class="code" href="classinstances__dlg.html#9eab77ecdde3e7c0b016e22218e36ca9">layoutV</a>;
-<a name="l00047"></a><a class="code" href="classinstances__dlg.html#e43f6e0cb4cf03b1f59d7388d435f00c">00047</a>         QList&lt;struct_object&gt; <a class="code" href="classinstances__dlg.html#e43f6e0cb4cf03b1f59d7388d435f00c">list_object</a>;
-<a name="l00048"></a>00048 };
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#endif</span>
-<a name="l00051"></a>00051 <span class="preprocessor"></span>
+<a name="l00033"></a>00033         <span class="keywordtype">void</span> <a class="code" href="classinstances__dlg.html#32a6798d9093136e7a4bf8ee8b6aeabe">appendObject</a>(<span class="keywordtype">int</span> * compteur,<span class="keyword">const</span> QString &amp; name);
+<a name="l00034"></a>00034 <span class="keyword">protected</span> slots:
+<a name="l00035"></a>00035         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinstances__dlg.html#3aa4bb3c009e1f31d875a2319c280d44">slotTimer</a>();
+<a name="l00036"></a>00036 <span class="keyword">private</span>: <span class="comment">//attributes</span>
+<a name="l00037"></a><a class="code" href="structinstances__dlg_1_1struct__object.html">00037</a>         <span class="keyword">struct </span><a class="code" href="structinstances__dlg_1_1struct__object.html">struct_object</a>
+<a name="l00038"></a>00038         {
+<a name="l00039"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#694634d5eef47fb51907ac11effca21b">00039</a>                 <span class="keywordtype">int</span> * <a class="code" href="structinstances__dlg_1_1struct__object.html#694634d5eef47fb51907ac11effca21b">compteur</a>;
+<a name="l00040"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#ffa4aa9888945aa798c7fcb870258ef8">00040</a>                 QString <a class="code" href="structinstances__dlg_1_1struct__object.html#ffa4aa9888945aa798c7fcb870258ef8">name</a>;
+<a name="l00041"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#016887a4d47f25d61c9d09e371127c9f">00041</a>                 QLabel * <a class="code" href="structinstances__dlg_1_1struct__object.html#016887a4d47f25d61c9d09e371127c9f">label1</a>;
+<a name="l00042"></a><a class="code" href="structinstances__dlg_1_1struct__object.html#c6a23e6a0bf1fb0ff2784f0d9b92e19b">00042</a>                 QLabel * <a class="code" href="structinstances__dlg_1_1struct__object.html#c6a23e6a0bf1fb0ff2784f0d9b92e19b">label2</a>;
+<a name="l00043"></a>00043         };
+<a name="l00044"></a><a class="code" href="classinstances__dlg.html#d877a496e0713a1d6467c2c0fca7f2c3">00044</a>         QTimer * <a class="code" href="classinstances__dlg.html#d877a496e0713a1d6467c2c0fca7f2c3">timer</a>;
+<a name="l00045"></a><a class="code" href="classinstances__dlg.html#9eab77ecdde3e7c0b016e22218e36ca9">00045</a>         QVBoxLayout *<a class="code" href="classinstances__dlg.html#9eab77ecdde3e7c0b016e22218e36ca9">layoutV</a>;
+<a name="l00046"></a><a class="code" href="classinstances__dlg.html#e43f6e0cb4cf03b1f59d7388d435f00c">00046</a>         QList&lt;struct_object&gt; <a class="code" href="classinstances__dlg.html#e43f6e0cb4cf03b1f59d7388d435f00c">list_object</a>;
+<a name="l00047"></a>00047 };
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="preprocessor">#endif</span>
+<a name="l00050"></a>00050 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Nov 15 14:14:55 2008 for QtSmbstatus by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Nov 16 22:48:53 2008 for QtSmbstatus by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
