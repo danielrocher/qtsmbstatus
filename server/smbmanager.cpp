@@ -100,7 +100,7 @@ void smbmanager::ReadStderr()
 void smbmanager::read_data ()
 {
 	debugQt("smbmanager::read_data ()");
-	data.append(m_textDecoder->toUnicode(proc.readAllStandardOutput()));
+	datas+=m_textDecoder->toUnicode(proc.readAllStandardOutput());
 }
 
 /**
@@ -109,7 +109,7 @@ void smbmanager::read_data ()
 void smbmanager::end_process ()
 {
 	debugQt("smbmanager::end_process ()");
-	QStringList list=QString(data).split('\n');
+	QStringList list=datas.split("\n");
 
 	if (!requestFailed) emit signal_std_output(list);
 	deleteLater();

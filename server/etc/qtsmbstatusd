@@ -23,19 +23,36 @@ NAME=qtsmbstatusd
 # see if qtsmbstatusd is running
 pid=`ps ax | awk '{print $1,$5}' | grep $NAME | awk '{print $1}' | awk '{print $1}'`
 
+# get locale
+if test -s /etc/debian_version; then
+        # Debian systems
+        default_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+elif test -s /etc/SuSE-release; then
+        # SuSE systems
+        default_locale=`grep -re "LANG=" /etc/sysconfig/language | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+elif test -s /etc/redhat-release; then
+        # RedHat/mandriva systems
+        default_locale=`grep -re "LANG=" /etc/sysconfig/i18n | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+else
+        # default
+        default_locale=en_US.UTF-8
+fi
+
+
 # Start or stop the qtsmbstatusd server
 case $1 in
 	start | restart | reload | force-reload)
-                if test "$pid" != ""; then
-                        kill $pid
+		export LANG=$default_locale
+		if test "$pid" != ""; then
+			kill $pid
 			if /usr/bin/qtsmbstatusd -d; then
-		  	echo "qtsmbstatusd server restarted."
+			echo "qtsmbstatusd server restarted."
 			fi
                 else
-                  	if /usr/bin/qtsmbstatusd -d; then
-		  	echo "qtsmbstatusd server started."
+			if /usr/bin/qtsmbstatusd -d; then
+			echo "qtsmbstatusd server started."
 			fi
-                fi
+		fi
                 ;;
 	stop)
 		if test "$pid" != ""; then
@@ -59,3 +76,4 @@ case $1 in
 esac
 
 exit 0
+

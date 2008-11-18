@@ -23,13 +23,17 @@ NAME=qtsmbstatusd
 # see if qtsmbstatusd is running
 pid=`ps ax | awk '{print $1,$5}' | grep $NAME | awk '{print $1}' | awk '{print $1}'`
 
+# get locale
+default_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+
 # Start or stop the qtsmbstatusd server
 case $1 in
 	start | restart | reload | force-reload)
+		export LANG=$default_locale
                 if test "$pid" != ""; then
-                        kill $pid
+			kill $pid
 			if /usr/bin/qtsmbstatusd -d; then
-		  	echo "qtsmbstatusd server restarted."
+			echo "qtsmbstatusd server restarted."
 			fi
                 else
                   	if /usr/bin/qtsmbstatusd -d; then

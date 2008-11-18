@@ -68,9 +68,9 @@ void MyApplication::commitData(QSessionManager& manager)
 
 /**
 	\class MainWindows
-	\brief Main Window for QtSmbstatus Client
-	\date 2008-11-07
-	\version 2.0
+	\brief Main Window for QtSmbstatus Client et Light
+	\date 2008-11-16
+	\version 2.1
 	\author Daniel Rocher
  */
 MainWindows::MainWindows(QWidget *parent) : QMainWindow(parent)

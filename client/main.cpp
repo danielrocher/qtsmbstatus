@@ -232,7 +232,9 @@ int main(int argc, char *argv[])
 
 	MyApplication app( argc, argv );
 	app.setApplicationName("qtsmbstatus");
+	#if QT_VERSION >= 0x040400
 	app.setApplicationVersion(version_qtsmbstatus);
+	#endif
 	app.setOrganizationName("adella.org");
 	app.setOrganizationDomain("qtsmbstatus.free.fr");
 	

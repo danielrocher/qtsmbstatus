@@ -49,7 +49,9 @@ main_windowsl::main_windowsl(QWidget *parent) : MainWindows(parent)
 	textLabel1->deleteLater();
 	comboBox_hostaddr->deleteLater();
 	pushButton_connect->deleteLater();
+	#if QT_VERSION >= 0x040400
 	horizontalLayout->deleteLater();
+	#endif
 	
 	permitDisconnectUser=true;
 	permitSendMsg=true;

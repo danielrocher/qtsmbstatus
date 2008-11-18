@@ -37,7 +37,7 @@ public:
 	static int compteur_objet;
 private: // Private attributes
 	QProcess proc;
-	QByteArray data;
+	QString datas;
 	bool requestFailed;
 	QTextDecoder * m_textDecoder;
 private slots: // Private slots
