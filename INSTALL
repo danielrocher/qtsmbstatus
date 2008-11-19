@@ -1,22 +1,24 @@
 QtSmbstatus :
 =============
 
-QtSmbstatus (client) require qt4>=4.2 and openssl
-QtSmbstatusd (server) require qt4>=4.2, openssl and pam
+QtSmbstatus Light require Qt>=4.3
+QtSmbstatus Client require Qt>=4.3
+QtSmbstatusd Server require Qt>=4.3 and pam
 you must install it before.
 
-You need Qt (from Trolltech) at least version 4.2 to be able to compile
+You need Qt (from Trolltech) at least version 4.3 to be able to compile
 QtSmbstatus. Most Linux distributions normally already package the latest
 version of Qt. However, you need the development package as well 
 (sometimes named as qt-devel or qt4-devel, it varies depends on the distributions).
 
-Required to compile qtsmbstatus-client: qt4-dev>=4.2 and ssl-dev
-Required to compile qtsmbstatus-server: qt4-dev>=4.2 , ssl-dev and pam-dev
+Required to compile qtsmbstatus-light: qt4-dev>=4.3
+Required to compile qtsmbstatus-client: qt4-dev>=4.3
+Required to compile qtsmbstatus-server: qt4-dev>=4.3 and pam-dev (or libpam-dev)
 
 The simplest way to compile this package is:
 
   1. `cd' to the directory containing the package's source code and type
-     'qmake' to create Makefile
+     'qmake' (or qmake-qt4) to create Makefile
   
   2. Type `make' to compile the package.
 

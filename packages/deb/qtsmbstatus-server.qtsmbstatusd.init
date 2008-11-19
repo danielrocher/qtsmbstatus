@@ -24,23 +24,29 @@ NAME=qtsmbstatusd
 pid=`ps ax | awk '{print $1,$5}' | grep $NAME | awk '{print $1}' | awk '{print $1}'`
 
 # get locale
-default_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+default_locale=en_US.UTF-8
+if [ -f /etc/default/locale ]; then
+        # Debian systems
+        system_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+fi
+
+if [ -z $system_locale ]; then system_locale=$default_locale; fi
 
 # Start or stop the qtsmbstatusd server
 case $1 in
 	start | restart | reload | force-reload)
-		export LANG=$default_locale
-                if test "$pid" != ""; then
+		export LANG=$system_locale
+		if test "$pid" != ""; then
 			kill $pid
 			if /usr/bin/qtsmbstatusd -d; then
 			echo "qtsmbstatusd server restarted."
 			fi
-                else
-                  	if /usr/bin/qtsmbstatusd -d; then
-		  	echo "qtsmbstatusd server started."
+		else
+		if /usr/bin/qtsmbstatusd -d; then
+			echo "qtsmbstatusd server started."
 			fi
-                fi
-                ;;
+		fi
+		;;
 	stop)
 		if test "$pid" != ""; then
 		  kill -3 $pid

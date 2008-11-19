@@ -4,19 +4,34 @@ Priority: optional
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 XSBC-Original-Maintainer: Daniel Rocher <daniel.rocher@adella.org>
 Build-Depends: debhelper (>= 5), libqt4-dev, libssl-dev, libpam0g-dev
-Standards-Version: 3.7.3
+Standards-Version: 3.8.0
 Homepage: http://qtsmbstatus.free.fr/
+
+Package: qtsmbstatus-language
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QtSmbstatus languages package
+ This package will install additional languages for qtsmbstatus-client
+ and qtsmbstatus-light.
+
+
+Package: qtsmbstatus-light
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtsmbstatus-language, libqt4-sql
+Description: GUI (graphical user interface) for smbstatus
+ Qtsmbstatus Light works only locally and doesn't require
+ qtsmbstatus-server.
 
 Package: qtsmbstatus-client
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, openssl
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtsmbstatus-language, libqt4-sql
 Description: GUI (graphical user interface) for smbstatus (client)
  It is meant to provide the possibility of administering remote machines.
  QtSmbstatus was designed as a client/server system secured with SSL.
 
 Package: qtsmbstatus-server
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, openssl, samba
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, samba
 Description: GUI (graphical user interface) for smbstatus (server)
  It is meant to provide the possibility of administering remote machines.
  QtSmbstatus was designed as a client/server system secured with SSL.

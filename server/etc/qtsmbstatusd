@@ -24,25 +24,27 @@ NAME=qtsmbstatusd
 pid=`ps ax | awk '{print $1,$5}' | grep $NAME | awk '{print $1}' | awk '{print $1}'`
 
 # get locale
-if test -s /etc/debian_version; then
+default_locale=en_US.UTF-8
+if [ -f /etc/default/locale ]; then
         # Debian systems
-        default_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
-elif test -s /etc/SuSE-release; then
+        system_locale=`grep -re "LANG=" /etc/default/locale | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+elif [ -f /etc/sysconfig/language ]; then
         # SuSE systems
-        default_locale=`grep -re "LANG=" /etc/sysconfig/language | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
-elif test -s /etc/redhat-release; then
+        system_locale=`grep -re "LANG=" /etc/sysconfig/language | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+elif [ -f /etc/sysconfig/i18n ]; then
         # RedHat/mandriva systems
-        default_locale=`grep -re "LANG=" /etc/sysconfig/i18n | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
-else
-        # default
-        default_locale=en_US.UTF-8
+        system_locale=`grep -re "LANG=" /etc/sysconfig/i18n | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
+elif [ -f /etc/profile ]; then
+	#default
+        system_locale=`grep -re "LANG=" /etc/profile | awk 'BEGIN { FS = "[\"]" } { print $2 }'`
 fi
 
+if [ -z $system_locale ]; then system_locale=$default_locale; fi
 
 # Start or stop the qtsmbstatusd server
 case $1 in
 	start | restart | reload | force-reload)
-		export LANG=$default_locale
+		export LANG=$system_locale
 		if test "$pid" != ""; then
 			kill $pid
 			if /usr/bin/qtsmbstatusd -d; then

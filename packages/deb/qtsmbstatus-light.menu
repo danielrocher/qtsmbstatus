@@ -1,0 +1,6 @@
+?package(qtsmbstatus-light): \
+   needs="X11" \
+   section="Applications/Network/Monitoring" \
+   title="QtSmbstatus Light" \
+   icon="/usr/share/pixmaps/qtsmbstatusl.xpm" \
+   command="qtsmbstatusl"

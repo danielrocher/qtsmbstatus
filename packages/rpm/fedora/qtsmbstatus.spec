@@ -9,7 +9,7 @@
 Summary:                A GUI for smbstatus with Qt
 Name:                   qtsmbstatus
 Group:                  Applications/System
-Version:                2.0.5
+Version:                2.1
 Release:                1%{?dist}
 License:                GPLv2
 Vendor:                 ADELLA
@@ -19,18 +19,35 @@ Source0:                http://qtsmbstatus.free.fr/files/qtsmbstatus-%{version}.
 Patch0:                 %{name}-%{version}-init.patch
 BuildRoot:              %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:          qt4-devel >= 4.2 desktop-file-utils
-BuildRequires:          pam-devel openssl-devel
+BuildRequires:          qt4-devel >= 4.3 desktop-file-utils
+BuildRequires:          pam-devel
 
 %description
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
 the possibility of administering remote machines. QtSmbstatus was designed
 as a client/server system secured with SSL.
 
+%package language
+Group:                  Applications/System
+Summary:                QtSmbstatus languages package
+
+%description language
+This package will install additional languages for qtsmbstatus-client
+ and qtsmbstatus-light.
+
+%package light
+Group:                  Applications/System
+Summary:                A GUI for smbstatus with Qt
+Requires:               qtsmbstatus-language qt4-x11 >= 4.3
+
+%description light
+QtSmbstatus is a smbstatus graphical interface (GUI). Qtsmbstatus Light works
+ only locally and doesn't require qtsmbstatus-server.
+
 %package client
 Group:                  Applications/System
 Summary:                A GUI for smbstatus with Qt (client)
-Requires:               openssl qt4-x11 >= 4.2
+Requires:               qtsmbstatus-language qt4-x11 >= 4.3
 
 %description client
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
@@ -41,8 +58,8 @@ to log on to server.
 %package server
 Group:                  Applications/System
 Summary:                A GUI for smbstatus with Qt (server)
-Requires:               openssl pam samba samba-client
-Requires:               qt4 >= 4.2
+Requires:               pam samba samba-client
+Requires:               qt4 >= 4.3
 
 %description server
 QtSmbstatus is a smbstatus graphical interface (GUI). It is meant to provide
@@ -81,6 +98,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_initrddir}
 # bin
 cp -a client/bin/qtsmbstatus $RPM_BUILD_ROOT/%{_bindir}
 cp -a server/bin/qtsmbstatusd $RPM_BUILD_ROOT/%{_bindir}
+cp -a light/bin/qtsmbstatusl $RPM_BUILD_ROOT/%{_bindir}
 
 # server
 cp -a server/pam.d/qtsmbstatusd $RPM_BUILD_ROOT/%{_sysconfdir}/pam.d/
@@ -93,12 +111,16 @@ cp -a server/etc/privkey.pem server/etc/qtsmbstatusd.conf \
 cp -a client/tr/*.qm $RPM_BUILD_ROOT/%{_datadir}/qtsmbstatus/
 #icons
 cp -a client/qtsmbstatus.xpm $RPM_BUILD_ROOT/%{_datadir}/pixmaps/
+cp -a light/qtsmbstatusl.xpm $RPM_BUILD_ROOT/%{_datadir}/pixmaps/
 #menu
 desktop-file-install --vendor=""  \
        --dir=$RPM_BUILD_ROOT/%{_datadir}/applications client/qtsmbstatus.desktop
+desktop-file-install --vendor=""  \
+       --dir=$RPM_BUILD_ROOT/%{_datadir}/applications light/qtsmbstatusl.desktop
 #manpage
 cp -a client/qtsmbstatus.7.gz $RPM_BUILD_ROOT/%{_mandir}/man7/
 cp -a server/qtsmbstatusd.7.gz $RPM_BUILD_ROOT/%{_mandir}/man7/
+cp -a light/qtsmbstatusl.7.gz $RPM_BUILD_ROOT/%{_mandir}/man7/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,16 +139,31 @@ if [ $1 = 0 ]; then
 chkconfig --del qtsmbstatusd 2>/dev/null
 fi
 
-
-%files client
+%files language
 %defattr(755,root,root)
-%{_bindir}/qtsmbstatus
 %dir %{_datadir}/qtsmbstatus
 
 %defattr(644,root,root)
 %{_datadir}/qtsmbstatus/*.qm
+
+
+%files light
+%defattr(755,root,root)
+%{_bindir}/qtsmbstatusl
+
+%defattr(644,root,root)
 %attr(-,root,root) %doc README README-* INSTALL COPYING changelog
-%{_datadir}/pixmaps/*.xpm
+%{_datadir}/pixmaps/qtsmbstatusl.xpm
+%{_datadir}/applications/qtsmbstatusl.desktop
+%{_mandir}/man7/qtsmbstatusl.7.gz
+
+%files client
+%defattr(755,root,root)
+%{_bindir}/qtsmbstatus
+
+%defattr(644,root,root)
+%attr(-,root,root) %doc README README-* INSTALL COPYING changelog
+%{_datadir}/pixmaps/qtsmbstatus.xpm
 %{_datadir}/applications/qtsmbstatus.desktop
 %{_mandir}/man7/qtsmbstatus.7.gz
 
@@ -144,6 +181,9 @@ fi
 %{_mandir}/man7/qtsmbstatusd.7.gz
 
 %changelog
+* Wed Nov 19 2008 Daniel Rocher <daniel.rocher@adella.org> 2.1-1
+- New upstream version
+
 * Sun Aug 31 2008 Daniel Rocher <daniel.rocher@adella.org> 2.0.5-1
 - Initial release
 
