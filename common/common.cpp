@@ -18,10 +18,6 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-// include SSL
-#include<openssl/ssl.h>
-#include <openssl/err.h>
-
 //include Qt
 #include <QString>
 #include <QTextEncoder>

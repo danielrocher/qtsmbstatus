@@ -10,6 +10,7 @@ Homepage: http://qtsmbstatus.free.fr/
 Package: qtsmbstatus-language
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: qtsmbstatus-client (<= 2.0.99)
 Description: QtSmbstatus languages package
  This package will install additional languages for qtsmbstatus-client
  and qtsmbstatus-light.

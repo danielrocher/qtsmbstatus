@@ -30,6 +30,7 @@ as a client/server system secured with SSL.
 %package language
 Group:                  Applications/System
 Summary:                QtSmbstatus languages package
+Conflicts:              qtsmbstatus-client < 2.1
 
 %description language
 This package will install additional languages for qtsmbstatus-client
@@ -145,7 +146,7 @@ fi
 
 %defattr(644,root,root)
 %{_datadir}/qtsmbstatus/*.qm
-
+%attr(-,root,root) %doc README README-* INSTALL COPYING changelog
 
 %files light
 %defattr(755,root,root)
