@@ -1,20 +1,19 @@
-qtsmbstatus (2.1-0ubuntu1) hardy; urgency=low
+qtsmbstatus (2.1-0ubuntu2) jaunty; urgency=low
 
   * New upstream version
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Wed, 19 Nov 2008 15:23:53 +0100
+ -- Daniel Rocher <daniel.rocher@adella.org>  Thu, 20 Nov 2008 21:07:06 +0100
 
-qtsmbstatus (2.0.5-0ubuntu1) hardy; urgency=low
+qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 
+  [ Daniel Rocher ]
   * New upstream version
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Wed, 27 Aug 2008 00:00:00 +0200
+  [ Harald Sitter ]
+  * Changed distribution in changelog to intrepid
+  * Bump Standards-Version to 3.8.0
 
-qtsmbstatus (2.0.4-0ubuntu1) hardy; urgency=low
-
-  * New upstream version
-
- -- Daniel Rocher <daniel.rocher@adella.org>  Wed, 14 May 2008 15:00:00 +0200
+ -- Harald Sitter <apachelogger@ubuntu.com>  Mon, 28 Jul 2008 14:40:59 +0200
 
 qtsmbstatus (2.0.3-0ubuntu1) hardy; urgency=low
 

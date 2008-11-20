@@ -1,9 +1,9 @@
 QtSmbstatus :
 =============
 
-QtSmbstatus Light require Qt>=4.3
-QtSmbstatus Client require Qt>=4.3
-QtSmbstatusd Server require Qt>=4.3 and pam
+qtsmbstatus-light and qtsmbstatus-client requires Qt>=4.3
+qtsmbstatus-server requires Qt>=4.3 and pam
+
 you must install it before.
 
 You need Qt (from Trolltech) at least version 4.3 to be able to compile

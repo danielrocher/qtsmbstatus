@@ -23,6 +23,8 @@
 
 #include "configure_windowsl.h"
 
+extern uint int_qtsmbstatus_version;
+
 /**
 	\class configure_windowsl
 	\brief Configure Qtsmbstatus-Light
@@ -40,6 +42,19 @@ configure_windowsl::configure_windowsl(QWidget *parent)
 	groupBox->setVisible (false);
 	QSettings settings;
 	settings.beginGroup("/Configuration");
+	uint last_known_release=settings.value("lastKnownRelease",int_qtsmbstatus_version).toUInt();
+	if (last_known_release>int_qtsmbstatus_version)
+	{
+		labelNewRelease->setText("<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#ff0000;\">"
+				+labelNewRelease->text()+" : "
+				+"<a href=\"http://qtsmbstatus.free.fr/index.php?page=downloads\">"+
+				+"<span style=\" text-decoration: underline; color:#0000ff;\">Downloads</span></a></p>");
+		labelNewRelease->setTextFormat ( Qt::RichText );
+		labelNewRelease->setTextInteractionFlags (Qt::LinksAccessibleByMouse);
+		labelNewRelease->setOpenExternalLinks (true);
+	} else
+		labelNewRelease->hide();
+
 	spinInterval->setValue (settings.value("interval",interval).toInt());
 	checkViewHiddenShares->setChecked (settings.value("viewHiddenShares",view_hidden_shares).toBool());
 	checkIcon->setChecked(settings.value("systemTray",iconize).toBool());

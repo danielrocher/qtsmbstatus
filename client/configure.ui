@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>431</width>
-    <height>525</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -263,6 +263,16 @@
         </property>
         <property name="text" >
          <string>Automatically Check for updates</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="labelNewRelease" >
+        <property name="text" >
+         <string>A new release is available</string>
+        </property>
+        <property name="textFormat" >
+         <enum>Qt::RichText</enum>
         </property>
        </widget>
       </item>

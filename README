@@ -12,7 +12,7 @@ This program is licensed to you under the terms of the GNU General Public Licens
 QtSmbstatus is a smbstatus graphical interface (GUI).
 It is meant to provide the possibility of administering remote machines. QtSmbstatus was designed as a client/server system secured with SSL. A login and password is required to log on to server. The server's application ought to be installed with samba-server.
 
-To use QtSmbstatus only locally (without qtsmbstatus client/server), see qtsmbstatusl (qtsmbstatus-light).
+To use QtSmbstatus only locally (without qtsmbstatus client/server), just install qtsmbstatus-light.
 
 Possibilities include:
 - view connections
@@ -36,7 +36,7 @@ Possibilities include:
         Check dependency: qt4-dev>=4.3
 
                   cd light
-                  qmake
+                  qmake (or qmake-qt4)
                   make
 
         and as root:
@@ -49,7 +49,7 @@ Possibilities include:
         Check dependency: pam-dev and qt4-dev>=4.3
 
                   cd server
-                  qmake
+                  qmake (or qmake-qt4)
                   make
 
         and as root:
@@ -62,7 +62,7 @@ Possibilities include:
         Check dependency: qt4-dev>=4.3
 
                   cd client
-                  qmake
+                  qmake (or qmake-qt4)
                   make
 
         and as root:

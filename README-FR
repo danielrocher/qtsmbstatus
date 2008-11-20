@@ -14,7 +14,7 @@ QtSmbstatus permet de visualiser en temps reel, les ressources utilisees sur un 
 
 Cette application a un fonctionnement client/serveur. Les connexions sont securisees via une couche SSL et une authentification est requise pour se connecter au serveur. QtSmbstatus serveur doit-etre installé avec le serveur Samba.
 
-Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), voir qtsmbstatusl (qtsmbstatus-light).
+Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), installez simplement qtsmbstatus-light.
 
 1/ Compilation a partir des sources
 2/ Options en ligne de commande
@@ -32,7 +32,7 @@ Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), voir qtsm
 
                   verifier les dependances: qt4-dev>=4.3
                   cd light
-                  qmake
+                  qmake (ou qmake-qt4)
                   make
 
                   puis en tant tant que root:
@@ -43,7 +43,7 @@ Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), voir qtsm
          **************************
                   Verifier les dependances: pam-dev et qt4-dev>=4.3
                   cd server
-                  qmake
+                  qmake (ou qmake-qt4)
                   make
                   puis en tant tant que root:
                   make install
@@ -53,7 +53,7 @@ Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), voir qtsm
          *************************
                   verifier les dependances: qt4-dev>=4.3
                   cd client
-                  qmake
+                  qmake (ou qmake-qt4)
                   make
                   puis en tant tant que root:
                   make install

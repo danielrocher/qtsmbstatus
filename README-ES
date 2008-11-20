@@ -15,7 +15,7 @@ Qtsmbstatus a sido diseádo como un sistema cliente/servidor seguro con SSL.
 Un login y contraseá es requerido para entrar en el server (PAM).
 La aplicacion del servidor debe ser instalado en la maquina donde se ejecuta el servicio SAMBA.
 
-To use QtSmbstatus only locally (without qtsmbstatus client/server), see (qtsmbstatus-light).
+To use QtSmbstatus only locally (without qtsmbstatus client/server), just install qtsmbstatus-light.
 
 Incluye las siguientes posibilidades:
 - ver conexiones
@@ -33,13 +33,13 @@ Incluye las siguientes posibilidades:
 1/ Compilacion desde las fuentes siguientes:
 -------------------------------------------------------------
 
-        To install qtsmbstatus light:
-        *****************************
+        Para instalar qtsmbstatus light:
+        ********************************
 
-        Check dependency: qt4-dev>=4.3
+        chequear las dependencias : qt4-dev>=4.3
 
                   cd light
-                  qmake
+                  qmake (o qmake-qt4)
                   make
 
         and as root:
@@ -52,7 +52,7 @@ Incluye las siguientes posibilidades:
         chequear las dependencias : pam-dev y qt4-dev>=4.3
 
                   cd server
-                  qmake
+                  qmake (o qmake-qt4)
                   make
 
         y como root:
@@ -65,7 +65,7 @@ Incluye las siguientes posibilidades:
         chequear las dependencias : qt4-dev>=4.3
 
                   cd client
-                  qmake
+                  qmake (o qmake-qt4)
                   make
 
         y como root:
