@@ -1,86 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru">
-<context>
-    <name>ClientSSL</name>
-    <message>
-        <location filename="../clientssl.cpp" line="118"/>
-        <source>Connection in progress on %1</source>
-        <translation type="obsolete">Процесс соединения на %1</translation>
-    </message>
-    <message>
-        <location filename="../clientssl.cpp" line="143"/>
-        <source>Host not found !</source>
-        <translation type="obsolete">Хост не найден!</translation>
-    </message>
-    <message>
-        <location filename="../clientssl.cpp" line="248"/>
-        <source>Connected to host</source>
-        <translation type="obsolete">Соединено с хостом</translation>
-    </message>
-    <message>
-        <location filename="../clientssl.cpp" line="264"/>
-        <source>Socket error</source>
-        <translation type="obsolete">Ошибка сокета</translation>
-    </message>
-    <message>
-        <location filename="../clientssl.cpp" line="277"/>
-        <source>Connection closed</source>
-        <translation type="obsolete">Соединение закрыто</translation>
-    </message>
-</context>
-<context>
-    <name>ClientSocket</name>
-    <message>
-        <location filename="../clientsocket.cpp" line="153"/>
-        <source>Host not found !</source>
-        <translation type="obsolete">Хост не найден!</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="434"/>
-        <source>Properties</source>
-        <translation type="obsolete">Свойства</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="408"/>
-        <source>Send out message to all users</source>
-        <translation type="obsolete">Сообщение всем пользователям</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="418"/>
-        <source>Send out message to</source>
-        <translation type="obsolete">Сообщение для</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="428"/>
-        <source>Disconnect user</source>
-        <translation type="obsolete">Отсоединить пользователя</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="499"/>
-        <source>Message to send</source>
-        <translation type="obsolete">Сообщение</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="527"/>
-        <source>Message to send to %1:</source>
-        <translation type="obsolete">Сообщение для %1:</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="561"/>
-        <source>Do you really want to disconnect user %1 ?</source>
-        <translation type="obsolete">Вы хотите отсоединить пользователя %1 ?</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="562"/>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">&amp;Да</translation>
-    </message>
-    <message>
-        <location filename="../clientsocket.cpp" line="562"/>
-        <source>&amp;No</source>
-        <translation type="obsolete">&amp;Нет</translation>
-    </message>
-</context>
+<defaultcodec></defaultcodec>
 <context>
     <name>LogForm</name>
     <message>
@@ -116,11 +36,6 @@
 </context>
 <context>
     <name>MainWindows</name>
-    <message>
-        <location filename="../mainwindows.cpp" line="68"/>
-        <source>QtSmbstatus Client</source>
-        <translation type="obsolete">Клиент QtSmbstatus</translation>
-    </message>
     <message>
         <location filename="../mainwindows.cpp" line="86"/>
         <source>Show CIFS/SMB activities</source>
@@ -229,17 +144,17 @@
     <message>
         <location filename="../mainwindows.cpp" line="720"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступно обновление</translation>
     </message>
     <message>
         <location filename="../mainwindows.cpp" line="723"/>
         <source>A new release of %1 is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступен новый релиз %1</translation>
     </message>
     <message>
         <location filename="../mainwindows.cpp" line="725"/>
         <source>You can download it here: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы можете загрузить здесь: %1</translation>
     </message>
 </context>
 <context>
@@ -357,17 +272,17 @@
     <message>
         <location filename="../configure.ui" line="256"/>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>Разное</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="265"/>
         <source>Automatically Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически проверять обновления</translation>
     </message>
     <message>
         <location filename="../configure.ui" line="272"/>
         <source>A new release is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступен новый релиз</translation>
     </message>
 </context>
 <context>
@@ -597,44 +512,9 @@
 <context>
     <name>main_windows</name>
     <message>
-        <location filename="../main_windows.cpp" line="70"/>
-        <source>QtSmbstatus Client</source>
-        <translation type="obsolete">Клиент QtSmbstatus</translation>
-    </message>
-    <message>
         <location filename="../main_windows.cpp" line="310"/>
         <source>Connect</source>
         <translation>Соединение</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="75"/>
-        <source>Show CIFS/SMB activities</source>
-        <translation type="obsolete">Показать активность SMB/CIFS</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="77"/>
-        <source>Configure</source>
-        <translation type="obsolete">Настройка</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="177"/>
-        <source>Minimize</source>
-        <translation type="obsolete">Минимизировать</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="82"/>
-        <source>Quit</source>
-        <translation type="obsolete">Выход</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="91"/>
-        <source>Impossible to know samba version</source>
-        <translation type="obsolete">Не могу узнать версию samba</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="175"/>
-        <source>Restore</source>
-        <translation type="obsolete">Восстановить</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="305"/>
@@ -645,61 +525,6 @@
         <location filename="../main_windows.cpp" line="356"/>
         <source>Invalid login or password !</source>
         <translation>Неправильный логин или пароль!</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="519"/>
-        <source>Thanks to:</source>
-        <translation type="obsolete">Благодарности:</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="533"/>
-        <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
-        <translation type="obsolete">Эта программа распространяется под лицензией GNU General Public License версии 2</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="576"/>
-        <source>Find text</source>
-        <translation type="obsolete">Найти текст</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="469"/>
-        <source>Search machine</source>
-        <translation type="obsolete">Поиск компьютера</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="479"/>
-        <source>Search user</source>
-        <translation type="obsolete">Поиск пользователя</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="488"/>
-        <source>Search share</source>
-        <translation type="obsolete">Поиск ресурсов</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="497"/>
-        <source>Search locked file</source>
-        <translation type="obsolete">Поиск блокированных файлов</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="627"/>
-        <source>Text not found.</source>
-        <translation type="obsolete">Текст не найден.</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="665"/>
-        <source>User %1 has opened share %2 (%3)</source>
-        <translation type="obsolete">Пользователь %1 открыл ресурс %2 (%3)</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="666"/>
-        <source>User %1 has opened file %2 (%3)</source>
-        <translation type="obsolete">Пользователь %1 открыл файл %2 (%3)</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="677"/>
-        <source>CIFS/SMB activities</source>
-        <translation type="obsolete">Активность SMB/CIFS</translation>
     </message>
     <message>
         <location filename="../main_windows.cpp" line="198"/>
@@ -715,51 +540,6 @@
         <location filename="../main_windows.cpp" line="241"/>
         <source>Connection closed</source>
         <translation>Соединение закрыто</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="965"/>
-        <source>Properties</source>
-        <translation type="obsolete">Свойства</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="939"/>
-        <source>Send out message to all users</source>
-        <translation type="obsolete">Сообщение всем пользователям</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="949"/>
-        <source>Send out message to</source>
-        <translation type="obsolete">Сообщение для</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="959"/>
-        <source>Disconnect user</source>
-        <translation type="obsolete">Отсоединить пользователя</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="1031"/>
-        <source>Message to send</source>
-        <translation type="obsolete">Сообщение</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="1057"/>
-        <source>Message to send to %1:</source>
-        <translation type="obsolete">Сообщение для %1:</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="1089"/>
-        <source>Do you really want to disconnect user %1 ?</source>
-        <translation type="obsolete">Вы хотите отсоединить пользователя %1 ?</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="1090"/>
-        <source>&amp;Yes</source>
-        <translation type="obsolete">&amp;Да</translation>
-    </message>
-    <message>
-        <location filename="../main_windows.cpp" line="1090"/>
-        <source>&amp;No</source>
-        <translation type="obsolete">&amp;Нет</translation>
     </message>
 </context>
 </TS>
