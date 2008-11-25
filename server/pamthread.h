@@ -22,6 +22,7 @@
 #define PAMTHREAD_H
 
 #include <QThread>
+#include <QTextEncoder>
 
 class QString;
 
@@ -41,6 +42,7 @@ public:
 private:
 	QString Name;
 	QString Passwd;
+	QTextEncoder * m_textEncoder;
 };
 
 #endif

@@ -37,7 +37,7 @@ private slots:
 	void SocketError();
 	void SslErrors (const QList<QSslError> & listError);
 	void socketEncrypted();
-	void slot_pam();
+	void pamFinished();
 	void ObjError(const QString & error_txt);
 	void slot_smbstatus(const QStringList &);
 private:
@@ -48,7 +48,6 @@ private:
 	//! if client is authorized to send popup message
 	bool permitSendMsg;
 	PamThread * pamthread;
-	QTimer *pamTimer;
 	enum command {auth_rq,auth_ack,end,kill_user,send_msg,smb_rq,smb_data,end_smb_rq,whoiam,
 		server_info,error_auth,error_command,error_obj,echo_request,echo_reply} ;
 	void sendToClient(int cmd,const QString & inputArg1="",const QString & inputArg2="");

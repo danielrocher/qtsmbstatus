@@ -53,8 +53,7 @@ ClientSocket :: ClientSocket( QObject* parent ) : QSslSocket ( parent )
 	permitSendMsg=false;
 
 	pamthread = new PamThread();
-	pamTimer = new QTimer( this );
-	connect( pamTimer, SIGNAL(timeout()), this, SLOT(slot_pam()) );
+	connect( pamthread, SIGNAL(finished()), this, SLOT(pamFinished()) );
 
 	ignoreSslErrors ();
 	connect (this, SIGNAL(readyRead()),this, SLOT(core()));
@@ -372,7 +371,6 @@ void ClientSocket :: CmdAuthRq(const QString & texte)
 		// PAM Request
 		pamthread->setAuth(Username,Passwd);
 		pamthread->start();
-		pamTimer->start( 500); //request every 500ms to know pamthread status (finished)
 		return;
 	}
 	sendToClient(error_auth);
@@ -382,38 +380,33 @@ void ClientSocket :: CmdAuthRq(const QString & texte)
 
 
 /**
-	test if pamthread has terminated
+	pamthread finished
 	\sa CmdAuthRq
 */
-void ClientSocket ::slot_pam()
+void ClientSocket ::pamFinished()
 {
-	debugQt ("ClientSocket::slot_pam()");
-	if (pamthread->isFinished ())
+	debugQt ("ClientSocket::pamFinished()");
+	if (pamthread->auth_resu)
 	{
-		// stop timer
-		pamTimer->stop();
-		if (pamthread->auth_resu)
-		{
-			// client authenticated
-			AuthUser=true;
-			sendToClient(auth_ack);
-			/*
-			infoserver : right for current client
-			0000 0001 : permit client to disconnect an user
-			0000 0010 : permit client to send popup messages (popupwindows)
-			*/
-			int infoserver=0;
-			if (permitDisconnectUser) infoserver=1;
-			if (permitSendMsg) infoserver+=2;
-			// send client's rights
-			sendToClient(server_info,QString::number(infoserver));
-		}
-		else
-		{
-			// client is not authenticated. disconnect it
-			sendToClient(error_auth);
-			QTimer::singleShot(100,this,SLOT(deleteLater()));
-		}
+		// client authenticated
+		AuthUser=true;
+		sendToClient(auth_ack);
+		/*
+		infoserver : right for current client
+		0000 0001 : permit client to disconnect an user
+		0000 0010 : permit client to send popup messages (popupwindows)
+		*/
+		int infoserver=0;
+		if (permitDisconnectUser) infoserver=1;
+		if (permitSendMsg) infoserver+=2;
+		// send client's rights
+		sendToClient(server_info,QString::number(infoserver));
+	}
+	else
+	{
+		// client is not authenticated. disconnect it
+		sendToClient(error_auth);
+		QTimer::singleShot(100,this,SLOT(deleteLater()));
 	}
 }
 

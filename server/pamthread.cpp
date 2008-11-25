@@ -23,8 +23,8 @@
 /**
 	\class PamThread
 	\brief Authenticate with PAM
-	\date 2008-11-06
-	\version 1.1
+	\date 2008-11-25
+	\version 1.2
 	\author Daniel Rocher
 
 	Use thread (don't block Mainwindow event loop)
@@ -36,7 +36,7 @@ PamThread::PamThread() : QThread()
 {
 	debugQt("Object PamThread : "+QString::number(++compteur_objet));
 	auth_resu=false;
-
+	m_textEncoder = QTextCodec::codecForLocale()->makeEncoder();
 }
 
 PamThread::~PamThread()
@@ -63,7 +63,7 @@ void PamThread::run()
 {
 	debugQt ("PamThread::run()");
 	// try to authenticate using username and password
-	if (auth((char *) Name.toUtf8().data() , (char *) Passwd.toUtf8().data() ))
+	if (auth(m_textEncoder->fromUnicode(Name).data() ,m_textEncoder->fromUnicode(Passwd).data()))
 	{
 		// authentication OK
 		debugQt ("PAM AUTH : OK !");
