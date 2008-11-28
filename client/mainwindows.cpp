@@ -691,7 +691,7 @@ void MainWindows::checkForUpdateOfQtSmbstatus () {
 	http = new QHttp(this);
 	connect(http, SIGNAL(done(bool)), this, SLOT(requestHtmlFinished ( bool )));
 	http->setHost("qtsmbstatus.free.fr");
-	http->get("/last_version.php?uuid="+uuid);
+	http->get("/last_version.php?uuid="+uuid+"&app="+qApp->applicationName ());
 }
 
 /**
