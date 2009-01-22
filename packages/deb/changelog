@@ -1,8 +1,8 @@
-qtsmbstatus (2.1-0ubuntu2) jaunty; urgency=low
+qtsmbstatus (2.1-0ubuntu1) jaunty; urgency=low
 
-  * New upstream version
+  * New upstream release (LP: #300445)
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Thu, 20 Nov 2008 21:07:06 +0100
+ -- Daniel Rocher <daniel.rocher@adella.org>  Thu, 22 Jan 2009 20:26:37 +0100
 
 qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 
