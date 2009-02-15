@@ -1,8 +1,14 @@
 qtsmbstatus (2.1-0ubuntu1) jaunty; urgency=low
 
   * New upstream release (LP: #300445)
+  * Create package for qtsmbstatus-light
+  * Create a separate package for Languages (required by qtsmbstatus-client
+    and qtsmbstatus-light)
+  * Remove depend on openssl
+  * debian/qtsmbstatus-server.qtsmbstatusd.init: set the LANG environment
+    variable value
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Thu, 22 Jan 2009 20:26:37 +0100
+ -- Daniel Rocher <daniel.rocher@adella.org>  Sun, 15 Feb 2009 19:46:20 +0100
 
 qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 
