@@ -47,11 +47,11 @@ case $1 in
 		export LANG=$system_locale
 		if test "$pid" != ""; then
 			kill $pid
-			if /usr/bin/qtsmbstatusd -d; then
+			if qtsmbstatusd -d; then
 			echo "qtsmbstatusd server restarted."
 			fi
                 else
-			if /usr/bin/qtsmbstatusd -d; then
+			if qtsmbstatusd -d; then
 			echo "qtsmbstatusd server started."
 			fi
 		fi

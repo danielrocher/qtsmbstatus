@@ -408,7 +408,7 @@ void MainWindows::AnalysisSmbstatus(const QStringList & listSmbstatus)
 	smbstatus * InstanceSmbstatus = new smbstatus(listSmbstatus,this);
 
 	// InstanceSmbstatus sends samba version
-	connect (InstanceSmbstatus,SIGNAL(setSambaVersion (const QString &)),this,SLOT(setSambaVersion (const QString &)));
+	connect (InstanceSmbstatus,SIGNAL(sambaVersion (const QString &)),this,SLOT(setSambaVersion (const QString &)));
 	// InstanceSmbstatus has found a share
 	connect (InstanceSmbstatus,SIGNAL(add_share(const QString &,const QString &,const QString &)),this,SLOT(add_share(const QString &,const QString &,const QString &)));
 	// InstanceSmbstatus has found an user

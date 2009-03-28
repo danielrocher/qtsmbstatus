@@ -19,14 +19,14 @@
  ***************************************************************************/
 
 
-#include <QtGui>
+#include <QtCore>
 
 #include "linecore.h"
 
 
 /**
 	\class LineCore
-	\brief Analysis the lines of %smbstatus reply.
+	\brief Parse lines of %smbstatus reply.
 	\date 2008-11-11
 	\version 1.1
 	\author Daniel Rocher

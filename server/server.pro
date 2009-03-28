@@ -73,12 +73,12 @@ MANFILES = qtsmbstatusd.7.gz
 manpage.path = $$MANDIR
 manpage.files = $$MANFILES
 
-target.path = /usr/bin/
+target.path = /usr/local/bin/
 
 postinstall.path=/
 postinstall.extra+= sh $$(PWD)/postinst.sh \$(INSTALL_ROOT)
 
-!win32 {
+unix {
 INSTALLS += data \
             pam \
             init \

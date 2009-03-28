@@ -66,7 +66,7 @@ FORMS +=  form_smbstatus.ui \
           log.ui
 
 # install
-!win32 {
+unix {
 # Translation
 TRANSDIR   = /usr/local/share/qtsmbstatus
 TRANSFILES = ./tr/*.qm
@@ -101,7 +101,7 @@ manpage.path = $$MANDIR
 manpage.files = $$MANFILES
 
 
-target.path = /usr/bin
+target.path = /usr/local/bin
 
 INSTALLS += trans \
             target \

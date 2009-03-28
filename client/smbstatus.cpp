@@ -20,7 +20,7 @@
 
 /**
 	\class smbstatus
-	\brief Analyse %smbstatus reply
+	\brief Parse %smbstatus reply
 	\date 2008-11-11
 	\version 1.1
 	\author Daniel Rocher
@@ -82,7 +82,7 @@ void smbstatus::RQ_smbstatus()
 			ligne=ligne.simplified ();
 			if (ligne.contains("version 2.2",Qt::CaseInsensitive) ) version_samba=version2;
 			if (ligne.contains("version 3.",Qt::CaseInsensitive) ) version_samba=version3;
-			emit setSambaVersion(ligne);
+			emit sambaVersion(ligne);
 		}
 
 		// inspired of ksmbstatus and updated for samba V3

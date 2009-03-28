@@ -42,10 +42,29 @@ public:
 	void RQ_smbstatus();
 	static int compteur_objet;
 signals:
-	void setSambaVersion (const QString &);
-	void add_user (const QString &,const QString &,const QString &,const QString &,const QString &);
-	void add_share(const QString &,const QString &,const QString &);
-	void add_lockedfile(const QString &,const QString &,const QString &,const QString &,const QString &,const QString &);
+	/** Samba version
+	\param version_samba samba version */
+	void sambaVersion (const QString & version_samba);
+	/** Informations for an %user
+	\param strPid PID
+	\param strUser User name
+	\param strGroup Group name
+	\param strMachineName Machine name
+	\param strMachineIP IP address  **/
+	void add_user (const QString & strPid,const QString & strUser,const QString & strGroup,const QString & strMachineName,const QString & strMachineIP);
+	/** Informations for a %share
+	\param strPid PID
+	\param strShare Share name
+	\param strConnected date */
+	void add_share(const QString & strPid ,const QString & strShare,const QString & strConnected);
+	/** Informations for a file opened (locked file)
+	\param strPid PID
+	\param strName File name
+	\param strMode Mode
+	\param strRW RW
+	\param strOplock Oplock
+	\param strDateOpen date */
+	void add_lockedfile(const QString & strPid,const QString & strName,const QString & strMode,const QString & strRW,const QString & strOplock,const QString & strDateOpen);
 private: // Private methods
 	void what_part(QString part);
 

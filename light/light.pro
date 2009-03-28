@@ -58,7 +58,7 @@ FORMS +=  ../client/form_smbstatus.ui \
           ../client/log.ui
 
 # install
-!win32 {
+unix {
     # Translation
     TRANSDIR = /usr/local/share/qtsmbstatus
     TRANSFILES = ../client/tr/*.qm
@@ -93,7 +93,7 @@ FORMS +=  ../client/form_smbstatus.ui \
     manpage.files = $$MANFILES
 
 
-    target.path = /usr/bin
+    target.path = /usr/local/bin
 
     INSTALLS += trans \
             target \
