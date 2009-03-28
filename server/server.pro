@@ -24,6 +24,7 @@ HEADERS += server.h \
 TEMPLATE = app 
 
 QT +=  network
+QT -=  gui
 
 CONFIG += release \
           warn_on \
