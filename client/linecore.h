@@ -34,7 +34,8 @@ public:
 	LineCore(QObject *parent=0);
 	virtual ~LineCore();
 	void InitHeader(const QString & OneHeader);
-	bool InitElement(const QString & element);
+	int InitElement(const QString & element);
+	QString ReturnElement(int index);
 	QString ReturnElement(const QString & element);
 	void Analysis(const QString & OneLine);
 	void SortElements();

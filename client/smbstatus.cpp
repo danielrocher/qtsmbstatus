@@ -22,12 +22,14 @@
 	\class smbstatus
 	\brief Parse %smbstatus reply
 	\date 2008-11-11
-	\version 1.1
+	\version 1.2
 	\author Daniel Rocher
 	\sa LineCore
 	\param stringlist %smbstatus reply
 	\param parent pointer to parent for this object
 */
+
+#include <QtCore>
 
 #include "smbstatus.h"
 
@@ -68,6 +70,7 @@ void smbstatus::RQ_smbstatus()
 	QString strMachineName;
 	QString strMachineIP;
 	QString strName;
+	int idName=0;
 	QString strConnected;
 	QString strDateOpen;
 
@@ -174,17 +177,23 @@ void smbstatus::RQ_smbstatus()
 			linecore->InitElement("Access");
 			linecore->InitElement("R/W");
 			linecore->InitElement("Oplock");
+			QRegExp exp1("SharePath\\s*Name\\s*Time",Qt::CaseInsensitive);
+			QRegExp exp2("SharePath\\s*Name",Qt::CaseInsensitive);
 			// for samba >3.0.20
-			if (ligne.contains("SharePath   Name   Time",Qt::CaseInsensitive))
+			if (ligne.contains(exp1))
 			{
-				linecore->InitElement("SharePath   Name   Time");
+				int start=ligne.indexOf(exp1);
+				int end=ligne.indexOf("Time")+4;
+				idName=linecore->InitElement(ligne.mid(start,end-start));
 			}
-			else if (ligne.contains("SharePath   Name",Qt::CaseInsensitive))
+			else if (ligne.contains(exp2))
 			{
-				linecore->InitElement("SharePath   Name");
+				int start=ligne.indexOf(exp2);
+				int end=ligne.indexOf("Name")+4;
+				idName=linecore->InitElement(ligne.mid(start,end-start));
 			}
 			else
-				linecore->InitElement("Name");
+				idName=linecore->InitElement("Name");
 		}
 
 		if ((readingpart==locked_files) && (ligne.simplified ().isEmpty ()==false))
@@ -192,10 +201,7 @@ void smbstatus::RQ_smbstatus()
 		{
 			linecore->Analysis(ligne);
 			strPid=linecore->ReturnElement("pid");
-			strName=linecore->ReturnElement("Name");
-			// for samba >3.0.20
-			if (strName.isEmpty()) strName=linecore->ReturnElement("SharePath   Name   Time");
-			if (strName.isEmpty()) strName=linecore->ReturnElement("SharePath   Name");
+			strName=linecore->ReturnElement(idName);
 			strMode=linecore->ReturnElement("DenyMode");
 			strRW=linecore->ReturnElement("R/W");
 			strOplock=linecore->ReturnElement("Oplock");

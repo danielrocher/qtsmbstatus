@@ -28,7 +28,7 @@
 	\class LineCore
 	\brief Parse lines of %smbstatus reply.
 	\date 2008-11-11
-	\version 1.1
+	\version 1.2
 	\author Daniel Rocher
 	\sa smbstatus
 */
@@ -78,11 +78,10 @@ void LineCore::InitHeader(const QString & OneHeader)
 	Find field on header
 	Example: "Pid", "DenyMode", .
 	\param element field
-	\retval true field exist
-	\retval false field doesn't exist
+	\return index or -1 if field doesn't exist
 	\sa InitHeader
 */
-bool LineCore::InitElement(const QString & element)
+int LineCore::InitElement(const QString & element)
 {
 	debugQt("LineCore::InitElement("+element+")");
 	if (!initHead) return false;
@@ -90,7 +89,7 @@ bool LineCore::InitElement(const QString & element)
 
 	mon_record.Begin=header.indexOf (element,0,Qt::CaseInsensitive);
 	// field doesn't exist
-	if (mon_record.Begin==-1) return false;
+	if (mon_record.Begin==-1) return -1;
 
 	// find first space+characters after 'element'
 	mon_record.End=header.indexOf(QRegExp("[\\s][\\S]"),mon_record.Begin+element.length());
@@ -101,7 +100,7 @@ bool LineCore::InitElement(const QString & element)
 
 	// add field characteristics on a record
 	listElement.append(mon_record);
-	return true;
+	return listElement.size()-1;
 }
 
 /**
@@ -178,6 +177,22 @@ QString LineCore::ReturnElement(const QString & element)
 	return "";
 }
 
+/**
+	Return one field contents
+	\param index index of field
+	\return one field contents
+*/
+QString LineCore::ReturnElement(int index)
+{
+	debugQt("LineCore::ReturnElement("+QString::number(index)+")");
+	if (!initHead || !analysisProc) return "";
+	if ( index >= 0  && index < listElement.size()) {
+		return listElement.at(index).Value;
+	} else {
+		// if doesn't exist
+		return "";
+	}
+}
 
 /**
 	Sort records
