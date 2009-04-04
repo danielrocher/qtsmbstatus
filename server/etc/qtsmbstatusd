@@ -17,7 +17,7 @@
 # chkconfig: 35 99 20
 # description: qtsmbstatusd server (QtSmbstatus is a graphical user interface for smbstatus)
 
-
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$PATH
 NAME=qtsmbstatusd
 
 # see if qtsmbstatusd is running
