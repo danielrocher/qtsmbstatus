@@ -18,27 +18,35 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef UTESTSMBSTATUS_H
-#define UTESTSMBSTATUS_H
+#include <QtCore>
 
-#include <QObject>
 #include "customsmbstatus.h"
 
-class UtestSmbstatus: public QObject
-{
-Q_OBJECT
-private slots:
-	void cleanup();
-	void SambaVersion_data();
-	void SambaVersion();
-	void addUser_data();
-	void addUser();
-	void addShare_data();
-	void addShare();
-	void addLockedfile_data();
-	void addLockedfile();
-private:
-	CustomSmbstatus m_customsmbstatus;
-};
+void CustomSmbstatus::clear() {
+	m_version_samba="";
+	m_user.clear();
+	m_share.clear();
+	m_lockedfile.clear();
+}
 
-#endif
+void CustomSmbstatus::setSambaVersion (const QString & version_samba)
+{
+	m_version_samba=version_samba;
+}
+
+void CustomSmbstatus::add_user (const QString & strPid,const QString & strUser,const QString & strGroup,const QString & strMachineName,const QString & strMachineIP)
+{
+	if (m_user.isEmpty () || strUser!="nobody")
+		m_user << strPid << strUser << strGroup << strMachineName << strMachineIP;
+}
+
+void CustomSmbstatus::add_share(const QString & strPid ,const QString & strShare,const QString & strConnected)
+{
+	m_share <<  strPid << strShare << strConnected;
+}
+
+void CustomSmbstatus::add_lockedfile(const QString & strPid,const QString & strName,const QString & strMode,const QString & strRW,const QString & strOplock,const QString & strDateOpen)
+{
+	m_lockedfile << strPid << strName << strMode << strRW << strOplock << strDateOpen;
+}
+

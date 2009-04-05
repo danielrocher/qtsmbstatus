@@ -18,27 +18,32 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef UTESTSMBSTATUS_H
-#define UTESTSMBSTATUS_H
+#ifndef CUSTOMSMBSTATUS_H
+#define CUSTOMSMBSTATUS_H
 
 #include <QObject>
-#include "customsmbstatus.h"
+#include <QStringList>
 
-class UtestSmbstatus: public QObject
+class QString;
+
+
+class CustomSmbstatus: public QObject
 {
 Q_OBJECT
-private slots:
-	void cleanup();
-	void SambaVersion_data();
-	void SambaVersion();
-	void addUser_data();
-	void addUser();
-	void addShare_data();
-	void addShare();
-	void addLockedfile_data();
-	void addLockedfile();
-private:
-	CustomSmbstatus m_customsmbstatus;
+public slots:
+	void clear();
+	void setSambaVersion (const QString &);
+	void add_user (const QString &,const QString &,const QString &,const QString &,const QString &);
+	void add_share(const QString &,const QString &,const QString &);
+	void add_lockedfile(const QString &,const QString &,const QString &,const QString &,const QString &,const QString &);
+public:
+	QString m_version_samba;
+	QStringList m_user;
+	QStringList m_share;
+	QStringList m_lockedfile;
 };
 
+
+
 #endif
+

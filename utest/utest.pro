@@ -15,11 +15,13 @@ RCC_DIR =     ./build/rcc
 SOURCES += main.cpp \
            utestlinecore.cpp \
            utestsmbstatus.cpp \
+           customsmbstatus.cpp \
            ../client/linecore.cpp \
            ../client/smbstatus.cpp
 
 HEADERS += utestlinecore.h \
            utestsmbstatus.h \
+           customsmbstatus.h \
            ../client/linecore.h \
            ../client/smbstatus.h
 
