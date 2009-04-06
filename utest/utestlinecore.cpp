@@ -23,14 +23,24 @@
 #include "utestlinecore.h"
 
 void UtestLineCore::initTestCase() {
-	linecore.InitHeader("PID     Username      Group         Machine                        ");
+	col m_cols0= { "PID", "3456",  8};
+	col m_cols1= { "Username", "robert  Gas", 14};
+	col m_cols2= { "Group", "etude  5519", 14};
+	col m_cols3= { "Machine", "etude1       (192.168.1.1)", 31};
+
+	cols <<  m_cols0 << m_cols1 << m_cols2 << m_cols3;
+	
+	QString header;
+	for (int i = 0; i < cols.size(); ++i)
+		header.append(QString("%1").arg(cols.at(i).name, - cols.at(i).fieldWidth));
+
+	// qDebug() << header;
+	linecore.InitHeader(header);
 }
 
 void UtestLineCore::InitElement() {
-	QCOMPARE(linecore.InitElement("PID"),0);
-	QCOMPARE(linecore.InitElement("Username"),1);
-	QCOMPARE(linecore.InitElement("Group"),2);
-	QCOMPARE(linecore.InitElement("Machine"),3);
+	for (int i = 0; i < cols.size(); ++i)
+		QCOMPARE(linecore.InitElement(cols.at(i).name),i);
 }
 
 void UtestLineCore::ReturnElement_data()
@@ -41,20 +51,14 @@ void UtestLineCore::ReturnElement_data()
 	QTest::addColumn<QString>("col3");
 	QTest::addColumn<QString>("col4");
 
-	QTest::newRow("test row 1") << " 3456   robert        etude         etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 2") << " 3456    robert         etude          etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 3") << " 3456     robert          etude           etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 4") << " 3456      robert           etude            etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 5") << " 3456  robert       etude        etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 6") << " 3456 robert      etude       etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
-	QTest::newRow("test row 7") << " 3456  robert      etude          etude1       (192.168.1.1)" << "3456" 
-		<< "robert" <<  "etude" << "etude1       (192.168.1.1)";
+	QString line;
+	for (int j = -9; j <= 2 ; ++j) { // change fields size
+		line.clear();
+		for (int i = 0; i < cols.size(); ++i)
+			line.append(QString("%1").arg(cols.at(i).data, j - (cols.at(i).fieldWidth)));
+		// qDebug() << line;
+		QTest::newRow("test row") << line << cols.at(0).data << cols.at(1).data << cols.at(2).data << cols.at(3).data;
+	}
 }
 
 void UtestLineCore::ReturnElement()
@@ -70,10 +74,10 @@ void UtestLineCore::ReturnElement()
 	QCOMPARE(linecore.ReturnElement(1), col2);
 	QCOMPARE(linecore.ReturnElement(2), col3);
 	QCOMPARE(linecore.ReturnElement(3), col4);
-	QCOMPARE(linecore.ReturnElement("PID"), col1);
-	QCOMPARE(linecore.ReturnElement("Username"), col2);
-	QCOMPARE(linecore.ReturnElement("Group"), col3);
-	QCOMPARE(linecore.ReturnElement("Machine"), col4);
+	QCOMPARE(linecore.ReturnElement(cols.at(0).name), col1);
+	QCOMPARE(linecore.ReturnElement(cols.at(1).name), col2);
+	QCOMPARE(linecore.ReturnElement(cols.at(2).name), col3);
+	QCOMPARE(linecore.ReturnElement(cols.at(3).name), col4);
 }
 
 

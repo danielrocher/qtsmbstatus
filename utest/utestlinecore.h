@@ -22,6 +22,9 @@
 #define UTESTLINECORE_H
 
 #include <QObject>
+#include <QList>
+#include <QString>
+
 #include "../client/linecore.h"
 
 
@@ -36,6 +39,13 @@ private slots:
 
 private:
 	LineCore linecore;
+	struct col {
+		QString name;
+		QString data;
+		//!  fieldWidth value specifies the minimum amount of space that a is padded to and filled with spaces
+		qint32 fieldWidth;
+	};
+	QList<col> cols;
 };
 
 #endif
