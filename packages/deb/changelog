@@ -1,4 +1,4 @@
-qtsmbstatus (2.1-0ubuntu1) jaunty; urgency=low
+qtsmbstatus (2.1.1-0ubuntu1) jaunty; urgency=low
 
   * New upstream release (LP: #300445)
   * Create package for qtsmbstatus-light
@@ -8,7 +8,7 @@ qtsmbstatus (2.1-0ubuntu1) jaunty; urgency=low
   * debian/qtsmbstatus-server.qtsmbstatusd.init: set the LANG environment
     variable value
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Sun, 15 Feb 2009 19:46:20 +0100
+ -- Daniel Rocher <daniel.rocher@adella.org>  Sun, 12 Apr 2009 15:14:12 +0200
 
 qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 

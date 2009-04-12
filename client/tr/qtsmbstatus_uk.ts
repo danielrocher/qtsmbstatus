@@ -74,7 +74,7 @@
     <message>
         <location filename="../mainwindows.cpp" line="291"/>
         <source>Find text</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти текст</translation>
     </message>
     <message>
         <location filename="../mainwindows.cpp" line="342"/>
