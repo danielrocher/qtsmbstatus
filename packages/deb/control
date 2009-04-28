@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 XSBC-Original-Maintainer: Daniel Rocher <daniel.rocher@adella.org>
 Build-Depends: debhelper (>= 5), libqt4-dev, libpam0g-dev
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 Homepage: http://qtsmbstatus.free.fr/
 
 Package: qtsmbstatus-language

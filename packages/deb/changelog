@@ -1,6 +1,7 @@
-qtsmbstatus (2.1.1-0ubuntu1) jaunty; urgency=low
+qtsmbstatus (2.1.1-0ubuntu1) karmic; urgency=low
 
   * New upstream release (LP: #300445)
+  * Bump Standards-Version to 3.8.1
   * Create package for qtsmbstatus-light
   * Create a separate package for Languages (required by qtsmbstatus-client
     and qtsmbstatus-light)
@@ -8,7 +9,7 @@ qtsmbstatus (2.1.1-0ubuntu1) jaunty; urgency=low
   * debian/qtsmbstatus-server.qtsmbstatusd.init: set the LANG environment
     variable value
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Sun, 12 Apr 2009 15:14:12 +0200
+ -- Daniel Rocher <daniel.rocher@adella.org>  Tue, 28 Apr 2009 21:41:03 +0200
 
 qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 
