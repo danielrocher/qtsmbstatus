@@ -23,7 +23,7 @@
 #ifndef MAINWINDOWS_H
 #define MAINWINDOWS_H
 
-
+#include <cstdio>
 #include <QMainWindow>
 #include <QApplication>
 #include <QTimer>
