@@ -710,7 +710,7 @@ void MainWindows::requestHtmlFinished (  bool error ) {
 			uint last_known_release=settings.value("lastKnownRelease",int_qtsmbstatus_version).toUInt();
 			settings.setValue("lastKnownRelease",available_release);
 			settings.setValue("dateTimeForlastCheck",QDateTime::currentDateTime());
-			if (available_release>last_known_release)
+			if (available_release>last_known_release && available_release>int_qtsmbstatus_version)
 			{
 				debugQt("A new release is available :-)");
 				// New version available

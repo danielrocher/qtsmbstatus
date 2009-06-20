@@ -193,6 +193,7 @@ void readConfigFile()
 		convertto201();
 		return;
 	}
+		settings.setValue("qtsmbstatusVersion",int_qtsmbstatus_version); // set version
 		int port_conf=settings.value("port",port_server).toInt();
  		if (validatePort(port_conf)) port_server=port_conf;
 		int interval_conf=settings.value("interval",interval).toInt();

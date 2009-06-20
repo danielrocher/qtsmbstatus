@@ -71,6 +71,7 @@ void readConfigFile()
 	settings.beginGroup("/Configuration");
 	if (!settings.contains ("uuid"))
 		settings.setValue("uuid",QUuid::createUuid().toString ());
+		settings.setValue("qtsmbstatusVersion",int_qtsmbstatus_version); // set version
 		int interval_conf=settings.value("interval",interval).toInt();
 		if (interval_conf>2) interval=interval_conf;
 		view_hidden_shares=settings.value("viewHiddenShares",view_hidden_shares).toBool();
