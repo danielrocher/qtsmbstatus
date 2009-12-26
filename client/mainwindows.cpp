@@ -242,20 +242,21 @@ void MainWindows::helpAbout()
 {
 	QMessageBox::about( this, "QtSmbstatus","<b>QtSmbstatus : </b>"+web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>"
 			"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
-					"<b>"+tr("Thanks to:")+"</b><br/>"
+					"<b>"+tr("Thanks to:")+QString::fromUtf8("</b><br/>"
 					"<table border='1'>"
-					"<tr><td>Polish translation </td><td>Krzysztof Bzowski <a href='mailto:sh4dow4@gmail.com'>sh4dow4@gmail.com</a><br/>Pawel Dyda</td></tr>"
-					"<tr><td>Spanish translation </td><td>Mauro</td></tr>"
+					"<tr><td>Polish translation </td><td>Pawel Dyda, Sh4dow</td></tr>"
+					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Fernando Muñoz, Monkey</td></tr>"
 					"<tr><td>Italian translation </td><td>Naldini Paolo</td></tr>"
-					"<tr><td>German translation </td><td>Alex Djekic</td></tr>"
-					"<tr><td>Hungarian translation </td><td>Szenogradi Norbert Peter <a href='mailto:sevoir75@gmail.com'>sevoir75@gmail.com</a></td></tr>"
-					"<tr><td>Russian and Ukrainian translation </td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a></td></tr>"
+					"<tr><td>German translation </td><td>Alex Djekic, Till Freier</td></tr>"
+					"<tr><td>Hungarian translation </td><td>Muszela Balázs, Pittmann Tamás, Szenográdi Norbert Péter, Szilveszter Kovács</td></tr>"
+					"<tr><td>Russian translation </td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a></td></tr>"
+					"<tr><td>Ukrainian translation </td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a>, Андрей Стрепетов</td></tr>"
 					"<tr><td>Swedish translation </td><td>Zirro</td></tr>"
-					"<tr><td>Brazilian Portuguese translation </td><td>Rafael Porto Rodrigues <a href='mailto:rafporto@gmail.com'>rafporto@gmail.com</a></td></tr>"
-					"<tr><td>Dutch translation </td><td>Robert Wubs <a href='mailto:wubsieonline@gmail.com'>wubsieonline@gmail.com</a></td></tr>"
+					"<tr><td>Brazilian Portuguese translation </td><td>Muriel de Souza Godoi, Rafael Porto Rodrigues</td></tr>"
+					"<tr><td>Dutch translation </td><td>Elco, Robert Wubs</td></tr>"
 					"<tr><td>RPM packages for FC3 </td><td>CG (cyberkoa)</td></tr>"
 					"<tr><td>Second reading </td><td>Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a></td></tr>"
-					"</table><br><hr>"+
+					"</table><br><hr>")+
 					tr("This program is licensed to you under the terms of the GNU General Public License version 2"));
 }
 
