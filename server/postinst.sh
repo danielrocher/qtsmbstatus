@@ -14,16 +14,19 @@ echo "install System-V style init script links"
 
 if test -s $ROOT_DIR/etc/debian_version; then
 	# Debian systems
-	update-rc.d qtsmbstatusd start 01 2 3 5 . stop 20 0 6 .
 	echo "Debian systems"
+	update-rc.d -f qtsmbstatusd remove 2>/dev/null
+	update-rc.d qtsmbstatusd defaults
 elif test -s $ROOT_DIR/etc/SuSE-release; then
 	# SuSE systems
-	insserv qtsmbstatusd
 	echo "SuSE systems"
+	insserv -r qtsmbstatusd 2>/dev/null
+	insserv qtsmbstatusd
 else
 	# RedHat systems
-	/sbin/chkconfig --add qtsmbstatusd
 	echo "RedHat systems"
+	/sbin/chkconfig --del qtsmbstatusd 2>/dev/null
+	/sbin/chkconfig --add qtsmbstatusd
 fi
 
 # start service
@@ -31,3 +34,8 @@ echo "start qtsmbstatusd service"
 $ROOT_DIR/etc/init.d/qtsmbstatusd start
 
 echo "Done."
+echo
+echo "WARNING:"
+echo "    PAM configuration file (/etc/pam.d/qtsmbstatusd) is distribution dependent."
+echo "    Please read the README file."
+echo

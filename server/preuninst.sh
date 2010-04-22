@@ -17,16 +17,16 @@ echo "remove System-V style init script links"
 
 if test -s $ROOT_DIR/etc/debian_version; then
 	# Debian systems
-	update-rc.d -f qtsmbstatusd remove 2>/dev/null
 	echo "Debian systems"
+	update-rc.d -f qtsmbstatusd remove 2>/dev/null
 elif test -s $ROOT_DIR/etc/SuSE-release; then
 	# SuSE systems
-	insserv -r qtsmbstatusd 2>/dev/null
 	echo "SuSE systems"
+	insserv -r qtsmbstatusd 2>/dev/null
 else
 	# RedHat systems
-	/sbin/chkconfig --del qtsmbstatusd 2>/dev/null
 	echo "RedHat systems"
+	/sbin/chkconfig --del qtsmbstatusd 2>/dev/null
 fi
 
 
