@@ -8,13 +8,13 @@
         <translation>Project-Id-Version: PACKAGE VERSION
 Report-Msgid-Bugs-To: 
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2009-12-25 02:01+0000
-Last-Translator: Amaeth &lt;dfoxpro@gmail.com&gt;
+PO-Revision-Date: 2010-03-14 16:37+0000
+Last-Translator: DiegoJ &lt;diegojromerolopez@gmail.com&gt;
 Language-Team: LANGUAGE &lt;LL@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2009-12-26 10:24+0000
+X-Launchpad-Export-Date: 2010-04-22 14:00+0000
 X-Generator: Launchpad (build Unknown)
 </translation>
     </message>
@@ -82,7 +82,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Text not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto no encontrado.</translation>
     </message>
     <message>
         <source>User %1 has opened share %2 (%3)</source>
@@ -94,7 +94,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Actividades CIFS/SMB</translation>
     </message>
     <message>
         <source>Message to send</source>
@@ -134,15 +134,15 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>La actualización está disponible</translation>
     </message>
     <message>
         <source>A new release of %1 is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Una nueva versión de %1 está disponible</translation>
     </message>
     <message>
         <source>You can download it here: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Puede descargarlo desde aquí: %1</translation>
     </message>
 </context>
 <context>
@@ -165,11 +165,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Show hidden shares (share$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar compartidos ocultos (compartido$)</translation>
     </message>
     <message>
         <source>Show hidden shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar compartidos ocultos</translation>
     </message>
     <message>
         <source>Notifications and log</source>
@@ -189,7 +189,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Show activities in &quot;balloon messages&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar las actividades en &quot;Mensajes de globo&quot;</translation>
     </message>
     <message>
         <source>Status notification messages</source>
@@ -213,7 +213,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Automatically Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Revisar automaticamente por actualizaciones</translation>
     </message>
     <message>
         <source>A new release is available</source>
@@ -256,11 +256,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor:</translation>
     </message>
     <message>
         <source>Connect/Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectar/Desconectar</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -280,7 +280,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>About QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de QtSmbstatus</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -292,19 +292,19 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>&amp;Configure client</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurar cliente</translation>
     </message>
     <message>
         <source>Configure QtSmbstatus client</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar el cliente de QtSmbstatus</translation>
     </message>
     <message>
         <source>&amp;Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Maquina</translation>
     </message>
     <message>
         <source>Search machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar Maquina</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -312,11 +312,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Search user</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar usuario</translation>
     </message>
     <message>
         <source>Share &amp;open</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartir &amp;abierto</translation>
     </message>
     <message>
         <source>Search share open</source>
@@ -324,7 +324,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>&amp;Locked file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo b&amp;loqueado</translation>
     </message>
     <message>
         <source>Search file open</source>
@@ -375,7 +375,7 @@ X-Generator: Launchpad (build Unknown)
     <name>logform</name>
     <message>
         <source>View Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver Actividades</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -391,11 +391,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>View/hide shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver/ocultar partes</translation>
     </message>
     <message>
         <source>View/hide files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver/ocultar archivos</translation>
     </message>
     <message>
         <source>Filter:</source>
@@ -414,7 +414,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>root</source>
-        <translation type="unfinished"></translation>
+        <translation>superusuario</translation>
     </message>
     <message>
         <source>Password</source>

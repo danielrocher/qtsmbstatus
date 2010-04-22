@@ -8,13 +8,13 @@
         <translation>Project-Id-Version: 2.1.2
 Report-Msgid-Bugs-To: 
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2009-07-24 12:22+0000
-Last-Translator: Daniel Rocher &lt;daniel.rocher@adella.org&gt;
+PO-Revision-Date: 2010-01-03 23:24+0000
+Last-Translator: Jarosław Ogrodnik &lt;nobodythere@gmail.com&gt;
 Language-Team: LANGUAGE &lt;LL@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2009-12-26 10:24+0000
+X-Launchpad-Export-Date: 2010-04-22 14:08+0000
 X-Generator: Launchpad (build Unknown)
 </translation>
     </message>
@@ -134,11 +134,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacja jest dostępna</translation>
     </message>
     <message>
         <source>A new release of %1 is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowe wydanie %1 jest dostępne</translation>
     </message>
     <message>
         <source>You can download it here: %1</source>
@@ -213,11 +213,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Automatically Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie sprawdzaj dostępność aktualizacji</translation>
     </message>
     <message>
         <source>A new release is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowe wydanie jest dostępne</translation>
     </message>
     <message>
         <source>Connection</source>
