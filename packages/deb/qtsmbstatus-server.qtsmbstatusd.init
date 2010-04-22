@@ -5,18 +5,13 @@
 # For LSB
 ### BEGIN INIT INFO
 # Provides:          qtsmbstatusd
-# Required-Start:    $samba
-# Required-Stop:
-# Default-Start:     3 5
-# Default-Stop:      0 1 2 6
+# Required-Start:    $remote_fs $syslog samba
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
 # Short-Description: start qtsmbstatusd server at boot time
 # Description:       QtSmbstatus is a graphical user interface for smbstatus
 ### END INIT INFO
-
-# For Mandrake/Mandriva/Fedora:
-# chkconfig: 35 99 20
-# description: qtsmbstatusd server (QtSmbstatus is a graphical user interface for smbstatus)
-
 
 NAME=qtsmbstatusd
 

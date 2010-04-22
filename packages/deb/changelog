@@ -1,5 +1,42 @@
+qtsmbstatus (2.1.2-3) unstable; urgency=low
+
+  * debian/qtsmbstatus-server.qtsmbstatusd.init:
+    - Fix incorrect init.d dependencies, fix runlevels, thanks to
+      Petter Reinholdtsen for the patch (Closes: #569647).
+  * Adjust postint script to replace the init.d script properly.
+  * debian/control:
+    - Bump Standards.
+    - Set DMUA to yes.
+    - Adjust versioned build-dependency on debhelper.
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Sat, 13 Feb 2010 10:17:29 +0100
+
+qtsmbstatus (2.1.2-2) unstable; urgency=low
+
+  * Architecure of qtsmbstatus-language must be all.
+  * Fix debian/copyright.
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Thu, 10 Dec 2009 17:00:06 +0100
+
+qtsmbstatus (2.1.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #558202).
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Fri, 27 Nov 2009 00:35:12 +0100
+
+qtsmbstatus (2.1.2-0ubuntu1) karmic; urgency=low
+
+  * New upstream bugfix release.
+  * Drop debian/patches/01-gcc44_ftbfs.dpatch, applied by upstream.
+  * Drop dpatch support, remove debian/patches.
+  * debian/control: Update Maintainer field as-per-spec.
+  * Update debian/copyright.
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Tue, 30 Jun 2009 11:54:11 +0200
+
 qtsmbstatus (2.1.1-0ubuntu1) karmic; urgency=low
 
+  [ Daniel Rocher ]
   * New upstream release (LP: #300445)
   * Bump Standards-Version to 3.8.1
   * Create package for qtsmbstatus-light
@@ -9,7 +46,11 @@ qtsmbstatus (2.1.1-0ubuntu1) karmic; urgency=low
   * debian/qtsmbstatus-server.qtsmbstatusd.init: set the LANG environment
     variable value
 
- -- Daniel Rocher <daniel.rocher@adella.org>  Tue, 28 Apr 2009 21:41:03 +0200
+  [ Alessio Treglia ]
+  * Add dpatch support.
+  * Add 01-gcc44_ftbfs.dpatch patch to add missing #include, fix FTBFS.
+
+ -- Alessio Treglia <quadrispro@ubuntu.com>  Thu, 14 May 2009 18:55:03 +0200
 
 qtsmbstatus (2.0.4-0ubuntu1) intrepid; urgency=low
 

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+# Recover from incorrect init.d script runlevel settings in
+# version 2.1.2-2 and earlier
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" le "2.1.2-2" ; then
+    update-rc.d -f qtsmbstatusd remove
+fi
+
+#DEBHELPER#
