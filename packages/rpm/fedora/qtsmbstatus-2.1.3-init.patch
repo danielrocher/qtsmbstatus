@@ -7,7 +7,7 @@ diff -up qtsmbstatus-2.1.3/server/etc/qtsmbstatusd.init qtsmbstatus-2.1.3/server
  #
 +# qtsmbstatusd
 +#
-+# chkconfig:   35 99 20
++# chkconfig:   2345 99 20
 +# description: qtsmbstatusd server (QtSmbstatus is a graphical user \
 +#              interface for smbstatus)
  
@@ -20,7 +20,7 @@ diff -up qtsmbstatus-2.1.3/server/etc/qtsmbstatusd.init qtsmbstatus-2.1.3/server
  ### END INIT INFO
  
 -# For Mandrake/Mandriva/Fedora:
--# chkconfig: 35 99 20
+-# chkconfig: 2345 99 20
 -# description: qtsmbstatusd server (QtSmbstatus is a graphical user interface for smbstatus)
 +# Source function library.
 +. /etc/rc.d/init.d/functions
