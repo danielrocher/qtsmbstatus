@@ -14,7 +14,9 @@ QtSmbstatus permet de visualiser en temps reel, les ressources utilisees sur un 
 
 Cette application a un fonctionnement client/serveur. Les connexions sont securisees via une couche SSL et une authentification est requise pour se connecter au serveur. QtSmbstatus serveur doit-etre installé avec le serveur Samba.
 
-Pour utiliser QtSmbstatus localement (sans qtsmbstatus client/server), installez simplement qtsmbstatus-light.
+qtsmbstatus-server fournit l'application cote serveur.
+qtsmbstatus-client fournit l'application cliente qtsmbtatus.
+qtsmbstatus-light fournit l'application legere qui ne fonctionne que localement et ne necessite pas qtsmbstatus-server.
 
 1/ Compilation a partir des sources
 2/ Options en ligne de commande
