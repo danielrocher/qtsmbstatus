@@ -244,18 +244,18 @@ void MainWindows::helpAbout()
 			"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
 					"<b>"+tr("Thanks to:")+QString::fromUtf8("</b><br/>"
 					"<table border='1'>"
-					"<tr><td>Polish translation </td><td>Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
+					"<tr><td>Polish translation </td><td>Inox, Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
 					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Fernando Muñoz, Ian Springer, Jorge Dardón, Monkey</td></tr>"
-					"<tr><td>Italian translation </td><td>Naldini Paolo</td></tr>"
+					"<tr><td>Italian translation </td><td>Naldini Paolo, Salvatore Udda, simone.sandri</td></tr>"
 					"<tr><td>German translation </td><td>Alex Djekic, Till Freier</td></tr>"
 					"<tr><td>Hungarian translation </td><td>Muszela Balázs, Pittmann Tamás, Szenográdi Norbert Péter, Szilveszter Kovács</td></tr>"
-					"<tr><td>Russian translation </td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a></td></tr>"
-					"<tr><td>Ukrainian translation </td><td>Motsyo Gennadi <a href='mailto:drool@altlinux.ru'>drool@altlinux.ru</a>, Андрей Стрепетов</td></tr>"
+					"<tr><td>Russian translation </td><td>Motsyo Gennadi</td></tr>"
+					"<tr><td>Ukrainian translation </td><td>Motsyo Gennadi, Андрей Стрепетов</td></tr>"
 					"<tr><td>Swedish translation </td><td>Zirro</td></tr>"
 					"<tr><td>Brazilian Portuguese translation </td><td>Muriel de Souza Godoi, Rafael Porto Rodrigues</td></tr>"
 					"<tr><td>Dutch translation </td><td>Elco, Robert Wubs</td></tr>"
 					"<tr><td>RPM packages for FC3 </td><td>CG (cyberkoa)</td></tr>"
-					"<tr><td>Second reading </td><td>Eric Bresson <a href='mailto:eric.public@wanadoo.fr'>eric.public@wanadoo.fr</a></td></tr>"
+					"<tr><td>Second reading </td><td>Eric Bresson</td></tr>"
 					"</table><br><hr>")+
 					tr("This program is licensed to you under the terms of the GNU General Public License version 2"));
 }

@@ -203,7 +203,7 @@
     </message>
     <message>
         <source>Show hidden shares</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connection</source>

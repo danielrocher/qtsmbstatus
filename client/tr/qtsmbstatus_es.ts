@@ -5,17 +5,17 @@
     <name></name>
     <message>
         <source></source>
-        <translation>Project-Id-Version: PACKAGE VERSION
-Report-Msgid-Bugs-To: 
+        <translation>Project-Id-Version: 2.1.2
+Report-Msgid-Bugs-To: daniel.rocher@adella.org
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2010-03-14 16:37+0000
-Last-Translator: DiegoJ &lt;diegojromerolopez@gmail.com&gt;
+PO-Revision-Date: 2010-05-05 17:54+0000
+Last-Translator: Jorge Dardón &lt;jdardon@xelalug.org&gt;
 Language-Team: LANGUAGE &lt;LL@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2010-04-22 14:00+0000
-X-Generator: Launchpad (build Unknown)
+X-Launchpad-Export-Date: 2011-01-28 02:55+0000
+X-Generator: Launchpad (build 12274)
 </translation>
     </message>
 </context>
@@ -50,7 +50,7 @@ X-Generator: Launchpad (build Unknown)
     <name>MainWindows</name>
     <message>
         <source>Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar actividades CIFS/SMB</translation>
     </message>
     <message>
         <source>Configure</source>
@@ -86,11 +86,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>User %1 has opened share %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>El Usuario %1 a abierto el compartido %2 (%3)</translation>
     </message>
     <message>
         <source>User %1 has opened file %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>El Usuario %1 a abierto el archivo %2 (%3)</translation>
     </message>
     <message>
         <source>CIFS/SMB activities</source>
@@ -153,7 +153,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Smbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Smbstatus</translation>
     </message>
     <message>
         <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
@@ -161,11 +161,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo entre requerimientos smbstatus en segundos, (intervalo &gt; 2)</translation>
     </message>
     <message>
         <source>Show hidden shares (share$)</source>
-        <translation>Mostrar compartidos ocultos (compartido$)</translation>
+        <translation>Mostrar compartidos ocultos (share$)</translation>
     </message>
     <message>
         <source>Show hidden shares</source>
@@ -229,7 +229,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Autoconnect on qtsmbstatus startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarse automáticamente en el inicio de qtsmbstatus</translation>
     </message>
     <message>
         <source>Autoconnect</source>
@@ -276,7 +276,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>&amp;About QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Acerca de QtSmbstatus</translation>
     </message>
     <message>
         <source>About QtSmbstatus</source>
@@ -320,7 +320,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Search share open</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar compartido abierto</translation>
     </message>
     <message>
         <source>&amp;Locked file</source>
@@ -328,7 +328,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Search file open</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar archivo abierto</translation>
     </message>
     <message>
         <source>&amp;Next</source>
@@ -360,11 +360,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Quit QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Salir de QtSmbstatus</translation>
     </message>
     <message>
         <source>&amp;Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mostrar las actividades CIFS/SMB</translation>
     </message>
     <message>
         <source>Co&amp;nnect</source>
@@ -406,7 +406,7 @@ X-Generator: Launchpad (build Unknown)
     <name>login_dialog</name>
     <message>
         <source>Connect to qtsmbstatus server</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectarse al servidor qtsmbstatus</translation>
     </message>
     <message>
         <source>Username</source>
@@ -422,7 +422,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>login</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar sesión</translation>
     </message>
     <message>
         <source>exit</source>
@@ -453,7 +453,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Invalid login or password !</source>
-        <translation type="unfinished"></translation>
+        <translation>Login o Password no validos !</translation>
     </message>
 </context>
 </TS>

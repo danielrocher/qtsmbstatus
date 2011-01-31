@@ -6,16 +6,16 @@
     <message>
         <source></source>
         <translation>Project-Id-Version: 2.1.2
-Report-Msgid-Bugs-To: 
+Report-Msgid-Bugs-To: daniel.rocher@adella.org
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2010-01-03 23:24+0000
-Last-Translator: Jarosław Ogrodnik &lt;nobodythere@gmail.com&gt;
+PO-Revision-Date: 2010-05-11 23:40+0000
+Last-Translator: Inox &lt;Unknown&gt;
 Language-Team: LANGUAGE &lt;LL@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2010-04-22 14:08+0000
-X-Generator: Launchpad (build Unknown)
+X-Launchpad-Export-Date: 2011-01-28 02:55+0000
+X-Generator: Launchpad (build 12274)
 </translation>
     </message>
 </context>
@@ -142,7 +142,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>You can download it here: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Możesz pobrać to tutaj: %1</translation>
     </message>
 </context>
 <context>
@@ -209,7 +209,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>Inne</translation>
     </message>
     <message>
         <source>Automatically Check for updates</source>

@@ -2,6 +2,30 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="it">
 <context>
+    <name></name>
+    <message>
+        <source></source>
+        <translatorcomment>Italian translation for qtsmbstatus
+Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
+This file is distributed under the same license as the qtsmbstatus package.
+FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, 2007.
+
+</translatorcomment>
+        <translation>Project-Id-Version: qtsmbstatus
+Report-Msgid-Bugs-To: FULL NAME &lt;EMAIL@ADDRESS&gt;
+POT-Creation-Date: 2008-11-12 21:25+0200
+PO-Revision-Date: 2010-10-23 10:51+0000
+Last-Translator: simone.sandri &lt;Unknown&gt;
+Language-Team: Italian &lt;it@li.org&gt;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Launchpad-Export-Date: 2011-01-28 02:55+0000
+X-Generator: Launchpad (build 12274)
+</translation>
+    </message>
+</context>
+<context>
     <name>LogForm</name>
     <message>
         <source>Date</source>
@@ -20,12 +44,12 @@
         <translation>Servizio</translation>
     </message>
     <message>
-        <source>Open File</source>
-        <translation>Apri il file</translation>
+        <source>Type</source>
+        <translation>Tipo</translation>
     </message>
     <message>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>Open File</source>
+        <translation>Apri il file</translation>
     </message>
 </context>
 <context>
@@ -134,44 +158,24 @@
         <translation>Configura</translation>
     </message>
     <message>
-        <source>Autoconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;right&quot;&gt;Default host address:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Indirizzio dell&apos;host predefinito:&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;right&quot;&gt;Default Username:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Nome utente predefinito:&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Host Address</source>
-        <translation>Indirizzo dell&apos;host</translation>
+        <source>Smbstatus</source>
+        <translation>Smbstatus</translation>
     </message>
     <message>
         <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
         <translation>&lt;p align=&quot;right&quot;&gt;Intervallo:&lt;/p&gt;</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Cancella</translation>
+        <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>Ok</translation>
+        <source>Show hidden shares (share$)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Username (default :  username = root)</source>
-        <translation>Nome utente (predefinito :  nome utente = root)</translation>
-    </message>
-    <message>
-        <source>Log SMB/CIFS activities</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Status notification messages</source>
-        <translation>Stato messaggi di notifica</translation>
+        <source>Show hidden shares</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Notifications and log</source>
@@ -190,32 +194,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Smbstatus</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show hidden shares (share$)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show hidden shares</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation>Connessione</translation>
-    </message>
-    <message>
-        <source>Autoconnect on qtsmbstatus startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show activities in &quot;balloon messages&quot;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status notification messages</source>
+        <translation>Notifiche sullo stato</translation>
+    </message>
+    <message>
+        <source>Log SMB/CIFS activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancella</translation>
     </message>
     <message>
         <source>Misc</source>
@@ -223,11 +219,39 @@
     </message>
     <message>
         <source>Automatically Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica disponibilità di nuove versioni automaticamente</translation>
     </message>
     <message>
         <source>A new release is available</source>
+        <translation>Nuova versione disponibile</translation>
+    </message>
+    <message>
+        <source>Connection</source>
+        <translation>Connessione</translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;right&quot;&gt;Default Username:&lt;/p&gt;</source>
+        <translation>&lt;p align=&quot;right&quot;&gt;Nome utente predefinito:&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Autoconnect on qtsmbstatus startup</source>
+        <translation>Connetti automaticamente all&apos;avvio di qtsmbstatus</translation>
+    </message>
+    <message>
+        <source>Autoconnect</source>
+        <translation>Connessione automatica</translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;right&quot;&gt;Default host address:&lt;/p&gt;</source>
+        <translation>&lt;p align=&quot;right&quot;&gt;Indirizzio dell&apos;host predefinito:&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Username (default :  username = root)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host Address</source>
+        <translation>Indirizzo dell&apos;host</translation>
     </message>
 </context>
 <context>
@@ -235,6 +259,22 @@
     <message>
         <source>qtsmbstatus</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host:</source>
+        <translation>Host:</translation>
+    </message>
+    <message>
+        <source>Connect/Disconnect</source>
+        <translation>Connetti/Disconnetti</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;File</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation>&amp;Cerca</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -245,35 +285,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>About QtSmbstatus</source>
+        <translation>Informazioni su QtSmbstatus</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
         <translation>Informazioni su &amp;Qt</translation>
     </message>
     <message>
-        <source>Connect/Disconnect</source>
-        <translation>Connetti/Disconnetti</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <source>About Qt</source>
+        <translation>Informazioni su Qt</translation>
     </message>
     <message>
         <source>&amp;Configure client</source>
         <translation>&amp;Configura client</translation>
     </message>
     <message>
-        <source>&amp;Search</source>
-        <translation>&amp;Cerca</translation>
+        <source>Configure QtSmbstatus client</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Machine</source>
         <translation>&amp;Macchina</translation>
     </message>
     <message>
+        <source>Search machine</source>
+        <translation>Cerca macchina</translation>
+    </message>
+    <message>
         <source>&amp;User</source>
         <translation>&amp;Utente</translation>
     </message>
     <message>
+        <source>Search user</source>
+        <translation>Cerca utente</translation>
+    </message>
+    <message>
         <source>Share &amp;open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search share open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -281,8 +333,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Search file open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Next</source>
         <translation>&amp;Avanti</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>F3</source>
@@ -293,44 +353,12 @@
         <translation>&amp;Trova testo</translation>
     </message>
     <message>
-        <source>F5</source>
-        <translation>F5</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;File</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Informazioni su Qt</translation>
-    </message>
-    <message>
-        <source>Configure QtSmbstatus client</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search machine</source>
-        <translation>Cerca macchina</translation>
-    </message>
-    <message>
-        <source>Search user</source>
-        <translation>Cerca utente</translation>
-    </message>
-    <message>
-        <source>Search share open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search file open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next</source>
-        <translation>Avanti</translation>
-    </message>
-    <message>
         <source>Find text</source>
         <translation>Trova testo</translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation>F5</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -341,16 +369,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Co&amp;nnect</source>
-        <translation>Co&amp;nnetti</translation>
-    </message>
-    <message>
         <source>&amp;Show CIFS/SMB activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About QtSmbstatus</source>
-        <translation>Informazioni su QtSmbstatus</translation>
+        <source>Co&amp;nnect</source>
+        <translation>Co&amp;nnetti</translation>
     </message>
 </context>
 <context>
@@ -358,6 +382,18 @@
     <message>
         <source>View Activities</source>
         <translation>Visualizza attività</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save log</source>
+        <translation>Salva log</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Chiudi</translation>
     </message>
     <message>
         <source>View/hide shares</source>
@@ -371,28 +407,12 @@
         <source>Filter:</source>
         <translation>Filtro:</translation>
     </message>
-    <message>
-        <source>Clear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Chiudi</translation>
-    </message>
-    <message>
-        <source>Save log</source>
-        <translation>Salva log</translation>
-    </message>
 </context>
 <context>
     <name>login_dialog</name>
     <message>
-        <source>login</source>
-        <translation>accedi</translation>
-    </message>
-    <message>
-        <source>exit</source>
-        <translation>esci</translation>
+        <source>Connect to qtsmbstatus server</source>
+        <translation>Connettiti al server qtsmbstatus</translation>
     </message>
     <message>
         <source>Username</source>
@@ -407,8 +427,12 @@
         <translation>Password</translation>
     </message>
     <message>
-        <source>Connect to qtsmbstatus server</source>
-        <translation>Connettiti al server qtsmbstatus</translation>
+        <source>login</source>
+        <translation>accedi</translation>
+    </message>
+    <message>
+        <source>exit</source>
+        <translation>esci</translation>
     </message>
 </context>
 <context>
@@ -418,16 +442,8 @@
         <translation>Connettiti</translation>
     </message>
     <message>
-        <source>Disconnect</source>
-        <translation>Disconetti</translation>
-    </message>
-    <message>
-        <source>Invalid login or password !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Connection in progress on %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Connessione in corso su %1</translation>
     </message>
     <message>
         <source>Connected to host</source>
@@ -436,6 +452,14 @@
     <message>
         <source>Connection closed</source>
         <translation>Connessione terminata</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Disconetti</translation>
+    </message>
+    <message>
+        <source>Invalid login or password !</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
