@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008 by Daniel Rocher                                   *
+ *   Copyright (C) 2004 by Daniel Rocher                                   *
  *   daniel.rocher@adella.org                                              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -246,7 +246,7 @@ void MainWindows::helpAbout()
 					"<table border='1'>"
 					"<tr><td>Polish translation </td><td>Inox, Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
 					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Fernando Muñoz, Ian Springer, Jorge Dardón, Monkey</td></tr>"
-					"<tr><td>Italian translation </td><td>Naldini Paolo, Salvatore Udda, simone.sandri</td></tr>"
+					"<tr><td>Italian translation </td><td>Martino Barbon, Naldini Paolo, Salvatore Udda, simone.sandri</td></tr>"
 					"<tr><td>German translation </td><td>Alex Djekic, Till Freier</td></tr>"
 					"<tr><td>Hungarian translation </td><td>Muszela Balázs, Pittmann Tamás, Szenográdi Norbert Péter, Szilveszter Kovács</td></tr>"
 					"<tr><td>Russian translation </td><td>Motsyo Gennadi</td></tr>"

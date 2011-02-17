@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it">
+<TS version="2.0" language="it" sourcelanguage="it">
 <context>
     <name></name>
     <message>
@@ -14,14 +14,14 @@ FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, 2007.
         <translation>Project-Id-Version: qtsmbstatus
 Report-Msgid-Bugs-To: FULL NAME &lt;EMAIL@ADDRESS&gt;
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2010-10-23 10:51+0000
-Last-Translator: simone.sandri &lt;Unknown&gt;
+PO-Revision-Date: 2011-02-14 17:06+0000
+Last-Translator: Martino Barbon &lt;Unknown&gt;
 Language-Team: Italian &lt;it@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2011-01-28 02:55+0000
-X-Generator: Launchpad (build 12274)
+X-Launchpad-Export-Date: 2011-02-17 17:44+0000
+X-Generator: Launchpad (build 12395)
 </translation>
     </message>
 </context>
@@ -80,7 +80,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo programma ti è concesso in licenza in base ai termini della GNU General Public License versione 2</translation>
     </message>
     <message>
         <source>Find text</source>
@@ -144,7 +144,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>A new release of %1 is available</source>
-        <translation type="unfinished"></translation>
+        <translation>È disponibile un nuovo rilascio di %1</translation>
     </message>
     <message>
         <source>You can download it here: %1</source>
@@ -183,7 +183,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>Limit log:</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite del registro:</translation>
     </message>
     <message>
         <source>days</source>
@@ -191,7 +191,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>Iconize QtSmbstatus in system tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Riduci a icona QtSmbstatus nel pannello di sistema</translation>
     </message>
     <message>
         <source>Show activities in &quot;balloon messages&quot;</source>
@@ -203,7 +203,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>Log SMB/CIFS activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Tieni un registro delle attività SMB/CIFS</translation>
     </message>
     <message>
         <source>OK</source>
@@ -247,7 +247,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>Username (default :  username = root)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome utente (predefinito : nome utente = root)</translation>
     </message>
     <message>
         <source>Host Address</source>
@@ -258,7 +258,7 @@ X-Generator: Launchpad (build 12274)
     <name>form_smbstatus</name>
     <message>
         <source>qtsmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>qtsmbstatus</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -282,7 +282,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>&amp;About QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Inform&amp;azioni su QtSmbstatus</translation>
     </message>
     <message>
         <source>About QtSmbstatus</source>
@@ -366,11 +366,11 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>Quit QtSmbstatus</source>
-        <translation type="unfinished"></translation>
+        <translation>Esci da QtSmbstatus</translation>
     </message>
     <message>
         <source>&amp;Show CIFS/SMB activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Mo&amp;stra le attività CIFS/SMB</translation>
     </message>
     <message>
         <source>Co&amp;nnect</source>
@@ -397,7 +397,7 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>View/hide shares</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra/nascondi le condivisioni</translation>
     </message>
     <message>
         <source>View/hide files</source>

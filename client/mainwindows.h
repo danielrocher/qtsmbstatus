@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008 by Daniel Rocher                                   *
+ *   Copyright (C) 2004 by Daniel Rocher                                   *
  *   daniel.rocher@adella.org                                              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
