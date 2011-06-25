@@ -450,7 +450,6 @@ void main_windows::core()
 					case end: // end socket by server
 							debugQt("["+QString::number(reponse)+"] end");
 							sslSocket.close();
-							deleteLater();
 							break;
 					case smb_data: // smbstatus datas
 							debugQt("["+QString::number(reponse)+"] smb_data");
