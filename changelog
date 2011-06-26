@@ -1,5 +1,9 @@
 Changelog for QtSmbstatus:
 
+2011-06-26 - Version 2.2.0:
+	- Check server certificate (known host). A protection against Man-In-The-Middle Attacks
+	- Updated some translations
+ 
 2010-04-22 - Version 2.1.3:
 	- Updated some translations
 	- Fixed runlevel for qtsmbstatusd script (BUG: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=569647 )

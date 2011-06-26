@@ -32,6 +32,15 @@
 
 extern bool autoconnect;
 
+class Host {
+public:
+	QString address;
+	QString sha1;
+	bool operator == (Host other) const {
+		return (other.address == address && other.sha1 == sha1);
+	};
+};
+
 
 class main_windows : public MainWindows  {
    Q_OBJECT

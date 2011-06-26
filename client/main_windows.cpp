@@ -217,6 +217,71 @@ void main_windows::socketConnected()
 	currentIndexOfListItem=0;
 	QString SearchTxt="";
 	
+	//check certificate
+	QSslCertificate cert=sslSocket.peerCertificate ();
+	if ( cert.isNull() || ! cert.isValid()) {
+		QMessageBox::warning ( this, "QtSmbstatus",tr("The server certificate doesn't contain valid data or expired !"));
+		sslSocket.close();
+		return;
+	}
+
+	// get hash
+	QByteArray digest=cert.digest (QCryptographicHash::Sha1);
+	QStringList resu;
+	for ( int i=0;i<digest.size();++i )
+	{
+		QString hx;
+		hx.sprintf ( "%02X", ( unsigned char ) digest[i] );
+		resu<<hx;
+	}
+	QString sha1= resu.join ( ":" );
+
+	debugQt("SHA1 : "+sha1);
+	QList<Host> values;
+	QSettings settings;
+
+	settings.beginGroup("/knownHosts");
+		int size = settings.beginReadArray("host");
+			for (int i = 0; i < size; ++i) {
+				settings.setArrayIndex(i);
+				Host knowhost;
+				knowhost.address=settings.value("address").toString();
+				knowhost.sha1 =settings.value("sha1").toString();
+				values.append(knowhost);
+			}
+			settings.endArray();
+	settings.endGroup();
+
+	Host knowhost;
+	knowhost.address=comboBox_hostaddr->currentText ();
+	knowhost.sha1=sha1;
+
+	if ( ! values.contains(knowhost) ) {
+		if (QMessageBox::question ( this, "QtSmbstatus",
+			tr("The authenticity of host '%1' can't be established.").arg(knowhost.address)+"\n"+
+			tr("SHA1 Fingerprint: %2.").arg(knowhost.sha1)+"\n"+
+			tr("Are you sure you want to continue connecting ?"),
+			QMessageBox::Yes|QMessageBox::No, QMessageBox::No ) ==QMessageBox::Yes)
+		{
+			values.append(knowhost);
+	
+			// save config
+			settings.beginGroup("/knownHosts");
+				settings.beginWriteArray("host");
+					for (int i = 0; i < values.size(); ++i) {
+						settings.setArrayIndex(i);
+						settings.setValue("address", values.at(i).address);
+						settings.setValue("sha1", values.at(i).sha1);
+					}
+				settings.endArray();
+			settings.endGroup();
+		} else {
+			// unknown host and user want exit
+			sslSocket.close();
+			return;
+		}
+	}
+
 	firstTime=true;
 	timerinfoSmb.start(10000);
 
