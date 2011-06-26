@@ -455,5 +455,21 @@ X-Generator: Launchpad (build 12274)
         <source>Invalid login or password !</source>
         <translation>Login o Password no validos !</translation>
     </message>
+    <message>
+        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to continue connecting ?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
