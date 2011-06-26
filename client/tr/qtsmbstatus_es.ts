@@ -464,11 +464,11 @@ X-Generator: Launchpad (build 12274)
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SHA1 Fingerprint: %2.</source>
+        <source>Are you sure you want to continue connecting ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Are you sure you want to continue connecting ?</source>
+        <source>SHA1 Fingerprint: %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

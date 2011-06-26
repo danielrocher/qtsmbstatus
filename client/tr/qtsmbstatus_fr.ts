@@ -439,19 +439,19 @@
     </message>
     <message>
         <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
+        <translation>Le certificat du serveur ne contient pas des données valides ou bien le certificat a expiré !</translation>
     </message>
     <message>
         <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SHA1 Fingerprint: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;authenticité de l&apos;hôte &apos;%1&apos; ne peut pas être établie.</translation>
     </message>
     <message>
         <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir continuer la connexion ?</translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %1.</source>
+        <translation>Empreinte SHA1: %1.</translation>
     </message>
 </context>
 </TS>

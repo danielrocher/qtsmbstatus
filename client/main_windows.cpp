@@ -259,7 +259,7 @@ void main_windows::socketConnected()
 	if ( ! values.contains(knowhost) ) {
 		if (QMessageBox::question ( this, "QtSmbstatus",
 			tr("The authenticity of host '%1' can't be established.").arg(knowhost.address)+"\n"+
-			tr("SHA1 Fingerprint: %2.").arg(knowhost.sha1)+"\n"+
+			tr("SHA1 Fingerprint: %1.").arg(knowhost.sha1)+"\n"+
 			tr("Are you sure you want to continue connecting ?"),
 			QMessageBox::Yes|QMessageBox::No, QMessageBox::No ) ==QMessageBox::Yes)
 		{

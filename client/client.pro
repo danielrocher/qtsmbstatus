@@ -109,6 +109,9 @@ INSTALLS += trans \
             icons \
             menu \
             manpage
+
+system(lrelease $$TRANSLATIONS)
+
 }
 
 
