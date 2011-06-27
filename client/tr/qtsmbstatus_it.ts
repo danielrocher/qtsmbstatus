@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="it">
+<TS version="2.0" language="it">
 <context>
     <name></name>
     <message>
@@ -14,14 +14,14 @@ FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, 2007.
         <translation>Project-Id-Version: qtsmbstatus
 Report-Msgid-Bugs-To: FULL NAME &lt;EMAIL@ADDRESS&gt;
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2011-02-14 17:06+0000
-Last-Translator: Martino Barbon &lt;Unknown&gt;
+PO-Revision-Date: 2011-05-13 19:15+0000
+Last-Translator: simone.sandri &lt;lexluxsox@hotmail.it&gt;
 Language-Team: Italian &lt;it@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2011-02-17 17:44+0000
-X-Generator: Launchpad (build 12395)
+X-Launchpad-Export-Date: 2011-06-27 16:20+0000
+X-Generator: Launchpad (build 13265)
 </translation>
     </message>
 </context>
@@ -215,7 +215,7 @@ X-Generator: Launchpad (build 12395)
     </message>
     <message>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation>Varie</translation>
     </message>
     <message>
         <source>Automatically Check for updates</source>
@@ -330,7 +330,7 @@ X-Generator: Launchpad (build 12395)
     </message>
     <message>
         <source>&amp;Locked file</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;File bloccato</translation>
     </message>
     <message>
         <source>Search file open</source>
@@ -446,6 +446,22 @@ X-Generator: Launchpad (build 12395)
         <translation>Connessione in corso su %1</translation>
     </message>
     <message>
+        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to continue connecting ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Connected to host</source>
         <translation>Connesso all&apos;host</translation>
     </message>
@@ -459,22 +475,6 @@ X-Generator: Launchpad (build 12395)
     </message>
     <message>
         <source>Invalid login or password !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SHA1 Fingerprint: %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
