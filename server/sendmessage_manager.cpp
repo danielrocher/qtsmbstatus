@@ -42,7 +42,7 @@ Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString 
 	my_message=message.simplified();
 
 	my_message.replace( "\"", " ").replace( "\\", " ");
-	my_message="echo " + my_message +  " | smbclient -M " + to_machine;
+	my_message="echo " + my_message +  " | smbclient -M " + to_machine + " -N";
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
