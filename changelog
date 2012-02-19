@@ -1,5 +1,9 @@
 Changelog for QtSmbstatus:
 
+2012-02-19 - Version 2.2.1:
+	- fix: authentification required with smbclient
+	- Updated some translations
+	
 2011-06-26 - Version 2.2.0:
 	- Check server certificate (known host). A protection against Man-In-The-Middle Attacks
 	- Updated some translations
