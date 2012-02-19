@@ -253,7 +253,7 @@ void MainWindows::helpAbout()
 					"<tr><td>Ukrainian translation </td><td>Motsyo Gennadi, Андрей Стрепетов</td></tr>"
 					"<tr><td>Swedish translation </td><td>Zirro</td></tr>"
 					"<tr><td>Brazilian Portuguese translation </td><td>Muriel de Souza Godoi, Rafael Porto Rodrigues</td></tr>"
-					"<tr><td>Dutch translation </td><td>Elco, Robert Wubs</td></tr>"
+					"<tr><td>Dutch translation </td><td>Jogai, Elco, Robert Wubs</td></tr>"
 					"<tr><td>RPM packages for FC3 </td><td>CG (cyberkoa)</td></tr>"
 					"<tr><td>Second reading </td><td>Eric Bresson</td></tr>"
 					"</table><br><hr>")+

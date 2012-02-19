@@ -14,14 +14,14 @@ FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, 2008.
         <translation>Project-Id-Version: qtsmbstatus
 Report-Msgid-Bugs-To: FULL NAME &lt;EMAIL@ADDRESS&gt;
 POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2009-09-24 14:10+0000
-Last-Translator: Elco &lt;Unknown&gt;
+PO-Revision-Date: 2011-10-25 18:23+0000
+Last-Translator: Jogai &lt;wouter@microshit.nl&gt;
 Language-Team: Dutch &lt;nl@li.org&gt;
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2009-12-26 10:24+0000
-X-Generator: Launchpad (build Unknown)
+X-Launchpad-Export-Date: 2012-02-19 17:04+0000
+X-Generator: Launchpad (build 14814)
 </translation>
     </message>
 </context>
@@ -446,6 +446,22 @@ X-Generator: Launchpad (build Unknown)
         <translation>Verbinding maken bezig op %1</translation>
     </message>
     <message>
+        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
+        <translation>Het server certificaat bevat geen geldige data of is verlopen!</translation>
+    </message>
+    <message>
+        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
+        <translation>De echtheid van host &apos;%1&apos;  kan niet worden bevestigd.</translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %1.</source>
+        <translation>SHA1 Vingerafdruk: %1.</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to continue connecting ?</source>
+        <translation>Weet u zeker dat u verbinding wilt maken?</translation>
+    </message>
+    <message>
         <source>Connected to host</source>
         <translation>Verbonden met host</translation>
     </message>
@@ -460,22 +476,6 @@ X-Generator: Launchpad (build Unknown)
     <message>
         <source>Invalid login or password !</source>
         <translation>Ongeldig gebruikersnaam of wachtwoord !</translation>
-    </message>
-    <message>
-        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SHA1 Fingerprint: %1.</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
