@@ -9,7 +9,7 @@
 Summary:                A GUI for smbstatus with Qt
 Name:                   qtsmbstatus
 Group:                  Applications/System
-Version:                2.2.0
+Version:                2.2.1
 Release:                1%{?dist}
 License:                GPLv2
 Vendor:                 ADELLA
@@ -183,6 +183,9 @@ fi
 %{_mandir}/man7/qtsmbstatusd.7.gz
 
 %changelog
+
+* Sun Feb 19 2012 Daniel Rocher <daniel.rocher@adella.org> 2.2.1-1
+- New upstream version
 
 * Tue Jun 28 2011 Daniel Rocher <daniel.rocher@adella.org> 2.2.0-1
 - New upstream version
