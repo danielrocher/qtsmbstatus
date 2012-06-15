@@ -2,24 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="de">
 <context>
-    <name></name>
-    <message>
-        <source></source>
-        <translation>Project-Id-Version: 2.1.2
-Report-Msgid-Bugs-To: 
-POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2009-09-26 16:54+0000
-Last-Translator: Till Freier &lt;till@thoran.eu&gt;
-Language-Team: LANGUAGE &lt;LL@li.org&gt;
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2009-12-26 10:24+0000
-X-Generator: Launchpad (build Unknown)
-</translation>
-    </message>
-</context>
-<context>
     <name>LogForm</name>
     <message>
         <source>Date</source>
@@ -58,11 +40,11 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Minimize</source>
-        <translation>Minimieren</translation>
+        <translation>Verkleinern</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>beenden</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <source>Restore</source>
@@ -74,7 +56,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License version 2</source>
-        <translation type="unfinished"></translation>
+        <translation>This program is licensed to you under the terms of the GNU General Public License version 2</translation>
     </message>
     <message>
         <source>Find text</source>
@@ -241,7 +223,7 @@ X-Generator: Launchpad (build Unknown)
     </message>
     <message>
         <source>Username (default :  username = root)</source>
-        <translation>Benutzername (default: username = root)</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Host Address</source>
@@ -433,11 +415,27 @@ X-Generator: Launchpad (build Unknown)
     <name>main_windows</name>
     <message>
         <source>Connect</source>
-        <translation>Verbunden</translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Connection in progress on %1</source>
         <translation>Verbindung wird aufgebaut bei %1</translation>
+    </message>
+    <message>
+        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
+        <translation>Das Server-Zertifikat enthält keinerlei gültige Daten oder ist abgelaufen!</translation>
+    </message>
+    <message>
+        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
+        <translation>Die Echtheit von Host &apos;%1&apos; kann nicht belegt werden.</translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %1.</source>
+        <translation>SHA1 Fingerabdruck: %1.</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to continue connecting ?</source>
+        <translation>Bist du sicher, daß du weiterhin versuchen möchtest eine Verbindung herzustellen?</translation>
     </message>
     <message>
         <source>Connected to host</source>
@@ -454,22 +452,6 @@ X-Generator: Launchpad (build Unknown)
     <message>
         <source>Invalid login or password !</source>
         <translation>Falscher Login oder Passwort !</translation>
-    </message>
-    <message>
-        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SHA1 Fingerprint: %1.</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

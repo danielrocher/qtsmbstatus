@@ -1,4 +1,6 @@
 *.qm
 */bin/*
 */build/*
-
+Makefile
+*.user
+/html/

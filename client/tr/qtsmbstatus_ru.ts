@@ -134,6 +134,26 @@
         <translation>Настройка</translation>
     </message>
     <message>
+        <source>Smbstatus</source>
+        <translation>Smbstatus</translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
+        <translation>&lt;p align=&quot;right&quot;&gt;Интервал:&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
+        <translation>Интервал между запросами smbstatus в секундах (интервал &gt; 2)</translation>
+    </message>
+    <message>
+        <source>Show hidden shares (share$)</source>
+        <translation>Показать скрытые ресурсы (share$)</translation>
+    </message>
+    <message>
+        <source>Show hidden shares</source>
+        <translation>Показать скрытые ресурсы</translation>
+    </message>
+    <message>
         <source>Notifications and log</source>
         <translation>Уведомления и отчет</translation>
     </message>
@@ -162,24 +182,24 @@
         <translation>Отчет активности SMB/CIFS</translation>
     </message>
     <message>
-        <source>Smbstatus</source>
-        <translation>Smbstatus</translation>
+        <source>OK</source>
+        <translation>ДА</translation>
     </message>
     <message>
-        <source>&lt;p align=&quot;right&quot;&gt;Interval:&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;Интервал:&lt;/p&gt;</translation>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
     </message>
     <message>
-        <source>Interval between smbstatus requests in seconds, (interval &gt; 2)</source>
-        <translation>Интервал между запросами smbstatus в секундах (интервал &gt; 2)</translation>
+        <source>Misc</source>
+        <translation>Разное</translation>
     </message>
     <message>
-        <source>Show hidden shares (share$)</source>
-        <translation>Показать скрытые ресурсы (share$)</translation>
+        <source>Automatically Check for updates</source>
+        <translation>Автоматически проверять обновления</translation>
     </message>
     <message>
-        <source>Show hidden shares</source>
-        <translation>Показать скрытые ресурсы</translation>
+        <source>A new release is available</source>
+        <translation>Доступен новый релиз</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -209,26 +229,6 @@
         <source>Host Address</source>
         <translation>Адрес хоста</translation>
     </message>
-    <message>
-        <source>OK</source>
-        <translation>ДА</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
-    </message>
-    <message>
-        <source>Misc</source>
-        <translation>Разное</translation>
-    </message>
-    <message>
-        <source>Automatically Check for updates</source>
-        <translation>Автоматически проверять обновления</translation>
-    </message>
-    <message>
-        <source>A new release is available</source>
-        <translation>Доступен новый релиз</translation>
-    </message>
 </context>
 <context>
     <name>form_smbstatus</name>
@@ -237,12 +237,12 @@
         <translation>qtsmbstatus</translation>
     </message>
     <message>
-        <source>Connect/Disconnect</source>
-        <translation>Коннект/Дисконнект</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Хост:</translation>
+    </message>
+    <message>
+        <source>Connect/Disconnect</source>
+        <translation>Коннект/Дисконнект</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -395,20 +395,20 @@
         <translation>Пользователь</translation>
     </message>
     <message>
-        <source>login</source>
-        <translation>логин</translation>
-    </message>
-    <message>
-        <source>exit</source>
-        <translation>выход</translation>
-    </message>
-    <message>
         <source>root</source>
         <translation>root</translation>
     </message>
     <message>
         <source>Password</source>
         <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>login</source>
+        <translation>логин</translation>
+    </message>
+    <message>
+        <source>exit</source>
+        <translation>выход</translation>
     </message>
 </context>
 <context>
@@ -418,16 +418,24 @@
         <translation>Соединение</translation>
     </message>
     <message>
-        <source>Disconnect</source>
-        <translation>Дисконнект</translation>
-    </message>
-    <message>
-        <source>Invalid login or password !</source>
-        <translation>Неправильный логин или пароль!</translation>
-    </message>
-    <message>
         <source>Connection in progress on %1</source>
         <translation>Процесс соединения на %1</translation>
+    </message>
+    <message>
+        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
+        <translation>Сертификат сервера не содержит правильной даты или срок его действия истёк !</translation>
+    </message>
+    <message>
+        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
+        <translation>Подлинность узла &apos;%1&apos;, не может быть установлена.</translation>
+    </message>
+    <message>
+        <source>SHA1 Fingerprint: %1.</source>
+        <translation>SHA1 отпечаток пальца: %1.</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to continue connecting ?</source>
+        <translation>Вы действительно хотите продолжить подключение ?</translation>
     </message>
     <message>
         <source>Connected to host</source>
@@ -438,20 +446,12 @@
         <translation>Соединение закрыто</translation>
     </message>
     <message>
-        <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
+        <source>Disconnect</source>
+        <translation>Дисконнект</translation>
     </message>
     <message>
-        <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SHA1 Fingerprint: %1.</source>
-        <translation type="unfinished"></translation>
+        <source>Invalid login or password !</source>
+        <translation>Неправильный логин или пароль!</translation>
     </message>
 </context>
 </TS>
