@@ -2,24 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="es">
 <context>
-    <name></name>
-    <message>
-        <source></source>
-        <translation>Project-Id-Version: 2.1.2
-Report-Msgid-Bugs-To: daniel.rocher@adella.org
-POT-Creation-Date: 2008-11-12 21:25+0200
-PO-Revision-Date: 2010-05-05 17:54+0000
-Last-Translator: Jorge Dardón &lt;jdardon@xelalug.org&gt;
-Language-Team: LANGUAGE &lt;LL@li.org&gt;
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Launchpad-Export-Date: 2011-01-28 02:55+0000
-X-Generator: Launchpad (build 12274)
-</translation>
-    </message>
-</context>
-<context>
     <name>LogForm</name>
     <message>
         <source>Date</source>
@@ -457,15 +439,15 @@ X-Generator: Launchpad (build 12274)
     </message>
     <message>
         <source>The server certificate doesn&apos;t contain valid data or expired !</source>
-        <translation type="unfinished"></translation>
+        <translation>El certificado del servidor no contiene datos validos o a expirado!</translation>
     </message>
     <message>
         <source>The authenticity of host &apos;%1&apos; can&apos;t be established.</source>
-        <translation type="unfinished"></translation>
+        <translation>La autenticidad del equipo &apos;%1&apos; no puede ser establecida</translation>
     </message>
     <message>
         <source>Are you sure you want to continue connecting ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Esta seguro de que quiere continuar conectado?</translation>
     </message>
     <message>
         <source>SHA1 Fingerprint: %1.</source>

@@ -245,7 +245,7 @@ void MainWindows::helpAbout()
 					"<b>"+tr("Thanks to:")+QString::fromUtf8("</b><br/>"
 					"<table border='1'>"
 					"<tr><td>Polish translation </td><td>Inox, Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
-					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Fernando Muñoz, Ian Springer, Jorge Dardón, Monkey</td></tr>"
+					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Eduardo Alberto Calvo, Fernando Muñoz, Ian Springer, Jorge Dardón, Monkey</td></tr>"
 					"<tr><td>Italian translation </td><td>Martino Barbon, Naldini Paolo, Salvatore Udda, simone.sandri</td></tr>"
 					"<tr><td>German translation </td><td>Alex Djekic, Dennis Baudys, Sascha Biermanns, Till Freier</td></tr>"
 					"<tr><td>Hungarian translation </td><td>Muszela Balázs, Pittmann Tamás, Szenográdi Norbert Péter, Szilveszter Kovács</td></tr>"
