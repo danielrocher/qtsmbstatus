@@ -44,7 +44,7 @@ extern QString version_qtsmbstatus;
 extern uint int_qtsmbstatus_version;
 extern QString date_qtsmbstatus;
 extern QString mail_qtsmbstatus;
-extern QString auteur_qtsmbstatus;
+extern QString author_qtsmbstatus;
 extern QString web_qtsmbstatus;
 extern bool debug_qtsmbstatus;
 

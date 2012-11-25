@@ -25,7 +25,7 @@
 
 /**
 	\mainpage QtSmbstatus
- 	\image html samba.png
+	\image html samba.png
 	\section Introduction Introduction
 	QtSmbstatus is a GUI (graphical %user interface) for %smbstatus.
 
@@ -43,11 +43,11 @@
 */
 
 
-// variables environnements
-QString version_qtsmbstatus="2.2.1";
-uint int_qtsmbstatus_version=221;
-QString date_qtsmbstatus="2012-02-19";
-QString auteur_qtsmbstatus="Daniel Rocher";
+// variables environments
+QString version_qtsmbstatus="2.2.2";
+uint int_qtsmbstatus_version=222;
+QString date_qtsmbstatus="2012-11-25";
+QString author_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";
 
@@ -76,7 +76,7 @@ void debugQt(const QString & message) {if (debug_qtsmbstatus) writeToConsole(mes
 
 
 //! command line error
-void unsupported_options(char *error, const QString & usage) 
+void unsupported_options(char *error, const QString & usage)
 {
 	writeToConsole(QString("\n      Unsupported option : %1 \n%2").arg(error).arg(usage));
 }

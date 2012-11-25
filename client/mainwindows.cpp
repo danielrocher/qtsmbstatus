@@ -78,9 +78,9 @@ MainWindows::MainWindows(QWidget *parent) : QMainWindow(parent)
 	debugQt("MainWindows::MainWindows()");
 	setupUi(this);
 	if (check_new_release) checkForUpdateOfQtSmbstatus();
-	
+
 	msgError=new QErrorMessage(this); // an error message display dialog
-	
+
 	trayicon =new QSystemTrayIcon(QIcon (":/icons/qtsmbstatus.png"),this);
 	menuApp=new QMenu( this );
 	viewlog_action=menuApp->addAction ( tr("Show CIFS/SMB activities") );
@@ -93,16 +93,16 @@ MainWindows::MainWindows(QWidget *parent) : QMainWindow(parent)
 	QAction * exit_action=menuApp->addAction (  QIcon (":/icons/exit.png"),tr("Quit") );
 	connect(exit_action,SIGNAL( triggered ()),this , SLOT(beforeQuit () ));
 	connect(action_Quit,SIGNAL( triggered ()),this , SLOT(beforeQuit () ));
-	
+
 	trayicon->setContextMenu ( menuApp );
 	connect(trayicon,SIGNAL(activated ( QSystemTrayIcon::ActivationReason ) ),this,SLOT(trayicon_activated(QSystemTrayIcon::ActivationReason)));
 	restoreWindowSize();
-	
+
 	// create statusBar
 	statusBar()->showMessage (""); //status bar
-	
+
 	smbstatus_rq_started=false;
-	
+
 	// treeWidget
 	treeWidget->setSortingEnabled ( true );
 	treeWidget->setRootIsDecorated ( false );
@@ -241,7 +241,7 @@ void MainWindows::configuration_changed()
 void MainWindows::helpAbout()
 {
 	QMessageBox::about( this, "QtSmbstatus","<b>QtSmbstatus : </b>"+web_qtsmbstatus+"<br>Version: <b>"+version_qtsmbstatus+"</b><br>"+date_qtsmbstatus+"<br>"
-			"<b>Developer : </b> "+auteur_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
+			"<b>Developer : </b> "+author_qtsmbstatus+" "+mail_qtsmbstatus+"<br><hr><br>"
 					"<b>"+tr("Thanks to:")+QString::fromUtf8("</b><br/>"
 					"<table border='1'>"
 					"<tr><td>Polish translation </td><td>Inox, Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
@@ -328,15 +328,15 @@ void MainWindows::selectItem(QTreeWidgetItem *item)
 void MainWindows::search(T_Direction direction)
 {
 	debugQt("MainWindows::search()");
-	
+
 	QList<QTreeWidgetItem *> listItemFound=treeWidget->findItems (SearchTxt, Qt::MatchContains | Qt::MatchRecursive);
-	
+
 	if (direction==to_next)
 		currentIndexOfListItem++;
-	
+
 	if (direction==to_first || currentIndexOfListItem>=listItemFound.size())
 		currentIndexOfListItem=0;
-	
+
 	if (listItemFound.size()==0)
 	{
 		treeWidget->clearSelection ();
@@ -506,7 +506,7 @@ void MainWindows::slotSendMessageAllUsers() {
 					  QString::null, &ok);
 
 	if ( !ok || message.isEmpty() ) return;
-	
+
 	for (int i=0;  i < item_server->childCount () ; ++i )
 	{
 		Item= dynamic_cast<machine *>(item_server->child (i) );
@@ -546,7 +546,7 @@ void MainWindows::slotSendMessage() {
 	\sa slotPopupMenu
  */
 void MainWindows::slotDisconnectUser() {
-	
+
 	QString username;
 	QString pid;
 	// if object is dead
@@ -561,7 +561,7 @@ void MainWindows::slotDisconnectUser() {
 	username=Item->username;
 
 	if ( !QMessageBox::information(this,"QtSmbstatus",
-	      tr("Do you really want to disconnect user %1 ?").arg(username),
+		  tr("Do you really want to disconnect user %1 ?").arg(username),
 		 tr("&Yes"), tr("&No"),QString::null, 1, 1 ) )
 	{
 		// if object is dead
@@ -581,7 +581,7 @@ void MainWindows::slotPopupMenu(  const QPoint & point )
 	currentPopupMenuItem = treeWidget->itemAt ( point );
 	// if object is dead
 	if (!QTreeWidgetItemList.contains(currentPopupMenuItem)) return;
-	
+
 	if( currentPopupMenuItem )
 	{
 		// create popup menu
@@ -687,7 +687,7 @@ void MainWindows::checkForUpdateOfQtSmbstatus () {
 	settings.endGroup();
 	if (dateTimeForlastCheck.isValid()) {
 		if (dateTimeForlastCheck>QDateTime::currentDateTime().addDays(-1))
-			return; // wait 1 day 
+			return; // wait 1 day
 	}
 	http = new QHttp(this);
 	connect(http, SIGNAL(done(bool)), this, SLOT(requestHtmlFinished ( bool )));

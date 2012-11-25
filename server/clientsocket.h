@@ -27,7 +27,7 @@
 
 class ClientSocket: public QSslSocket
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
 	ClientSocket(QObject* parent=0);
 	virtual ~ClientSocket();
@@ -40,6 +40,7 @@ private slots:
 	void pamFinished();
 	void ObjError(const QString & error_txt);
 	void slot_smbstatus(const QStringList &);
+	void testIfAuthenticated();
 private:
 	//! if %user authenticated
 	bool AuthUser;

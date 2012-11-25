@@ -61,6 +61,7 @@ ClientSocket :: ClientSocket( QObject* parent ) : QSslSocket ( parent )
 	connect (this, SIGNAL( error ( QAbstractSocket::SocketError )),this,SLOT(SocketError()));
 	connect (this, SIGNAL(sslErrors ( const QList<QSslError> & )),this,SLOT(SslErrors(const QList<QSslError> &)));
 	connect (this, SIGNAL(encrypted ()),this,SLOT(socketEncrypted ()));
+	QTimer::singleShot(60000, this, SLOT(testIfAuthenticated()));
 }
 
 ClientSocket :: ~ClientSocket()
@@ -82,7 +83,7 @@ void ClientSocket::SocketError () {
 void ClientSocket::SslErrors (const QList<QSslError> & listErrors) {
 	debugQt("ClientSocket::SslErrors()");
 	for (int i = 0; i < listErrors.size(); ++i)
-             qWarning() <<listErrors.at(i).errorString ();
+			 qWarning() <<listErrors.at(i).errorString ();
 }
 
 
@@ -91,9 +92,22 @@ void ClientSocket::SslErrors (const QList<QSslError> & listErrors) {
 */
 void ClientSocket::socketEncrypted () {
 	debugQt("ClientSocket::socketEncrypted()");
-	// who i am 
+	// who i am
 	sendToClient(whoiam,QString::number(int_qtsmbstatus_version),"QtSmbstatus server "+version_qtsmbstatus+" - "+date_qtsmbstatus);
 
+}
+
+/**
+	Test if client is authenticated (1 minute after the connection is started)
+	Disconnect client if is False
+*/
+void ClientSocket:: testIfAuthenticated() {
+	debugQt("ClientSocket::testIfAuthenticated()");
+	if (!AuthUser) // if not authenticated
+	{
+		debugQt("Client not authenticated !");
+		deleteLater();
+	}
 }
 
 /**
@@ -115,7 +129,7 @@ void ClientSocket :: core ()
 		lineArray = this->readLine();
 		line=QString::fromUtf8( lineArray.data() ).trimmed ();
 		debugQt(line);
-		
+
 		stx.setValue(line);
 		if (stx.returnArg(0) != "")
 		{
