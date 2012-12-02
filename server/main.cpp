@@ -41,7 +41,7 @@ extern bool debug_qtsmbstatus;
 // default values of configs
 QString Certificat = "/etc/qtsmbstatusd/server.pem";
 QString Private_key = "/etc/qtsmbstatusd/privkey.pem";
-QString ssl_password = "password";
+QString ssl_password = "";
 bool daemonize=false;
 
 //! Allow client to disconnect user
