@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Written by Daniel Rocher <daniel.rocher@adella.org>
+# Copyright (C) 2012
+
+from qtsmbstatus_pyserver import customserver
+import signal, sys, os, configparser, getopt
+from qtsmbstatus_pyserver.global_env import Global
+
+
+__author__ = "Daniel Rocher <daniel.rocher@adella.org>"
+__version__ = Global.version_qtsmbstatus
+__date__ = Global.date_qtsmbstatus
+__copyright__ = "Copyright (c) 2012 Daniel Rocher"
+__license__ = "GPL Version 2"
+
+
+def signal_handler(signal, frame):
+    Global.debug("Stop QtSmbstatusd , please wait ...")
+    my_server.stop()
+    sys.exit(0)
+
+
+def daemonize():
+    """daemonize server (run as server)"""
+    try:
+        pid = os.fork()
+        if pid > 0:
+            sys.exit(0)
+    except OSError as e:
+        Global.error("fork failed: {0} ({1})".format(e.errno, e.strerror))
+        sys.exit(1)
+
+
+def validatePort(port):
+    """Return False if TCP port is not valid"""
+    if port < 1024 or port > 49151:
+        Global.error("available port : > 1023 and < 49152. Use default port.")
+        return False
+    return True
+
+def readConfigFile():
+    def getConfigValue(mConfig, section, key, default=""):
+        if mConfig.has_option(section, key):
+            return mConfig.get(section, key)
+        return default
+
+    config = configparser.ConfigParser()
+    configFile = '/etc/qtsmbstatusd/qtsmbstatusd.conf'
+    if not os.path.isfile(configFile):
+        Global.error("Impossible to read configuration file. Use default settings")
+        return
+    
+    config.read(configFile)
+
+    try:
+        port=int(getConfigValue(config,"Global","port", Global.port_server))
+    except:
+        port=Global.port_server
+    if validatePort(port):
+        Global.port_server=port
+    
+    Global.privatekey=getConfigValue(config,"Global","private_key", Global.privatekey)
+    Global.certificate=getConfigValue(config,"Global","certificat", Global.certificate)
+    Global.ssl_password=getConfigValue(config,"Global","ssl_password", Global.ssl_password)
+    Global.AllowUserDisconnect=getConfigValue(config,"Global","permit_disconnect_user").split(',')
+    Global.AllowUserSendMsg=getConfigValue(config,"Global","permit_send_msg").split(',')
+
+
+
+if __name__ == "__main__":
+    #  intercept the signals (kill)
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGQUIT, signal_handler)
+
+    # help message (option --help)
+    usage="\n\tUsage:  qtsmbstatusd -d -m -p <port> -v --help\n\n" \
+        "\t-h| --help :    Show this help\n" \
+        "\t-d :            Daemonize\n" \
+        "\t-p <port> :     TCP port - default = {}\n" \
+        "\t-v| --version : Show qtsmbstatusd version\n" \
+        "\t-m :            Show debug messages\n\n".format(Global.port_server)
+
+    # read configuration file
+    readConfigFile()
+
+    args=sys.argv[1:]
+    try:
+        opts, args = getopt.getopt(args, "hvdp:vm", ["help", "version"])
+    except getopt.GetoptError as err:
+        print ("\n",err)
+        print (usage)
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print (usage)
+            sys.exit()
+        if opt in ("-p"):
+            try:
+                port=int(arg)
+            except:
+                port=Global.port_server
+            if validatePort(port):
+                Global.port_server=port
+        if opt in ("-d"):
+            Global.daemonize=True
+        if opt in ("-m"):
+            Global.debug_qtsmbstatus=True
+        elif opt in ("-v","--version"):
+            print ("QtSmbstatus server (python) - version : {}".format(__version__))
+            sys.exit()
+
+  
+    my_server=customserver.CustomServer(Global.certificate, Global.privatekey, Global.ssl_password, Global.port_server, Global.debug_qtsmbstatus)
+
+    if Global.daemonize:
+        daemonize()
+
+    # start server
+    my_server.start()
+    
+
+
