@@ -26,10 +26,10 @@ SOURCES += main.cpp \
            ../client/log.cpp \
            ../client/mysortfilterproxymodel.cpp \
            ../client/instances_dlg.cpp \
-           ../server/smbmanager.cpp \
-           ../server/process_smbd_exist.cpp \
-           ../server/sendmessage_manager.cpp \
-           ../server/disconnect_manager.cpp
+           ../server/qtserver/smbmanager.cpp \
+           ../server/qtserver/process_smbd_exist.cpp \
+           ../server/qtserver/sendmessage_manager.cpp \
+           ../server/qtserver/disconnect_manager.cpp
 
 HEADERS += ../client/mainwindows.h \
            lmain_windows.h \
@@ -44,10 +44,10 @@ HEADERS += ../client/mainwindows.h \
            ../client/log.h \
            ../client/mysortfilterproxymodel.h \
            ../client/instances_dlg.h \
-           ../server/smbmanager.h \
-           ../server/process_smbd_exist.h \
-           ../server/sendmessage_manager.h \
-           ../server/disconnect_manager.h
+           ../server/qtserver/smbmanager.h \
+           ../server/qtserver/process_smbd_exist.h \
+           ../server/qtserver/sendmessage_manager.h \
+           ../server/qtserver/disconnect_manager.h
 
 RESOURCES = ../client/client.qrc
 

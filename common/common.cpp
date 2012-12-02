@@ -44,9 +44,9 @@
 
 
 // variables environments
-QString version_qtsmbstatus="2.2.2";
-uint int_qtsmbstatus_version=222;
-QString date_qtsmbstatus="2012-11-25";
+QString version_qtsmbstatus="2.3.0";
+uint int_qtsmbstatus_version=230;
+QString date_qtsmbstatus="2012-12-01";
 QString author_qtsmbstatus="Daniel Rocher";
 QString mail_qtsmbstatus="<a href='mailto:daniel.rocher@adella.org'>daniel.rocher@adella.org</a>";
 QString web_qtsmbstatus="<a href='http://qtsmbstatus.free.fr'>http://qtsmbstatus.free.fr</a>";

@@ -22,7 +22,7 @@
 #include "process_smbd_exist.h"
 #include "sendmessage_manager.h"
 #include "smbmanager.h"
-#include "../common/core_syntax.h"
+#include "../../common/core_syntax.h"
 
 extern void debugQt(const QString & message);
 

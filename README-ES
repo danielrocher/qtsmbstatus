@@ -51,14 +51,33 @@ Las opciones que permite son:
         Para instalar el servicio:
         **************************
 
-        Comprobar las dependencias : pam-dev y qt4-dev>=4.3
+        there are two versions of qtsmbstatus-server:
+        - One written in Qt
+        - One written in python3 (Python3 >= 3.2 is required - this version is experimental)
+        
+        Choose one or the other depending on your needs (Important: Do not install both!)
+        
+            QtSmbstatus-Server with Qt4:
+            ============================
+                Comprobar las dependencias : pam-dev y qt4-dev>=4.3
 
-                  cd server
-                  qmake (o qmake-qt4)
-                  make
+                        cd server/qtserver
+                        qmake (o qmake-qt4)
+                        make
 
-        y como root:
-                  make install
+                y como root:
+                        make install
+
+            QtSmbstatus-Server with Python3:
+            ================================
+
+            Warning: this version is experimental
+
+                Comprobar las dependencias : python >=3.2
+
+                y como root:
+                        cd server/pyserver
+                        python3 setup.py install
 
 
         Para instalar el cliente:
@@ -123,7 +142,7 @@ Las opciones que permite son:
                 port :                   Puerto en donde escuchara el servicio 
                 private_key :            Clave privada       
                 certificat :             certificado ssl
-                ssl_password :           clave para certificados ssl
+                ssl_password :           password for private key (only if the private key is protected by a password)
                 permit_disconnect_user : Permitir que un cliente desconecte a un usuario. 
                                          Puedes autorizar a un cliente a desconectar a un usuario.
                                          Use un nombre de usuario o 'all' para todos los clientes.

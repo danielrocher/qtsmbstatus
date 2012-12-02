@@ -48,14 +48,36 @@ Possibilities include:
         To install qtsmbstatus server:
         ******************************
 
-        Check dependency: pam-dev and qt4-dev>=4.3
+        there are two versions of qtsmbstatus-server:
+        - One written in Qt
+        - One written in python3 (Python3 >= 3.2 is required - this version is experimental)
+        
+        Choose one or the other depending on your needs (Important: Do not install both!)
 
-                  cd server
-                  qmake (or qmake-qt4)
-                  make
+           QtSmbstatus-Server with Qt4:
+           ============================
 
-        and as root:
-                  make install
+                Check dependency: pam-dev and qt4-dev>=4.3
+
+                        cd server/qtserver
+                        qmake (or qmake-qt4)
+                        make
+
+                and as root:
+                        make install
+
+                        
+           QtSmbstatus-Server with Python3:
+           ================================
+
+           Warning: this version is experimental
+
+                Check dependency: python >=3.2
+
+                as root:
+                        cd server/pyserver
+                        python3 setup.py install
+
 
 
         To install qtsmbstatus client:
@@ -119,7 +141,7 @@ Possibilities include:
                 port :                   Port where the server should listen at 
                 private_key :            private key       
                 certificat :             ssl certificate
-                ssl_password :           password for ssl certificate
+                ssl_password :           password for private key (only if the private key is protected by a password)
                 permit_disconnect_user : Allow client to disconnect a user
                                          You can authorize a client to disconnect a user. Use Username
                                          or 'all' for all clients.

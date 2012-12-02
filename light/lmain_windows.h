@@ -25,10 +25,10 @@
 
 #include "configure_windowsl.h"
 #include "../client/mainwindows.h"
-#include "../server/smbmanager.h"
-#include "../server/sendmessage_manager.h"
-#include "../server/process_smbd_exist.h"
-#include "../server/disconnect_manager.h"
+#include "../server/qtserver/smbmanager.h"
+#include "../server/qtserver/sendmessage_manager.h"
+#include "../server/qtserver/process_smbd_exist.h"
+#include "../server/qtserver/disconnect_manager.h"
 
 class main_windowsl : public MainWindows {
    Q_OBJECT

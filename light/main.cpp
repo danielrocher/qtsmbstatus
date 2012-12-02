@@ -23,9 +23,9 @@
 
 #include "../client/smbstatus.h"
 #include "../client/instances_dlg.h"
-#include "../server/process_smbd_exist.h"
-#include "../server/sendmessage_manager.h"
-#include "../server/smbmanager.h"
+#include "../server/qtserver/process_smbd_exist.h"
+#include "../server/qtserver/sendmessage_manager.h"
+#include "../server/qtserver/smbmanager.h"
 #include "lmain_windows.h"
 
 

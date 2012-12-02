@@ -7,8 +7,8 @@ SOURCES += server.cpp \
            sendmessage_manager.cpp \
            smbmanager.cpp \
            pam.cpp \
-           ../common/common.cpp \
-           ../common/core_syntax.cpp \
+           ../../common/common.cpp \
+           ../../common/core_syntax.cpp \
            pamthread.cpp 
 
 HEADERS += server.h \
@@ -18,7 +18,7 @@ HEADERS += server.h \
            sendmessage_manager.h \
            smbmanager.h \
            pam.h \
-           ../common/core_syntax.h \
+           ../../common/core_syntax.h \
            pamthread.h
 
 TEMPLATE = app 
@@ -42,42 +42,42 @@ RCC_DIR =     ./build/rcc
 LIBS += -lpam
 
 DATADIR= /etc/qtsmbstatusd
-DATAFILES = ./etc/privkey.pem \
-            ./etc/qtsmbstatusd.conf \
-            ./etc/server.pem \
-            ./etc/qtsmbstatusd.users
+DATAFILES = ../etc/privkey.pem \
+            ../etc/qtsmbstatusd.conf \
+            ../etc/server.pem \
+            ../etc/qtsmbstatusd.users
 data.path = $$DATADIR 
 data.files += $$DATAFILES
 
 PAMDIR = /etc/pam.d
-PAMFILE = ./pam.d/qtsmbstatusd
+PAMFILE = ../pam.d/qtsmbstatusd
 pam.path = $$PAMDIR 
 pam.files += $$PAMFILE
 
 INITDIR= /etc/init.d
-INITFILE = ./etc/qtsmbstatusd
+INITFILE = ../etc/qtsmbstatusd
 init.path = $$INITDIR 
 init.files += $$INITFILE
 
 #doc
 DOCDIR = /usr/local/share/doc/qtsmbstatusd
-DOCFILES = ../README \
-           ../README-FR \
-           ../INSTALL \
-           ../COPYING
+DOCFILES = ../../README \
+           ../../README-FR \
+           ../../INSTALL \
+           ../../COPYING
 doc.path = $$DOCDIR 
 doc.files += $$DOCFILES 
 
 #manpage
 MANDIR   = /usr/local/share/man/man7
-MANFILES = qtsmbstatusd.7.gz
+MANFILES = ../qtsmbstatusd.7.gz
 manpage.path = $$MANDIR
 manpage.files = $$MANFILES
 
 target.path = /usr/local/bin/
 
 postinstall.path=/
-postinstall.extra+= sh $$(PWD)/postinst.sh \$(INSTALL_ROOT)
+postinstall.extra+= sh $$(PWD)/../postinst.sh \$(INSTALL_ROOT)
 
 unix {
 INSTALLS += data \

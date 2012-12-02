@@ -43,21 +43,43 @@ qtsmbstatus-light fournit l'application legere qui ne fonctionne que localement 
 
          Pour installer le serveur:
          **************************
-                  Verifier les dependances: pam-dev et qt4-dev>=4.3
-                  cd server
-                  qmake (ou qmake-qt4)
-                  make
-                  puis en tant tant que root:
-                  make install
+         Il existe deux versions de qtsmbstatus-server:
+         - Une ecrite en  Qt
+         - Une ecrite en python3 (Python3 >= 3.2 est requis - cette version est experimentale)
+        
+         Choisissez l'une ou l'autre en fonction de vos besoins (Important: n'installez pas les deux !)
+
+           QtSmbstatus-Server avec Qt4:
+           ============================
+                Verifier les dependances: pam-dev et qt4-dev>=4.3
+                  
+                        cd server/qtserver
+                        qmake (ou qmake-qt4)
+                        make
+
+                puis en tant que root:
+                        make install
+
+           QtSmbstatus-Server avec Python3:
+           ================================
+
+           Avertissement: cette version est experimentale
+
+                Verifier les dependances: python >=3.2
+
+                puis en tant que root:
+                        cd server/pyserver
+                        python3 setup.py install
 
 
          Pour installer le client:
          *************************
-                  verifier les dependances: qt4-dev>=4.3
+                verifier les dependances: qt4-dev>=4.3
                   cd client
                   qmake (ou qmake-qt4)
                   make
-                  puis en tant tant que root:
+
+                puis en tant tant que root:
                   make install
 
 -------------------------------------------------------------
@@ -108,7 +130,7 @@ qtsmbstatus-light fournit l'application legere qui ne fonctionne que localement 
                 port :                   Port TCP ecoute par le serveur 
                 private_key :            Cle prive
                 certificat :             Certificat ssl
-                ssl_password :           mot de passe pour le certificat
+                ssl_password :           mot de passe pour la cle prive (seulement si la cle prive est protegee par un mot de passe)
                 permit_disconnect_user : autorise un client a deconnecter un utilisateur
                                          Vous pouvez autoriser un client a deconnecter un utilisateur.
                                          Utilisez son Username ou 'all' pour autoriser tous les clients.
