@@ -13,7 +13,7 @@ setup(name='qtsmbstatus_pyserver',
       author='Daniel Rocher',
       author_email='daniel.rocher@adella.org',
       url='http://qtsmbstatus.free.fr',
-      download_url='hhttp://qtsmbstatus.free.fr/index.php?page=downloads',
+      download_url='http://qtsmbstatus.free.fr/index.php?page=downloads',
       packages=['qtsmbstatus_pyserver'],
       scripts=['qtsmbstatusd']
       )

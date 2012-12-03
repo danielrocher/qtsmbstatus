@@ -37,7 +37,10 @@ class ClientSocketSSL(threading.Thread):
         """Send datas to server"""
         if self.eventTerminated.is_set(): return
         self.debug("ClientSocketSSL.sendDatas()")
-        self.connection.send("{}".format(data).encode("utf-8"))
+        try:
+            self.connection.send("{}".format(data).encode("utf-8"))
+        except socket.error:
+             self.debug('socket connection broken')
 
     def connectedHandler(self):
         """Reimplement me"""
@@ -53,11 +56,12 @@ class ClientSocketSSL(threading.Thread):
             if self.eventTerminated.is_set(): break
             try:
                 data= self.connection.recv(1024)
-                if not data: break
-                string=data.decode("utf-8")
-                self.readyReadHandler(string)
-            except:
-                pass
+            except socket.error:
+                self.debug('socket connection broken')
+                break
+            if not data: break
+            string=data.decode("utf-8")
+            self.readyReadHandler(string)
 
         self.stop() # close socket properly
 
