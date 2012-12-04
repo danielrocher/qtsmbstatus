@@ -28,7 +28,9 @@ setup(name='qtsmbstatus_pyserver',
       scripts=['qtsmbstatusd'],
       data_files=[('/etc/pam.d', ['../pam.d/qtsmbstatusd']),
                   ('/etc/qtsmbstatusd', ['../etc/privkey.pem', '../etc/qtsmbstatusd.conf', '../etc/qtsmbstatusd.users', '../etc/server.pem']),
-                  ('/etc/init.d', ['../etc/qtsmbstatusd'])],
+                  ('/etc/init.d', ['../etc/qtsmbstatusd']),
+                  ('/usr/local/share/doc/qtsmbstatusd', ['../../README', '../../README-FR', '../../INSTALL', '../../COPYING']),
+                  ('/usr/local/share/man/man7', ['../qtsmbstatusd.7.gz'])],
       cmdclass={ 'install': custom_install }
       )
 
