@@ -65,7 +65,8 @@ class ServerSSL(object):
             sys.stderr.write ("Impossible to load certificate and/or private key: '{}'\n".format(file))
             sys.exit(1)
 
-        self.bindsocket = socket.socket()
+        self.bindsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.bindsocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
             self.bindsocket.bind(('', self.port))
         except socket.error:
