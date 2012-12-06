@@ -184,7 +184,7 @@ fi
 
 %changelog
 
-* Thu Dec 5 2012 Daniel Rocher <daniel.rocher@adella.org> 2.3.0-1
+* Thu Dec 6 2012 Daniel Rocher <daniel.rocher@adella.org> 2.3.0-1
 - New upstream version
 
 * Sun Feb 19 2012 Daniel Rocher <daniel.rocher@adella.org> 2.2.1-1

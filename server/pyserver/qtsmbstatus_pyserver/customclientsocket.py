@@ -132,6 +132,11 @@ class CustomClientSocket(ClientSocketSSL):
             self.debug("Client not authenticated !")
             self.sendToClient(self.Command.error_auth,"Not authenticated !")
             return
+
+        if not self.permitDisconnectUser: # test if client is authorized
+            self.debug("Client is unauthorized to disconnect an user !")
+            self.sendToClient(self.Command.error_obj,"Unauthorized request!")
+            return
         disconnectmanager=DisconnectManager( pid, user, self.debug_mode, self.callbackKillUser)
         disconnectmanager.start()
 
@@ -150,6 +155,10 @@ class CustomClientSocket(ClientSocketSSL):
             self.sendToClient(self.Command.error_auth,"Not authenticated !")
             return
 
+        if not self.permitSendMsg: # test if client is authorized
+            self.debug("Client is unauthorized to send popup message !")
+            self.sendToClient(self.Command.error_obj,"Unauthorized request!")
+            return
         sendmsgmanager=SendMessageManager(machine, message, self.debug_mode, callback=self.callbackSendMsg)
         sendmsgmanager.start()
 
