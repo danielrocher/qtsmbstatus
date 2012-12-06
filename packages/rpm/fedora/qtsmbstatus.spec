@@ -9,14 +9,14 @@
 Summary:                A GUI for smbstatus with Qt
 Name:                   qtsmbstatus
 Group:                  Applications/System
-Version:                2.2.1
+Version:                2.3.0
 Release:                1%{?dist}
 License:                GPLv2
 Vendor:                 ADELLA
 Packager:               Daniel Rocher <daniel.rocher@adella.org>
 URL:                    http://qtsmbstatus.free.fr
 Source0:                http://qtsmbstatus.free.fr/files/qtsmbstatus-%{version}.tar.gz
-Patch0:                 %{name}-%{version}-init.patch
+Patch0:                 %{name}-init.patch
 BuildRoot:              %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:          libstdc++-devel gcc-c++
@@ -99,7 +99,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_initrddir}
 
 # bin
 cp -a client/bin/qtsmbstatus $RPM_BUILD_ROOT/%{_bindir}
-cp -a server/bin/qtsmbstatusd $RPM_BUILD_ROOT/%{_bindir}
+cp -a server/qtserver/bin/qtsmbstatusd $RPM_BUILD_ROOT/%{_bindir}
 cp -a light/bin/qtsmbstatusl $RPM_BUILD_ROOT/%{_bindir}
 
 # server
@@ -183,6 +183,9 @@ fi
 %{_mandir}/man7/qtsmbstatusd.7.gz
 
 %changelog
+
+* Thu Dec 5 2012 Daniel Rocher <daniel.rocher@adella.org> 2.3.0-1
+- New upstream version
 
 * Sun Feb 19 2012 Daniel Rocher <daniel.rocher@adella.org> 2.2.1-1
 - New upstream version
