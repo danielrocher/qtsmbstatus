@@ -2,16 +2,17 @@ Source: qtsmbstatus
 Section: net
 Priority: optional
 Maintainer: Alessio Treglia <quadrispro@ubuntu.com>
-Build-Depends: debhelper (>= 7.0.50~),
+Build-Depends:
+ debhelper (>= 7.0.50~),
  libqt4-dev,
  libpam0g-dev
-Standards-Version: 3.8.4
-DM-Upload-Allowed: yes
+Standards-Version: 3.9.3
 Homepage: http://qtsmbstatus.free.fr/
 
 Package: qtsmbstatus-language
 Architecture: all
-Depends: ${shlibs:Depends},
+Depends:
+ ${shlibs:Depends},
  ${misc:Depends}
 Conflicts: qtsmbstatus-client (<= 2.0.99)
 Description: QtSmbstatus languages package
@@ -24,10 +25,11 @@ Description: QtSmbstatus languages package
 
 Package: qtsmbstatus-light
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  qtsmbstatus-language,
  libqt4-sql,
- ${misc:Depends}
+ ${misc:Depends},
+ ${shlibs:Depends}
 Description: GUI (graphical user interface) for smbstatus
  QtSmbstatus is a smbstatus graphical interface (GUI).
  It is meant to provide the possibility of administering remote machines.
@@ -38,10 +40,11 @@ Description: GUI (graphical user interface) for smbstatus
 
 Package: qtsmbstatus-client
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  qtsmbstatus-language,
  libqt4-sql,
- ${misc:Depends}
+ ${misc:Depends},
+ ${shlibs:Depends}
 Description: GUI (graphical user interface) for smbstatus (client)
  QtSmbstatus is a smbstatus graphical interface (GUI).
  It is meant to provide the possibility of administering remote machines.
@@ -51,13 +54,15 @@ Description: GUI (graphical user interface) for smbstatus (client)
 
 Package: qtsmbstatus-server
 Architecture: any
-Depends: ${shlibs:Depends},
+Depends:
  libqt4-sql,
  samba,
- ${misc:Depends}
+ ${misc:Depends},
+ ${shlibs:Depends}
 Description: GUI (graphical user interface) for smbstatus (server)
  QtSmbstatus is a smbstatus graphical interface (GUI).
  It is meant to provide the possibility of administering remote machines.
  QtSmbstatus was designed as a client/server system secured with SSL.
  .
- This package provides the server-side application.
+ This package provides the server-side application written in C++/Qt4.
+
