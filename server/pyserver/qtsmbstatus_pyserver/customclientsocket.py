@@ -54,6 +54,10 @@ class CustomClientSocket(ClientSocketSSL):
         """Return string without escape keys"""
         return arg.replace('\x11',"\\").replace('\x12',";")
 
+    def bash_escape_string(self, arg):
+        """ Escapes special characters in a string for use in a bash command"""
+        return re.sub(r'["\'\n\r;|&#><`\\]', ' ', arg)
+
 
     def sendToClient(self, cmd, inputArg1="", inputArg2=""):
         """Send datas to client"""
@@ -100,10 +104,10 @@ class CustomClientSocket(ClientSocketSSL):
                     self.stop()
                 elif command==enum_cmd.kill_user:
                     self.debug ("Receive: kill_user")
-                    self.cmdKillUser(arg1, arg2)
+                    self.cmdKillUser(self.bash_escape_string(arg1), self.bash_escape_string(arg2))
                 elif command==enum_cmd.send_msg:
                     self.debug ("Receive: send_msg")
-                    self.cmdSendMsg(arg1, arg2)
+                    self.cmdSendMsg(self.bash_escape_string(arg1), self.bash_escape_string(arg2))
                 elif command==enum_cmd.smb_rq:
                     self.debug ("Receive: smb_rq")
                     self.cmdSmbRq()

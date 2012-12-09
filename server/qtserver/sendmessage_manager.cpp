@@ -37,11 +37,11 @@ Sendmessage_manager::Sendmessage_manager(const QString & machine, const QString 
 	debugQt("Object Sendmessage_manager : "+ QString::number(++compteur_objet));
 
 	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
-	
-	to_machine=machine.simplified();
-	my_message=message.simplified();
 
-	my_message.replace( "\"", " ").replace( "\\", " ");
+	QRegExp regexp("[\"\'\n\r;|&#><`\\\\]");
+	to_machine=machine.simplified().replace(regexp, " ");
+	my_message=message.simplified().replace(regexp, " ");
+
 	my_message="echo " + my_message +  " | smbclient -M " + to_machine + " -N";
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
@@ -106,7 +106,7 @@ void Sendmessage_manager::readFromStdout(){
 	debugQt("Sendmessage_manager::readFromStdout()");
 	QString str(m_textDecoder->toUnicode(proc.readAllStandardOutput()));
 	debugQt(str);
-	
+
 	if (str.contains ("Cannot resolve",Qt::CaseInsensitive) or str.contains (" failed",Qt::CaseInsensitive) or str.contains ("ERRSRV",Qt::CaseInsensitive))
 		emit ObjError(tr("Could not send message to") + " " + to_machine);
 }

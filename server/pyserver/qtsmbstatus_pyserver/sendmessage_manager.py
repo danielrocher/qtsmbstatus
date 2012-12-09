@@ -12,7 +12,6 @@ class SendMessageManager(threading.Thread):
         threading.Thread.__init__(self)
         self.machine=machine.strip()
         self.message=message.strip()
-        self.message=self.message.replace( "\"", " ").replace( "\\", " ")
         self.stdout=""
         self.stderr=""
         self.debug_mode=debug_mode

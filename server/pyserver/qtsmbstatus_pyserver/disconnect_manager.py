@@ -31,6 +31,11 @@ class DisconnectManager(threading.Thread):
         self.debug ("===== DisconnectManager - Run process {} =====".format(self.getName()))
 
         try:
+            int(self.pid)
+        except:
+            self.error("process kill error (pid must be an integer)")
+            return
+        try:
             proc = subprocess.Popen(["kill", "-15", self.pid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except OSError as e:
             self.error("process kill error : {}".format(e))

@@ -30,6 +30,11 @@ class ProcessSmbdExist(threading.Thread):
         self.debug ("===== ProcessSmbdExist - Run process {} =====".format(self.getName()))
 
         try:
+            int(self.pid)
+        except:
+            self.error("process ps error (pid must be an integer)")
+            return
+        try:
             proc = subprocess.Popen(["ps", "-f", self.pid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except OSError as e:
             self.error("process ps error : {}".format(e))
