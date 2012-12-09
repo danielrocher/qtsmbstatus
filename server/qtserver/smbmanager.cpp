@@ -18,32 +18,28 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-
+#include <QMutex>
+#include <QTimer>
 #include "smbmanager.h"
 
 int smbmanager::compteur_objet=0;
+QMutex smbmanager::mutex;
+smbmanager::Cache smbmanager::cache;
 
 /**
 	\class smbmanager
 	\brief start %smbstatus process
-	\date 2008-11-10
-	\version 1.2
+	\date 2012-12-07
+	\version 1.3
 	\author Daniel Rocher
 	\param parent pointer to parent for this object
  */
-smbmanager::smbmanager(QObject *parent ) : QObject(parent)
+smbmanager::smbmanager(QObject *parent, int cachetimeout) : QObject(parent)
 {
 	debugQt("Object smbmanager : "+ QString::number(++compteur_objet));
-	requestFailed=false;
-	
+	this->cachetimeout=cachetimeout;
 	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
-	
-	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
-	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(read_data()) );
-	connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
-	connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
-
-	proc.start("smbstatus",QIODevice::ReadOnly);
+	QTimer::singleShot(150, this, SLOT(start()));
 }
 
 smbmanager::~smbmanager()
@@ -52,6 +48,31 @@ smbmanager::~smbmanager()
 	delete m_textDecoder;
 }
 
+
+void smbmanager::start() {
+	debugQt("smbmanager::start()");
+	datas.clear();
+	requestFailed=false;
+	if (cacheExpired()) {
+		debugQt ("smbmanager - start process");
+		mutex.tryLock ( 15000 );
+		cache.strList.clear();
+		cache.error.clear();
+		mutex.unlock();
+		connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus) ),this, SLOT(end_process()) );
+		connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(read_data()) );
+		connect( &proc, SIGNAL(readyReadStandardError ()),this, SLOT(ReadStderr()) );
+		connect( &proc, SIGNAL(error ( QProcess::ProcessError) ),this, SLOT(error(QProcess::ProcessError)) );
+
+		proc.start("smbstatus",QIODevice::ReadOnly);
+	} else {
+		debugQt ("smbmanager - Use cache");
+		for (int i=0 ; i < cache.error.size() ; i++)
+			emit ObjError(cache.error[i]);
+		emit signal_std_output(cache.strList);
+		deleteLater();
+	}
+}
 
 /**
 	an error occurs with the process
@@ -75,7 +96,12 @@ void smbmanager::error(QProcess::ProcessError err) {
 		case 5: debugQt("  ==> UnknownError");
 			break;
 	}
-	emit ObjError(tr("process smbstatus error"));
+	QString str=tr("process smbstatus error");
+	// Update Cache
+	mutex.tryLock ( 15000 );
+	cache.error.append(str);
+	mutex.unlock();
+	emit ObjError(str);
 	requestFailed=true;
 	deleteLater ();
 }
@@ -89,8 +115,12 @@ void smbmanager::ReadStderr()
 	debugQt("smbmanager::ReadStderr()");
 	QString str=m_textDecoder->toUnicode(proc.readAllStandardError());
 	debugQt(str);
-
-	emit ObjError(tr("Smbstatus request error")+" : "+ str.replace('\n',' '));
+	str=tr("Smbstatus request error")+" : "+ str.replace('\n',' ');
+	// Update Cache
+	mutex.tryLock ( 15000 );
+	cache.error.append(str);
+	mutex.unlock();
+	emit ObjError(str);
 }
 
 
@@ -110,7 +140,21 @@ void smbmanager::end_process ()
 {
 	debugQt("smbmanager::end_process ()");
 	QStringList list=datas.split("\n");
-
+	// Update Cache
+	mutex.tryLock ( 15000 );
+	cache.date=QDateTime::currentDateTime().addSecs(cachetimeout);
+	cache.strList=list;
+	mutex.unlock();
 	if (!requestFailed) emit signal_std_output(list);
 	deleteLater();
+}
+
+/**
+  Return true if Cache has expired
+*/
+bool smbmanager::cacheExpired() {
+	mutex.tryLock ( 15000 );
+	bool cache_expired= !(cache.date.isValid() && QDateTime::currentDateTime() < cache.date);
+	mutex.unlock();
+	return cache_expired;
 }

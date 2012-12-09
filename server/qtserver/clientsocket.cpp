@@ -297,7 +297,7 @@ void ClientSocket ::CmdSmbRq()
 	}
 	else // if authenticated
 	{
-		smbmanager* processus_smbstatus = new  smbmanager(this);
+		smbmanager* processus_smbstatus = new  smbmanager(this, 30);
 		connect(processus_smbstatus,SIGNAL(ObjError(const QString &)),this, SLOT(ObjError (const QString &)) );
 		connect( processus_smbstatus, SIGNAL(signal_std_output(const QStringList &)),this, SLOT(slot_smbstatus(const QStringList &)) );
 	}

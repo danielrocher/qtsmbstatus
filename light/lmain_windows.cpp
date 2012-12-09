@@ -40,10 +40,10 @@ main_windowsl::main_windowsl(QWidget *parent) : MainWindows(parent)
 	trayicon->setToolTip ( windowTitle ());
 	trayicon->setIcon (qApp->windowIcon());
 	helpAboutAction->setIcon(qApp->windowIcon());
-	
+
 	currentIndexOfListItem=0;
 	QString SearchTxt="";
-	
+
 	//delete unused widgets
 	action_Connect->deleteLater();
 	textLabel1->deleteLater();
@@ -52,10 +52,10 @@ main_windowsl::main_windowsl(QWidget *parent) : MainWindows(parent)
 	#if QT_VERSION >= 0x040400
 	horizontalLayout->deleteLater();
 	#endif
-	
+
 	permitDisconnectUser=true;
 	permitSendMsg=true;
-	
+
 	searchNextAction->setEnabled ( false );
 	firstTime=true;
 	timerinfoSmb.start(10000);
@@ -110,7 +110,7 @@ void main_windowsl::slot_timer()
 	debugQt("main_windowsl::slot_timer()");
 	if (! smbstatus_rq_started) {
 		smbstatus_rq_started=true;
-		smbmanager* processus_smbstatus = new  smbmanager(this);
+		smbmanager* processus_smbstatus = new  smbmanager(this, 30);
 		connect(processus_smbstatus,SIGNAL(ObjError(const QString &)),msgError, SLOT(showMessage (const QString &)) );
 		connect( processus_smbstatus, SIGNAL(signal_std_output(const QStringList &)),this, SLOT(AnalysisSmbstatus(const QStringList &)) );
 	}

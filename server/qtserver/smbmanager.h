@@ -24,15 +24,17 @@
 #include <QProcess>
 #include <QObject>
 #include <QTextCodec>
+#include <QDateTime>
 
 class QStringList;
+class QMutex;
 
 extern void debugQt(const QString & message);
 
 class smbmanager : public QObject  {
    Q_OBJECT
-public: 
-	smbmanager(QObject * parent=0);
+public:
+	smbmanager(QObject * parent=0, int cachetimeout=60);
 	virtual ~smbmanager();
 	static int compteur_objet;
 private: // Private attributes
@@ -40,12 +42,22 @@ private: // Private attributes
 	QString datas;
 	bool requestFailed;
 	QTextDecoder * m_textDecoder;
+	int cachetimeout;
+	struct Cache {
+		QStringList strList;
+		QStringList error;
+		QDateTime date;
+	};
+	static Cache cache;
+	static QMutex mutex;
 private slots: // Private slots
+	void start();
 	void end_process ();
 	void read_data ();
 	void ReadStderr();
 	void error(QProcess::ProcessError);
-  
+private: // methods
+	bool cacheExpired();
 signals: // Signals
 	void signal_std_output(const QStringList  & );
 	void ObjError(const QString & );
