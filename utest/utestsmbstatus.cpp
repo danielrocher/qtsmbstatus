@@ -124,6 +124,22 @@ Pid          Uid        DenyMode   Access      R/W        Oplock           Share
 32459        99         DENY_NONE  0x12019f    RDWR       EXCLUSIVE+BATCH  /F   Fac/EMPRESA.DBF   Fri Sep 12 09:43:09 2008 \n";
 
 
+/** Samba version 4.1.4 */
+QString status414="Samba version 4.1.4-SerNet-RedHat-7.el6\n\
+PID     Username      Group         Machine\n\
+-------------------------------------------------------------------\n\
+24107     3000029       users         10.10.10.8  (ipv4:10.10.10.8:1099)\n\
+\n\
+\n\
+Service      pid     machine       Connected at\n\
+-------------------------------------------------------\n\
+user1        24107   10.10.10.8    Fri Jan 31 08:13:06 2014\n\
+\n\
+Locked files:\n\
+Pid          Uid        DenyMode   Access      R/W        Oplock           SharePath   Name   Time\n\
+--------------------------------------------------------------------------------------------------\n\
+24107        3000029    DENY_NONE  0x2019f     RDWR       NONE             /opt/user1   target/clients/CLI6.cdx   Fri Jan 31 09:04:12 2014\n\
+\n";
 
 void UtestSmbstatus::cleanup() {
 	m_customsmbstatus.clear();
@@ -139,6 +155,7 @@ void UtestSmbstatus::SambaVersion_data() {
 	QTest::newRow("Samba version 3.0.22") << status3022 << "Samba version 3.0.22-13.27-1162-SUSE-SLES10";
 	QTest::newRow("Samba version 3.0.23d") << status3023d << "Samba version 3.0.23d-6-1083-SUSE-SL10.2";
 	QTest::newRow("Samba version 3.0.30") << status3030 << "Samba version 3.0.30-0.fc8";
+	QTest::newRow("Samba version 4.1.4") << status414 << "Samba version 4.1.4-SerNet-RedHat-7.el6";
 }
 
 void UtestSmbstatus::SambaVersion() {
@@ -162,6 +179,7 @@ void UtestSmbstatus::addUser_data() {
 	QTest::newRow("Samba version 3.0.22") << status3022 <<  (QStringList() << "24158"<< "user1" << "group-admin" << "my861" << "192.168.1.31");
 	QTest::newRow("Samba version 3.0.23d") << status3023d << (QStringList() << "4528" << "villou" << "users" << "localhost" << "192.168.1.150");
 	QTest::newRow("Samba version 3.0.30") << status3030 << (QStringList() << "32459" << "nobody" << "nogroup" << "filomenap" << "filomenap");
+	QTest::newRow("Samba version 4.1.4") << status414 << (QStringList() << "24107" << "3000029" << "users" << "10.10.10.8" << "ipv4:10.10.10.8:1099");
 }
 
 void UtestSmbstatus::addUser() {
@@ -184,6 +202,7 @@ void UtestSmbstatus::addShare_data() {
 	QTest::newRow("Samba version 3.0.22") << status3022 <<  (QStringList() << "24158"<< "sys" << "Thu Apr  2 11:58:16 2009");
 	QTest::newRow("Samba version 3.0.23d") << status3023d << (QStringList() << "4528" << "users" << "Wed May  9 16:35:57 2007");
 	QTest::newRow("Samba version 3.0.30") << status3030 << (QStringList() << "32459" << "F" << "Fri Sep 12 08:38:55 2008");
+	QTest::newRow("Samba version 4.1.4") << status414 << (QStringList() << "24107" << "user1" << "Fri Jan 31 08:13:06 2014");
 }
 
 void UtestSmbstatus::addShare() {
@@ -206,6 +225,7 @@ void UtestSmbstatus::addLockedfile_data() {
 	QTest::newRow("Samba version 3.0.22") << status3022 <<  (QStringList() << "24158"<< "/XXone   user/bginfo" << "DENY_NONE" << "RDONLY" << "NONE" << "Fri Apr  3 08:46:03 2009");
 	QTest::newRow("Samba version 3.0.23d") << status3023d << (QStringList() << "4528" << "/home   villou/Documents/kubuntu-7.04-desktop-i386.iso" << "DENY_NONE" << "WRONLY" << "NONE" << "Wed May  9 16:37:13 2007");
 	QTest::newRow("Samba version 3.0.30") << status3030 << (QStringList() << "32459" << "/F   Fac/EMPRESA.DBF" << "DENY_NONE" << "RDWR" << "EXCLUSIVE+BATCH" << "Fri Sep 12 09:43:09 2008");
+	QTest::newRow("Samba version 4.1.4") << status414 << (QStringList() << "24107" << "/opt/user1   target/clients/CLI6.cdx" << "DENY_NONE" << "RDWR" << "NONE" << "Fri Jan 31 09:04:12 2014");
 }
 
 void UtestSmbstatus::addLockedfile() {

@@ -72,7 +72,7 @@ private: // Private attributes
 	QStringList ListSmbstatus;
 	int version_samba;
 	/** Enum samba version */
-	enum {unknown,version2,version3} enum_version_samba;
+	enum {unknown,version2,version3,version4} enum_version_samba;
 	/** Enum section of smbstatus */
 	enum {header_connexions, connexions, header_services, services, header_locked_files, locked_files} readingpart;
 };

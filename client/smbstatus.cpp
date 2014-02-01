@@ -85,6 +85,7 @@ void smbstatus::RQ_smbstatus()
 			ligne=ligne.simplified ();
 			if (ligne.contains("version 2.2",Qt::CaseInsensitive) ) version_samba=version2;
 			if (ligne.contains("version 3.",Qt::CaseInsensitive) ) version_samba=version3;
+			if (ligne.contains("version 4.",Qt::CaseInsensitive) ) version_samba=version4;
 			emit sambaVersion(ligne);
 		}
 
@@ -94,8 +95,7 @@ void smbstatus::RQ_smbstatus()
 		if ((readingpart==header_connexions) && ligne.contains("machine",Qt::CaseInsensitive))
 		{
 			linecore->InitHeader(ligne);
-			//version samba 3
-			if (version_samba==version3)
+			if (version_samba>=version3)
 			{
 				linecore->InitElement("Username");
 				linecore->InitElement("Group");
@@ -115,16 +115,16 @@ void smbstatus::RQ_smbstatus()
 		if ((readingpart==connexions) && (ligne.simplified ().isEmpty ()==false))
 		{
 			linecore->Analysis(ligne);
-			if ((version_samba==version3) ||  (version_samba==version2 ) )
-			{ // version 2 and version 3 of samba
+			if (version_samba>=version2)
+			{
 					strPid=linecore->ReturnElement("pid");
 					strMachineName=linecore->ReturnElement("machine");
 					iMachineIP=strMachineName.indexOf("(");
 					iConnected=strMachineName.indexOf(")",iMachineIP)+1;
 					strMachineIP=(strMachineName.mid(iMachineIP+1,iConnected-iMachineIP-2)).trimmed();
 			}
-			if (version_samba==version3 )
-			{ //version samba 3
+			if (version_samba>=version3 )
+			{ //version samba 3 and upper
 				strUser=linecore->ReturnElement("username");
 				strGroup=linecore->ReturnElement("group");
 				strMachineName=(strMachineName.mid(0,iMachineIP)).trimmed();
@@ -147,7 +147,7 @@ void smbstatus::RQ_smbstatus()
 
 		// --------------- SERVICES ---------------------------------------------
 		if ((readingpart==header_services) && ligne.contains("Service",Qt::CaseInsensitive))
-		{ // only samba 3.0
+		{ // only samba >= 3.0
 			linecore->InitHeader(ligne);
 			linecore->InitElement("pid");
 			linecore->InitElement("Service");
@@ -234,8 +234,8 @@ void smbstatus::what_part(QString part)
 	if ((readingpart==connexions) && (part.simplified ().isEmpty ()==true))
 	// and connection
 	{
-		if (version_samba==version3 )
-		{ //version samba 3
+		if (version_samba>=version3 )
+		{ //version samba 3 and upper
 			readingpart=header_services;
 			debugQt("connexions->header_services");
 		}
