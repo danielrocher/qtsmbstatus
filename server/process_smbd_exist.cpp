@@ -37,12 +37,12 @@ process_smbd_exist::process_smbd_exist(const QString & MyPID,const QString & USE
  : QObject(parent)
 {
 	debugQt("Object process_smbd_exist : "+QString::number(++compteur_objet));
-	
+
 	m_textDecoder = QTextCodec::codecForLocale()->makeDecoder();
 	State=begin;
-
-	MyPid=MyPID.simplified();
-	UserSamba=USER.simplified();
+	QRegExp regexp("[\"\'\n\r;|&#><`\\\\]");
+	MyPid=MyPID.simplified().replace(regexp, " ");
+	UserSamba=USER.simplified().replace(regexp, " ");
 
 	connect( &proc, SIGNAL(finished ( int, QProcess::ExitStatus)),this, SLOT(end_process()) );
 	connect( &proc, SIGNAL(readyReadStandardOutput ()),this, SLOT(readFromStdout()) );
