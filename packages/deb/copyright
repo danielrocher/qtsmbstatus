@@ -4,11 +4,7 @@ Maintainer: Daniel Rocher <daniel.rocher@adella.org>
 Source: http://qtsmbstatus.free.fr/index.php?page=downloads
 
 File: *
-Copyright: 2004, Daniel Rocher <daniel.rocher@adella.org>
-License: GPL-2
-
-File: client/mainwindows.*
-Copyright: 2008, Daniel Rocher <daniel.rocher@adella.org>
+Copyright: 2004-2008, Daniel Rocher <daniel.rocher@adella.org>
 License: GPL-2
 
 File: debian/*
