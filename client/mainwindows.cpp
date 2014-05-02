@@ -247,7 +247,7 @@ void MainWindows::helpAbout()
 					"<tr><td>Polish translation </td><td>Inox, Jarosław Ogrodnik, Pawel Dyda, Sh4dow</td></tr>"
 					"<tr><td>Spanish translation </td><td>Abel O'Rian, Amaeth, DiegoJ, Eduardo Alberto Calvo, Fernando Muñoz, Ian Springer, Jorge Dardón, Monkey</td></tr>"
 					"<tr><td>Italian translation </td><td>Martino Barbon, Naldini Paolo, Salvatore Udda, simone.sandri</td></tr>"
-					"<tr><td>German translation </td><td>Alex Djekic, Dennis Baudys, Sascha Biermanns, Till Freier</td></tr>"
+					"<tr><td>German translation </td><td>Alex Djekic, Dennis Baudys, Sascha Biermanns, Till Freier, Tobias Bannert</td></tr>"
 					"<tr><td>Hungarian translation </td><td>Muszela Balázs, Pittmann Tamás, Szenográdi Norbert Péter, Szilveszter Kovács</td></tr>"
 					"<tr><td>Russian translation </td><td>Motsyo Gennadi, Eugene Marshal</td></tr>"
 					"<tr><td>Ukrainian translation </td><td>Motsyo Gennadi, Андрей Стрепетов</td></tr>"
