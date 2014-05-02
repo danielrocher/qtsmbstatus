@@ -1,5 +1,12 @@
 Changelog for QtSmbstatus:
 
+2014-05-02 - Version 2.3.0:
+    - Added support Samba version 4
+    - Fixed a security issue
+    - Added a cache system (for smbstatus reply)
+    - Created new certificate and private key
+    - Updated some translations
+
 2012-02-19 - Version 2.2.1:
 	- fix: authentification required with smbclient
 	- Updated some translations
