@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de">
+<TS version="2.0" language="de" sourcelanguage="de">
 <context>
     <name>LogForm</name>
     <message>
@@ -392,7 +392,7 @@
     </message>
     <message>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>root</source>
