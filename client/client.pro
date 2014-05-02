@@ -110,7 +110,7 @@ INSTALLS += trans \
             menu \
             manpage
 
-system(lrelease $$TRANSLATIONS)
+system(lrelease-qt4 $$TRANSLATIONS)
 
 }
 
