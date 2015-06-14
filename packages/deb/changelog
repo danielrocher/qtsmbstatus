@@ -1,3 +1,9 @@
+qtsmbstatus (2.3.1-0) unstable; urgency=low
+
+  * New upstream release
+
+ -- Daniel Rocher <daniel.rocher@adella.org>  Sun, 14 Jun 2015 14:42:08 +0200
+
 qtsmbstatus (2.3.0-0) unstable; urgency=low
 
   * New upstream release

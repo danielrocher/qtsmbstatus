@@ -10,7 +10,7 @@
 ;--------------------------------
 
 Name "QtSmbstatus"
-OutFile "qtsmbstatus-client.2.3.0-1.exe"
+OutFile "qtsmbstatus-client.2.3.1-1.exe"
 
 InstallDir "$PROGRAMFILES\qtsmbstatus"
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qtsmbstatus""UninstallString"

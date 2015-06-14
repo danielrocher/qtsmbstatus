@@ -1,5 +1,8 @@
 Changelog for QtSmbstatus:
 
+2015-06-14 - Version 2.3.1:
+    - Fix: signal 'triggered' replace 'activated' in QAction since qt4
+    
 2014-05-02 - Version 2.3.0:
     - Added support Samba version 4
     - Fixed a security issue
